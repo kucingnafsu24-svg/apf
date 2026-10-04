@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+  HALAMAN POST (berbasis details.html dari template Cyborg)
+
+  CARA PAKAI
+  1. Taruh file ini di folder yang SAMA dengan index.html dan details.html,
+     supaya semua jalur (assets/, vendor/) tetap benar dan tidak perlu diubah.
+  2. Salin file ini untuk tiap post baru, misalnya post-pubg.html.
+  3. Edit hanya bagian bertanda [EDIT]. Bagian bertanda [JANGAN DIUBAH] dibiarkan.
+-->
+<html lang="id">
 
   <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- [JANGAN DIUBAH] Font dan CSS template -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Cyborg - Awesome HTML5 Template</title>
+    <!-- [EDIT] Judul tab browser -->
+    <title>Fortnite - PSD/Clip File</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- [JANGAN DIUBAH] -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-cyborg-gaming.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
-
-TemplateMo 579 Cyborg Gaming
-
-https://templatemo.com/tm-579-cyborg-gaming
-
--->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
   </head>
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
+  <!-- [JANGAN DIUBAH] Preloader: dibutuhkan oleh custom.js -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
       <span class="dot"></span>
@@ -42,39 +43,33 @@ https://templatemo.com/tm-579-cyborg-gaming
       </div>
     </div>
   </div>
-  <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
+  <!-- [JANGAN DIUBAH] Header dan menu. Boleh ubah teks menu atau link bila perlu. -->
   <header class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
                         <img src="assets/images/logo.png" alt="">
                     </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
                     <div class="search-input">
                       <form id="search" action="#">
                         <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
                         <i class="fa fa-search"></i>
                       </form>
                     </div>
-                    <!-- ***** Search End ***** -->
-                    <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="browse.html">Browse</a></li>
                         <li><a href="details.html" class="active">Details</a></li>
                         <li><a href="streams.html">Streams</a></li>
                         <li><a href="profile.html">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
-                    </ul>   
+                    </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
-                    <!-- ***** Menu End ***** -->
                 </nav>
             </div>
         </div>
@@ -88,6 +83,8 @@ https://templatemo.com/tm-579-cyborg-gaming
         <div class="page-content">
 
           <!-- ***** Featured Start ***** -->
+          <!-- [EDIT] Hanya nama file gambar dan link video (href YouTube).
+               Kalau tidak punya video, ganti href dengan "#" atau hapus tag <a> berikon play. -->
           <div class="row">
             <div class="col-lg-12">
               <div class="feature-banner header-text">
@@ -111,6 +108,7 @@ https://templatemo.com/tm-579-cyborg-gaming
           <div class="game-details">
             <div class="row">
               <div class="col-lg-12">
+                <!-- [EDIT] Judul post -->
                 <h2>Fortnite Details</h2>
               </div>
               <div class="col-lg-12">
@@ -119,9 +117,11 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="col-lg-6">
                       <div class="left-info">
                         <div class="left">
+                          <!-- [EDIT] Nama dan kategori -->
                           <h4>Fortnite</h4>
                           <span>Sandbox</span>
                         </div>
+                        <!-- [EDIT] Hanya angkanya. Ikon <i> jangan dihapus -->
                         <ul>
                           <li><i class="fa fa-star"></i> 4.8</li>
                           <li><i class="fa fa-download"></i> 2.3M</li>
@@ -130,14 +130,18 @@ https://templatemo.com/tm-579-cyborg-gaming
                     </div>
                     <div class="col-lg-6">
                       <div class="right-info">
+                        <!-- [EDIT] Hanya teks setelah ikon: rating, unduhan, ukuran file, jenis -->
                         <ul>
                           <li><i class="fa fa-star"></i> 4.8</li>
                           <li><i class="fa fa-download"></i> 2.3M</li>
-                          <li><i class="fa fa-server"></i> 36GB</li>
-                          <li><i class="fa fa-gamepad"></i> Action</li>
+                          <li><i class="fa fa-server"></i> 85MB</li>
+                          <li><i class="fa fa-gamepad"></i> PSD</li>
                         </ul>
                       </div>
                     </div>
+
+                    <!-- [EDIT] Nama file gambar pratinjau. Tag <img> dan style jangan diubah.
+                         Hapus satu blok col-lg-4 kalau gambarnya kurang dari tiga. -->
                     <div class="col-lg-4">
                       <img src="assets/images/details-01.jpg" alt="" style="border-radius: 23px; margin-bottom: 30px;">
                     </div>
@@ -147,12 +151,18 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="col-lg-4">
                       <img src="assets/images/details-03.jpg" alt="" style="border-radius: 23px; margin-bottom: 30px;">
                     </div>
+
                     <div class="col-lg-12">
-                      <p>Cyborg Gaming is free HTML CSS website template provided by TemplateMo. This is Bootstrap v5.2.0 layout. You can make a <a href="https://paypal.me/templatemo" target="_blank">small contribution via PayPal</a> to info [at] templatemo.com and thank you for supporting. If you want to get the PSD source files, please contact us. Lorem ipsum dolor sit consectetur es dispic dipiscingei elit, sed doers eiusmod lisum hored tempor.</p>
+                      <!-- [EDIT] Isi deskripsi. Tambah paragraf dengan <p>...</p> baru -->
+                      <p>Tulis penjelasan file di sini: isi file, untuk apa dipakai, dan syarat penggunaannya.</p>
                     </div>
+
                     <div class="col-lg-12">
                       <div class="main-border-button">
-                        <a href="#">Download Fortnite Now!</a>
+                        <!-- [EDIT] Teks tombol dan link unduh.
+                             File di folder files/ : href="files/fortnite.zip" download
+                             Link luar (Drive, GitHub Releases): href="https://..." target="_blank" -->
+                        <a href="files/fortnite.zip" download>Download Fortnite Now!</a>
                       </div>
                     </div>
                   </div>
@@ -163,17 +173,20 @@ https://templatemo.com/tm-579-cyborg-gaming
           <!-- ***** Details End ***** -->
 
           <!-- ***** Other Start ***** -->
+          <!-- [EDIT, OPSIONAL] Post terkait. Ganti gambar, judul, dan angka.
+               Bagian ini boleh dihapus seluruhnya (dari komentar Other Start sampai Other End).
+               Untuk menambah item, salin satu blok <div class="col-lg-6"> ... </div>. -->
           <div class="other-games">
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
-                  <h4><em>Other Related</em> Games</h4>
+                  <h4><em>Other Related</em> Posts</h4>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="item">
                   <img src="assets/images/game-01.jpg" alt="" class="templatemo-item">
-                  <h4>Dota 2</h4><span>Sandbox</span>
+                  <h4><a href="post-pubg.html" style="color: inherit;">PubG</a></h4><span>Battle S</span>
                   <ul>
                     <li><i class="fa fa-star"></i> 4.8</li>
                     <li><i class="fa fa-download"></i> 2.3M</li>
@@ -183,47 +196,7 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="col-lg-6">
                 <div class="item">
                   <img src="assets/images/game-02.jpg" alt="" class="templatemo-item">
-                  <h4>Dota 2</h4><span>Sandbox</span>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
-                    <li><i class="fa fa-download"></i> 2.3M</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="item">
-                  <img src="assets/images/game-03.jpg" alt="" class="templatemo-item">
-                  <h4>Dota 2</h4><span>Sandbox</span>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
-                    <li><i class="fa fa-download"></i> 2.3M</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="item">
-                  <img src="assets/images/game-02.jpg" alt="" class="templatemo-item">
-                  <h4>Dota 2</h4><span>Sandbox</span>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
-                    <li><i class="fa fa-download"></i> 2.3M</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="item">
-                  <img src="assets/images/game-03.jpg" alt="" class="templatemo-item">
-                  <h4>Dota 2</h4><span>Sandbox</span>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
-                    <li><i class="fa fa-download"></i> 2.3M</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="item">
-                  <img src="assets/images/game-01.jpg" alt="" class="templatemo-item">
-                  <h4>Dota 2</h4><span>Sandbox</span>
+                  <h4><a href="post-dota2.html" style="color: inherit;">Dota2</a></h4><span>Steam-X</span>
                   <ul>
                     <li><i class="fa fa-star"></i> 4.8</li>
                     <li><i class="fa fa-download"></i> 2.3M</li>
@@ -238,22 +211,23 @@ https://templatemo.com/tm-579-cyborg-gaming
       </div>
     </div>
   </div>
-  
+
+  <!-- [EDIT] Teks footer (nama dan tahun). Struktur jangan diubah.
+       Catatan: template ini bawaan TemplateMo/ThemeWagon, jadi jangan lupa baca syarat
+       penggunaannya sebelum menghapus kredit desain. -->
   <footer>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">Cyborg Gaming</a> Company. All rights reserved. 
-          
+          <p>Copyright © 2026 <a href="#">All Pirate File</a>. All rights reserved.
+
           <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a>  Distributed By <a href="https://themewagon.com" target="_blank" >ThemeWagon</a></p>
         </div>
       </div>
     </div>
   </footer>
 
-
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
+  <!-- [JANGAN DIUBAH] Script template. Urutannya harus tetap. -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -263,7 +237,6 @@ https://templatemo.com/tm-579-cyborg-gaming
   <script src="assets/js/popup.js"></script>
   <script src="assets/js/custom.js"></script>
 
-
-  </body>
+</body>
 
 </html>
