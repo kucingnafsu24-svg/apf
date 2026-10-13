@@ -15,4 +15,15 @@
   "excerpt":"Ganti tema terang dan gelap dengan satu klik, serta cari artikel langsung dari header.",
   "thumb":{"cls":"t4","title":"Dark Mode","sub":"Fletro Pro"},
   "content":"<p>Tema mengikuti pengaturan sistem, dan pilihan Anda tersimpan di browser.</p>"}
+{
+  "slug": "judul-artikel-saya",
+  "title": "Judul Artikel Saya",
+  "author": "Nama Anda",
+  "labels": ["Tutorial"],
+  "date": "2026-10-14",
+  "comments": 0,
+  "excerpt": "Ringkasan singkat yang tampil di beranda.",
+  "thumb": { "cls": "t1", "title": "Judul", "sub": "Subjudul" },
+  "content": "<p>Paragraf pertama.</p><h2>Subjudul</h2><p>Paragraf kedua.</p>"
+}
 ]
