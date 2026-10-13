@@ -13,6 +13,7 @@ fetch('/data/posts.json').then(function(x){return x.json()}).then(init).catch(fu
 
 function init(P){
 function thumb(p,big){var b=p.comments?'<span class="badge"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 20l1-4.6A8 8 0 1 1 21 12z"/></svg>'+p.comments+'</span>':'';
+ if(p.image)return '<'+(big?'div':'a href="/post/'+p.slug+'"')+' class="thumb">'+b+'<img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy"></'+(big?'div':'a')+'>';
  var st=p.thumb.title.length>6?' style="font-size:'+(big?36:18)+'px"':'';
  return '<'+(big?'div':'a href="/post/'+p.slug+'"')+' class="thumb '+p.thumb.cls+'">'+b+'<span><strong'+st+'>'+esc(p.thumb.title)+'</strong><small>'+esc(p.thumb.sub)+'</small></span></'+(big?'div':'a')+'>'}
 function meta(p){return '<div class="meta"><span class="av">'+esc(p.author[0])+'</span><b>'+esc(p.author)+'</b> in '+p.labels.map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join(' / ')+'</div>'}
@@ -21,17 +22,21 @@ function card(p){
  '<h3><a href="/post/'+p.slug+'">'+esc(p.title)+'</a></h3><p>'+esc(p.excerpt)+'</p>'+
  (p.sponsored?'<a class="more" href="/post/'+p.slug+'">Read more</a>':'<span class="date">'+fmt(p.date)+'</span>')+'</div>'+thumb(p)+'</article>'}
 
+var L={};P.forEach(function(p){p.labels.forEach(function(l){L[l]=1})});
 if($('pop')){
  var pop=P.slice().sort(function(a,b){return b.comments-a.comments}).slice(0,3);
  $('pop').innerHTML=pop.map(function(p){return '<a href="/post/'+p.slug+'">'+esc(p.title)+'</a>'}).join('');
- var L={};P.forEach(function(p){p.labels.forEach(function(l){L[l]=1})});
+ P.forEach(function(p){p.labels.forEach(function(l){L[l]=1})});
  $('labels').innerHTML=Object.keys(L).map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join('');
 }
 
+var cur=new URLSearchParams(location.search).get('label');
+$('topics').innerHTML=Object.keys(L).map(function(l){return '<a'+(l===cur?' class="on"':'')+' href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join('');
 var list=$('posts'),qs=new URLSearchParams(location.search);
 if(list){
  var label=qs.get('label');
  var data=label?P.filter(function(p){return p.labels.indexOf(label)>-1}):P;
+ if(!label)slider(P);
  if(label)$('ttl').textContent='Label: '+label;
  var render=function(a){list.innerHTML=a.length?a.map(card).join(''):'<div class="empty">Tidak ada artikel.</div>'};
  var filter=function(v){v=v.toLowerCase();render(data.filter(function(p){return (p.title+p.excerpt+p.labels.join(' ')).toLowerCase().indexOf(v)>-1}))};
@@ -52,5 +57,23 @@ if(list){
  }
  $('q').onkeydown=function(e){if(e.key==='Enter'&&e.target.value)location.href='/?q='+encodeURIComponent(e.target.value)};
 }
+}
+
+function slider(P){
+ var f=P.filter(function(p){return p.featured});if(!f.length)f=P.slice(0,3);
+ var tr=$('track'),sl=$('slider'),dots=$('dots'),i=0,timer;
+ tr.innerHTML=f.map(function(p){
+  var cap='<div class="cap"><small>'+esc(p.labels[0])+' · '+fmt(p.date)+'</small><h3>'+esc(p.title)+'</h3></div>';
+  return p.image?'<a class="slide" href="/post/'+p.slug+'"><img src="'+esc(p.image)+'" alt="" loading="lazy">'+cap+'</a>'
+   :'<a class="slide ph thumb '+p.thumb.cls+'" href="/post/'+p.slug+'">'+cap+'</a>'}).join('');
+ dots.innerHTML=f.map(function(_,k){return '<button aria-label="Slide '+(k+1)+'"></button>'}).join('');
+ sl.hidden=false;
+ var go=function(n){i=(n+f.length)%f.length;tr.scrollTo({left:i*tr.clientWidth})};
+ var mark=function(){i=Math.round(tr.scrollLeft/tr.clientWidth);[].forEach.call(dots.children,function(d,k){d.className=k===i?'on':''})};
+ tr.addEventListener('scroll',mark);mark();
+ $('sprev').onclick=function(){go(i-1)};$('snext').onclick=function(){go(i+1)};
+ [].forEach.call(dots.children,function(d,k){d.onclick=function(){go(k)}});
+ var play=function(){clearInterval(timer);if(f.length>1)timer=setInterval(function(){go(i+1)},5000)};
+ sl.onmouseenter=function(){clearInterval(timer)};sl.onmouseleave=play;play();
 }
 })();
