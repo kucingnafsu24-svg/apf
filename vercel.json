@@ -1,4 +1,0 @@
-{
-  "cleanUrls": true,
-  "rewrites": [{ "source": "/post/:slug", "destination": "/post.html" }]
-}
