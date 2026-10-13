@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Judul Slide Pertama",
+    "label": "Info",
+    "date": "2024-11-10",
+    "image": "/images/slide1.jpg",
+    "url": "/post/20241110-irys"
+  },
+  {
+    "title": "Slide Tanpa Gambar",
+    "label": "Pengumuman",
+    "cls": "t2",
+    "url": "/"
+  }
+]
