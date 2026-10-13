@@ -1,19 +1,27 @@
 [
- {
-  "slug": "20241110-Irys",
-  "title": "20241110-Irys",
-  "author": "Admin",
-  "labels": [
-   "Features",
-   "Update"
-  ],
-  "date": "2021-04-23",
-  "comments": 8,
-  "excerpt": "Pembaruan terakhir pada tanggal 20 April 2021. Tampilan baru, performa lebih cepat, dan fitur tambahan.",
-  "images": "/images/cover1.jpeg",
-   "cls": "t1",
-   "title": "v6.0",
-   "sub": "Fletro Pro Update"
+  {
+    "slug": "20241110-irys",
+    "title": "20241110-Irys",
+    "author": "Admin",
+    "labels": ["Features", "Update"],
+    "date": "2024-11-10",
+    "comments": 0,
+    "featured": true,
+    "image": "/images/cover1.jpeg",
+    "excerpt": "Ringkasan singkat yang tampil di beranda.",
+    "content": "<p>Paragraf pertama artikel.</p><h2>Subjudul</h2><p>Paragraf kedua.</p>"
   },
+  {
+    "slug": "artikel-tanpa-gambar",
+    "title": "Artikel Tanpa Gambar",
+    "author": "Admin",
+    "labels": ["Tutorial"],
+    "date": "2024-11-09",
+    "comments": 0,
+    "thumb": { "cls": "t2", "title": "Tutorial", "sub": "Judul Kecil" },
+    "excerpt": "Artikel ini memakai kotak berwarna sebagai thumbnail.",
+    "content": "<p>Isi artikel di sini.</p>"
+  }
+]
 
 ]
