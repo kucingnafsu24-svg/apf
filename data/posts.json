@@ -15,8 +15,5 @@
    "title": "v6.0",
    "sub": "Fletro Pro Update"
   },
-  "content": "<p>Fletro v6.0 hadir dengan tampilan baru, performa lebih cepat, dan fitur tambahan.</p><h2>Yang baru</h2><ul><li>Mode gelap</li><li>Tampilan List dan Grid</li><li>Pencarian instan</li></ul><blockquote>Edit file <code>data/posts.json</code> untuk mengganti isi artikel ini.</blockquote>",
-  "featured": true
- },
 
 ]
