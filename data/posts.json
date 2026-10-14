@@ -1,15 +1,12 @@
-{
-  "slug": "20241110-irys",
-  "title": "20241110-Irys",
-  "author": "Admin",
-  "labels": ["七氏"],
-  "date": "2026-10-14",
-  "image": "/images/cover1.jpeg",
-  "excerpt": "Ringkasan singkat artikel.",
-  "videos": [
-    { "title": "Video 1", "url": "https://ALAMAT-EMBED-1" },
-    { "title": "Video 2", "url": "https://ALAMAT-EMBED-2" },
-    { "title": "Video 3", "url": "https://ALAMAT-EMBED-3" }
-  ],
-  "content": "<p>Deskripsi artikel.</p>"
-}
+[
+  {
+    "slug": "20241110-irys",
+    "title": "20241110-Irys",
+    "author": "Admin",
+    "labels": ["七氏"],
+    "date": "2026-10-14",
+    "image": "/images/cover1.jpeg",
+    "excerpt": "Ringkasan singkat artikel.",
+    "content": "<p>Isi paragraf pertama.</p><p>Paragraf kedua.</p>"
+  }
+]
