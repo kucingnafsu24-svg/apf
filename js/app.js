@@ -1,5 +1,7 @@
 (function(){
-var r=document.documentElement,$=function(i){return document.getElementById(i)};
+var r=document.documentElement;
+var dummy={style:{},children:[],classList:{add:function(){},remove:function(){},toggle:function(){return false},contains:function(){return false}},addEventListener:function(){},scrollTo:function(){},focus:function(){}};
+var $=function(i){var e=document.getElementById(i);return e||(i==='posts'||i==='pop'||i==='labels'||i==='article'?null:dummy)};
 var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
 var fmt=function(d){return new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'})};
 try{var t=localStorage.getItem('theme');if(t)r.setAttribute('data-theme',t)}catch(e){}
@@ -40,7 +42,8 @@ var L={};P.forEach(function(p){p.labels.forEach(function(l){L[l]=1})});
 if($('pop')){
  var pop=P.slice().sort(function(a,b){return b.comments-a.comments}).slice(0,3);
  $('pop').innerHTML=pop.map(function(p){return '<a href="/post.html?s='+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a>'}).join('');
- P.forEach(function(p){p.labels.forEach(function(l){L[l]=1})});
+}
+if($('labels')){
  $('labels').innerHTML=Object.keys(L).map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join('');
 }
 
