@@ -10,7 +10,17 @@ $('theme').onclick=function(){
  var n=d?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}};
 $('sbtn').onclick=function(){var s=$('search');s.classList.toggle('open');if(s.classList.contains('open'))$('q').focus()};
 
-fetch('/data/posts.json').then(function(x){return x.json()}).then(init).catch(function(e){
+function withCounts(P){
+ var C=window.APF_CONFIG;
+ if(!Array.isArray(P)||!C||!C.supabaseUrl||/GANTI/.test(C.supabaseUrl))return P;
+ return fetch(C.supabaseUrl+'/rest/v1/comment_counts?select=post_slug,total',{headers:{apikey:C.supabaseAnonKey}})
+  .then(function(r){return r.ok?r.json():null}).then(function(a){
+   if(!Array.isArray(a))return P;
+   var m={};a.forEach(function(x){m[x.post_slug]=x.total});
+   P.forEach(function(p){if(p&&p.slug)p.comments=m[String(p.slug).toLowerCase()]||0});
+   return P}).catch(function(){return P});
+}
+fetch('/data/posts.json').then(function(x){return x.json()}).then(withCounts).then(init).catch(function(e){
  var m=$('posts')||$('article');if(m)m.innerHTML='<div class="empty">Gagal memuat artikel. Periksa data/posts.json (kemungkinan ada koma berlebih, kurung kurang, atau tanda kutip salah).<br><small>'+esc(e&&e.message||e)+'</small></div>';console.error(e)});
 
 function init(P){
