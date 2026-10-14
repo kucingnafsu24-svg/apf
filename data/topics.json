@@ -1,5 +1,14 @@
 [
-  { "name": "Topu", "label": "Topu" },
-  { "name": "Maplestar", "label": "Maplestar" },
-  { "name": "Tutorial", "label": "Tutorial" }
+  {
+    "name": "Features",
+    "label": "Features"
+  },
+  {
+    "name": "Update",
+    "label": "Update"
+  },
+  {
+    "name": "Tutorial",
+    "label": "Tutorial"
+  }
 ]
