@@ -38,3 +38,8 @@ end $$;
 drop trigger if exists comments_set_author on public.comments;
 create trigger comments_set_author before insert on public.comments
 for each row execute function public.set_comment_author();
+
+-- Hitung jumlah komentar per artikel (dipakai badge di daftar artikel)
+create or replace view public.comment_counts as
+  select post_slug, count(*)::int as total from public.comments group by post_slug;
+grant select on public.comment_counts to anon, authenticated;
