@@ -2,5 +2,6 @@
 window.APF_CONFIG = {
   supabaseUrl: 'https://uondmguwobgfksgavuag.supabase.co',
   supabaseAnonKey: 'sb_publishable_ZTfhKAi7rYz4jJFTpHq38w_LsngGKhy',
-  providers: ['discord']
+    providers: ['discord'],
+  authors: { 'Admin': '/images/admin.webp' }
 };
