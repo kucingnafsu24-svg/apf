@@ -11,16 +11,18 @@
 </head>
 <body>
 <header><div class="wrap bar">
- <div class="brand">
-  <a class="logo" href="/">All Pirate File</a>
-  <button id="sbtn" aria-label="Cari"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
- </div>
+ <a class="logo" href="/">All Pirate File</a>
  <nav><a href="/">Beranda</a><a href="/?label=live2d">live2d</a><a href="/?label=animation">animation</a><a href="/?label=psd">psd</a><a href="/?label=art">art</a></nav>
  <div class="tools">
+  <div class="sbox">
+   <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+   <input id="q" placeholder="Cari artikel…" aria-label="Cari artikel" autocomplete="off">
+   <div class="sres" id="sres"></div>
+  </div>
+  <button id="sbtn" aria-label="Cari"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
   <button id="theme" aria-label="Mode gelap"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
  </div>
 </div>
-<div class="search" id="search"><div class="wrap"><input id="q" placeholder="Cari artikel…" aria-label="Cari"></div></div>
 </header>
 <div class="topics" id="topics"></div>
 <main class="wrap layout" id="layout">
@@ -50,6 +52,7 @@
 </main>
 <footer><div class="wrap"><span>© 2021 Fletro Pro. All rights reserved.</span><span>All Pirate File</span></div></footer>
 <script src="/js/app.js"></script>
- <script src="/js/config.js"></script>
+<script src="/js/search.js"></script>
+<script src="/js/config.js"></script>
 </body>
 </html>
