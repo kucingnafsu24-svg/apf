@@ -1,74 +1,12 @@
 [
- {
-  "slug": "whats-new-in-fletro-v6",
-  "title": "What's New in Fletro v6.0?",
-  "author": "Maki M.",
-  "labels": [
-   "Features",
-   "Update"
-  ],
-  "date": "2021-04-23",
-  "comments": 8,
-  "excerpt": "Pembaruan terakhir pada tanggal 20 April 2021. Tampilan baru, performa lebih cepat, dan fitur tambahan.",
-  "thumb": {
-   "cls": "t1",
-   "title": "v6.0",
-   "sub": "Fletro Pro Update"
-  },
-  "content": "<p>Fletro v6.0 hadir dengan tampilan baru, performa lebih cepat, dan fitur tambahan.</p><h2>Yang baru</h2><ul><li>Mode gelap</li><li>Tampilan List dan Grid</li><li>Pencarian instan</li></ul><blockquote>Edit file <code>data/posts.json</code> untuk mengganti isi artikel ini.</blockquote>"
- },
- {
-  "slug": "post-with-sponsored-feature",
-  "title": "Post with Sponsored Feature",
-  "author": "Maki M.",
-  "labels": [
-   "Sponsored"
-  ],
-  "date": "2021-04-22",
-  "comments": 0,
-  "sponsored": true,
-  "excerpt": "Fitur ini akan aktif pada label dengan nama 'Sponsored'. Cocok untuk artikel kerja sama dan promosi.",
-  "thumb": {
-   "cls": "t2",
-   "title": "Sponsored Tag",
-   "sub": "Sample Post With"
-  },
-  "content": "<p>Artikel dengan <code>\"sponsored\": true</code> mendapat penanda khusus di daftar.</p>"
- },
- {
-  "slug": "post-with-full-page-feature",
-  "title": "Post with Full Page Feature",
-  "author": "Maki M.",
-  "labels": [
-   "Features",
-   "Fullpage"
-  ],
-  "date": "2021-04-21",
-  "comments": 3,
-  "fullpage": true,
-  "excerpt": "Fitur ini akan aktif pada label dengan nama 'Fullpage'. Artikel tampil lebar tanpa sidebar.",
-  "thumb": {
-   "cls": "t3",
-   "title": "Fullpage Mode",
-   "sub": "Sample Post With"
-  },
-  "content": "<p>Beri <code>\"fullpage\": true</code> pada artikel untuk menyembunyikan sidebar dan menampilkan konten lebih lebar.</p>"
- },
- {
-  "slug": "dark-mode-dan-pencarian",
-  "title": "Dark Mode & Pencarian Instan",
-  "author": "Maki M.",
-  "labels": [
-   "Features"
-  ],
-  "date": "2021-04-18",
-  "comments": 1,
-  "excerpt": "Ganti tema terang dan gelap dengan satu klik, serta cari artikel langsung dari header.",
-  "thumb": {
-   "cls": "t4",
-   "title": "Dark Mode",
-   "sub": "Fletro Pro"
-  },
-  "content": "<p>Tema mengikuti pengaturan sistem, dan pilihan Anda tersimpan di browser.</p>"
- }
+  {
+    "slug": "20241110-irys",
+    "title": "20241110-Irys",
+    "author": "Admin",
+    "labels": ["七氏"],
+    "date": "2026-10-14",
+    "image": "/images/cover1.jpeg",
+    "excerpt": "Ringkasan singkat artikel.",
+    "content": "<p>Isi paragraf pertama.</p><p>Paragraf kedua.</p>"
+  }
 ]
