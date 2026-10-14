@@ -1,22 +1,7 @@
 [
-  {
-    "name": "Maplestar",
-    "label": "Maplestar"
-  },
-  {
-    "name": "Topu",
-    "label": "Topu"
-  },
-  {
-    "name": "Merlt",
-    "label": "Merlt"
-  }
-    {
-    "name": "Machi",
-    "label": "Machi"
-  }
-    {
-    "name": "Liquid Neko",
-    "label": "Liquid Neko"
-  }
+  { "name": "Maplestar", "label": "Maplestar" },
+  { "name": "Topu", "label": "Topu" },
+  { "name": "Merlt", "label": "Merlt" },
+  { "name": "Machi", "label": "Machi" },
+  { "name": "Liquid Neko", "label": "Liquid Neko" }
 ]
