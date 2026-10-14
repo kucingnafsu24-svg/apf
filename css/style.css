@@ -89,3 +89,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .dots button{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);padding:0}.dots button.on{background:#fff;width:20px;border-radius:4px}
 .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(max-width:640px){.slide{aspect-ratio:16/10}.slide .cap h3{font-size:18px}.arr{display:none}}
+
+.social{display:flex;flex-direction:column;gap:10px}
+.social a{display:flex;align-items:center;gap:12px;padding:11px 16px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-weight:500;color:var(--head);border-left:4px solid var(--c)}
+.social a:hover{background:var(--card)}
+.s-dc{--c:#5865f2}.s-wa{--c:#25d366}.s-fb{--c:#1877f2}.s-ig{--c:#e1306c}.s-yt{--c:#ff0000}.s-tg{--c:#26a5e4}
+
+.donate{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.donate iframe,.donate img{max-width:100%}
+.s-tk{--c:#be1e2d;display:flex;align-items:center;justify-content:center;width:100%;padding:11px 16px;border-radius:8px;font-size:14px;font-weight:600;background:var(--c);color:#fff}
+.s-tk:hover{filter:brightness(1.1)}
