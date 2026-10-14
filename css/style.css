@@ -99,3 +99,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .donate iframe,.donate img{max-width:100%}
 .s-tk{--c:#be1e2d;display:flex;align-items:center;justify-content:center;width:100%;padding:11px 16px;border-radius:8px;font-size:14px;font-weight:600;background:var(--c);color:#fff}
 .s-tk:hover{filter:brightness(1.1)}
+
+.topics{background:var(--foot);border-top:1px solid var(--line)}
+.topics a{border:1px solid transparent}.topics a.on{border-color:var(--line)}
