@@ -131,3 +131,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .c-del{margin-left:auto;font-size:12.5px;color:var(--alt)}.c-del:hover{color:#d33}
 .c-item p{margin:6px 0 0;font-size:15px;line-height:1.7;white-space:pre-wrap;word-break:break-word;color:var(--body)}
 @media(max-width:640px){.c-card{padding:14px}.c-item{padding:14px;gap:10px}.c-me img,.c-item img,.c-me .av,.c-item .av{width:32px;height:32px}}
+
+/* Ikon cari di sebelah logo + panel pencarian */
+.brand{display:flex;align-items:center;gap:6px}
+.brand button{padding:8px;border-radius:50%}.brand button:hover{background:var(--card)}
+.search{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);z-index:6}
+.search.open{display:block}
