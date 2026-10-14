@@ -6,5 +6,7 @@ Situs statis, tanpa build. Deploy: `vercel` (framework preset: Other) atau impor
 - `css/style.css` — tampilan & tema
 - `js/app.js` — render daftar, detail, label, pencarian, dark mode
 
-Field artikel: image? (URL gambar sampul), featured? (tampil di slider), slug, title, author, labels[], date (YYYY-MM-DD), comments, excerpt, thumb{cls,title,sub}, content (HTML), sponsored?, fullpage?
+Field artikel: image? (URL gambar sampul), slug, title, author, labels[], date (YYYY-MM-DD), comments, excerpt, thumb{cls,title,sub}, content (HTML), sponsored?, fullpage?
 Tes lokal: `npx vercel dev` (rewrite /post/:slug butuh vercel.json).
+
+- `data/slider.json` — slide di beranda (terpisah dari artikel): title, label, date, image, url, cls
