@@ -78,7 +78,7 @@ if(list){
 }else{
  var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
  var p=P.filter(function(x){return x.slug===slug})[0],a=$('article');
- if(!p){document.title='Tidak ditemukan — Fletro Pro';a.innerHTML='<div class="empty">Artikel tidak ditemukan.</div><a class="back" href="/">← Kembali</a>'}
+ if(!p){document.title='Tidak ditemukan — All Pirate File';a.innerHTML='<div class="empty">Artikel tidak ditemukan.</div><a class="back" href="/">← Kembali</a>'}
  else{
   cur=p.labels[0];
   document.title=p.title+' — Fletro Pro';
