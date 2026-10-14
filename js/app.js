@@ -8,7 +8,6 @@ try{var t=localStorage.getItem('theme');if(t)r.setAttribute('data-theme',t)}catc
 $('theme').onclick=function(){
  var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
  var n=d?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}};
-$('sbtn').onclick=function(){var s=$('search');s.classList.toggle('open');if(s.classList.contains('open'))$('q').focus()};
 
 function withCounts(P){
  var C=window.APF_CONFIG;
@@ -78,11 +77,8 @@ if(list){
  if(!label)fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
  if(label)$('ttl').textContent='Label: '+label;
  var render=function(a){list.innerHTML=a.length?a.map(card).join(''):'<div class="empty">Tidak ada artikel.</div>'};
- var filter=function(v){v=v.toLowerCase();render(data.filter(function(p){return (p.title+p.excerpt+p.labels.join(' ')).toLowerCase().indexOf(v)>-1}))};
  render(data);
  $('view').onclick=function(){var g=list.classList.toggle('grid');$('vl').textContent=g?'Grid':'List'};
- $('q').oninput=function(e){filter(e.target.value)};
- if(qs.get('q')){$('q').value=qs.get('q');$('search').classList.add('open');filter(qs.get('q'))}
 }else{
  var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
  var p=P.filter(function(x){return x.slug===slug})[0],a=$('article');
@@ -96,7 +92,6 @@ if(list){
    '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+videos(p)+'<div class="entry">'+p.content+'</div><a class="back" href="/">← Semua artikel</a>';
   bindVideos();
  }
- $('q').onkeydown=function(e){if(e.key==='Enter'&&e.target.value)location.href='/?q='+encodeURIComponent(e.target.value)};
 }
 }
 
