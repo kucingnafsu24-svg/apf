@@ -110,5 +110,3 @@ function slider(f){
  sl.onmouseenter=function(){clearInterval(timer)};sl.onmouseleave=play;play();
 }
 })();
-}
-})();
