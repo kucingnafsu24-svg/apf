@@ -4,7 +4,7 @@ var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){r
 var escRe=function(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')};
 var fmt=function(d){try{return new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}catch(e){return d}};
 var ico='<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
-var posts=null,loading=null;
+var posts=null,loading=null,known={title:1,author:1,label:1,tag:1,before:1,after:1};
 
 function load(){
  if(posts)return Promise.resolve(posts);
@@ -13,24 +13,59 @@ function load(){
   posts=(Array.isArray(a)?a:[]).filter(Boolean).map(function(p){
    var title=String(p.title||'Tanpa judul'),author=String(p.author||'Admin');
    var labels=(p.labels&&p.labels.length)?p.labels.map(String):['Umum'];
+   var tgl={},tall=[];
+   if(p.tags&&typeof p.tags==='object'&&!Array.isArray(p.tags))Object.keys(p.tags).forEach(function(k){
+    var kk=k.toLowerCase(),v=[].concat(p.tags[k]).map(function(x){return String(x).trim().toLowerCase()}).filter(Boolean);
+    if(v.length){tgl[kk]=v;known[kk]=1;v.forEach(function(x){tall.push(x)})}});
    tmp.innerHTML=String(p.content||'').replace(/<[^>]*>/g,' ');
    var text=String(tmp.value).replace(/\s+/g,' ').trim(),ex=String(p.excerpt||'');
    return {slug:String(p.slug||title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')).toLowerCase(),
     title:title,author:author,labels:labels,date:String(p.date||''),excerpt:ex,image:p.image||'',text:text,
-    lt:title.toLowerCase(),ll:labels.join(' ').toLowerCase(),la:author.toLowerCase(),le:ex.toLowerCase(),lx:text.toLowerCase()}});
+    tgl:tgl,tall:tall,
+    lt:title.toLowerCase(),ll:labels.concat(tall).join(' ').toLowerCase(),la:author.toLowerCase(),le:ex.toLowerCase(),lx:text.toLowerCase()}});
   return posts}).catch(function(){posts=[];return posts});
  return loading;
 }
 
-function terms(q){return String(q||'').toLowerCase().split(/\s+/).filter(Boolean)}
+/* Sintaks: kata biasa, "frasa", key:nilai (berisi), key:"nilai" (persis), -key:nilai (kecualikan).
+   key = title, author, label, tag, before, after, atau nama grup tag (artist, genre, file, language, ...) */
+function parse(q){
+ var words=[],ops=[],hl=[],re=/(-?)([a-z_][\w-]*):(?:"([^"]*)"|(\S+))|"([^"]+)"|(\S+)/gi,m;
+ q=String(q||'');
+ while((m=re.exec(q))){
+  var key=m[2]?m[2].toLowerCase():'';
+  if(key&&known[key]){
+   var val=(m[3]!=null?m[3]:m[4]).trim().toLowerCase();
+   if(val){ops.push({neg:m[1]==='-',key:key,val:val,exact:m[3]!=null});if(m[1]!=='-')hl.push(val)}
+  }else{
+   var w=(m[5]||m[6]||m[0]).toLowerCase().replace(/^"|"$/g,'');
+   if(w){words.push(w);hl.push(w)}
+  }
+ }
+ return {words:words,ops:ops,hl:hl};
+}
+function terms(q){return parse(q).hl}
+
+function opMatch(p,op){
+ var v=op.val,vals;
+ if(op.key==='before')return !!p.date&&p.date<v;
+ if(op.key==='after')return !!p.date&&p.date>v;
+ if(op.key==='title')vals=[p.lt];
+ else if(op.key==='author')vals=[p.la];
+ else if(op.key==='label')vals=p.labels.map(function(x){return x.toLowerCase()});
+ else if(op.key==='tag')vals=p.tall;
+ else vals=p.tgl[op.key]||[];
+ return vals.some(function(x){return op.exact?x===v:x.indexOf(v)>-1});
+}
 
 function run(o){
- var t=terms(o.q),out=[];
+ var P=parse(o.q),t=P.words,out=[];
  posts.forEach(function(p){
   if(o.label&&p.labels.indexOf(o.label)<0)return;
   if(o.from&&(!p.date||p.date<o.from))return;
   if(o.to&&(!p.date||p.date>o.to))return;
   var score=0;
+  for(var j=0;j<P.ops.length;j++){var op=P.ops[j];if(opMatch(p,op)===op.neg)return;score+=3}
   for(var i=0;i<t.length;i++){
    var s=0,w=t[i],sc=o.scope||'all';
    if(sc==='all'||sc==='title'){var k=p.lt.indexOf(w);if(k>-1)s+=k===0?6:5}
@@ -63,7 +98,6 @@ function snippet(p,t){
 }
 var href=function(p){return '/post.html?s='+encodeURIComponent(p.slug)};
 
-/* ---------- kotak cari di header + hasil cepat ---------- */
 /* Pasang kotak cari di header otomatis jika halaman belum punya (mis. post.html lama) */
 (function(){
  var tools=document.querySelector('.tools');
@@ -75,6 +109,8 @@ var href=function(p){return '/post.html?s='+encodeURIComponent(p.slug)};
  var btn=document.createElement('button');btn.id='sbtn';btn.setAttribute('aria-label','Cari');btn.innerHTML=ico;
  tools.insertBefore(btn,tools.firstChild);tools.insertBefore(box,btn);
 })();
+
+/* ---------- kotak cari di header + hasil cepat ---------- */
 var q=$('q'),res=$('sres');
 function quick(){
  if(!q||!res)return;
@@ -108,9 +144,10 @@ var modal=null;
 function build(){
  modal=document.createElement('div');modal.className='smodal';modal.hidden=true;
  modal.innerHTML='<div class="sm" role="dialog" aria-label="Pencarian lanjutan">'+
-  '<div class="sm-top">'+ico+'<input id="sq" placeholder="Cari judul, isi, label, penulis…" autocomplete="off"><button type="button" class="sm-x" id="sx" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>'+
+  '<div class="sm-top">'+ico+'<input id="sq" placeholder=\'Cari… atau artist:"maplestar" language:"english"\' autocomplete="off"><button type="button" class="sm-x" id="sx" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>'+
+  '<div class="sm-tip">Operator: <code>artist:"maplestar"</code> (persis) · <code>genre:live</code> (mengandung) · <code>tag:zip</code> (semua grup tag) · <code>-genre:fantasy</code> (kecualikan) · <code>title:</code> <code>author:</code> <code>label:</code> · <code>after:2026-01-01</code> <code>before:2026-12-31</code></div>'+
   '<div class="sm-filters">'+
-   '<label>Cari di<select id="sf-scope"><option value="all">Semua</option><option value="title">Judul</option><option value="content">Isi &amp; ringkasan</option><option value="label">Label</option><option value="author">Penulis</option></select></label>'+
+   '<label>Cari di<select id="sf-scope"><option value="all">Semua</option><option value="title">Judul</option><option value="content">Isi &amp; ringkasan</option><option value="label">Label &amp; tag</option><option value="author">Penulis</option></select></label>'+
    '<label>Label<select id="sf-label"><option value="">Semua label</option></select></label>'+
    '<label>Urutkan<select id="sf-sort"><option value="rel">Paling sesuai</option><option value="new">Terbaru</option><option value="old">Terlama</option><option value="az">Judul A–Z</option></select></label>'+
    '<label>Dari tanggal<input type="date" id="sf-from"></label>'+
@@ -127,15 +164,15 @@ function build(){
 }
 function update(){
  var o={q:$('sq').value,scope:$('sf-scope').value,label:$('sf-label').value,sort:$('sf-sort').value,from:$('sf-from').value,to:$('sf-to').value};
- var t=terms(o.q),list=$('sm-list'),cnt=$('sm-count');
+ var pq=parse(o.q),t=pq.hl,list=$('sm-list'),cnt=$('sm-count');
  var filtered=o.label||o.from||o.to;
- if(!t.length&&!filtered){cnt.textContent='';list.innerHTML='<div class="sm-empty">Ketik kata kunci atau pilih filter untuk mulai mencari.</div>';return}
+ if(!pq.words.length&&!pq.ops.length&&!filtered){cnt.textContent='';list.innerHTML='<div class="sm-empty">Ketik kata kunci, operator (mis. artist:"maplestar"), atau pilih filter untuk mulai mencari.</div>';return}
  var r=run(o);
  cnt.textContent=r.length+' hasil';
  list.innerHTML=r.length?r.map(function(p){
   return '<a class="sm-item" href="'+esc(href(p))+'">'+(p.image?'<img src="'+esc(p.image)+'" alt="" loading="lazy">':'')+
    '<div><b>'+hl(p.title,t)+'</b><small>'+esc(p.labels.join(' / '))+(p.date?' · '+esc(fmt(p.date)):'')+' · '+esc(p.author)+'</small>'+
-   '<p>'+snippet(p,t)+'</p></div></a>'}).join(''):'<div class="sm-empty">Tidak ada artikel yang cocok. Coba kata lain atau longgarkan filter.</div>';
+   '<p>'+snippet(p,t)+'</p></div></a>'}).join(''):'<div class="sm-empty">Tidak ada artikel yang cocok. Coba kata lain, longgarkan filter, atau periksa nama grup tag pada operator.</div>';
 }
 function openModal(v){
  if(!modal)build();
@@ -153,5 +190,5 @@ function closeModal(){if(modal){modal.hidden=true;document.documentElement.style
 
 var qp=new URLSearchParams(location.search).get('q');
 if(qp)openModal(qp);
-window.APF_SEARCH={load:load,run:run,hl:hl,terms:terms};
+window.APF_SEARCH={load:load,run:run,hl:hl,terms:terms,parse:parse};
 })();
