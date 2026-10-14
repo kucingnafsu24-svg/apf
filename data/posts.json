@@ -7,11 +7,10 @@
   "date": "2026-10-14",
   "image": "/images/cover1.jpeg",
   "excerpt": "Ringkasan singkat artikel.",
-  "videos": [
+  "videos":
     { "title": "Video 1", "url": "https://ALAMAT-EMBED-1" },
     { "title": "Video 2", "url": "https://ALAMAT-EMBED-2" },
     { "title": "Video 3", "url": "https://ALAMAT-EMBED-3" }
-  ]
   "content": "<p>Deskripsi artikel.</p>"
 }
   {
