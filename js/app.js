@@ -78,7 +78,7 @@ if(list){
 }else{
  var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
  var p=P.filter(function(x){return x.slug===slug})[0],a=$('article');
- if(!p){document.title='Tidak ditemukan — All Pirate File';a.innerHTML='<div class="empty">Artikel tidak ditemukan.</div><a class="back" href="/">← Kembali</a>'}
+ if(!p){document.title='Tidak ditemukan — Fletro Pro';a.innerHTML='<div class="empty">Artikel tidak ditemukan.</div><a class="back" href="/">← Kembali</a>'}
  else{
   cur=p.labels[0];
   document.title=p.title+' — Fletro Pro';
@@ -108,5 +108,7 @@ function slider(f){
  [].forEach.call(dots.children,function(d,k){d.onclick=function(){go(k)}});
  var play=function(){clearInterval(timer);if(f.length>1)timer=setInterval(function(){go(i+1)},5000)};
  sl.onmouseenter=function(){clearInterval(timer)};sl.onmouseleave=play;play();
+}
+})();
 }
 })();
