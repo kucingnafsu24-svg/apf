@@ -6,9 +6,15 @@
     "url": "/post.html?s=20241110-irys"
   },
   {
-    "title": "Slide Tanpa Gambar",
-    "label": "Pengumuman",
-    "cls": "t2",
-    "url": "/"
+    "title": "Maplestar",
+    "label": "Maplestar",
+    "image": "/images/cover-slider1.jpg",
+    "url": "/post.html?s=20241110-irys"
+  },
+  {
+    "title": "Machi",
+    "label": "Machi",
+    "image": "/images/cover-slider1.jpg",
+    "url": "/post.html?s=20241110-irys"
   }
 ]
