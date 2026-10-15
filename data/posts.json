@@ -1,5 +1,26 @@
 [
   {
+    "slug": "20241110-irys-2",
+    "title": "20241110-Irys (2)",
+    "author": "Admin",
+    "date": "2026-10-14",
+    "labels": ["七氏"],
+    "image": "/images/cover1.webp",
+    "excerpt": "Download 20241110-irys.zip",
+    "content": "<p>Download here</p>",
+    "tags": {
+      "genre": ["Live2D"],
+      "file": ["ZIP"]
+    },
+    "download": {
+      "title": "Download 20241110-irys",
+      "links": [
+        { "name": "Dropbox", "url": "https://u.pcloud.link/publink/show?code=XZAaBmJZ07iWmSH6CKjzI6pshx269mrUTuMX" },
+        { "name": "Pcloud", "url": "https://u.pcloud.link/publink/show?code=XZAaBmJZ07iWmSH6CKjzI6pshx269mrUTuMX" }
+      ]
+    }
+  },
+  {
     "slug": "20241110-irys",
     "title": "20241110-Irys",
     "author": "Admin",
@@ -29,7 +50,7 @@
     "title": "20241110-Irys (2)",
     "author": "Admin",
     "date": "2026-10-14",
-    "labels": ["Maplestar"],
+    "labels": ["七氏"],
     "image": "/images/cover1.webp",
     "excerpt": "Download 20241110-irys.zip",
     "content": "<p>Download here</p>",
