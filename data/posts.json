@@ -30,8 +30,8 @@
     "excerpt": "Download 05/20-木之本 櫻&電車",
     "content": "<p>Download here</p>",
     "tags": {
-      "genre": ["art"],
-      "file": ["ZIP"]
+      "genre": ["lolicon"],
+      "file": ["Art"]
     },
     "download": {
       "title": "Download 05/20-木之本 櫻&電車",
@@ -42,17 +42,17 @@
     }
   },
   {
-    "slug": "20241110-irys",
-    "title": "20241110-Irys",
+    "slug": "KAIJU NO 8 FULL ANIMATION",
+    "title": "KAIJU NO 8 FULL ANIMATION",
     "author": "Admin",
     "date": "2026-10-14",
     "labels": ["Maplestar"],
-    "image": "/images/cover1.webp",
+    "image": "/images/coverKAIJU.webp",
     "excerpt": "Download 20241110-irys.zip",
     "content": "<p>Download here</p>",
     "tags": {
-      "genre": ["Live2D"],
-      "file": ["ZIP"]
+      "genre": [""],
+      "file": ["2d Animation"]
     },
     "videos": [
       { "title": "Server 1", "url": "https://playmogo.com/e/uy1fy92sjzsy" },
