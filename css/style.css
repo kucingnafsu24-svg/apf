@@ -262,3 +262,12 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 .dl-btn{padding:6px 18px;border-radius:20px;background:var(--btn);color:#fff;font-size:13px;font-weight:600;transition:filter .15s}
 .dl-btn:hover{filter:brightness(1.12)}
 @media(max-width:760px){.sec-b{padding:12px}.vtabs{margin-bottom:10px}}
+
+/* deskripsi di atas, lalu Streaming & Unduh */
+.entry+.sec{margin-top:28px}
+
+/* urutan artikel: label+artist di atas; genre, tags, file di bawah deskripsi */
+.tg-label{border-left:3px solid #f5a623}
+.tagbottom{margin:20px 0 24px}
+.entry+.tagrows{margin-top:20px}
+.tagbottom+.sec{margin-top:4px}
