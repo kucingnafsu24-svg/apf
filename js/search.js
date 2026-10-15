@@ -4,7 +4,7 @@ var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){r
 var escRe=function(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')};
 var fmt=function(d){try{return new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}catch(e){return d}};
 var ico='<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
-var posts=null,loading=null,known={title:1,author:1,label:1,tag:1,before:1,after:1};
+var posts=null,loading=null,known={title:1,author:1,label:1,tag:1,before:1,after:1,artist:1};
 
 function load(){
  if(posts)return Promise.resolve(posts);
@@ -54,6 +54,7 @@ function opMatch(p,op){
  else if(op.key==='author')vals=[p.la];
  else if(op.key==='label')vals=p.labels.map(function(x){return x.toLowerCase()});
  else if(op.key==='tag')vals=p.tall;
+ else if(op.key==='artist')vals=(p.tgl.artist||[]).concat(p.labels.map(function(x){return x.toLowerCase()}));
  else vals=p.tgl[op.key]||[];
  return vals.some(function(x){return op.exact?x===v:x.indexOf(v)>-1});
 }
