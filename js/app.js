@@ -94,20 +94,21 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
 function authorLine(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b></div>'}
 function chipRow(k,vals){return '<div class="tagrow"><span>'+esc(gname(k))+'</span>'+vals.map(function(v){
  return '<a class="tg tg-'+esc(k.replace(/[^a-z0-9]/g,''))+'" href="'+tlink(k,v)+'">'+esc(v)+'</a>'}).join('')+'</div>'}
-function topRows(p){
+function artistRow(p){
  var seen={},items=[];
  if(p.hasLabels)p.labels.forEach(function(l){items.push({v:String(l),u:'/?label='+encodeURIComponent(l)})});
  (p.tags.artist||[]).forEach(function(x){items.push({v:x,u:tlink('artist',x)})});
  items=items.filter(function(x){var k=x.v.toLowerCase();if(seen[k])return false;seen[k]=1;return true});
  if(!items.length)return '';
- return '<div class="tagrows"><div class="tagrow"><span>'+esc(gname('artist'))+'</span>'+items.map(function(x){
-  return '<a class="tg tg-artist" href="'+esc(x.u)+'">'+esc(x.v)+'</a>'}).join('')+'</div></div>'}
+ return '<div class="tagrow"><span>'+esc(gname('artist'))+'</span>'+items.map(function(x){
+  return '<a class="tg tg-artist" href="'+esc(x.u)+'">'+esc(x.v)+'</a>'}).join('')+'</div>'}
 function bottomRows(p){var ks=[];
  if(p.tags.genre)ks.push('genre');
  Object.keys(p.tags).forEach(function(k){if(k!=='artist'&&k!=='genre'&&k!=='file')ks.push(k)});
  if(p.tags.file)ks.push('file');
- if(!ks.length)return '';
- return '<div class="tagrows tagbottom">'+ks.map(function(k){return chipRow(k,p.tags[k])}).join('')+'</div>'}
+ var h=artistRow(p)+ks.map(function(k){return chipRow(k,p.tags[k])}).join('');
+ if(!h)return '';
+ return '<div class="tagrows tagbottom">'+h+'</div>'}
 function meta(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b> in '+p.labels.map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join(' / ')+'</div>'}
 function card(p){
  return '<article class="post"><div>'+(p.sponsored?'<div class="tag">Sponsored</div>':meta(p))+
@@ -154,7 +155,7 @@ if(list){
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
   a.innerHTML='<div class="crumb"><a href="/">Home</a> / '+esc(p.labels[0])+'</div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+topRows(p)+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+'<a class="back" href="/">← Semua artikel</a>';
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+'<a class="back" href="/">← Semua artikel</a>';
   bindVideos();bindGallery(p);
  }
 }
