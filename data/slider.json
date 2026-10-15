@@ -16,5 +16,11 @@
     "label": "Machi",
     "image": "/images/cover-slider1.webp",
     "url": "/?label=Machi"
+  },
+  {
+    "title": "Ppolar",
+    "label": "Ppolar",
+    "image": "/images/cover-slider1.webp",
+    "url": "/?label=Ppolar"
   }
 ]
