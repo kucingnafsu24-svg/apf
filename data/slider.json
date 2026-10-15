@@ -9,12 +9,12 @@
     "title": "Maplestar",
     "label": "Maplestar",
     "image": "/images/cover-slider2.webp",
-    "url": "/post.html?s=20241110-irys"
+    "url": "/?label=Maplestar"
   },
   {
     "title": "Machi",
     "label": "Machi",
     "image": "/images/cover-slider1.webp",
-    "url": "/post.html?s=20241110-irys"
+    "url": "/?label=Machi"
   }
 ]
