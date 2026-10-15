@@ -58,12 +58,22 @@
     { "title": "Sub english", "url": "https://playmogo.com/e/4rzuq4s1ld9p" },
     { "title": "Sub espanol", "url": "https://playmogo.com/e/gn7po2olumuy" }
   ],
-  "download": {
-    "title": "Download KAIJU NO 8 FULL ANIMATION",
+  "download": [
+  {
+    "title": "Download KAIJU NO 8 FULL ANIMATION (Sub English)",
     "links": [
-      { "name": "Dropbox", "url": "https://u.pcloud.link/publink/show?code=XZAaBmJZ07iWmSH6CKjzI6pshx269mrUTuMX" },
+      { "name": "Dropbox", "url": "https://..." },
       { "name": "Pcloud", "url": "https://u.pcloud.link/publink/show?code=XZAaBmJZ07iWmSH6CKjzI6pshx269mrUTuMX" }
     ]
+  },
+  {
+    "title": "Download KAIJU NO 8 FULL ANIMATION (Sub Español)",
+    "links": [
+      { "name": "Dropbox", "url": "https://..." },
+      { "name": "Pcloud", "url": "https://..." }
+    ]
+  }
+]
   }
 },
   {
