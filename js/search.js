@@ -4,7 +4,13 @@ var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){r
 var escRe=function(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')};
 var fmt=function(d){try{return new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}catch(e){return d}};
 var ico='<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
-var posts=null,loading=null,known={title:1,author:1,label:1,tag:1,before:1,after:1,artist:1};
+var posts=null,loading=null,vals={};
+var known={title:1,author:1,label:1,tag:1,before:1,after:1,artist:1,category:1,file:1};
+var OPS=[['tag','Filter berdasarkan tag'],['artist','Filter berdasarkan artist'],['parody','Filter berdasarkan parodi'],['character','Filter berdasarkan karakter'],['genre','Filter berdasarkan genre'],['language','Filter berdasarkan bahasa'],['category','Filter berdasarkan kategori'],['title','Cari teks judul']];
+var lower=function(x){return String(x).toLowerCase()};
+var uniq=function(a){var s={};return a.filter(function(x){var k=lower(x);if(s[k])return false;s[k]=1;return true})};
+
+function addVal(k,v){vals[k]=vals[k]||{};vals[k][v]=(vals[k][v]||0)+1}
 
 function load(){
  if(posts)return Promise.resolve(posts);
@@ -12,67 +18,74 @@ function load(){
   var tmp=document.createElement('textarea');
   posts=(Array.isArray(a)?a:[]).filter(Boolean).map(function(p){
    var title=String(p.title||'Tanpa judul'),author=String(p.author||'Admin');
-   var labels=(p.labels&&p.labels.length)?p.labels.map(String):['Umum'];
-   var tgl={},tall=[];
+   var labs=(p.labels&&p.labels.length)?p.labels.map(String):[];
+   var tgo={},tgl={},tall=[];
    if(p.tags&&typeof p.tags==='object'&&!Array.isArray(p.tags))Object.keys(p.tags).forEach(function(k){
-    var kk=k.toLowerCase(),v=[].concat(p.tags[k]).map(function(x){return String(x).trim().toLowerCase()}).filter(Boolean);
-    if(v.length){tgl[kk]=v;known[kk]=1;v.forEach(function(x){tall.push(x)})}});
+    var kk=lower(k);if(kk==='file')kk='category';
+    var v=[].concat(p.tags[k]).map(function(x){return String(x).trim()}).filter(Boolean);
+    if(v.length)tgo[kk]=(tgo[kk]||[]).concat(v)});
+   var art=uniq(labs.concat(tgo.artist||[]));
+   Object.keys(tgo).forEach(function(k){tgo[k]=uniq(tgo[k]);tgl[k]=tgo[k].map(lower);known[k]=1;
+    tgo[k].forEach(function(x){tall.push(lower(x));addVal('tag',x);if(k!=='artist')addVal(k,x)})});
+   tgl.artist=art.map(lower);art.forEach(function(x){addVal('artist',x)});
    tmp.innerHTML=String(p.content||'').replace(/<[^>]*>/g,' ');
-   var text=String(tmp.value).replace(/\s+/g,' ').trim(),ex=String(p.excerpt||'');
+   var text=String(tmp.value).replace(/\s+/g,' ').trim(),ex=String(p.excerpt||''),labels=labs.length?labs:['Umum'];
    return {slug:String(p.slug||title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')).toLowerCase(),
     title:title,author:author,labels:labels,date:String(p.date||''),excerpt:ex,image:p.image||'',text:text,
     tgl:tgl,tall:tall,
-    lt:title.toLowerCase(),ll:labels.concat(tall).join(' ').toLowerCase(),la:author.toLowerCase(),le:ex.toLowerCase(),lx:text.toLowerCase()}});
+    lt:lower(title),ll:labels.concat(tall).join(' ').toLowerCase(),la:lower(author),le:lower(ex),lx:lower(text)}});
   return posts}).catch(function(){posts=[];return posts});
  return loading;
 }
 
-/* Sintaks: kata biasa, "frasa", key:nilai (berisi), key:"nilai" (persis), -key:nilai (kecualikan).
-   key = title, author, label, tag, before, after, atau nama grup tag (artist, genre, file, language, ...) */
+/* ---- sintaks: kata, "frasa", key:nilai (berisi), key:"nilai" (persis), -key:nilai (kecualikan) ---- */
 function parse(q){
- var words=[],ops=[],hl=[],re=/(-?)([a-z_][\w-]*):(?:"([^"]*)"|(\S+))|"([^"]+)"|(\S+)/gi,m;
+ var words=[],ops=[],hl=[],toks=[],re=/(-?)([a-z_][\w-]*):(?:"([^"]*)"|(\S+))|"([^"]+)"|(\S+)/gi,m;
  q=String(q||'');
  while((m=re.exec(q))){
-  var key=m[2]?m[2].toLowerCase():'';
+  var key=m[2]?lower(m[2]):'';
   if(key&&known[key]){
-   var val=(m[3]!=null?m[3]:m[4]).trim().toLowerCase();
-   if(val){ops.push({neg:m[1]==='-',key:key,val:val,exact:m[3]!=null});if(m[1]!=='-')hl.push(val)}
+   var raw=(m[3]!=null?m[3]:m[4]).trim(),val=lower(raw);
+   if(val){var o={type:'op',neg:m[1]==='-',key:key,val:val,raw:raw,exact:m[3]!=null};ops.push(o);toks.push(o);if(!o.neg)hl.push(val)}
   }else{
-   var w=(m[5]||m[6]||m[0]).toLowerCase().replace(/^"|"$/g,'');
-   if(w){words.push(w);hl.push(w)}
+   var rw=(m[5]||m[6]||m[0]).replace(/^"|"$/g,''),w=lower(rw);
+   if(w){words.push(w);hl.push(w);toks.push({type:'word',w:w,raw:rw})}
   }
  }
- return {words:words,ops:ops,hl:hl};
+ return {words:words,ops:ops,hl:hl,toks:toks};
 }
-function terms(q){return parse(q).hl}
+function fmtTok(t){return t.type==='word'?(/\s/.test(t.raw)?'"'+t.raw+'"':t.raw):(t.neg?'-':'')+t.key+':'+((t.exact||/\s/.test(t.raw))?'"'+t.raw+'"':t.raw)}
+function build(toks){return toks.map(fmtTok).join(' ')}
+function partial(q){
+ var m=/(?:^|\s)(-?)([a-z_][\w-]*):("?)([^"]*)$/i.exec(q);
+ if(m&&known[lower(m[2])]){var tk=m[0].replace(/^\s/,'');return {start:q.length-tk.length,neg:m[1]==='-',key:lower(m[2]),text:m[4]}}
+ var w=/(?:^|\s)(-?)([a-z_][\w-]*)$/i.exec(q);
+ if(w){var t2=w[0].replace(/^\s/,'');return {start:q.length-t2.length,neg:w[1]==='-',prefix:lower(w[2])}}
+ return null;
+}
 
 function opMatch(p,op){
- var v=op.val,vals;
- if(op.key==='before')return !!p.date&&p.date<v;
- if(op.key==='after')return !!p.date&&p.date>v;
- if(op.key==='title')vals=[p.lt];
- else if(op.key==='author')vals=[p.la];
- else if(op.key==='label')vals=p.labels.map(function(x){return x.toLowerCase()});
- else if(op.key==='tag')vals=p.tall;
- else if(op.key==='artist')vals=(p.tgl.artist||[]).concat(p.labels.map(function(x){return x.toLowerCase()}));
- else vals=p.tgl[op.key]||[];
- return vals.some(function(x){return op.exact?x===v:x.indexOf(v)>-1});
+ var v=op.val,k=op.key,list;
+ if(k==='before')return !!p.date&&p.date<v;
+ if(k==='after')return !!p.date&&p.date>v;
+ if(k==='title')list=[p.lt];
+ else if(k==='author')list=[p.la];
+ else if(k==='tag')list=p.tall;
+ else{if(k==='label')k='artist';if(k==='file')k='category';list=p.tgl[k]||[]}
+ return list.some(function(x){return op.exact?x===v:x.indexOf(v)>-1});
 }
-
 function run(o){
  var P=parse(o.q),t=P.words,out=[];
  posts.forEach(function(p){
-  if(o.label&&p.labels.indexOf(o.label)<0)return;
-  if(o.from&&(!p.date||p.date<o.from))return;
-  if(o.to&&(!p.date||p.date>o.to))return;
   var score=0;
   for(var j=0;j<P.ops.length;j++){var op=P.ops[j];if(opMatch(p,op)===op.neg)return;score+=3}
   for(var i=0;i<t.length;i++){
-   var s=0,w=t[i],sc=o.scope||'all';
-   if(sc==='all'||sc==='title'){var k=p.lt.indexOf(w);if(k>-1)s+=k===0?6:5}
-   if(sc==='all'||sc==='label'){if(p.ll.indexOf(w)>-1)s+=4}
-   if(sc==='all'||sc==='author'){if(p.la.indexOf(w)>-1)s+=2}
-   if(sc==='all'||sc==='content'){if(p.le.indexOf(w)>-1)s+=2;if(p.lx.indexOf(w)>-1)s+=1}
+   var s=0,w=t[i],k=p.lt.indexOf(w);
+   if(k>-1)s+=k===0?6:5;
+   if(p.ll.indexOf(w)>-1)s+=4;
+   if(p.la.indexOf(w)>-1)s+=2;
+   if(p.le.indexOf(w)>-1)s+=2;
+   if(p.lx.indexOf(w)>-1)s+=1;
    if(!s)return;
    score+=s}
   out.push({p:p,s:score});
@@ -85,11 +98,9 @@ function run(o){
   return a.p.date<b.p.date?1:a.p.date>b.p.date?-1:0});
  return out.map(function(x){return x.p});
 }
-
 function hl(text,t){
  var h=esc(text);if(!t.length)return h;
- var re=new RegExp('('+t.map(function(w){return escRe(esc(w))}).join('|')+')','gi');
- return h.replace(re,'<mark>$1</mark>');
+ return h.replace(new RegExp('('+t.map(function(w){return escRe(esc(w))}).join('|')+')','gi'),'<mark>$1</mark>');
 }
 function snippet(p,t){
  var i=t.length?p.lx.indexOf(t[0]):-1,s;
@@ -98,8 +109,9 @@ function snippet(p,t){
  return hl(s,t);
 }
 var href=function(p){return '/post.html?s='+encodeURIComponent(p.slug)};
+var qurl=function(toks){var s=build(toks);return s?'/?q='+encodeURIComponent(s):'/'};
 
-/* Pasang kotak cari di header otomatis jika halaman belum punya (mis. post.html lama) */
+/* ---- pasang kotak cari di header bila halaman belum punya ---- */
 (function(){
  var tools=document.querySelector('.tools');
  if(!tools||$('sres'))return;
@@ -111,85 +123,89 @@ var href=function(p){return '/post.html?s='+encodeURIComponent(p.slug)};
  tools.insertBefore(btn,tools.firstChild);tools.insertBefore(box,btn);
 })();
 
-/* ---------- kotak cari di header + hasil cepat ---------- */
-var q=$('q'),res=$('sres');
-function quick(){
- if(!q||!res)return;
- var v=q.value.trim();
- if(!v){res.classList.remove('open');res.innerHTML='';return}
+/* ---- kotak cari + saran operator (sertakan / kecualikan / hapus) ---- */
+var inp=$('q'),res=$('sres'),mode='inc';
+function setOpen(b){if(res)res.classList[b?'add':'remove']('open')}
+function refresh(){
+ if(!inp||!res)return;
+ var q=inp.value,part=partial(q),head=part?q.slice(0,part.start):q,P=parse(head);
+ var neg=mode==='exc'||!!(part&&part.neg);
  load().then(function(){
-  var t=terms(v),all=run({q:v,sort:'rel'}),top=all.slice(0,6);
-  res.innerHTML=(top.length?top.map(function(p){
-    return '<a href="'+esc(href(p))+'"><b>'+hl(p.title,t)+'</b><span>'+esc(p.labels.join(' / '))+'</span></a>'}).join(''):
-    '<div class="sres-empty">Tidak ada hasil untuk "'+esc(v)+'"</div>')+
-   '<button type="button" class="sres-all" data-m="1">'+(all.length>6?'Lihat semua '+all.length+' hasil':'Pencarian lanjutan')+' →</button>';
-  res.classList.add('open');
-  var b=res.querySelector('.sres-all');if(b)b.onclick=function(){openModal(q.value)};
+  var h='',chips=P.toks.map(function(t,i){return t.type!=='op'?'':
+   '<span class="chip '+(t.neg?'exc':'inc')+'"><button type="button" class="chip-t" data-t="'+i+'" title="Klik untuk menyertakan / mengecualikan">'+(t.neg?'−':'+')+' '+esc(t.key)+': '+esc(t.raw)+'</button><button type="button" class="chip-x" data-r="'+i+'" aria-label="Hapus filter">✕</button></span>'}).join('');
+  if(chips)h+='<div class="sg-chips">'+chips+'</div>';
+  h+='<div class="sg-mode"><button type="button" data-mode="inc" class="'+(neg?'':'on')+'">Sertakan</button><button type="button" data-mode="exc" class="'+(neg?'on':'')+'">Kecualikan</button></div>';
+  var showRes=true;
+  if(part&&part.key){
+   showRes=false;
+   var vv=vals[part.key]||{},ks=Object.keys(vv).filter(function(v){return lower(v).indexOf(lower(part.text))>-1})
+    .sort(function(a,b){return vv[b]-vv[a]||a.localeCompare(b)}).slice(0,8);
+   h+=ks.length?ks.map(function(v){return '<button type="button" class="sg-row" data-act="val" data-v="'+esc(v)+'"><span>'+esc(v)+'</span><em>'+vv[v]+'</em></button>'}).join(''):
+    '<div class="sres-empty">'+(part.key==='title'?'Ketik teks judul yang dicari':'Tidak ada saran untuk "'+esc(part.key)+':"')+'</div>';
+  }else if(q===''||/\s$/.test(q)||part){
+   var extra=Object.keys(vals).filter(function(k){return k!=='tag'&&k!=='artist'&&!OPS.some(function(o){return o[0]===k})}).map(function(k){return [k,'Filter berdasarkan '+k]});
+   var rows=OPS.concat(extra).filter(function(o){return !part||!part.prefix||o[0].indexOf(part.prefix)===0});
+   h+=rows.map(function(o){return '<button type="button" class="sg-row" data-act="op" data-k="'+esc(o[0])+'"><code>'+(neg?'-':'')+esc(o[0])+':…</code><span>'+esc(o[1])+'</span></button>'}).join('');
+  }
+  if(showRes){
+   var qq=q.trim();
+   if(qq&&(parse(qq).toks.length)){
+    var t=parse(qq).hl,all=run({q:qq,sort:'rel'});
+    h+=all.length?all.slice(0,6).map(function(p){return '<a href="'+esc(href(p))+'"><b>'+hl(p.title,t)+'</b><span>'+esc(p.labels.join(' / '))+'</span></a>'}).join('')+
+     '<a class="sg-all" href="/?q='+encodeURIComponent(qq)+'">Lihat '+(all.length>6?'semua ':'')+all.length+' hasil →</a>':
+     '<div class="sres-empty">Tidak ada hasil</div>';
+   }
+  }
+  res.innerHTML=h;setOpen(true);
  });
 }
-if(q){
- q.oninput=quick;
- q.onfocus=function(){if(q.value.trim())quick()};
- q.onkeydown=function(e){
-  if(e.key==='Enter'&&q.value.trim()){e.preventDefault();openModal(q.value)}
-  if(e.key==='Escape'){res&&res.classList.remove('open');q.blur()}};
+if(inp&&res){
+ inp.oninput=refresh;
+ inp.onfocus=refresh;
+ inp.onkeydown=function(e){
+  if(e.key==='Enter'&&inp.value.trim()){e.preventDefault();location.href='/?q='+encodeURIComponent(inp.value.trim())}
+  if(e.key==='Escape'){setOpen(false);inp.blur()}};
+ res.addEventListener('mousedown',function(e){if(!e.target.closest('a'))e.preventDefault()});
+ res.addEventListener('click',function(e){
+  var b=e.target.closest('[data-mode],[data-act],[data-t],[data-r]');if(!b)return;
+  var q=inp.value,part=partial(q),head=part?q.slice(0,part.start):q,ds=b.dataset||{};
+  var neg=mode==='exc'||!!(part&&part.neg);
+  if(ds.mode){mode=ds.mode;refresh();inp.focus();return}
+  if(ds.t!=null||ds.r!=null){
+   var P=parse(head),i=+(ds.t!=null?ds.t:ds.r);
+   if(ds.t!=null)P.toks[i].neg=!P.toks[i].neg;else P.toks.splice(i,1);
+   var s=build(P.toks);inp.value=s+(s?' ':'')+(part?q.slice(part.start):'');refresh();inp.focus();return}
+  if(ds.act==='op'){
+   var pre=part?q.slice(0,part.start):q+(q&&!/\s$/.test(q)?' ':'');
+   inp.value=pre+(neg?'-':'')+ds.k+':"';refresh();inp.focus();return}
+  if(ds.act==='val'&&part){
+   inp.value=q.slice(0,part.start)+(part.neg?'-':'')+part.key+':"'+ds.v+'" ';refresh();inp.focus()}
+ });
 }
-document.addEventListener('click',function(e){
- if(res&&!e.target.closest('.sbox'))res.classList.remove('open')});
+document.addEventListener('click',function(e){if(res&&!e.target.closest('.sbox')&&!e.target.closest('#sbtn')){setOpen(false);var bx=document.querySelector('.sbox');if(bx)bx.classList.remove('mob-open')}});
 document.addEventListener('keydown',function(e){
- if(e.key==='/'&&q&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||'')){e.preventDefault();q.focus()}});
-var sb=$('sbtn');if(sb)sb.onclick=function(){openModal('')};
+ if(e.key==='/'&&inp&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||'')){e.preventDefault();inp.focus()}});
+var sb=$('sbtn');
+if(sb)sb.onclick=function(e){e.stopPropagation();var bx=document.querySelector('.sbox');if(bx)bx.classList.toggle('mob-open');if(inp)inp.focus()};
 
-/* ---------- pencarian lanjutan (modal) ---------- */
-var modal=null;
-function build(){
- modal=document.createElement('div');modal.className='smodal';modal.hidden=true;
- modal.innerHTML='<div class="sm" role="dialog" aria-label="Pencarian lanjutan">'+
-  '<div class="sm-top">'+ico+'<input id="sq" placeholder=\'Cari… atau artist:"maplestar" language:"english"\' autocomplete="off"><button type="button" class="sm-x" id="sx" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>'+
-  '<div class="sm-tip">Operator: <code>artist:"maplestar"</code> (persis) · <code>genre:live</code> (mengandung) · <code>tag:zip</code> (semua grup tag) · <code>-genre:fantasy</code> (kecualikan) · <code>title:</code> <code>author:</code> <code>label:</code> · <code>after:2026-01-01</code> <code>before:2026-12-31</code></div>'+
-  '<div class="sm-filters">'+
-   '<label>Cari di<select id="sf-scope"><option value="all">Semua</option><option value="title">Judul</option><option value="content">Isi &amp; ringkasan</option><option value="label">Label &amp; tag</option><option value="author">Penulis</option></select></label>'+
-   '<label>Label<select id="sf-label"><option value="">Semua label</option></select></label>'+
-   '<label>Urutkan<select id="sf-sort"><option value="rel">Paling sesuai</option><option value="new">Terbaru</option><option value="old">Terlama</option><option value="az">Judul A–Z</option></select></label>'+
-   '<label>Dari tanggal<input type="date" id="sf-from"></label>'+
-   '<label>Sampai tanggal<input type="date" id="sf-to"></label>'+
-   '<button type="button" class="sm-reset" id="sf-reset">Atur ulang</button></div>'+
-  '<div class="sm-count" id="sm-count"></div><div class="sm-list" id="sm-list"></div></div>';
- document.body.appendChild(modal);
- modal.addEventListener('mousedown',function(e){if(e.target===modal)closeModal()});
- $('sx').onclick=closeModal;
- ['sq','sf-scope','sf-label','sf-sort','sf-from','sf-to'].forEach(function(id){
-  $(id).addEventListener(id==='sq'?'input':'change',update)});
- $('sf-reset').onclick=function(){$('sf-scope').value='all';$('sf-label').value='';$('sf-sort').value='rel';$('sf-from').value='';$('sf-to').value='';update()};
- document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal&&!modal.hidden)closeModal()});
-}
-function update(){
- var o={q:$('sq').value,scope:$('sf-scope').value,label:$('sf-label').value,sort:$('sf-sort').value,from:$('sf-from').value,to:$('sf-to').value};
- var pq=parse(o.q),t=pq.hl,list=$('sm-list'),cnt=$('sm-count');
- var filtered=o.label||o.from||o.to;
- if(!pq.words.length&&!pq.ops.length&&!filtered){cnt.textContent='';list.innerHTML='<div class="sm-empty">Ketik kata kunci, operator (mis. artist:"maplestar"), atau pilih filter untuk mulai mencari.</div>';return}
- var r=run(o);
- cnt.textContent=r.length+' hasil';
- list.innerHTML=r.length?r.map(function(p){
-  return '<a class="sm-item" href="'+esc(href(p))+'">'+(p.image?'<img src="'+esc(p.image)+'" alt="" loading="lazy">':'')+
-   '<div><b>'+hl(p.title,t)+'</b><small>'+esc(p.labels.join(' / '))+(p.date?' · '+esc(fmt(p.date)):'')+' · '+esc(p.author)+'</small>'+
-   '<p>'+snippet(p,t)+'</p></div></a>'}).join(''):'<div class="sm-empty">Tidak ada artikel yang cocok. Coba kata lain, longgarkan filter, atau periksa nama grup tag pada operator.</div>';
-}
-function openModal(v){
- if(!modal)build();
- if(res)res.classList.remove('open');
+/* ---- halaman hasil: /?q=... ---- */
+var qp=new URLSearchParams(location.search).get('q'),box=$('posts');
+if(qp&&box){
+ if(inp)inp.value=qp;
  load().then(function(){
-  var sel=$('sf-label');
-  if(sel.options.length<2){var s={};posts.forEach(function(p){p.labels.forEach(function(l){s[l]=1})});
-   Object.keys(s).sort().forEach(function(l){var o=document.createElement('option');o.value=l;o.textContent=l;sel.appendChild(o)})}
-  $('sq').value=v||'';
-  modal.hidden=false;document.documentElement.style.overflow='hidden';
-  update();$('sq').focus();
+  var P=parse(qp),t=P.hl,r=run({q:qp,sort:'rel'});
+  var ttl=$('ttl');if(ttl)ttl.textContent='Hasil pencarian ('+r.length+')';
+  var sl=$('slider');if(sl)sl.hidden=true;
+  var vb=$('view');if(vb)vb.style.display='none';
+  var chips=P.toks.map(function(tk,i){
+   if(tk.type!=='op')return '';
+   var tg=P.toks.map(function(x,j){return j===i?Object.assign({},x,{neg:!x.neg}):x}),rm=P.toks.filter(function(x,j){return j!==i});
+   return '<span class="chip '+(tk.neg?'exc':'inc')+'"><a class="chip-t" href="'+esc(qurl(tg))+'" title="Sertakan / kecualikan">'+(tk.neg?'−':'+')+' '+esc(tk.key)+': '+esc(tk.raw)+'</a><a class="chip-x" href="'+esc(qurl(rm))+'" aria-label="Hapus filter">✕</a></span>'}).join('');
+  box.innerHTML=(chips?'<div class="sg-chips sr-chips">'+chips+'</div>':'')+'<div class="sm-list sr">'+(r.length?r.map(function(p){
+   return '<a class="sm-item" href="'+esc(href(p))+'">'+(p.image?'<img src="'+esc(p.image)+'" alt="" loading="lazy">':'')+
+    '<div><b>'+hl(p.title,t)+'</b><small>'+esc(p.labels.join(' / '))+(p.date?' · '+esc(fmt(p.date)):'')+' · '+esc(p.author)+'</small><p>'+snippet(p,t)+'</p></div></a>'}).join(''):
+   '<div class="sm-empty">Tidak ada artikel yang cocok. Coba kata lain atau hapus salah satu filter.</div>')+'</div>';
  });
 }
-function closeModal(){if(modal){modal.hidden=true;document.documentElement.style.overflow=''}}
-
-var qp=new URLSearchParams(location.search).get('q');
-if(qp)openModal(qp);
-window.APF_SEARCH={load:load,run:run,hl:hl,terms:terms,parse:parse};
+window.APF_SEARCH={load:load,run:run,hl:hl,parse:parse,build:build,partial:partial,refresh:refresh};
 })();

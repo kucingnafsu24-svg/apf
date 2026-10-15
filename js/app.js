@@ -41,9 +41,10 @@ P=P.filter(Boolean).map(function(p){
  if(p.tags&&typeof p.tags==='object'&&!Array.isArray(p.tags)){Object.keys(p.tags).forEach(function(k){
   var a=[].concat(p.tags[k]).map(function(x){return String(x).trim()}).filter(Boolean);
   if(a.length)tg[k.toLowerCase()]=a})}
+ if(tg.file){tg.category=(tg.category||[]).concat(tg.file);delete tg.file}
  p.tags=tg;
  return p});
-var GN={artist:'Artist',genre:'Genre',file:'File'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
+var GN={artist:'Artist',genre:'Genre',category:'Category'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
 Object.keys(TG).forEach(function(k){GN[k.toLowerCase()]=TG[k]});
 function gname(k){return GN[k]||(k.charAt(0).toUpperCase()+k.slice(1))}
 function tlink(k,v){return '/?tag='+encodeURIComponent(k+':'+v)}
@@ -104,8 +105,8 @@ function artistRow(p){
   return '<a class="tg tg-artist" href="'+esc(x.u)+'">'+esc(x.v)+'</a>'}).join('')+'</div>'}
 function bottomRows(p){var ks=[];
  if(p.tags.genre)ks.push('genre');
- Object.keys(p.tags).forEach(function(k){if(k!=='artist'&&k!=='genre'&&k!=='file')ks.push(k)});
- if(p.tags.file)ks.push('file');
+ Object.keys(p.tags).forEach(function(k){if(k!=='artist'&&k!=='genre'&&k!=='category')ks.push(k)});
+ if(p.tags.category)ks.push('category');
  var h=artistRow(p)+ks.map(function(k){return chipRow(k,p.tags[k])}).join('');
  if(!h)return '';
  return '<div class="tagrows tagbottom">'+h+'</div>'}
@@ -139,11 +140,11 @@ if(list){
  var label=qs.get('label'),tag=qs.get('tag')||'',tk='',tv='';
  if(tag.indexOf(':')>0){tk=tag.slice(0,tag.indexOf(':')).toLowerCase();tv=tag.slice(tag.indexOf(':')+1)}
  var data=label?P.filter(function(p){return p.labels.indexOf(label)>-1}):tv?P.filter(function(p){return (p.tags[tk]||[]).indexOf(tv)>-1}):P;
- if(!label&&!tv)fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
+ if(!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
  if(label)$('ttl').textContent='Label: '+label;
  if(tv)$('ttl').textContent=gname(tk)+': '+tv;
  var render=function(a){list.innerHTML=a.length?a.map(card).join(''):'<div class="empty">Tidak ada artikel.</div>'};
- render(data);
+ if(!qs.get('q'))render(data);
  $('view').onclick=function(){var g=list.classList.toggle('grid');$('vl').textContent=g?'Grid':'List'};
 }else{
  var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
