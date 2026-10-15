@@ -1,12 +1,33 @@
 [
   {
+    "slug": "星野學姊!",
+    "title": "星野學姊!",
+    "author": "Admin",
+    "date": "2026-10-15",
+    "labels": ["七氏"],
+    "image": "/images/cover6.webp",
+    "excerpt": "Download 星野學姊.zip",
+    "content": "<p>try-hard mode >:D.</p>",
+    "tags": {
+      "genre": ["lolicon"],
+      "Category": ["Art"]
+    },
+    "download": {
+      "title": "Download 星野學姊!",
+      "links": [
+        { "name": "Dropbox", "url": "https://sfl.gl/RrRh" },
+        { "name": "Pcloud", "url": "https://sfl.gl/ylLmTKJ" }
+      ]
+    }
+  },
+  {
     "slug": "Isabelle Goodwillow",
     "title": "Isabelle Goodwillow",
     "author": "Admin",
     "date": "2026-10-15",
     "labels": ["七氏"],
     "image": "/images/cover6.webp",
-    "excerpt": "Download Isabelle Goodwillow .zip",
+    "excerpt": "Download Isabelle Goodwillow.zip",
     "content": "<p>hehe >:D.</p>",
     "tags": {
       "genre": ["lolicon"],
