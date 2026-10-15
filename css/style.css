@@ -290,3 +290,31 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 .lb-c{position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#ddd;font-size:13.5px;padding:0 70px}
 .lb.one .lb-p,.lb.one .lb-n{display:none}
 @media(max-width:760px){.gal{grid-template-columns:repeat(2,1fr);gap:8px}.lb{padding:10px}.lb-p{left:6px}.lb-n{right:6px}}
+
+/* Kotak cari: saran operator ala nhentai, sertakan / kecualikan / hapus */
+.tg-category{border-left:3px solid #2e9e5b}
+.sres{width:430px;max-height:72vh;overflow:auto}
+.sg-chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px 4px}
+.chip{display:inline-flex;align-items:center;border-radius:14px;border:1px solid var(--line);overflow:hidden;font-size:12.5px}
+.chip.inc{border-color:#2e9e5b;background:rgba(46,158,91,.14)}
+.chip.exc{border-color:#d33;background:rgba(221,51,51,.14)}
+.chip-t,.chip-x{padding:3px 9px;color:var(--head);background:none;line-height:1.5;border-radius:0;font-size:12.5px;cursor:pointer}
+.chip-x{padding:3px 8px;border-left:1px solid var(--line);color:var(--alt)}
+.chip-t:hover,.chip-x:hover{background:rgba(128,128,128,.2)}
+.sres .chip-t,.sres .chip-x{border-radius:0;padding:3px 9px}
+.sg-mode{display:flex;gap:6px;padding:8px 12px;border-bottom:1px solid var(--line)}
+.sres .sg-mode button{flex:1;padding:5px 8px;border:1px solid var(--line);border-radius:8px;font-size:12.5px;color:var(--alt)}
+.sres .sg-mode button.on{background:var(--card);color:var(--head);border-color:var(--link);font-weight:600}
+.sres .sg-row{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:9px 16px;border-radius:0;border-bottom:1px solid var(--line);text-align:left;font-size:13.5px;color:var(--head)}
+.sres .sg-row:hover{background:var(--card)}
+.sg-row code{font-family:'Fira Mono',ui-monospace,monospace;font-size:13px}
+.sg-row span{color:var(--alt);font-size:12.5px}
+.sg-row em{font-style:normal;color:var(--alt);font-size:12px}
+.sres .sg-all{color:var(--link);font-size:13px;font-weight:600}
+.sr-chips{padding:12px 0 4px}
+.sr-chips a.chip-t,.sr-chips a.chip-x{display:block}
+.sr{max-height:none}
+@media(max-width:760px){
+  .sbox.mob-open{display:flex;position:fixed;left:12px;right:12px;top:64px;width:auto;z-index:40;background:var(--bg);border-color:var(--link);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+  .sbox.mob-open .sres{left:0;right:0;width:auto;max-height:65vh}
+}
