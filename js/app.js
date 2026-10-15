@@ -56,10 +56,19 @@ function thumb(p,big){var b=p.comments?'<span class="badge"><svg viewBox="0 0 24
 function avatar(p){var C=window.APF_CONFIG||{},u=p.authorImage||(C.authors&&C.authors[p.author]);
  return u?'<img class="av" src="'+esc(u)+'" alt="" loading="lazy">':'<span class="av">'+esc(p.author[0])+'</span>'}
 function vlist(p){return (Array.isArray(p.videos)?p.videos:[]).map(function(v,i){
- var o=typeof v==='string'?{url:v}:(v||{});return {title:o.title||('Video '+(i+1)),url:o.url||''}}).filter(function(v){return /^https:\/\//.test(v.url)})}
+ var o=typeof v==='string'?{url:v}:(v||{});return {title:o.title||('Server '+(i+1)),url:o.url||''}}).filter(function(v){return /^https:\/\//.test(v.url)})}
 function videos(p){var v=vlist(p);if(!v.length)return '';
- return '<div class="vplayer" id="vplayer"><div class="video"><iframe src="'+esc(v[0].url)+'" allowfullscreen scrolling="no" frameborder="0" loading="lazy"></iframe></div>'+
-  (v.length>1?'<div class="vtabs">'+v.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'">'+esc(x.title)+'</button>'}).join('')+'</div>':'')+'</div>'}
+ return '<div class="sec"><div class="sec-h">Streaming</div><div class="sec-b"><div class="vplayer" id="vplayer">'+
+  (v.length>1?'<div class="vtabs">'+v.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'">'+esc(x.title)+'</button>'}).join('')+'</div>':'')+
+  '<div class="video"><iframe src="'+esc(v[0].url)+'" allowfullscreen scrolling="no" frameborder="0" loading="lazy"></iframe></div></div></div></div>'}
+function dlist(p){var d=Array.isArray(p.download)?p.download:(p.download?[p.download]:[]);
+ return d.filter(Boolean).map(function(g){
+  var links=(Array.isArray(g.links)?g.links:[]).map(function(l){l=l||{};return {name:String(l.name||l.title||'Download'),url:String(l.url||'')}}).filter(function(l){return /^https?:\/\//.test(l.url)});
+  return {title:g.title?String(g.title):'',links:links}}).filter(function(g){return g.links.length})}
+function downloads(p){var g=dlist(p);if(!g.length)return '';
+ return '<div class="sec"><div class="sec-h">Unduh</div><div class="sec-b">'+g.map(function(x){
+  return '<div class="dl-card">'+(x.title?'<div class="dl-t">'+esc(x.title)+'</div>':'')+'<div class="dl-links">'+
+   x.links.map(function(l){return '<a class="dl-btn" href="'+esc(l.url)+'" target="_blank" rel="noopener nofollow">'+esc(l.name)+'</a>'}).join('')+'</div></div>'}).join('')+'</div></div>'}
 function bindVideos(){var vp=document.getElementById('vplayer');if(!vp)return;
  var fr=vp.querySelector('iframe'),bs=vp.querySelectorAll('.vtabs button');
  [].forEach.call(bs,function(b){b.onclick=function(){fr.src=b.getAttribute('data-u');[].forEach.call(bs,function(x){x.className=''});b.className='on'}})}
@@ -109,7 +118,7 @@ if(list){
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
   a.innerHTML='<div class="crumb"><a href="/">Home</a> / '+esc(p.labels[0])+'</div><h1>'+esc(p.title)+'</h1>'+meta(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+chips(p)+thumb(p,true)+videos(p)+'<div class="entry">'+p.content+'</div><a class="back" href="/">← Semua artikel</a>';
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+chips(p)+thumb(p,true)+videos(p)+downloads(p)+'<div class="entry">'+p.content+'</div><a class="back" href="/">← Semua artikel</a>';
   bindVideos();
  }
 }
