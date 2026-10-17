@@ -1,5 +1,22 @@
 [
    {
+  "slug": "20230907-koharu",
+  "title": "20230907 Koharu",
+  "author": "Admin",
+  "date": "2026-10-16",
+  "labels": ["七氏"],
+  "image": "/images/cover10.webp",
+  "excerpt": "Koleksi foto Koharu",
+  "tags": {
+    "genre": ["lolicon"],
+    "category": ["Art"]
+  },
+  "gallery": [
+    "/images/koharu1.webp",
+    { "url": "/images/koharu2.webp", "caption": "Keterangan foto" }
+  ]
+},
+   {
     "slug": "20230907 Koharu",
     "title": "20230907 Koharu",
     "author": "Admin",
