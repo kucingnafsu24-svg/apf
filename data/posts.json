@@ -1,5 +1,5 @@
 [
-   {
+ {
   "slug": "フィーゼちゃん観察記",
   "title": "フィーゼちゃん観察記",
   "author": "Admin",
@@ -7,14 +7,11 @@
   "labels": ["Б"],
   "image": "/images/cover11.webp",
   "excerpt": "フィーゼちゃん観察記",
+  "content": "こちらはfantiaの無料プランで公開したものと同じものです。\n\nマイルドにしたつもりではありますがグロマン描写が含まれるので注意してね。.",
   "tags": {
     "genre": ["lolicon"],
     "category": ["Art"]
-  },
-  "gallery": [
-    "/images/1.jpeg",
-    { "url": "/images/2.jpeg", "caption": "Б" }
-  ]
+  }
 },
    {
     "slug": "20230907 Koharu",
