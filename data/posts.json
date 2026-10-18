@@ -12,8 +12,8 @@
     "category": ["Art"]
   },
   "gallery": [
-    "/images/koharu1.webp",
-    { "url": "/images/koharu2.webp", "caption": "Keterangan foto" }
+    "/images/1.jpeg",
+    { "url": "/images/2.jpeg", "caption": "Б" }
   ]
 },
    {
