@@ -79,7 +79,8 @@
   Object.keys(map).forEach(function(k){
    var a=d&&d[k],el=document.getElementById(map[k]);
    if(!a||!a.image||!el)return;
-   var img='<img src="'+esc(a.image)+'" alt="'+esc(a.alt||'Iklan')+'">';
+   var src=/^(https?:)?\/\//.test(a.image)||a.image.charAt(0)==='/'?a.image:'/'+a.image;
+   var img='<img src="'+esc(src)+'" alt="'+esc(a.alt||'Iklan')+'">';
    el.innerHTML=a.url?'<a href="'+esc(a.url)+'" target="_blank" rel="noopener sponsored nofollow">'+img+'</a>':img;
    el.className='ad-slot has-ad';
   });
