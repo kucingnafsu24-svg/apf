@@ -1,12 +1,12 @@
 {
   "below-slider": {
-    "image": "images/iklan/1.png",
-    "url": "https://www.youtube.com/@Kucingnafsu",
+    "image": "",
+    "url": "",
     "alt": "Iklan"
   },
   "below-discord": {
-    "image": "images/iklan/2.png",
-    "url": "https://www.youtube.com/@Kucingnafsu",
+    "image": "",
+    "url": "",
     "alt": "Iklan"
   }
 }
