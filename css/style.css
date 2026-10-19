@@ -318,3 +318,15 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
   .sbox.mob-open{display:flex;position:fixed;left:12px;right:12px;top:64px;width:auto;z-index:40;background:var(--bg);border-color:var(--link);box-shadow:0 8px 24px rgba(0,0,0,.3)}
   .sbox.mob-open .sres{left:0;right:0;width:auto;max-height:65vh}
 }
+
+/* ===== Slot iklan =====
+   Selama slot masih kosong, tampil kotak putus-putus "Ruang Iklan".
+   Begitu kode iklan ditempel, kotak placeholder otomatis hilang. */
+.ad-slot{display:flex;align-items:center;justify-content:center;max-width:100%;overflow:hidden;margin-left:auto;margin-right:auto;text-align:center}
+.ad-banner{min-height:90px;margin-top:-8px;margin-bottom:32px}
+.ad-box{min-height:250px;width:100%}
+.ad-slot:empty{border:1.5px dashed var(--line);border-radius:8px;background:var(--card);color:var(--alt);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.ad-slot:empty::before{content:"Ruang Iklan"}
+.ad-banner:empty::before{content:"Ruang Iklan \00B7  728x90"}
+.ad-box:empty::before{content:"Ruang Iklan \00B7  300x250"}
+@media(max-width:640px){.ad-banner{min-height:100px;margin-top:-4px;margin-bottom:22px}}
