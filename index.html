@@ -73,8 +73,8 @@
 <script src="/js/app.js"></script>
 <script src="/js/search.js"></script>
 <script src="/js/config.js"></script>
-<script>
 
+<script>
 (function () {
   'use strict';
 
@@ -83,72 +83,62 @@
     'below-discord': 'ad-below-discord'
   };
 
-  function safeUrl(value) {
-    if (typeof value !== 'string' || !value.trim()) return null;
-
-    try {
-      var url = new URL(value.trim(), window.location.origin);
-
-      if (url.protocol !== 'https:' && url.protocol !== 'http:') {
-        return null;
-      }
-
-      return url.href;
-    } catch (_) {
-      return null;
-    }
-  }
-
-  function renderAd(data, element) {
-    if (!data || typeof data !== 'object' || !element) return;
-
-    var imageUrl = safeUrl(data.image);
-    if (!imageUrl) return;
-
-    var img = document.createElement('img');
-    img.src = imageUrl;
-    img.alt = typeof data.alt === 'string' ? data.alt : 'Iklan';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.referrerPolicy = 'no-referrer';
-
-    var linkUrl = safeUrl(data.url);
-
-    if (linkUrl) {
-      var link = document.createElement('a');
-      link.href = linkUrl;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer sponsored nofollow';
-      link.appendChild(img);
-      element.replaceChildren(link);
-    } else {
-      element.replaceChildren(img);
-    }
-
-    element.classList.remove('ad-empty');
-    element.classList.add('has-ad');
-
-    img.addEventListener('error', function () {
-      element.replaceChildren();
-      element.classList.remove('has-ad');
-      element.classList.add('ad-empty');
-    }, { once: true });
-  }
-
-  fetch('/data/ads.json', { cache: 'no-store' })
+  fetch('/data/ads.json?v=' + Date.now(), { cache: 'no-store' })
     .then(function (response) {
       if (!response.ok) {
-        throw new Error('Gagal memuat data iklan: ' + response.status);
+        throw new Error('ads.json gagal dimuat: HTTP ' + response.status);
       }
       return response.json();
     })
     .then(function (data) {
       Object.keys(slots).forEach(function (key) {
-        renderAd(data && data[key], document.getElementById(slots[key]));
+        var element = document.getElementById(slots[key]);
+        var ad = data && data[key];
+
+        if (!element) {
+          console.error('Elemen slot iklan tidak ditemukan:', slots[key]);
+          return;
+        }
+
+        if (!ad || !ad.image) {
+          console.error('Data iklan tidak ditemukan:', key);
+          return;
+        }
+
+        var image = document.createElement('img');
+        image.alt = ad.alt || 'Iklan';
+        image.style.cssText = 'display:block;width:100%;height:auto;max-width:100%;';
+        image.onload = function () {
+          console.log('Gambar iklan berhasil dimuat:', key);
+        };
+        image.onerror = function () {
+          console.error('Gambar iklan gagal dimuat:', image.src);
+        };
+
+        var imagePath = String(ad.image);
+        image.src = /^https?:\/\//i.test(imagePath) || imagePath.charAt(0) === '/'
+          ? imagePath
+          : '/' + imagePath.replace(/^\.\/+/, '');
+
+        var content = image;
+
+        if (ad.url) {
+          var link = document.createElement('a');
+          link.href = ad.url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer sponsored nofollow';
+          link.appendChild(image);
+          content = link;
+        }
+
+        element.replaceChildren(content);
+        element.classList.remove('ad-empty');
+        element.classList.add('has-ad');
+        element.style.minHeight = '0';
       });
     })
     .catch(function (error) {
-      console.error('Iklan tidak dapat dimuat:', error);
+      console.error('Gagal menampilkan iklan:', error);
     });
 })();
 </script>
