@@ -74,19 +74,82 @@
 <script src="/js/search.js"></script>
 <script src="/js/config.js"></script>
 <script>
-(function(){
- var map={'below-slider':'ad-below-slider','below-discord':'ad-below-discord'};
- var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
- fetch('/data/ads.json?v='+Date.now(),{cache:'no-store'}).then(function(x){return x.json()}).then(function(d){
-  Object.keys(map).forEach(function(k){
-   var a=d&&d[k],el=document.getElementById(map[k]);
-   if(!a||!a.image||!el)return;
-   var src=/^(https?:)?\/\//.test(a.image)||a.image.charAt(0)==='/'?a.image:'/'+a.image;
-   var img='<img src="'+esc(src)+'" alt="'+esc(a.alt||'Iklan')+'">';
-   el.innerHTML=a.url?'<a href="'+esc(a.url)+'" target="_blank" rel="noopener sponsored nofollow">'+img+'</a>':img;
-   el.classList.remove('ad-empty');el.classList.add('has-ad');
-  });
- }).catch(function(){});
+
+(function () {
+  'use strict';
+
+  var slots = {
+    'below-slider': 'ad-below-slider',
+    'below-discord': 'ad-below-discord'
+  };
+
+  function safeUrl(value) {
+    if (typeof value !== 'string' || !value.trim()) return null;
+
+    try {
+      var url = new URL(value.trim(), window.location.origin);
+
+      if (url.protocol !== 'https:' && url.protocol !== 'http:') {
+        return null;
+      }
+
+      return url.href;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function renderAd(data, element) {
+    if (!data || typeof data !== 'object' || !element) return;
+
+    var imageUrl = safeUrl(data.image);
+    if (!imageUrl) return;
+
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = typeof data.alt === 'string' ? data.alt : 'Iklan';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.referrerPolicy = 'no-referrer';
+
+    var linkUrl = safeUrl(data.url);
+
+    if (linkUrl) {
+      var link = document.createElement('a');
+      link.href = linkUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer sponsored nofollow';
+      link.appendChild(img);
+      element.replaceChildren(link);
+    } else {
+      element.replaceChildren(img);
+    }
+
+    element.classList.remove('ad-empty');
+    element.classList.add('has-ad');
+
+    img.addEventListener('error', function () {
+      element.replaceChildren();
+      element.classList.remove('has-ad');
+      element.classList.add('ad-empty');
+    }, { once: true });
+  }
+
+  fetch('/data/ads.json', { cache: 'no-store' })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error('Gagal memuat data iklan: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      Object.keys(slots).forEach(function (key) {
+        renderAd(data && data[key], document.getElementById(slots[key]));
+      });
+    })
+    .catch(function (error) {
+      console.error('Iklan tidak dapat dimuat:', error);
+    });
 })();
 </script>
 </body>
