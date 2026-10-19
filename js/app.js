@@ -174,4 +174,19 @@ function slider(f){
  var play=function(){clearInterval(timer);if(f.length>1)timer=setInterval(function(){go(i+1)},5000)};
  sl.onmouseenter=function(){clearInterval(timer)};sl.onmouseleave=play;play();
 }
+// Iklan: isi dari /data/ads.json (image + url). Kalau image kosong, slot tetap placeholder.
+function ads(){
+ var map={'below-slider':'ad-below-slider','below-discord':'ad-below-discord'};
+ if(!document.getElementById('ad-below-slider')&&!document.getElementById('ad-below-discord'))return;
+ fetch('/data/ads.json').then(function(x){return x.json()}).then(function(d){
+  Object.keys(map).forEach(function(k){
+   var a=d&&d[k],el=document.getElementById(map[k]);
+   if(!a||!a.image||!el)return;
+   var img='<img src="'+esc(a.image)+'" alt="'+esc(a.alt||'Iklan')+'" loading="lazy">';
+   el.innerHTML=a.url?'<a href="'+esc(a.url)+'" target="_blank" rel="noopener sponsored nofollow">'+img+'</a>':img;
+   el.classList.add('has-ad');
+  });
+ }).catch(function(){});
+}
+ads();
 })();
