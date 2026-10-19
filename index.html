@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
+<!-- ads-v5 -->
 <title>All Pirate File</title>
 <meta name="description" content="Fletro Pro — template blog yang ringan, bersih, dan responsif.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -13,10 +14,11 @@
 .ad-slot{display:flex;align-items:center;justify-content:center;width:100%;max-width:100%;overflow:hidden;text-align:center;box-sizing:border-box}
 .ad-banner{min-height:90px;margin:0 0 32px}
 .ad-box{min-height:250px;margin:0}
-.ad-slot.empty{border:1.5px dashed var(--line);border-radius:8px;background:var(--card);color:var(--alt);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.ad-slot.ad-empty{border:1.5px dashed var(--line);border-radius:8px;background:var(--card);color:var(--alt);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .ad-slot.has-ad{display:block;min-height:0}
 .ad-slot a{display:block}
 .ad-slot img{display:block;width:100%;max-width:100%;height:auto;border-radius:8px}
+.ad-banner.has-ad img{width:auto;max-height:140px;margin:0 auto}
 @media(max-width:640px){.ad-banner{min-height:100px;margin-bottom:22px}}
 </style>
 </head>
@@ -45,7 +47,7 @@
    <div class="dots" id="dots"></div>
   </div>
   <!-- IKLAN 1: di bawah slider. Diisi otomatis dari data/ads.json ("below-slider"). -->
-  <div class="ad-slot ad-banner empty" id="ad-below-slider">Ruang Iklan &middot; 728x90</div>
+  <div class="ad-slot ad-banner ad-empty" id="ad-below-slider">Ruang Iklan &middot; 728x90</div>
   <div class="title"><h2 id="ttl">Latest Posts</h2><i></i>
    <button id="view" aria-label="Ganti tampilan"><span id="vl">List</span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></button></div>
   <div class="posts" id="posts"><div class="empty">Memuat…</div></div>
@@ -55,7 +57,7 @@
  <iframe src="https://discord.com/widget?id=1497590644888309771&theme=dark" width="100%" height="500" style="border:0;border-radius:8px;max-width:100%" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 </div>
   <!-- IKLAN 2: di bawah embed Discord. Diisi otomatis dari data/ads.json ("below-discord"). -->
-  <div class="w"><div class="ad-slot ad-box empty" id="ad-below-discord">Ruang Iklan &middot; 300x250</div></div>
+  <div class="w"><div class="ad-slot ad-box ad-empty" id="ad-below-discord">Ruang Iklan &middot; 300x250</div></div>
   <div class="w"><h4>Ikuti Kami</h4><div class="social">
    <a class="s-dc" href="https://discord.gg/GkP4rbEksw" target="_blank" rel="noopener">Discord</a>
    <a class="s-wa" href="https://whatsapp.com/channel/0029VbD7kFgK5cDLmIhYHc2C" target="_blank" rel="noopener">WhatsApp</a>
@@ -82,7 +84,7 @@
    var src=/^(https?:)?\/\//.test(a.image)||a.image.charAt(0)==='/'?a.image:'/'+a.image;
    var img='<img src="'+esc(src)+'" alt="'+esc(a.alt||'Iklan')+'">';
    el.innerHTML=a.url?'<a href="'+esc(a.url)+'" target="_blank" rel="noopener sponsored nofollow">'+img+'</a>':img;
-   el.className='ad-slot has-ad';
+   el.classList.remove('ad-empty');el.classList.add('has-ad');
   });
  }).catch(function(){});
 })();
