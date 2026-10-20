@@ -2,25 +2,12 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<!-- ads-v5 -->
 <title>All Pirate File</title>
 <meta name="description" content="Fletro Pro — template blog yang ringan, bersih, dan responsif.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
-<style>
-/* Slot iklan (diisi dari /data/ads.json) */
-.ad-slot{display:flex;align-items:center;justify-content:center;width:100%;max-width:100%;overflow:hidden;text-align:center;box-sizing:border-box}
-.ad-banner{min-height:90px;margin:0 0 32px}
-.ad-box{min-height:250px;margin:0}
-.ad-slot.ad-empty{border:1.5px dashed var(--line);border-radius:8px;background:var(--card);color:var(--alt);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-.ad-slot.has-ad{display:block;min-height:0}
-.ad-slot a{display:block}
-.ad-slot img{display:block;width:100%;max-width:100%;height:auto;border-radius:8px}
-.ad-banner.has-ad img{width:auto;max-height:140px;margin:0 auto}
-@media(max-width:640px){.ad-banner{min-height:100px;margin-bottom:22px}}
-</style>
 </head>
 <body>
 <header><div class="wrap bar">
@@ -46,8 +33,15 @@
    <button class="arr next" id="snext" aria-label="Berikutnya"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
    <div class="dots" id="dots"></div>
   </div>
-  <!-- IKLAN 1: di bawah slider. Diisi otomatis dari data/ads.json ("below-slider"). -->
-  <div class="ad-slot ad-banner ad-empty" id="ad-below-slider">Ruang Iklan &middot; 728x90</div>
+  <div class="ad ad-wide" id="ad-slider">
+   <span class="ad-label">Iklan</span>
+   <div class="ad-body">
+    <!-- TEMPEL KODE IKLAN DI SINI (AdSense / jaringan iklan), lalu HAPUS baris "ad-ph" di bawah.
+         Contoh banner gambar:
+         <a href="https://ALAMAT-PENGIKLAN" target="_blank" rel="noopener sponsored"><img src="/images/iklan1.webp" alt="Iklan"></a> -->
+    <a class="ad-ph" href="https://discord.gg/GkP4rbEksw" target="_blank" rel="noopener">Ruang iklan tersedia · hubungi kami</a>
+   </div>
+  </div>
   <div class="title"><h2 id="ttl">Latest Posts</h2><i></i>
    <button id="view" aria-label="Ganti tampilan"><span id="vl">List</span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></button></div>
   <div class="posts" id="posts"><div class="empty">Memuat…</div></div>
@@ -56,8 +50,13 @@
   <div class="w"><h4>Discord Server</h4>
  <iframe src="https://discord.com/widget?id=1497590644888309771&theme=dark" width="100%" height="500" style="border:0;border-radius:8px;max-width:100%" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 </div>
-  <!-- IKLAN 2: di bawah embed Discord. Diisi otomatis dari data/ads.json ("below-discord"). -->
-  <div class="w"><div class="ad-slot ad-box ad-empty" id="ad-below-discord">Ruang Iklan &middot; 300x250</div></div>
+  <div class="ad ad-box" id="ad-discord">
+   <span class="ad-label">Iklan</span>
+   <div class="ad-body">
+    <!-- TEMPEL KODE IKLAN 300x250 DI SINI, lalu HAPUS baris "ad-ph" di bawah. -->
+    <a class="ad-ph" href="https://discord.gg/GkP4rbEksw" target="_blank" rel="noopener">Ruang iklan tersedia · hubungi kami</a>
+   </div>
+  </div>
   <div class="w"><h4>Ikuti Kami</h4><div class="social">
    <a class="s-dc" href="https://discord.gg/GkP4rbEksw" target="_blank" rel="noopener">Discord</a>
    <a class="s-wa" href="https://whatsapp.com/channel/0029VbD7kFgK5cDLmIhYHc2C" target="_blank" rel="noopener">WhatsApp</a>
@@ -73,7 +72,5 @@
 <script src="/js/app.js"></script>
 <script src="/js/search.js"></script>
 <script src="/js/config.js"></script>
- 
-</script>
 </body>
 </html>
