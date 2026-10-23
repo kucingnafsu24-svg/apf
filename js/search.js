@@ -76,11 +76,15 @@ function parse(q){
 }
 function fmtTok(t){return t.type==='word'?(/\s/.test(t.raw)?'"'+t.raw+'"':t.raw):(t.neg?'-':'')+t.key+':'+((t.exact||/\s/.test(t.raw))?'"'+t.raw+'"':t.raw)}
 function build(t){return t.map(fmtTok).join(' ')}
-/* token operator lengkap di ujung teks: key:"nilai" (kutip sudah tertutup) */
+/* token operator lengkap di ujung teks: key:"nilai", atau key:nilai bila nilainya persis sama dengan yang ada */
 function lastTok(q){
- var m=/(?:^|\s)(-?)([a-z_][\w-]*):"([^"]*)"$/i.exec(q);
- if(m&&known[lower(m[2])]){var t=m[0].replace(/^\s/,'');return {start:q.length-t.length,neg:m[1]==='-',key:lower(m[2]),raw:m[3],token:t}}
- return null;
+ var m=/(?:^|\s)(-?)([a-z_][\w-]*):(?:"([^"]*)"|([^\s"]+))$/i.exec(q);
+ if(!m||!known[lower(m[2])])return null;
+ var quoted=m[3]!=null,raw=quoted?m[3]:m[4],key=lower(m[2]);
+ if(!raw)return null;
+ if(!quoted&&vals[key]){var exact=Object.keys(vals[key]).some(function(v){return lower(v)===lower(raw)});if(!exact)return null}
+ var t=m[0].replace(/^\s/,'');
+ return {start:q.length-t.length,neg:m[1]==='-',key:key,raw:raw,quoted:quoted,token:t};
 }
 /* token yang sedang diketik: key:"ma / key:ma  atau awalan operator */
 function partial(q){
@@ -168,8 +172,14 @@ function hIsStar(q){return hLoad().some(function(x){return x.q===q&&x.s})}
 var inp=$('q'),res=$('sres'),hi=-1;
 var cnt=function(n){return n>=1000?(n/1000).toFixed(1).replace(/\.0$/,'')+'k':String(n)};
 var badge=function(g){return '<i class="bd bd-'+esc(String(g).replace(/[^a-z0-9]/gi,'').toLowerCase())+'">'+esc(g)+'</i>'};
-var valRow=function(k,v,n,ctx){var g=k==='tag'?(tagGroup[v]||'tag'):k;
- return '<button type="button" class="sg-val" data-nav="1" data-act="val" data-ctx="'+ctx+'" data-k="'+esc(k)+'" data-v="'+esc(v)+'">'+badge(g)+'<span class="sg-n">'+esc(v)+'</span><em>'+cnt(n)+'</em><b class="sg-go">→</b></button>'};
+var valRow=function(k,v,n,ctx){var g=k==='tag'?(tagGroup[v]||'tag'):k,d=' data-ctx="'+ctx+'" data-k="'+esc(k)+'" data-v="'+esc(v)+'"';
+ var pm=ctx==='c'?'':'<span class="sg-pm inc" role="button" title="Sertakan" data-act="vinc"'+d+'>+</span><span class="sg-pm exc" role="button" title="Kecualikan" data-act="vexc"'+d+'>−</span>';
+ return '<div class="sg-val" data-nav="1" data-act="val"'+d+'>'+badge(g)+'<span class="sg-n">'+esc(v)+'</span><em>'+cnt(n)+'</em>'+pm+'<b class="sg-go">→</b></div>'};
+function actRows(lt){
+ var base=lt.key+':"'+lt.raw+'"',cur=lt.neg;
+ return '<button type="button" class="sg-act inc'+(cur?'':' cur')+'" data-nav="1" data-act="inc"><span>+ Sertakan</span><code>'+esc(base)+'</code>'+(cur?'':'<i>aktif</i>')+'</button>'+
+  '<button type="button" class="sg-act exc'+(cur?' cur':'')+'" data-nav="1" data-act="exc"><span>− Kecualikan</span><code>'+esc('-'+base)+'</code>'+(cur?'<i>aktif</i>':'')+'</button>'+
+  '<button type="button" class="sg-act rm" data-nav="1" data-act="rm"><span>× Hapus</span><code>'+esc(lt.token)+'</code></button>'}
 function opRows(prefix,neg){
  var extra=Object.keys(vals).filter(function(k){return k!=='tag'&&k!=='artist'&&!OPS.some(function(o){return o[0]===k})}).map(function(k){return [k,'Filter berdasarkan '+k]});
  return OPS.concat(extra).filter(function(o){var k=o[0],has=k==='title'||(k==='tag'?hasTagGroup:!!(vals[k]&&Object.keys(vals[k]).length));
@@ -197,10 +207,11 @@ function refresh(){
   else{
    h+=headRow(tq);
    if(lt){
-    h+='<button type="button" class="sg-act '+(lt.neg?'inc':'exc')+'" data-nav="1" data-act="neg"><span>'+(lt.neg?'+ Sertakan':'− Kecualikan')+'</span><code>'+esc(lt.token)+'</code></button>';
-    h+='<button type="button" class="sg-act rm" data-nav="1" data-act="rm"><span>× Hapus</span><code>'+esc(lt.token)+'</code></button>';
+    h+=actRows(lt);
     var vv=vals[lt.key]||{},found=Object.keys(vv).filter(function(v){return lower(v)===lower(lt.raw)})[0];
-    if(found!=null)h+=valRow(lt.key,found,vv[found],'c');
+    if(lt.quoted){if(found!=null)h+=valRow(lt.key,found,vv[found],'c')}
+    else{Object.keys(vv).filter(function(v){return lower(v).indexOf(lower(lt.raw))>-1}).sort(function(x,y){return vv[y]-vv[x]||x.localeCompare(y)}).slice(0,8)
+     .forEach(function(v){h+=valRow(lt.key,v,vv[v],'p')})}
    }else if(part&&part.key){
     var pv=vals[part.key]||{},ks=Object.keys(pv).filter(function(v){return lower(v).indexOf(lower(part.text))>-1})
      .sort(function(a,b){return pv[b]-pv[a]||a.localeCompare(b)}).slice(0,10);
@@ -241,6 +252,11 @@ if(inp&&res){
   var b=e.target.closest('[data-act]');if(!b)return;
   var ds=b.dataset||{},act=ds.act,q=inp.value,lt=lastTok(q),part=lt?null:partial(q),keep=true;
   if(act==='go'){go(q);return}
+  var place=function(ctx,k,v,neg){
+   if(ctx==='p'&&part)return q.slice(0,part.start)+(neg?'-':'')+k+':"'+v+'"';
+   if(ctx==='p'&&lt)return q.slice(0,lt.start)+(neg?'-':'')+k+':"'+v+'"';
+   if(ctx==='w'){var m=/(\S+)$/.exec(q),st=m?q.length-m[1].length:q.length;return q.slice(0,st)+(neg?'-':'')+k+':"'+v+'"'}
+   return q};
   if(act==='hist'){inp.value=ds.q;go(ds.q);return}
   if(act==='star')hStar(q);
   else if(act==='hstar')hStar(ds.q);
@@ -249,12 +265,12 @@ if(inp&&res){
    var pre=part?q.slice(0,part.start):(q&&!/\s$/.test(q)?q+' ':q);
    inp.value=pre+((part&&part.neg)?'-':'')+ds.k+':"';
   }else if(act==='val'){
-   var v=ds.v,k=ds.k;
    if(ds.ctx==='c')inp.value=q+' ';
-   else if(ds.ctx==='p'&&part)inp.value=q.slice(0,part.start)+(part.neg?'-':'')+k+':"'+v+'"';
-   else if(ds.ctx==='w'){var m=/(\S+)$/.exec(q),st=m?q.length-m[1].length:q.length,ng=m&&m[1].charAt(0)==='-';
-    inp.value=q.slice(0,st)+(ng?'-':'')+k+':"'+v+'"'}
-  }else if(act==='neg'&&lt){inp.value=q.slice(0,lt.start)+(lt.neg?'':'-')+lt.key+':"'+lt.raw+'"'}
+   else if(ds.ctx==='p'&&part)inp.value=place('p',ds.k,ds.v,part.neg);
+   else if(ds.ctx==='p'&&lt)inp.value=place('p',ds.k,ds.v,lt.neg);
+   else if(ds.ctx==='w'){var mm=/(\S+)$/.exec(q);inp.value=place('w',ds.k,ds.v,mm&&mm[1].charAt(0)==='-')}
+  }else if(act==='vinc'||act==='vexc'){inp.value=place(ds.ctx,ds.k,ds.v,act==='vexc')}
+  else if((act==='inc'||act==='exc')&&lt){inp.value=q.slice(0,lt.start)+(act==='exc'?'-':'')+lt.key+':"'+lt.raw+'"'}
   else if(act==='rm'&&lt){var r=q.slice(0,lt.start).replace(/\s+$/,'');inp.value=r?r+' ':''}
   else keep=false;
   refresh();if(keep&&inp.focus)inp.focus();
