@@ -93,14 +93,16 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
  document.addEventListener('keydown',function(e){if(!lb||lb.hidden)return;
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
 function related(cur){
+ var CW=(window.APF_CONFIG&&window.APF_CONFIG.relatedWeights)||{};
+ var W={artist:5,category:3,genre:1,other:0.5};Object.keys(CW).forEach(function(k){if(typeof CW[k]==='number')W[k]=CW[k]});
  var lc=function(x){return String(x).toLowerCase()},has=function(a,v){return (a||[]).some(function(x){return lc(x)===lc(v)})};
  var artists=function(p){return (p.hasLabels?p.labels:[]).concat(p.tags.artist||[])};
  function score(p){var s=0,why='';
-  artists(cur).forEach(function(a){if(has(artists(p),a)){s+=5;why=why||'Artist yang sama'}});
-  (cur.tags.genre||[]).forEach(function(v){if(has(p.tags.genre,v)){s+=3;why=why||'Genre yang sama'}});
-  (cur.tags.category||[]).forEach(function(v){if(has(p.tags.category,v)){s+=2;why=why||'Kategori yang sama'}});
+  artists(cur).forEach(function(a){if(has(artists(p),a)){s+=W.artist;why=why||'Artist yang sama'}});
+  (cur.tags.category||[]).forEach(function(v){if(has(p.tags.category,v)){s+=W.category;why=why||'Kategori yang sama'}});
+  (cur.tags.genre||[]).forEach(function(v){if(has(p.tags.genre,v)){s+=W.genre;why=why||'Genre yang sama'}});
   Object.keys(cur.tags).forEach(function(k){if(k==='artist'||k==='genre'||k==='category')return;
-   cur.tags[k].forEach(function(v){if(has(p.tags[k],v)){s+=1;why=why||gname(k)+' yang sama'}})});
+   cur.tags[k].forEach(function(v){if(has(p.tags[k],v)){s+=W.other;why=why||gname(k)+' yang sama'}})});
   return {p:p,s:s,why:why}}
  var all=P.filter(function(p){return p!==cur&&p.slug!==cur.slug}).map(score);
  all.sort(function(a,b){return b.s-a.s||(a.p.date<b.p.date?1:a.p.date>b.p.date?-1:0)});
