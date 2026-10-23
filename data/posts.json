@@ -535,7 +535,7 @@
   "image": "/images/covermaple3.webp",
   "tags": {
     "language": ["English"],
-    "category": ["Update Maplestar", "art"]
+    "category": ["Update Maplestar", "Art"]
   }
 },
         {
@@ -563,7 +563,7 @@
   "tags": {
     "parody": ["konosuba"],
     "language": ["English"],
-    "category": ["Update Maplestar", "art"]
+    "category": ["Update Maplestar", "Art"]
   }
 },
     {
@@ -578,7 +578,7 @@
   "tags": {
     "parody": ["tate no yuusha"],
     "language": ["English"],
-    "category": ["Animation", "2d Animation", "Update Maplestar", "gif"]
+    "category": ["Animation", "2d Animation", "Art", "Update Maplestar", "Gif"]
   }
 }
 ]
