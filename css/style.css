@@ -359,3 +359,11 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 .sres .sg-head:hover,.sres .sg-head.hi{filter:brightness(1.12)}
 .bd{font-style:normal;display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.4px;padding:1px 7px;border-radius:3px;text-transform:uppercase;color:#fff;background:#5f6672}
 .bd-artist{background:#7a3fa6}.bd-genre,.bd-tag,.bd-parody{background:#2f7d6d}.bd-category{background:#b9741a}.bd-language{background:#2c6fb7}.bd-character{background:#a23d6a}
+
+/* Sertakan (+) / Kecualikan (−) / Hapus (×) */
+.sg-val{cursor:pointer}
+.sres .sg-act i{margin-left:auto;font-style:normal;font-size:11px;color:var(--alt);border:1px solid var(--line);border-radius:10px;padding:0 8px}
+.sres .sg-act.cur{background:var(--card)}
+.sres .sg-pm{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid var(--line);border-radius:6px;font-size:14px;font-weight:700;line-height:1;cursor:pointer;user-select:none}
+.sres .sg-pm.inc{color:#35b36b}.sres .sg-pm.exc{color:#e0a030}
+.sres .sg-pm:hover{background:rgba(128,128,128,.25)}
