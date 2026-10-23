@@ -92,6 +92,23 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
  [].forEach.call(el.querySelectorAll('.gal-i'),function(a){a.onclick=function(e){e.preventDefault();open(+a.getAttribute('data-i'))}});
  document.addEventListener('keydown',function(e){if(!lb||lb.hidden)return;
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
+function related(cur){
+ var lc=function(x){return String(x).toLowerCase()},has=function(a,v){return (a||[]).some(function(x){return lc(x)===lc(v)})};
+ var artists=function(p){return (p.hasLabels?p.labels:[]).concat(p.tags.artist||[])};
+ function score(p){var s=0,why='';
+  artists(cur).forEach(function(a){if(has(artists(p),a)){s+=5;why=why||'Artist yang sama'}});
+  (cur.tags.genre||[]).forEach(function(v){if(has(p.tags.genre,v)){s+=3;why=why||'Genre yang sama'}});
+  (cur.tags.category||[]).forEach(function(v){if(has(p.tags.category,v)){s+=2;why=why||'Kategori yang sama'}});
+  Object.keys(cur.tags).forEach(function(k){if(k==='artist'||k==='genre'||k==='category')return;
+   cur.tags[k].forEach(function(v){if(has(p.tags[k],v)){s+=1;why=why||gname(k)+' yang sama'}})});
+  return {p:p,s:s,why:why}}
+ var all=P.filter(function(p){return p!==cur&&p.slug!==cur.slug}).map(score);
+ all.sort(function(a,b){return b.s-a.s||(a.p.date<b.p.date?1:a.p.date>b.p.date?-1:0)});
+ var pick=all.filter(function(x){return x.s>0}).slice(0,6);
+ if(pick.length<4)all.filter(function(x){return x.s<=0}).slice(0,6-pick.length).forEach(function(x){x.why='Terbaru';pick.push(x)});
+ if(!pick.length)return '';
+ return '<section class="rec"><div class="title"><h2>Rekomendasi untuk Anda</h2><i></i></div><div class="rec-grid">'+pick.map(function(x){
+  return '<div class="rec-i">'+thumb(x.p)+'<h3><a href="/post.html?s='+encodeURIComponent(x.p.slug)+'">'+esc(x.p.title)+'</a></h3><div class="rec-m">'+(x.why?'<span>'+esc(x.why)+'</span>':'')+'<span>'+fmt(x.p.date)+'</span></div></div>'}).join('')+'</div></section>'}
 function authorLine(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b></div>'}
 function chipRow(k,vals){return '<div class="tagrow"><span>'+esc(gname(k))+'</span>'+vals.map(function(v){
  return '<a class="tg tg-'+esc(k.replace(/[^a-z0-9]/g,''))+'" href="'+tlink(k,v)+'">'+esc(v)+'</a>'}).join('')+'</div>'}
@@ -150,7 +167,7 @@ if(list){
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
   a.innerHTML='<div class="crumb"><a href="/">Home</a> / '+esc(p.labels[0])+'</div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+'<a class="back" href="/">← Semua artikel</a>';
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
   bindVideos();bindGallery(p);
  }
 }
@@ -174,19 +191,4 @@ function slider(f){
  var play=function(){clearInterval(timer);if(f.length>1)timer=setInterval(function(){go(i+1)},5000)};
  sl.onmouseenter=function(){clearInterval(timer)};sl.onmouseleave=play;play();
 }
-// Iklan: isi dari /data/ads.json (image + url). Kalau image kosong, slot tetap placeholder.
-function ads(){
- var map={'below-slider':'ad-below-slider','below-discord':'ad-below-discord'};
- if(!document.getElementById('ad-below-slider')&&!document.getElementById('ad-below-discord'))return;
- fetch('/data/ads.json').then(function(x){return x.json()}).then(function(d){
-  Object.keys(map).forEach(function(k){
-   var a=d&&d[k],el=document.getElementById(map[k]);
-   if(!a||!a.image||!el)return;
-   var img='<img src="'+esc(a.image)+'" alt="'+esc(a.alt||'Iklan')+'" loading="lazy">';
-   el.innerHTML=a.url?'<a href="'+esc(a.url)+'" target="_blank" rel="noopener sponsored nofollow">'+img+'</a>':img;
-   el.classList.add('has-ad');
-  });
- }).catch(function(){});
-}
-ads();
 })();

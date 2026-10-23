@@ -11,7 +11,7 @@ var names={discord:'Discord',facebook:'Facebook'};
 var user=null,root;
 
 var tries=0,t=setInterval(function(){
- var anchor=document.querySelector('.entry');
+ var anchor=document.querySelector('.entry')||document.querySelector('.back');
  if(anchor||++tries>50){clearInterval(t);if(anchor&&slug)start(anchor)}
 },100);
 
