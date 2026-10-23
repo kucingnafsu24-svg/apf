@@ -335,3 +335,27 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 .slider[hidden]+.bx{display:none}
 @media(max-width:760px){.bx-wide{margin-bottom:22px}.bx-wide .bx-body,.bx-wide .bx-ph{min-height:70px}}
 
+
+/* Panel pencarian ala nhentai: riwayat, operator, saran nilai, kecualikan / hapus */
+.sres{width:440px}
+.sres .sg-head{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--card);border-bottom:1px solid var(--line);font-size:13.5px;cursor:pointer}
+.sg-head span{color:var(--alt);font-size:12.5px;white-space:nowrap}
+.sg-head b{flex:1;min-width:0;font-weight:600;color:var(--head);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sres .sg-ic{padding:2px 7px;border-radius:6px;color:var(--alt);font-size:14px;line-height:1.3;cursor:pointer}
+.sres .sg-ic:hover{background:rgba(128,128,128,.22);color:var(--head)}
+.sres .sg-ic.on{color:#e8b33a}
+.sres .sg-op,.sres .sg-val,.sres .sg-act{display:flex;align-items:center;gap:10px;width:100%;padding:9px 14px;border-radius:0;border-bottom:1px solid var(--line);text-align:left;font-size:13.5px;color:var(--head);cursor:pointer}
+.sg-op code,.sg-act code,.sg-hist code{font-family:'Fira Mono',ui-monospace,monospace;font-size:13px}
+.sg-op span{margin-left:auto;color:var(--alt);font-size:12.5px;white-space:nowrap}
+.sg-val .sg-n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sg-val em{font-style:normal;color:var(--alt);font-size:12px}
+.sg-go{color:var(--alt);font-weight:400}
+.sg-act.exc{color:#e0a030}.sg-act.inc{color:#35b36b}.sg-act.rm{color:#e06050}
+.sg-act code{color:var(--alt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sg-hist{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);cursor:pointer;color:var(--head);font-size:13.5px}
+.sg-hist svg{width:15px;height:15px;color:var(--alt)}
+.sg-hist code{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sres .sg-op:hover,.sres .sg-val:hover,.sres .sg-act:hover,.sres .sg-hist:hover,.sres .hi{background:var(--card)}
+.sres .sg-head:hover,.sres .sg-head.hi{filter:brightness(1.12)}
+.bd{font-style:normal;display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.4px;padding:1px 7px;border-radius:3px;text-transform:uppercase;color:#fff;background:#5f6672}
+.bd-artist{background:#7a3fa6}.bd-genre,.bd-tag,.bd-parody{background:#2f7d6d}.bd-category{background:#b9741a}.bd-language{background:#2c6fb7}.bd-character{background:#a23d6a}
