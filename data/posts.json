@@ -526,6 +526,19 @@
       ]
     }
   },
+    {
+  "slug": "Butt-study",
+  "title": "Butt "study"",
+  "author": "Admin",
+  "date": "2019-09-01",
+  "labels": ["Maplestar"],
+  "image": "/images/covermaple3.webp",
+  "excerpt": " ",
+  "tags": {
+    "language": ["English"],
+    "category": ["Update Maplestar", "art"]
+  }
+},
         {
   "slug": "Patreon-Discord-rewards-now-work!",
   "title": "Patreon Discord rewards now work!",
@@ -536,7 +549,7 @@
   "content": "Had to work out some errors with the rewards, thank you for your patience everyone!\n\nWhen you donate now, you'll be added to our Patreon discord server if you have your discord account linked to your patron account! There you can see all the rewards listed in the tiers. I just launched today, so there's not much yet but I've been preparing lots of art for you all! ❤️❤️❤️❤️\n\nThank you! Feel free to leave a comment or question here so I can get back to you!",
   "tags": {
     "language": ["English"],
-    "category": ["Animation", "2d Animation", "Update Maplestar", "gif"]
+    "category": ["Update Maplestar"]
   }
 },
     {
