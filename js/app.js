@@ -94,11 +94,12 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
 function related(cur){
  var CW=(window.APF_CONFIG&&window.APF_CONFIG.relatedWeights)||{};
- var W={artist:5,category:3,genre:1,other:0.5};Object.keys(CW).forEach(function(k){if(typeof CW[k]==='number')W[k]=CW[k]});
+ var W={artist:5,label:3,category:3,genre:1,other:0.5};Object.keys(CW).forEach(function(k){if(typeof CW[k]==='number')W[k]=CW[k]});
  var lc=function(x){return String(x).toLowerCase()},has=function(a,v){return (a||[]).some(function(x){return lc(x)===lc(v)})};
- var artists=function(p){return (p.hasLabels?p.labels:[]).concat(p.tags.artist||[])};
+ var labs=function(p){return p.hasLabels?p.labels:[]};
  function score(p){var s=0,why='';
-  artists(cur).forEach(function(a){if(has(artists(p),a)){s+=W.artist;why=why||'Artist yang sama'}});
+  (cur.tags.artist||[]).forEach(function(a){if(has(p.tags.artist,a)){s+=W.artist;why=why||'Artist yang sama'}});
+  labs(cur).forEach(function(l){if(has(labs(p),l)){s+=W.label;why=why||'Label yang sama'}});
   (cur.tags.category||[]).forEach(function(v){if(has(p.tags.category,v)){s+=W.category;why=why||'Kategori yang sama'}});
   (cur.tags.genre||[]).forEach(function(v){if(has(p.tags.genre,v)){s+=W.genre;why=why||'Genre yang sama'}});
   Object.keys(cur.tags).forEach(function(k){if(k==='artist'||k==='genre'||k==='category')return;
@@ -114,19 +115,16 @@ function related(cur){
 function authorLine(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b></div>'}
 function chipRow(k,vals){return '<div class="tagrow"><span>'+esc(gname(k))+'</span>'+vals.map(function(v){
  return '<a class="tg tg-'+esc(k.replace(/[^a-z0-9]/g,''))+'" href="'+tlink(k,v)+'">'+esc(v)+'</a>'}).join('')+'</div>'}
-function artistRow(p){
- var seen={},items=[];
- if(p.hasLabels)p.labels.forEach(function(l){items.push({v:String(l),u:'/?label='+encodeURIComponent(l)})});
- (p.tags.artist||[]).forEach(function(x){items.push({v:x,u:tlink('artist',x)})});
- items=items.filter(function(x){var k=x.v.toLowerCase();if(seen[k])return false;seen[k]=1;return true});
- if(!items.length)return '';
- return '<div class="tagrow"><span>'+esc(gname('artist'))+'</span>'+items.map(function(x){
-  return '<a class="tg tg-artist" href="'+esc(x.u)+'">'+esc(x.v)+'</a>'}).join('')+'</div>'}
+function labelRow(p){
+ if(!p.hasLabels)return '';
+ return '<div class="tagrow"><span>Label</span>'+p.labels.map(function(l){
+  return '<a class="tg tg-label" href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join('')+'</div>'}
+function artistRow(p){return p.tags.artist?chipRow('artist',p.tags.artist):''}
 function bottomRows(p){var ks=[];
  if(p.tags.genre)ks.push('genre');
  Object.keys(p.tags).forEach(function(k){if(k!=='artist'&&k!=='genre'&&k!=='category')ks.push(k)});
  if(p.tags.category)ks.push('category');
- var h=artistRow(p)+ks.map(function(k){return chipRow(k,p.tags[k])}).join('');
+ var h=labelRow(p)+artistRow(p)+ks.map(function(k){return chipRow(k,p.tags[k])}).join('');
  if(!h)return '';
  return '<div class="tagrows tagbottom">'+h+'</div>'}
 function meta(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b> in '+p.labels.map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join(' / ')+'</div>'}

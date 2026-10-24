@@ -7,7 +7,7 @@ var ico='<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20
 var clock='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 var posts=null,loading=null,vals={},tagGroup={},hasTagGroup=false;
 var known={title:1,author:1,label:1,tag:1,before:1,after:1,artist:1,category:1,file:1};
-var OPS=[['tag','Filter berdasarkan tag'],['artist','Filter berdasarkan artist'],['parody','Filter berdasarkan parodi'],['character','Filter berdasarkan karakter'],['genre','Filter berdasarkan genre'],['language','Filter berdasarkan bahasa'],['category','Filter berdasarkan kategori'],['title','Cari teks judul']];
+var OPS=[['tag','Filter berdasarkan tag'],['artist','Filter berdasarkan artist'],['label','Filter berdasarkan label'],['parody','Filter berdasarkan parodi'],['character','Filter berdasarkan karakter'],['genre','Filter berdasarkan genre'],['language','Filter berdasarkan bahasa'],['category','Filter berdasarkan kategori'],['title','Cari teks judul']];
 var lower=function(x){return String(x).toLowerCase()};
 var uniq=function(a){var s={};return a.filter(function(x){var k=lower(x);if(s[k])return false;s[k]=1;return true})};
 var norm=function(s){return lower(s).normalize('NFKD').replace(/[\u0300-\u036f]/g,'')};
@@ -43,11 +43,11 @@ function load(){
     var kk=lower(k);if(kk==='file')kk='category';if(kk==='tags')kk='tag';if(kk==='tag')hasTagGroup=true;
     var v=[].concat(p.tags[k]).map(function(x){return String(x).trim()}).filter(Boolean);
     if(v.length)tgo[kk]=(tgo[kk]||[]).concat(v)});
-   var art=uniq(labs.concat(tgo.artist||[]));
    Object.keys(tgo).forEach(function(k){tgo[k]=uniq(tgo[k]);tgl[k]=tgo[k].map(lower);known[k]=1;
     tgo[k].forEach(function(x){tall.push(lower(x));
      if(k!=='artist'){addVal('tag',x);if(k!=='tag')addVal(k,x);tagGroup[x]=tagGroup[x]||k}})});
-   tgl.artist=art.map(lower);art.forEach(function(x){addVal('artist',x)});
+   var lab=uniq(labs);tgl.label=lab.map(lower);lab.forEach(function(x){addVal('label',x)});
+   (tgo.artist||[]).forEach(function(x){addVal('artist',x)});tgl.artist=(tgo.artist||[]).map(lower);
    tmp.innerHTML=String(p.content||'').replace(/<[^>]*>/g,' ');
    var text=String(tmp.value).replace(/\s+/g,' ').trim(),ex=String(p.excerpt||''),labels=labs.length?labs:['Umum'];
    return {slug:String(p.slug||title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')).toLowerCase(),
@@ -102,7 +102,7 @@ function opMatch(p,op){
  if(k==='title')return p.lt.indexOf(v)>-1||(!op.exact&&near(p.ltk,v));
  else if(k==='author')list=[p.la];
  else if(k==='tag')list=p.tall;
- else{if(k==='label')k='artist';if(k==='file')k='category';list=p.tgl[k]||[]}
+ else{if(k==='file')k='category';list=p.tgl[k]||[]}
  return list.some(function(x){return op.exact?x===v:x.indexOf(v)>-1});
 }
 function run(o){
