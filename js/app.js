@@ -142,15 +142,32 @@ if($('labels')){
  $('labels').innerHTML=Object.keys(L).map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join('');
 }
 
-var cur=new URLSearchParams(location.search).get('label');
-var auto=Object.keys(L).map(function(l){return {name:l}});
-var drawTopics=function(a){$('topics').innerHTML=a.map(function(t){var u=t.url||'/?label='+encodeURIComponent(t.label||t.name);var on=(t.label||t.name)===cur&&!t.url;return '<a'+(on?' class="on"':'')+' href="'+esc(u)+'">'+esc(t.name)+'</a>'}).join('');var tp=$('topics'),on=tp.querySelector&&tp.querySelector('a.on');if(on)tp.scrollLeft=Math.max(0,on.offsetLeft-(tp.clientWidth-on.offsetWidth)/2)};
+var qs0=new URLSearchParams(location.search),cur=qs0.get('label'),curTag=String(qs0.get('tag')||'').toLowerCase(),curPost=null;
+var lc2=function(x){return String(x).toLowerCase()};
+var AR={};P.forEach(function(p){(p.tags.artist||[]).forEach(function(a){AR[a]=(AR[a]||0)+1})});
+var auto=Object.keys(AR).length?Object.keys(AR).sort(function(a,b){return AR[b]-AR[a]||a.localeCompare(b)}).map(function(a){return {name:a,artist:a}}):Object.keys(L).map(function(l){return {name:l}});
+/* satu topik: {"name":"Maplestar","artist":"Maplestar"} -> /?tag=artist:Maplestar
+   juga boleh genre/category/language/...; {"name":"x","label":"x"} -> /?label=x; {"name":"x","url":"..."} -> url bebas */
+function topicOf(t){
+ if(t.url)return {u:t.url};
+ var ks=Object.keys(t).filter(function(k){k=lc2(k);return k!=='name'&&k!=='url'&&k!=='label'});
+ if(ks.length){var k=ks[0],g=lc2(k),v=String(t[k]==null||t[k]===''?t.name:t[k]);
+  if(g==='tag'&&v.indexOf(':')>0){g=lc2(v.slice(0,v.indexOf(':')));v=v.slice(v.indexOf(':')+1)}
+  if(g==='file')g='category';
+  return {u:'/?tag='+encodeURIComponent(g+':'+v),g:g,v:v}}
+ var l=t.label||t.name;return {u:'/?label='+encodeURIComponent(l),l:l}}
+var drawTopics=function(a){$('topics').innerHTML=a.map(function(t){
+  var o=topicOf(t),on=false;
+  if(o.g)on=curTag===lc2(o.g+':'+o.v)||!!(curPost&&(curPost.tags[o.g]||[]).some(function(x){return lc2(x)===lc2(o.v)}));
+  else if(o.l)on=o.l===cur;
+  return '<a'+(on?' class="on"':'')+' href="'+esc(o.u)+'">'+esc(t.name)+'</a>'}).join('');
+ var tp=$('topics'),on=tp.querySelector&&tp.querySelector('a.on');if(on)tp.scrollLeft=Math.max(0,on.offsetLeft-(tp.clientWidth-on.offsetWidth)/2)};
 fetch('/data/topics.json').then(function(x){return x.json()}).then(function(a){drawTopics(Array.isArray(a)&&a.length?a:auto)}).catch(function(){drawTopics(auto)});
 var list=$('posts'),qs=new URLSearchParams(location.search);
 if(list){
  var label=qs.get('label'),tag=qs.get('tag')||'',tk='',tv='';
- if(tag.indexOf(':')>0){tk=tag.slice(0,tag.indexOf(':')).toLowerCase();tv=tag.slice(tag.indexOf(':')+1)}
- var data=label?P.filter(function(p){return p.labels.indexOf(label)>-1}):tv?P.filter(function(p){return (p.tags[tk]||[]).indexOf(tv)>-1}):P;
+ if(tag.indexOf(':')>0){tk=tag.slice(0,tag.indexOf(':')).toLowerCase();tv=tag.slice(tag.indexOf(':')+1);if(tk==='file')tk='category'}
+ var data=label?P.filter(function(p){return p.labels.indexOf(label)>-1}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P;
  if(!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
  if(label)$('ttl').textContent='Label: '+label;
  if(tv)$('ttl').textContent=gname(tk)+': '+tv;
@@ -162,7 +179,7 @@ if(list){
  var p=P.filter(function(x){return x.slug===slug})[0],a=$('article');
  if(!p){document.title='Tidak ditemukan — Fletro Pro';a.innerHTML='<div class="empty">Artikel tidak ditemukan.</div><a class="back" href="/">← Kembali</a>'}
  else{
-  cur=p.labels[0];
+  cur=p.labels[0];curPost=p;
   document.title=p.title+' — Fletro Pro';
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
