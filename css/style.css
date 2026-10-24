@@ -49,7 +49,7 @@ aside{display:flex;flex-direction:column;gap:36px;position:sticky;top:96px;align
 .labels{display:flex;flex-wrap:wrap;gap:8px}.labels a{font-size:13px;padding:3px 14px;border:1px solid var(--line);border-radius:16px}.labels a:hover{border-color:var(--link);color:var(--link)}
 footer{background:var(--foot);border-top:1px solid var(--line);padding:32px 0;font-size:13px;color:var(--alt)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}footer a:hover{color:var(--link)}
-@media(max-width:980px){.layout{grid-template-columns:1fr}aside{position:static}nav{display:none}}
+@media(max-width:980px){.layout{grid-template-columns:1fr}aside{position:static}}
 @media(max-width:640px){.post{grid-template-columns:1fr 120px;gap:16px}.post h3{font-size:17px}.post p{display:none}.posts.grid{grid-template-columns:1fr}.thumb strong{font-size:18px}.wrap{padding:0 16px}}
 .article{max-width:720px}
 .article .crumb{font-size:13px;color:var(--alt);margin-bottom:14px}.article .crumb a:hover{color:var(--link)}
@@ -382,17 +382,17 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 /* Label dan Artist sebagai dua hal berbeda */
 .bd-label{background:#c2573a}
 
-/* ===== Menu hamburger (tablet & HP) ===== */
-#mbtn{display:none}
-.mnav{display:none}
+/* ===== Menu kategori di mobile/tablet: baris kedua, bisa digeser ===== */
 @media(max-width:980px){
-  #mbtn{display:flex}
-  .mnav{position:absolute;top:100%;left:0;right:0;display:flex;flex-direction:column;padding:8px 16px 12px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(0,0,0,.08);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s}
-  .mnav.open{opacity:1;visibility:visible;transform:none}
-  .mnav a{padding:13px 12px;border-radius:10px;font-size:15px;color:var(--body)}
-  .mnav a:hover,.mnav a:active,.mnav a.on{background:var(--card);color:var(--head)}
-  #mbtn .i-x{display:none}
-  #mbtn.open .i-x{display:block}
-  #mbtn.open .i-m{display:none}
+  header,.bar{height:auto}
+  .bar{flex-wrap:wrap;gap:0 12px}
+  .logo{order:1;height:60px;align-items:center}
+  .tools{order:2;margin-left:auto;height:60px;align-items:center}
+  nav{display:flex;order:3;flex:0 0 100%;min-width:0;gap:6px;height:46px;align-items:center;
+      overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+      border-top:1px solid var(--line);margin:0 -16px;padding:0 16px}
+  nav::-webkit-scrollbar{display:none}
+  nav a{flex:none;padding:6px 14px;font-size:14px;border:1px solid var(--line)}
+  nav a:hover,nav a.on{border-color:transparent}
 }
-@media(prefers-reduced-motion:reduce){.mnav{transition:none}}
