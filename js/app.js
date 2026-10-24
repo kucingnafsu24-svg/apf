@@ -209,25 +209,3 @@ function slider(f){
  sl.onmouseenter=function(){clearInterval(timer)};sl.onmouseleave=play;play();
 }
 })();
-
-/* Menu hamburger: salin tautan dari <nav> ke panel dropdown (mobile) */
-(function(){
-var bar=document.querySelector('.tools'),nav=document.querySelector('header nav'),hd=document.querySelector('header');
-if(!bar||!nav||!hd)return;
-var btn=document.createElement('button');btn.id='mbtn';btn.type='button';
-btn.setAttribute('aria-label','Menu');btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-controls','mnav');
-btn.innerHTML='<svg class="i-m" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>';
-bar.appendChild(btn);
-var panel=document.createElement('div');panel.className='mnav';panel.id='mnav';
-hd.appendChild(panel);
-var set=function(o){
- if(o)panel.innerHTML=nav.innerHTML;
- panel.classList.toggle('open',o);btn.classList.toggle('open',o);
- btn.setAttribute('aria-expanded',o?'true':'false');
- btn.setAttribute('aria-label',o?'Tutup menu':'Menu');
-};
-btn.onclick=function(e){e.stopPropagation();set(!panel.classList.contains('open'))};
-document.addEventListener('click',function(e){if(panel.classList.contains('open')&&!e.target.closest('#mnav'))set(false)});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
-matchMedia('(min-width:981px)').addEventListener&&matchMedia('(min-width:981px)').addEventListener('change',function(m){if(m.matches)set(false)});
-})();
