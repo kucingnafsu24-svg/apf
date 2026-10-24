@@ -378,3 +378,6 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 .rec-m{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:12px;color:var(--alt)}
 .rec-m span:first-child:not(:last-child){color:var(--link)}
 @media(max-width:760px){.rec-grid{grid-template-columns:repeat(2,1fr);gap:12px}.rec{margin-top:32px}}
+
+/* Label dan Artist sebagai dua hal berbeda */
+.bd-label{background:#c2573a}
