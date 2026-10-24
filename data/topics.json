@@ -1,9 +1,9 @@
 [
-  { "name": "Maplestar", "label": "Maplestar" },
-  { "name": "Topu", "label": "Topu" },
-  { "name": "Merlt", "label": "Merlt" },
-  { "name": "Machi", "label": "Machi" },
-  { "name": "Liquid Neko", "label": "Liquid Neko" },
-  { "name": "七氏", "label": "七氏" },
-  { "name": "Ppolar", "label": "Ppolar" }
+  { "name": "Maplestar", "Artist": "Maplestar" },
+  { "name": "Topu", "Artist": "Topu" },
+  { "name": "Merlt", "Artist": "Merlt" },
+  { "name": "Machi", "Artist": "Machi" },
+  { "name": "Liquid Neko", "Artist": "Liquid Neko" },
+  { "name": "七氏", "Artist": "七氏" },
+  { "name": "Ppolar", "Artist": "Ppolar" }
 ]
