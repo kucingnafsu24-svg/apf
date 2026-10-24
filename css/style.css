@@ -396,3 +396,18 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
   nav a{flex:none;padding:6px 14px;font-size:14px;border:1px solid var(--line)}
   nav a:hover,nav a.on{border-color:transparent}
 }
+
+/* ===== Halaman artikel (post.html): sembunyikan bar topik di mobile ===== */
+@media(max-width:760px){
+  body:has(#article) .topics{display:none}
+}
+
+/* ===== Tag: tata letak rapi di mobile ===== */
+@media(max-width:760px){
+  .tagrows{gap:0;margin:16px 0 8px}
+  .tagrow{gap:8px 6px;padding:12px 0;border-top:1px solid var(--line)}
+  .tagrow:last-child{border-bottom:1px solid var(--line)}
+  .tagrow>span{flex:0 0 100%;min-width:0;font-size:11.5px;font-weight:600;letter-spacing:.3px;color:var(--alt)}
+  .tg{font-size:13px;padding:5px 13px;line-height:1.4;max-width:100%;overflow-wrap:anywhere}
+  .tagbottom{margin:16px 0 20px}
+}
