@@ -419,3 +419,6 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 .pager button.on{background:var(--head);border-color:var(--head);color:var(--bg)}
 .pager button:disabled{opacity:.4;cursor:default}
 .pager span{align-self:center;color:var(--alt)}
+
+/* widget Discord disembunyikan di HP */
+@media(max-width:760px){.w-dc{display:none}}
