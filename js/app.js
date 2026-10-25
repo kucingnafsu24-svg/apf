@@ -171,7 +171,24 @@ if(list){
  if(!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
  if(label)$('ttl').textContent='Label: '+label;
  if(tv)$('ttl').textContent=gname(tk)+': '+tv;
- var render=function(a){list.innerHTML=a.length?a.map(card).join(''):'<div class="empty">Tidak ada artikel.</div>'};
+ /* halaman: 5 artikel per halaman, nomor halaman di ?page=N */
+ var PER=5,page=Math.max(1,parseInt(qs.get('page'),10)||1),pg=document.createElement('nav');
+ pg.className='pager';pg.setAttribute('aria-label','Halaman');list.parentNode.insertBefore(pg,list.nextSibling);
+ var pageUrl=function(n){var u=new URLSearchParams(location.search);if(n>1)u.set('page',n);else u.delete('page');var q=u.toString();return location.pathname+(q?'?'+q:'')};
+ var render=function(a){
+  var pages=Math.max(1,Math.ceil(a.length/PER));page=Math.min(Math.max(page,1),pages);
+  list.innerHTML=a.length?a.slice((page-1)*PER,page*PER).map(card).join(''):'<div class="empty">Tidak ada artikel.</div>';
+  if(pages<2){pg.innerHTML='';return}
+  var h='<button type="button" data-p="'+(page-1)+'"'+(page<2?' disabled':'')+' aria-label="Sebelumnya">\u2039</button>',last=0;
+  for(var n=1;n<=pages;n++){
+   if(n===1||n===pages||Math.abs(n-page)<=1||(page<=2&&n<=3)||(page>=pages-1&&n>=pages-2)){if(last&&n-last>1)h+='<span>\u2026</span>';
+    h+='<button type="button" data-p="'+n+'"'+(n===page?' class="on" aria-current="page"':'')+'>'+n+'</button>';last=n}}
+  h+='<button type="button" data-p="'+(page+1)+'"'+(page>=pages?' disabled':'')+' aria-label="Berikutnya">\u203a</button>';
+  pg.innerHTML=h};
+ pg.onclick=function(e){var b=e.target.closest&&e.target.closest('button[data-p]');if(!b||b.disabled)return;
+  page=parseInt(b.getAttribute('data-p'),10);history.pushState(null,'',pageUrl(page));render(data);
+  var t=document.querySelector('.title');if(t)t.scrollIntoView({block:'start'})};
+ window.addEventListener('popstate',function(){if(qs.get('q'))return;page=Math.max(1,parseInt(new URLSearchParams(location.search).get('page'),10)||1);render(data)});
  if(!qs.get('q'))render(data);
  $('view').onclick=function(){var g=list.classList.toggle('grid');$('vl').textContent=g?'Grid':'List'};
 }else{
