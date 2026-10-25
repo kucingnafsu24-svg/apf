@@ -33,15 +33,28 @@
 .acc .oa.p-discord,.acc .oa.p-discord:hover{background:#5865f2}
 .acc .oa.p-facebook,.acc .oa.p-facebook:hover{background:#1877f2}
 .acc .go.ghost,.acc .go.ghost:hover{margin-top:10px;background:none;color:var(--head);border:1px solid var(--line)}
-#f-prof{margin-bottom:6px}
-.acc .me{padding:16px;border:1px solid var(--line);border-radius:10px;margin-bottom:16px}
-.acc .me{display:flex;align-items:center;gap:14px}
-.pic{flex:none;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--link) center/cover no-repeat;color:#fff;font-size:26px;font-weight:600}
-.pic-act{display:flex;gap:8px;margin:-4px 0 18px}
-.acc .pbtn{display:block;padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-weight:600;color:var(--head)}
+.acc [hidden]{display:none!important}
+.acc.wide{max-width:560px}
+.pr-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.pic{flex:none;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--link) center/cover no-repeat;color:#fff;font-size:22px;font-weight:600}
+@media(min-width:480px){.pic{width:72px;height:72px;font-size:28px}}
+.acc .pbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:8px;border:1px solid var(--line);border-radius:10px;font-size:14px;line-height:1.25;text-align:left;color:var(--head)}
+.acc .pbtn:hover{background:var(--card)}
 .acc .pbtn[disabled]{opacity:.6;cursor:wait}
-.acc .me b{display:block;color:var(--head);font-size:16px}
-.acc .me span{color:var(--alt);font-size:13px}
+.or2{color:var(--alt);font-size:14px}
+.acc .lnk{padding:4px 2px;border-radius:4px;font-size:14px;font-weight:600;color:var(--head);text-decoration:underline}
+.acc .lnk:hover{background:none;color:var(--link)}
+.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}
+.presets button{padding:0;border-radius:50%;aspect-ratio:1;overflow:hidden;border:2px solid transparent}
+.presets button:hover{background:none;border-color:var(--link)}
+.presets img{display:block;width:100%;height:100%}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;border-top:1px solid var(--line)}
+.row h3{margin:0 0 2px;font-size:16px;font-weight:600;color:var(--head)}
+.row p{margin:0;color:var(--alt);font-size:14px;overflow-wrap:anywhere}
+.edit{padding:0 0 18px}
+.edit .acts{display:flex;align-items:center;gap:14px}
+.edit .go{display:inline-flex;width:auto;padding:10px 20px}
+#out{margin-top:6px}
 </style>
 </head>
 <body id="login-page">
@@ -52,7 +65,7 @@
  </div>
 </div></header>
 
-<main class="acc">
+<main class="acc" id="acc">
  <h1 id="h">Masuk ke akun</h1>
  <p class="sub" id="sub">Masuk untuk berkomentar dan menyimpan aktivitasmu.</p>
  <p id="msg" role="status" hidden></p>
@@ -91,16 +104,31 @@
  </form>
 
  <div id="me" hidden>
-  <div class="me"><div class="pic" id="pic"></div><div><b id="me-n"></b><span id="me-e"></span></div></div>
-  <div class="pic-act">
-   <button type="button" class="pbtn" id="pic-up">Ganti foto</button>
-   <button type="button" class="pbtn" id="pic-rm" hidden>Hapus foto</button>
+  <div class="pr-top">
+   <div class="pic" id="pic"></div>
+   <button type="button" class="pbtn" id="pic-up"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg><span>Upload<br>Foto</span></button>
+   <span class="or2">Atau</span>
+   <button type="button" class="pbtn" id="pic-pick"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Pilih<br>Avatar</span></button>
    <input type="file" id="pic-file" accept="image/png,image/jpeg,image/webp" hidden>
   </div>
-  <form id="f-prof" novalidate>
+  <button type="button" class="lnk" id="pic-rm" hidden>Hapus foto</button>
+  <div class="presets" id="presets" hidden></div>
+
+  <div class="row"><div><h3>Nama</h3><p id="me-n"></p></div><button type="button" class="lnk" data-edit="name">Ubah</button></div>
+  <form id="f-prof" class="edit" hidden novalidate>
    <label>Nama tampilan<input type="text" name="name" maxlength="40" autocomplete="nickname" required></label>
-   <button class="go" type="submit">Simpan nama</button>
+   <div class="acts"><button class="go" type="submit">Simpan</button><button type="button" class="lnk" data-cancel="name">Batal</button></div>
   </form>
+
+  <div class="row"><div><h3>Email</h3><p id="me-e"></p></div></div>
+
+  <div class="row"><div><h3>Kata sandi</h3><p>••••••</p></div><button type="button" class="lnk" data-edit="pw">Ubah</button></div>
+  <form id="f-pw" class="edit" hidden novalidate>
+   <label>Kata sandi baru (min. 8 karakter)<input type="password" name="pw" minlength="8" autocomplete="new-password" required></label>
+   <label>Ulangi kata sandi baru<input type="password" name="pw2" minlength="8" autocomplete="new-password" required></label>
+   <div class="acts"><button class="go" type="submit">Simpan</button><button type="button" class="lnk" data-cancel="pw">Batal</button></div>
+  </form>
+
   <button class="go ghost" type="button" id="out">Keluar</button>
   <a class="alt" href="/">← Kembali ke beranda</a>
  </div>
