@@ -36,8 +36,8 @@ $('theme').onclick=function(){
  var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
  var n=d?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}};
 
-var H={in:['Masuk ke akun','Masuk untuk berkomentar dan menyimpan aktivitasmu.'],
- up:['Buat akun baru','Gratis. Cukup nama, email, dan kata sandi.'],
+var H={in:['Login','Harus login jika ingin berkomentar'],
+ up:['Signup','Buat akun untuk berkomentar'],
  fg:['Atur ulang kata sandi','Kami kirim tautan reset ke email akunmu.'],
  new:['Kata sandi baru','Masukkan kata sandi baru untuk akunmu.'],
  me:['Info akun','']};
