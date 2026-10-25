@@ -8,12 +8,18 @@ function session(){try{var s=JSON.parse(localStorage.getItem('sb-'+ref+'-auth-to
 var tl=document.querySelector('.tools');
 if(ok&&tl&&!isLogin){
  var st=document.createElement('style');
- st.textContent='.acct{display:inline-flex;align-items:center;max-width:140px;padding:7px 16px;margin-right:6px;border-radius:20px;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:var(--head);color:var(--bg)}.acct:hover{opacity:.85}';
+ st.textContent='.acct{display:inline-flex;align-items:center;max-width:140px;padding:7px 16px;margin-right:6px;border-radius:20px;font-size:14px;font-weight:600;white-space:nowrap;background:var(--head);color:var(--bg)}.acct:hover{opacity:.85}.acct-t{overflow:hidden;text-overflow:ellipsis}.acct svg,.acct-a{display:none}'+
+  '@media(max-width:760px){.acct{max-width:none;margin:0;padding:10px;border-radius:50%;background:none;color:var(--head)}.acct:hover{opacity:1;background:var(--card)}.acct-t{display:none}.acct svg{display:block}'+
+  '.acct.in{padding:8px}.acct.in svg{display:none}.acct-a{width:24px;height:24px;border-radius:50%;background:var(--link);color:#fff;font-size:12px;font-weight:600;align-items:center;justify-content:center}.acct.in .acct-a{display:flex}}';
  document.head.appendChild(st);
- var s=session(),a=document.createElement('a');
- a.className='acct';
+ var s=session(),a=document.createElement('a'),
+  nm=s?(((s.user.user_metadata||{}).name)||String(s.user.email||'Akun').split('@')[0]):'Masuk';
+ a.className='acct'+(s?' in':'');
  a.href='/login.html'+(s?'':'?next='+encodeURIComponent(location.pathname+location.search));
- a.textContent=s?(((s.user.user_metadata||{}).name)||String(s.user.email||'Akun').split('@')[0]):'Masuk';
+ a.setAttribute('aria-label',s?'Akun saya':'Masuk atau daftar');
+ a.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="acct-a"></span><span class="acct-t"></span>';
+ a.querySelector('.acct-t').textContent=nm;
+ a.querySelector('.acct-a').textContent=nm.charAt(0).toUpperCase();
  tl.insertBefore(a,tl.firstChild);
 }
 if(!isLogin)return;
