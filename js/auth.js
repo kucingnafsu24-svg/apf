@@ -2,6 +2,7 @@
 var C=window.APF_CONFIG||{},ok=!!(C.supabaseUrl&&C.supabaseAnonKey&&!/GANTI/.test(C.supabaseUrl));
 var ref=ok?((C.supabaseUrl.match(/\/\/([^.]+)\./)||[])[1]||''):'';
 var isLogin=!!document.getElementById('login-page');
+function who(u){var m=u.user_metadata||{};return m.full_name||m.name||m.user_name||String(u.email||'Akun').split('@')[0]}
 
 /* ---------- tombol Masuk / nama akun di header (semua halaman) ---------- */
 function session(){try{var s=JSON.parse(localStorage.getItem('sb-'+ref+'-auth-token'));return s&&s.user&&s.refresh_token?s:null}catch(e){return null}}
@@ -13,7 +14,7 @@ if(ok&&tl&&!isLogin){
   '.acct.in{padding:8px}.acct.in svg{display:none}.acct-a{width:24px;height:24px;border-radius:50%;background:var(--link);color:#fff;font-size:12px;font-weight:600;align-items:center;justify-content:center}.acct.in .acct-a{display:flex}}';
  document.head.appendChild(st);
  var s=session(),a=document.createElement('a'),
-  nm=s?(((s.user.user_metadata||{}).name)||String(s.user.email||'Akun').split('@')[0]):'Masuk';
+  nm=s?who(s.user):'Masuk';
  a.className='acct'+(s?' in':'');
  a.href='/login.html'+(s?'':'?next='+encodeURIComponent(location.pathname+location.search));
  a.setAttribute('aria-label',s?'Akun saya':'Masuk atau daftar');
@@ -26,6 +27,7 @@ if(!isLogin)return;
 
 /* ---------- halaman login ---------- */
 var $=function(i){return document.getElementById(i)};
+var P=Array.isArray(C.providers)?C.providers:[],NM={discord:'Discord',facebook:'Facebook'};
 var r=document.documentElement;
 try{var t=localStorage.getItem('theme');if(t)r.setAttribute('data-theme',t)}catch(e){}
 $('theme').onclick=function(){
@@ -42,6 +44,7 @@ function view(v){
  say('');
  ['in','up','fg','new'].forEach(function(k){$('f-'+k).hidden=(k!==v)});
  $('me').hidden=(v!=='me');
+ $('oauth').hidden=!(v==='in'||v==='up')||!P.length;
  $('tabs').hidden=!(v==='in'||v==='up');
  [].forEach.call($('tabs').children,function(b){b.className=b.getAttribute('data-v')===v?'on':''});
  $('h').textContent=H[v][0];$('sub').textContent=H[v][1]}
@@ -62,11 +65,14 @@ if(!ok||!window.supabase){say('Login belum aktif: isi supabaseUrl dan supabaseAn
 
 var sb=supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);
 var recovery=/type=recovery/.test(location.hash);
-function showMe(u){$('me-n').textContent=(u.user_metadata&&u.user_metadata.name)||String(u.email).split('@')[0];$('me-e').textContent=u.email;view('me')}
+function showMe(u){$('me-n').textContent=who(u);$('me-e').textContent=u.email;view('me')}
 
 sb.auth.onAuthStateChange(function(ev){if(ev==='PASSWORD_RECOVERY'){recovery=true;view('new')}});
+if(P.length){var o=$('oauth');o.innerHTML='<p class="or">atau</p>';
+ P.forEach(function(p){var b=document.createElement('button');b.type='button';b.className='oa p-'+p.replace(/[^a-z0-9]/gi,'');b.textContent='Lanjut dengan '+(NM[p]||p);
+  b.onclick=function(){sb.auth.signInWithOAuth({provider:p,options:{redirectTo:location.origin+'/login.html?next='+encodeURIComponent(nextUrl())}}).then(function(x){if(x.error)say(human(x.error),true)})};o.appendChild(b)})}
 sb.auth.getSession().then(function(x){var u=x.data&&x.data.session&&x.data.session.user;
- if(recovery)view('new');else if(u)showMe(u);else view('in')});
+ if(recovery)view('new');else if(u){if(new URLSearchParams(location.search).has('next'))location.replace(nextUrl());else showMe(u)}else view('in')});
 
 function run(form,fn){
  form.addEventListener('submit',function(e){e.preventDefault();
@@ -82,7 +88,7 @@ run($('f-in'),function(f){
 
 run($('f-up'),function(f){
  var n=f.name.value.trim(),e=f.email.value.trim();
- need(n,'Nama tampilan wajib diisi.');need(mail(e),'Format email tidak valid.');
+ need(n,'Nama tampilan wajib diisi.');need(!/(admin|moderator|staff|owner|allpirate|fletro)/i.test(n.replace(/[^a-z0-9]/gi,'')),'Nama ini tidak diperbolehkan.');need(mail(e),'Format email tidak valid.');
  need(f.pw.value.length>=8,'Kata sandi minimal 8 karakter.');need(f.pw.value===f.pw2.value,'Kata sandi tidak sama.');
  return sb.auth.signUp({email:e,password:f.pw.value,options:{data:{name:n},emailRedirectTo:location.origin+'/login.html'}}).then(function(x){
   if(x.error)throw x.error;
