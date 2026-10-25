@@ -2,7 +2,8 @@
 var C=window.APF_CONFIG||{},ok=!!(C.supabaseUrl&&C.supabaseAnonKey&&!/GANTI/.test(C.supabaseUrl));
 var ref=ok?((C.supabaseUrl.match(/\/\/([^.]+)\./)||[])[1]||''):'';
 var isLogin=!!document.getElementById('login-page');
-function who(u){var m=u.user_metadata||{};return m.full_name||m.name||m.user_name||String(u.email||'Akun').split('@')[0]}
+function who(u){var m=u.user_metadata||{};return m.display_name||m.full_name||m.name||m.user_name||String(u.email||'Akun').split('@')[0]}
+function avatarOf(u){var m=u.user_metadata||{},a=m.avatar_custom||m.avatar_url||m.picture||'';return /^https:\/\//.test(a)?a:''}
 
 /* ---------- tombol Masuk / nama akun di header (semua halaman) ---------- */
 function session(){try{var s=JSON.parse(localStorage.getItem('sb-'+ref+'-auth-token'));return s&&s.user&&s.refresh_token?s:null}catch(e){return null}}
@@ -20,7 +21,8 @@ if(ok&&tl&&!isLogin){
  a.setAttribute('aria-label',s?'Akun saya':'Masuk atau daftar');
  a.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="acct-a"></span><span class="acct-t"></span>';
  a.querySelector('.acct-t').textContent=nm;
- a.querySelector('.acct-a').textContent=nm.charAt(0).toUpperCase();
+ var av=s?avatarOf(s.user):'',ae=a.querySelector('.acct-a');
+ if(av){ae.style.backgroundImage='url('+JSON.stringify(av)+')';ae.style.backgroundSize='cover';ae.style.backgroundPosition='center'}else ae.textContent=(Array.from(nm)[0]||'?').toUpperCase();
  tl.appendChild(a);
 }
 if(!isLogin)return;
@@ -51,6 +53,8 @@ function view(v){
 [].forEach.call($('tabs').children,function(b){b.onclick=function(){view(b.getAttribute('data-v'))}});
 [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){view(b.getAttribute('data-go'))}});
 
+var RES=/(admin|moderator|staff|owner|allpirate|fletro)/i;
+function reserved(n){return RES.test(n.replace(/[^a-z0-9]/gi,''))}
 function nextUrl(){var n=new URLSearchParams(location.search).get('next')||'/';return (n.charAt(0)==='/'&&n.charAt(1)!=='/'&&n.charAt(1)!=='\\')?n:'/'}
 function human(e){var m=String(e&&e.message||e||'');
  if(/invalid login/i.test(m))return 'Email atau kata sandi salah.';
@@ -58,6 +62,10 @@ function human(e){var m=String(e&&e.message||e||'');
  if(/already registered|already been registered/i.test(m))return 'Email ini sudah terdaftar. Coba masuk.';
  if(/rate limit|too many/i.test(m))return 'Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi.';
  if(/password/i.test(m)&&/(least|short|weak)/i.test(m))return 'Kata sandi terlalu lemah. Gunakan minimal 8 karakter.';
+ if(/row-level security|policy/i.test(m))return 'Izin upload belum diatur. Jalankan supabase_avatar.sql di Supabase.';
+ if(/bucket not found/i.test(m))return 'Penyimpanan foto belum dibuat. Jalankan supabase_avatar.sql di Supabase.';
+ if(/mime|not supported|invalid/i.test(m)&&/image|type|mime/i.test(m))return 'Format gambar tidak didukung.';
+ if(/exceed|too large|maximum|payload/i.test(m))return 'Ukuran gambar terlalu besar.';
  return 'Terjadi kesalahan: '+m}
 
 if(!ok||!window.supabase){say('Login belum aktif: isi supabaseUrl dan supabaseAnonKey di js/config.js.',true);
@@ -65,7 +73,8 @@ if(!ok||!window.supabase){say('Login belum aktif: isi supabaseUrl dan supabaseAn
 
 var sb=supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);
 var recovery=/type=recovery/.test(location.hash);
-function showMe(u){$('me-n').textContent=who(u);$('me-e').textContent=u.email;view('me')}
+var cu=null;
+function showMe(u){cu=u;setPic(u);$('me-n').textContent=who(u);$('f-prof').elements.name.value=who(u);$('me-e').textContent=u.email;view('me')}
 
 sb.auth.onAuthStateChange(function(ev){if(ev==='PASSWORD_RECOVERY'){recovery=true;view('new')}});
 if(P.length){var o=$('oauth');o.innerHTML='<p class="or">atau</p>';
@@ -88,7 +97,7 @@ run($('f-in'),function(f){
 
 run($('f-up'),function(f){
  var n=f.name.value.trim(),e=f.email.value.trim();
- need(n,'Nama tampilan wajib diisi.');need(!/(admin|moderator|staff|owner|allpirate|fletro)/i.test(n.replace(/[^a-z0-9]/gi,'')),'Nama ini tidak diperbolehkan.');need(mail(e),'Format email tidak valid.');
+ need(n,'Nama tampilan wajib diisi.');need(!reserved(n),'Nama ini tidak diperbolehkan.');need(mail(e),'Format email tidak valid.');
  need(f.pw.value.length>=8,'Kata sandi minimal 8 karakter.');need(f.pw.value===f.pw2.value,'Kata sandi tidak sama.');
  return sb.auth.signUp({email:e,password:f.pw.value,options:{data:{name:n},emailRedirectTo:location.origin+'/login.html'}}).then(function(x){
   if(x.error)throw x.error;
@@ -105,6 +114,51 @@ run($('f-new'),function(f){
  need(f.pw.value.length>=8,'Kata sandi minimal 8 karakter.');
  return sb.auth.updateUser({password:f.pw.value}).then(function(x){
   if(x.error)throw x.error;history.replaceState(null,'',location.pathname);location.href='/'})});
+
+function nameOk(n){if(!reserved(n))return Promise.resolve(true);
+ return sb.rpc('is_admin').then(function(x){return !x.error&&x.data===true},function(){return false})}
+run($('f-prof'),function(f){
+ var n=f.name.value.trim();
+ need(n.length>=2,'Nama minimal 2 karakter.');
+ return nameOk(n).then(function(ok){need(ok,'Nama ini tidak diperbolehkan.');
+  return sb.auth.updateUser({data:{display_name:n}})}).then(function(x){
+  if(x.error)throw x.error;
+  $('me-n').textContent=n;if(x.data&&x.data.user){cu=x.data.user;setPic(cu)}
+  var done=function(){say('Nama diperbarui.')};
+  return sb.rpc('sync_my_comments').then(done,done)})});
+
+function setPic(u){var el=$('pic'),a=avatarOf(u);
+ el.style.backgroundImage=a?'url('+JSON.stringify(a)+')':'';
+ el.textContent=a?'':(Array.from(who(u))[0]||'?').toUpperCase();
+ $('pic-rm').hidden=!(u.user_metadata&&u.user_metadata.avatar_custom)}
+/* potong persegi 256px + simpan ulang sebagai WebP (JPEG bila browser tak bisa WebP): membuang metadata & memastikan ini gambar asli */
+function square(file){return new Promise(function(res,rej){
+ var url=URL.createObjectURL(file),im=new Image();
+ im.onload=function(){URL.revokeObjectURL(url);
+  var w=im.naturalWidth,h=im.naturalHeight,m=Math.min(w,h),c=document.createElement('canvas'),x=c.getContext('2d');
+  c.width=c.height=256;x.fillStyle='#fff';x.fillRect(0,0,256,256);x.drawImage(im,(w-m)/2,(h-m)/2,m,m,0,0,256,256);
+  c.toBlob(function(b){if(b&&b.type==='image/webp')return res(b);
+   c.toBlob(function(j){j?res(j):rej(new Error('Gagal memproses gambar.'))},'image/jpeg',.88)},'image/webp',.85)};
+ im.onerror=function(){URL.revokeObjectURL(url);rej(new Error('File bukan gambar yang valid.'))};
+ im.src=url})}
+function pbusy(b){$('pic-up').disabled=b;$('pic-rm').disabled=b}
+function picDone(msg){return function(x){if(x.error)throw x.error;cu=x.data.user;setPic(cu);
+ var d=function(){say(msg)};return sb.rpc('sync_my_comments').then(d,d)}}
+$('pic-up').onclick=function(){$('pic-file').click()};
+$('pic-file').onchange=function(){var inp=$('pic-file'),f=inp.files[0];inp.value='';if(!f)return;
+ say('Mengunggah foto…');pbusy(true);
+ Promise.resolve().then(function(){
+  need(/^image\/(png|jpeg|webp)$/.test(f.type),'Gunakan gambar PNG, JPG, atau WebP.');
+  need(f.size<=8*1048576,'Ukuran file maksimal 8 MB.');return square(f)}).then(function(b){
+  var path=cu.id+'/avatar';
+  return sb.storage.from('avatars').upload(path,b,{upsert:true,contentType:b.type,cacheControl:'3600'}).then(function(x){
+   if(x.error)throw x.error;
+   var url=sb.storage.from('avatars').getPublicUrl(path).data.publicUrl+'?v='+Date.now();
+   return sb.auth.updateUser({data:{avatar_custom:url}})})}).then(picDone('Foto diperbarui.'))
+ .catch(function(e){say(human(e),true)}).then(function(){pbusy(false)})};
+$('pic-rm').onclick=function(){say('');pbusy(true);
+ sb.storage.from('avatars').remove([cu.id+'/avatar']).then(function(){return sb.auth.updateUser({data:{avatar_custom:null}})})
+ .then(picDone('Foto dihapus.')).catch(function(e){say(human(e),true)}).then(function(){pbusy(false)})};
 
 $('out').onclick=function(){sb.auth.signOut().then(function(){location.href='/'})};
 })();

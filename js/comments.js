@@ -28,7 +28,7 @@ var list=[];
 function draw(){
  var h='<div class="title"><h2>Komentar</h2><span class="c-count" id="c-count">0</span><i></i></div>';
  if(user){
-  var m=user.user_metadata||{},nm=m.full_name||m.name||m.user_name||'Anda',av=safeImg(m.avatar_url||m.picture);
+  var m=user.user_metadata||{},nm=m.display_name||m.full_name||m.name||m.user_name||'Anda',av=safeImg(m.avatar_custom||m.avatar_url||m.picture);
   h+='<div class="c-card c-compose"><div class="c-me">'+(av?'<img src="'+esc(av)+'" alt="">':'<span class="av">'+esc(Array.from(nm)[0]||'?')+'</span>')+'<b>'+esc(nm)+'</b><button class="c-out" id="c-out">Keluar</button></div>'+
    '<textarea id="c-body" maxlength="1000" placeholder="Tulis komentar…"></textarea>'+
    '<div class="c-row"><span class="c-info" id="c-msg"><span id="c-cnt">0</span>/1000</span><button class="c-send" id="c-send">Kirim komentar</button></div></div>';
