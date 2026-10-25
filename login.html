@@ -32,7 +32,14 @@
 .acc .oa:hover{filter:brightness(1.1);background:var(--alt)}
 .acc .oa.p-discord,.acc .oa.p-discord:hover{background:#5865f2}
 .acc .oa.p-facebook,.acc .oa.p-facebook:hover{background:#1877f2}
+.acc .go.ghost,.acc .go.ghost:hover{margin-top:10px;background:none;color:var(--head);border:1px solid var(--line)}
+#f-prof{margin-bottom:6px}
 .acc .me{padding:16px;border:1px solid var(--line);border-radius:10px;margin-bottom:16px}
+.acc .me{display:flex;align-items:center;gap:14px}
+.pic{flex:none;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--link) center/cover no-repeat;color:#fff;font-size:26px;font-weight:600}
+.pic-act{display:flex;gap:8px;margin:-4px 0 18px}
+.acc .pbtn{display:block;padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-weight:600;color:var(--head)}
+.acc .pbtn[disabled]{opacity:.6;cursor:wait}
 .acc .me b{display:block;color:var(--head);font-size:16px}
 .acc .me span{color:var(--alt);font-size:13px}
 </style>
@@ -84,8 +91,17 @@
  </form>
 
  <div id="me" hidden>
-  <div class="me"><b id="me-n"></b><span id="me-e"></span></div>
-  <button class="go" type="button" id="out">Keluar</button>
+  <div class="me"><div class="pic" id="pic"></div><div><b id="me-n"></b><span id="me-e"></span></div></div>
+  <div class="pic-act">
+   <button type="button" class="pbtn" id="pic-up">Ganti foto</button>
+   <button type="button" class="pbtn" id="pic-rm" hidden>Hapus foto</button>
+   <input type="file" id="pic-file" accept="image/png,image/jpeg,image/webp" hidden>
+  </div>
+  <form id="f-prof" novalidate>
+   <label>Nama tampilan<input type="text" name="name" maxlength="40" autocomplete="nickname" required></label>
+   <button class="go" type="submit">Simpan nama</button>
+  </form>
+  <button class="go ghost" type="button" id="out">Keluar</button>
   <a class="alt" href="/">← Kembali ke beranda</a>
  </div>
 </main>
