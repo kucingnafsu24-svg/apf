@@ -40,7 +40,7 @@ var H={in:['Masuk ke akun','Masuk untuk berkomentar dan menyimpan aktivitasmu.']
  up:['Buat akun baru','Gratis. Cukup nama, email, dan kata sandi.'],
  fg:['Atur ulang kata sandi','Kami kirim tautan reset ke email akunmu.'],
  new:['Kata sandi baru','Masukkan kata sandi baru untuk akunmu.'],
- me:['Akunmu','Kamu sudah masuk.']};
+ me:['Info akun','']};
 function say(text,err){var m=$('msg');m.hidden=!text;m.textContent=text||'';m.className=err?'err':''}
 function view(v){
  say('');$('acc').className='acc'+(v==='me'?' wide':'');
@@ -49,7 +49,7 @@ function view(v){
  $('oauth').hidden=!(v==='in'||v==='up')||!P.length;
  $('tabs').hidden=!(v==='in'||v==='up');
  [].forEach.call($('tabs').children,function(b){b.className=b.getAttribute('data-v')===v?'on':''});
- $('h').textContent=H[v][0];$('sub').textContent=H[v][1]}
+ $('h').textContent=H[v][0];$('sub').textContent=H[v][1];$('sub').hidden=!H[v][1]}
 [].forEach.call($('tabs').children,function(b){b.onclick=function(){view(b.getAttribute('data-v'))}});
 [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){view(b.getAttribute('data-go'))}});
 
@@ -167,16 +167,16 @@ function put(b){var path=cu.id+'/avatar';
   var url=sb.storage.from('avatars').getPublicUrl(path).data.publicUrl+'?v='+Date.now();
   return sb.auth.updateUser({data:{avatar_custom:url}})})}
 /* avatar bawaan: digambar di browser lalu diunggah lewat jalur yang sama dengan foto sendiri */
-var PAL=[['#6366f1','#8b5cf6'],['#ec4899','#f43f5e'],['#f59e0b','#ef4444'],['#10b981','#06b6d4'],['#3b82f6','#06b6d4'],['#84cc16','#22c55e'],['#a855f7','#ec4899'],['#64748b','#334155']];
-function paint(i,n){var c=document.createElement('canvas'),x=c.getContext('2d'),g;c.width=c.height=n;
- g=x.createLinearGradient(0,0,n,n);g.addColorStop(0,PAL[i][0]);g.addColorStop(1,PAL[i][1]);x.fillStyle=g;x.fillRect(0,0,n,n);
- x.fillStyle='rgba(255,255,255,.88)';x.beginPath();x.arc(n/2,n*.38,n*.17,0,7);x.fill();
- x.beginPath();x.ellipse(n/2,n*.92,n*.3,n*.28,0,0,7);x.fill();return c}
+var PRESETS=['/images/avatars/1.webp','/images/avatars/2.webp','/images/avatars/3.webp','/images/avatars/4.webp','/images/avatars/5.webp','/images/avatars/6.webp','/images/avatars/7.webp','/images/avatars/8.webp'];
+function fromSrc(src){return new Promise(function(res,rej){var im=new Image();
+ im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight,m=Math.min(w,h),c=document.createElement('canvas'),x=c.getContext('2d');
+  c.width=c.height=256;x.fillStyle='#fff';x.fillRect(0,0,256,256);x.drawImage(im,(w-m)/2,(h-m)/2,m,m,0,0,256,256);res(c)};
+ im.onerror=function(){rej(new Error('Gambar avatar tidak ditemukan.'))};im.src=src})}
 $('pic-pick').onclick=function(){var g=$('presets');
- if(!g.firstChild)PAL.forEach(function(_,i){var b=document.createElement('button'),im=new Image();
-  b.type='button';b.setAttribute('aria-label','Avatar '+(i+1));im.alt='';im.src=paint(i,96).toDataURL();b.appendChild(im);
+ if(!g.firstChild)PRESETS.forEach(function(src,i){var b=document.createElement('button'),im=new Image();
+  b.type='button';b.setAttribute('aria-label','Avatar '+(i+1));im.alt='';im.src=src;b.appendChild(im);
   b.onclick=function(){say('Menyimpan avatar…');pbusy(true);
-   encode(paint(i,256)).then(put).then(picDone('Avatar diperbarui.')).catch(function(e){say(human(e),true)}).then(function(){pbusy(false);g.hidden=true})};
+   fromSrc(src).then(encode).then(put).then(picDone('Avatar diperbarui.')).catch(function(e){say(human(e),true)}).then(function(){pbusy(false);g.hidden=true})};
   g.appendChild(b)});
  g.hidden=!g.hidden};
 
