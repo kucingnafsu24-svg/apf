@@ -31,24 +31,21 @@ function initModal(btn){
  var NM0={discord:'Discord',google:'Google',twitter:'Twitter',x:'X',facebook:'Facebook',github:'GitHub'};
  var PV=Array.isArray(C.providers)?C.providers:[],sb0=null,ov=null,mode='in',busy=false;
  var st=document.createElement('style');
- st.textContent='.lm-ov{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}'+
- '.lm-ov[hidden]{display:none}.lm-w{position:relative;width:min(375px,100%)}'+
- '.lm-x{position:absolute;top:-24px;right:-24px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--head);border:0;cursor:pointer;z-index:1}'+
- '.lm-x svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}'+
- '@media(max-width:480px){.lm-x{top:-20px;right:-6px;width:40px;height:40px}}'+
- '.lm-box{background:var(--bg);color:var(--body);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.45)}'+
- '.lm-tabs{display:flex;gap:12px;padding:24px;border-bottom:1px solid var(--line)}'+
- '.lm-tabs button{flex:1;padding:11px 8px;border-radius:6px;border:1px solid var(--line);background:none;color:var(--head);font:600 14px/1.2 inherit;cursor:pointer}'+
- '.lm-tabs button.on{background:var(--link);border-color:var(--link);color:#fff}'+
- '.lm-p{padding:24px}.lm-p h2{margin:0 0 16px;text-align:center;font-size:20px;color:var(--head)}'+
- '.lm-oa button{display:flex;align-items:center;justify-content:center;width:100%;margin-bottom:12px;padding:14px;border:0;border-radius:8px;background:var(--card);color:var(--head);font:600 15px/1.2 inherit;cursor:pointer}'+
- '.lm-oa button:hover,.lm-go:hover{filter:brightness(1.12)}.lm-oa button:disabled,.lm-go:disabled{opacity:.6;cursor:default}'+
- '.lm-or{display:flex;align-items:center;gap:12px;margin:8px 0 16px;font-size:12px;color:var(--alt)}.lm-or:before,.lm-or:after{content:"";flex:1;height:1px;background:var(--line)}'+
- '.lm-n{margin:0;text-align:center;font-size:13px;line-height:1.5;color:var(--body)}.lm-n a{color:var(--link);cursor:pointer;text-decoration:none}.lm-n a:hover{text-decoration:underline}'+
- '.lm-p label{display:block;margin-bottom:12px;font-size:13px;color:var(--alt)}'+
- '.lm-p input{display:block;width:100%;margin-top:6px;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--head);font:15px/1.2 inherit;box-sizing:border-box}'+
- '.lm-go{width:100%;margin:4px 0 14px;padding:13px;border:0;border-radius:8px;background:var(--link);color:#fff;font:600 15px/1.2 inherit;cursor:pointer}'+
- '.lm-m{margin:0;padding:12px 24px;border-top:1px solid var(--line);font-size:13px;text-align:center;color:var(--body)}.lm-m.err{color:#e5484d}';
+ st.textContent='.lm-ov{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.45)}'+
+ '.lm-ov[hidden]{display:none}.lm-box{position:relative;width:min(380px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:24px;background:var(--bg);color:var(--body);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow,0 12px 40px rgba(0,0,0,.3))}'+
+ '.lm-x{position:absolute;top:10px;right:10px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:none;color:var(--alt);cursor:pointer}.lm-x:hover{background:var(--card);color:var(--head)}'+
+ '.lm-x svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}'+
+ '.lm-tabs{display:flex;gap:4px;margin:0 28px 18px 0;padding:4px;border-radius:10px;background:var(--card)}'+
+ '.lm-tabs button{flex:1;padding:9px 8px;border:0;border-radius:8px;background:none;color:var(--alt);font:600 14px/1.2 inherit;cursor:pointer}'+
+ '.lm-tabs button.on{background:var(--bg);color:var(--head);box-shadow:0 1px 3px rgba(0,0,0,.15)}'+
+ '.lm-box label{display:block;margin-bottom:12px;font-size:13px;color:var(--alt)}'+
+ '.lm-box input{display:block;width:100%;margin-top:6px;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--head);font:15px/1.2 inherit;box-sizing:border-box}'+
+ '.lm-go{width:100%;margin:4px 0 0;padding:12px;border:0;border-radius:8px;background:var(--head);color:var(--bg);font:600 15px/1.2 inherit;cursor:pointer}'+
+ '.lm-go:hover,.lm-oa button:hover{filter:brightness(1.12)}.lm-go:disabled{opacity:.6;cursor:default}'+
+ '.lm-lnk{display:block;margin:12px 0 0;text-align:center;font-size:13px}.lm-lnk a{color:var(--link);text-decoration:none}.lm-lnk a:hover{text-decoration:underline}'+
+ '.lm-or{margin:16px 0 12px;text-align:center;font-size:12px;color:var(--alt)}'+
+ '.lm-oa button{display:flex;justify-content:center;width:100%;margin-bottom:8px;padding:11px;border:0;border-radius:8px;background:var(--alt);color:#fff;font:600 14px/1.2 inherit;cursor:pointer}.lm-oa button.p-discord{background:#5865f2}'+
+ '.lm-m{margin:14px 0 0;font-size:13px;text-align:center;color:var(--body)}.lm-m.err{color:#e5484d}';
  document.head.appendChild(st);
 
  function client(){return new Promise(function(res,rej){
@@ -60,36 +57,28 @@ function initModal(btn){
 
  function build(){
   ov=document.createElement('div');ov.className='lm-ov';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Login');
-  ov.innerHTML='<div class="lm-w"><button type="button" class="lm-x" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="lm-box">'+
-  '<div class="lm-tabs"><button type="button" data-t="social">Social</button><button type="button" data-t="pw">Password</button></div>'+
-  '<div class="lm-p" data-p="social"><h2>Sign In</h2><div class="lm-oa"></div><div class="lm-or"><span>OR</span></div><p class="lm-n">Belum punya akun? Buka tab Password lalu pilih Daftar.</p></div>'+
-  '<div class="lm-p" data-p="pw"><h2 class="lm-h">Sign In</h2>'+
-  '<form data-f="in" novalidate><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Kata sandi<input type="password" name="pw" autocomplete="current-password" required></label><button class="lm-go" type="submit">Login</button></form>'+
+  ov.innerHTML='<div class="lm-box"><button type="button" class="lm-x" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'+
+  '<div class="lm-tabs"><button type="button" data-t="in">Masuk</button><button type="button" data-t="up">Daftar</button></div>'+
+  '<form data-f="in" novalidate><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Kata sandi<input type="password" name="pw" autocomplete="current-password" required></label><button class="lm-go" type="submit">Masuk</button><p class="lm-lnk"><a href="/login.html">Lupa kata sandi?</a></p></form>'+
   '<form data-f="up" novalidate hidden><label>Nama tampilan<input type="text" name="name" maxlength="40" autocomplete="nickname" required></label><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Kata sandi (min. 8 karakter)<input type="password" name="pw" autocomplete="new-password" required></label><label>Ulangi kata sandi<input type="password" name="pw2" autocomplete="new-password" required></label><button class="lm-go" type="submit">Buat akun</button></form>'+
-  '<p class="lm-n"><a data-sw>Belum punya akun? Daftar</a></p><p class="lm-n" data-fg style="margin-top:8px"><a href="/login.html">Lupa kata sandi?</a></p></div>'+
-  '<p class="lm-m" hidden></p></div></div>';
+  '<div class="lm-social" hidden><p class="lm-or">atau</p><div class="lm-oa"></div></div><p class="lm-m" hidden></p></div>';
   document.body.appendChild(ov);
   var q=function(s){return ov.querySelector(s)};
   q('.lm-x').onclick=close;
   ov.addEventListener('mousedown',function(e){if(e.target===ov)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ov.hidden)close()});
-  [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.onclick=function(){tab(b.getAttribute('data-t'))}});
+  [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.onclick=function(){setMode(b.getAttribute('data-t'))}});
   var oa=q('.lm-oa');
-  PV.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=NM0[p]||p;
+  PV.forEach(function(p){var b=document.createElement('button');b.type='button';b.className='p-'+p.replace(/[^a-z0-9]/gi,'');b.textContent='Lanjut dengan '+(NM0[p]||p);
    b.onclick=function(){if(busy)return;msg('');
     client().then(function(sb){return sb.auth.signInWithOAuth({provider:p,options:{redirectTo:location.origin+'/login.html?next='+encodeURIComponent(location.pathname+location.search)}})})
     .then(function(x){if(x&&x.error)msg(human(x.error),true)}).catch(function(e){msg(human(e),true)})};oa.appendChild(b)});
-  if(!PV.length)q('[data-t="social"]').hidden=true;
-  q('[data-sw]').onclick=function(){setMode(mode==='in'?'up':'in')};
+  q('.lm-social').hidden=!PV.length;
   [].forEach.call(ov.querySelectorAll('form'),function(f){f.addEventListener('submit',function(e){e.preventDefault();submit(f)})});
  }
  function msg(t,err){var m=ov.querySelector('.lm-m');m.hidden=!t;m.textContent=t||'';m.className='lm-m'+(err?' err':'')}
- function tab(t){ov.querySelector('[data-p="social"]').hidden=(t!=='social');ov.querySelector('[data-p="pw"]').hidden=(t!=='pw');
-  [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.className=b.getAttribute('data-t')===t?'on':''});msg('')}
  function setMode(m){mode=m;ov.querySelector('[data-f="in"]').hidden=(m!=='in');ov.querySelector('[data-f="up"]').hidden=(m!=='up');
-  ov.querySelector('.lm-h').textContent=m==='in'?'Sign In':'Daftar';
-  ov.querySelector('[data-sw]').textContent=m==='in'?'Belum punya akun? Daftar':'Sudah punya akun? Login';
-  ov.querySelector('[data-fg]').hidden=(m!=='in');msg('')}
+  [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.className=b.getAttribute('data-t')===m?'on':''});msg('')}
  function submit(f){if(busy)return;var el=f.elements,b=f.querySelector('.lm-go'),mailRe=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   msg('');busy=true;b.disabled=true;
   Promise.resolve().then(function(){
@@ -105,9 +94,9 @@ function initModal(btn){
     if(x.error)throw x.error;
     if(x.data.session){location.reload();return}
     if(x.data.user&&x.data.user.identities&&!x.data.user.identities.length)throw new Error('already registered');
-    setMode('in');msg('Akun dibuat. Cek email untuk konfirmasi, lalu login.')})})
+    setMode('in');msg('Akun dibuat. Cek email untuk konfirmasi, lalu masuk.')})})
   .catch(function(err){msg(human(err),true)}).then(function(){busy=false;b.disabled=false})}
- function open(){if(!ov)build();ov.hidden=false;document.body.style.overflow='hidden';setMode('in');tab(PV.length?'social':'pw')}
+ function open(){if(!ov)build();ov.hidden=false;document.body.style.overflow='hidden';setMode('in')}
  function close(){ov.hidden=true;document.body.style.overflow=''}
  btn.addEventListener('click',function(e){if(e.ctrlKey||e.metaKey||e.shiftKey||e.button===1)return;e.preventDefault();open()});
 }
