@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Masuk — All Pirate File</title>
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.acc{max-width:400px;margin:56px auto;padding:0 24px}
+.acc h1{margin:0 0 4px;font-size:22px;font-weight:600;color:var(--head)}
+.acc .sub{margin:0 0 22px;color:var(--alt);font-size:14px}
+.acc .tabs{display:flex;gap:4px;padding:4px;margin-bottom:22px;background:var(--card);border-radius:10px}
+.acc .tabs button{flex:1;display:block;padding:9px;border-radius:7px;font-size:14px;font-weight:600;color:var(--alt)}
+.acc .tabs button.on{background:var(--bg);color:var(--head);box-shadow:var(--shadow)}
+.acc label{display:block;margin:0 0 14px;font-size:13px;font-weight:600;color:var(--head)}
+.acc input{display:block;width:100%;margin-top:6px;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--head);font:inherit;font-weight:400}
+.acc input:focus{outline:2px solid var(--link);outline-offset:1px;border-color:transparent}
+.acc .go{display:flex;justify-content:center;width:100%;padding:12px;border-radius:8px;background:var(--link);color:#fff;font-weight:600;font-size:14px}
+.acc .go:hover{filter:brightness(1.1);background:var(--link)}
+.acc .go[disabled]{opacity:.6;cursor:wait}
+.acc .alt{display:block;margin-top:14px;font-size:13px;color:var(--link);text-align:center}
+.acc .alt:hover{background:none;text-decoration:underline}
+#msg{margin:0 0 16px;padding:10px 12px;border-radius:8px;font-size:13px;background:var(--card);color:var(--head)}
+#msg.err{background:#fde8e8;color:#9b1c1c}
+:root[data-theme="dark"] #msg.err{background:#3b1f1f;color:#fca5a5}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #msg.err{background:#3b1f1f;color:#fca5a5}}
+.acc .me{padding:16px;border:1px solid var(--line);border-radius:10px;margin-bottom:16px}
+.acc .me b{display:block;color:var(--head);font-size:16px}
+.acc .me span{color:var(--alt);font-size:13px}
+</style>
+</head>
+<body id="login-page">
+<header><div class="wrap bar">
+ <a class="logo" href="/">All Pirate File</a>
+ <div class="tools">
+  <button id="theme" aria-label="Mode gelap"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+ </div>
+</div></header>
+
+<main class="acc">
+ <h1 id="h">Masuk ke akun</h1>
+ <p class="sub" id="sub">Masuk untuk berkomentar dan menyimpan aktivitasmu.</p>
+ <p id="msg" role="status" hidden></p>
+
+ <div class="tabs" id="tabs">
+  <button type="button" data-v="in" class="on">Masuk</button>
+  <button type="button" data-v="up">Daftar</button>
+ </div>
+
+ <form id="f-in" data-v="in" novalidate>
+  <label>Email<input type="email" name="email" autocomplete="email" required></label>
+  <label>Kata sandi<input type="password" name="pw" autocomplete="current-password" required></label>
+  <button class="go" type="submit">Masuk</button>
+  <button class="alt" type="button" data-go="fg">Lupa kata sandi?</button>
+ </form>
+
+ <form id="f-up" data-v="up" hidden novalidate>
+  <label>Nama tampilan<input type="text" name="name" maxlength="40" autocomplete="nickname" required></label>
+  <label>Email<input type="email" name="email" autocomplete="email" required></label>
+  <label>Kata sandi (min. 8 karakter)<input type="password" name="pw" minlength="8" autocomplete="new-password" required></label>
+  <label>Ulangi kata sandi<input type="password" name="pw2" minlength="8" autocomplete="new-password" required></label>
+  <button class="go" type="submit">Buat akun</button>
+ </form>
+
+ <form id="f-fg" data-v="fg" hidden novalidate>
+  <label>Email akun<input type="email" name="email" autocomplete="email" required></label>
+  <button class="go" type="submit">Kirim tautan reset</button>
+  <button class="alt" type="button" data-go="in">Kembali ke masuk</button>
+ </form>
+
+ <form id="f-new" data-v="new" hidden novalidate>
+  <label>Kata sandi baru (min. 8 karakter)<input type="password" name="pw" minlength="8" autocomplete="new-password" required></label>
+  <button class="go" type="submit">Simpan kata sandi</button>
+ </form>
+
+ <div id="me" hidden>
+  <div class="me"><b id="me-n"></b><span id="me-e"></span></div>
+  <button class="go" type="button" id="out">Keluar</button>
+  <a class="alt" href="/">← Kembali ke beranda</a>
+ </div>
+</main>
+
+<footer><div class="wrap"><span>© 2021 Fletro Pro. All rights reserved.</span><span>All Pirate File</span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+</body>
+</html>
