@@ -15,16 +15,103 @@ if(ok&&tl&&!isLogin){
   '.acct.in{padding:8px}.acct.in svg{display:none}.acct-a{width:24px;height:24px;border-radius:50%;background:var(--link);color:#fff;font-size:12px;font-weight:600;align-items:center;justify-content:center}.acct.in .acct-a{display:flex}}';
  document.head.appendChild(st);
  var s=session(),a=document.createElement('a'),
-  nm=s?who(s.user):'Masuk';
+  nm=s?who(s.user):'Login';
  a.className='acct'+(s?' in':'');
  a.href='/login.html'+(s?'':'?next='+encodeURIComponent(location.pathname+location.search));
- a.setAttribute('aria-label',s?'Akun saya':'Masuk atau daftar');
+ a.setAttribute('aria-label',s?'Akun saya':'Login');
  a.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="acct-a"></span><span class="acct-t"></span>';
  a.querySelector('.acct-t').textContent=nm;
  var av=s?avatarOf(s.user):'',ae=a.querySelector('.acct-a');
  if(av){ae.style.backgroundImage='url('+JSON.stringify(av)+')';ae.style.backgroundSize='cover';ae.style.backgroundPosition='center'}else ae.textContent=(Array.from(nm)[0]||'?').toUpperCase();
  tl.appendChild(a);
+ if(!s)initModal(a);
 }
+/* ---------- popup Login (tombol di header, semua halaman) ---------- */
+function initModal(btn){
+ var NM0={discord:'Discord',google:'Google',twitter:'Twitter',x:'X',facebook:'Facebook',github:'GitHub'};
+ var PV=Array.isArray(C.providers)?C.providers:[],sb0=null,ov=null,mode='in',busy=false;
+ var st=document.createElement('style');
+ st.textContent='.lm-ov{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}'+
+ '.lm-ov[hidden]{display:none}.lm-w{position:relative;width:min(375px,100%)}'+
+ '.lm-x{position:absolute;top:-24px;right:-24px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--head);border:0;cursor:pointer;z-index:1}'+
+ '.lm-x svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}'+
+ '@media(max-width:480px){.lm-x{top:-20px;right:-6px;width:40px;height:40px}}'+
+ '.lm-box{background:var(--bg);color:var(--body);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.45)}'+
+ '.lm-tabs{display:flex;gap:12px;padding:24px;border-bottom:1px solid var(--line)}'+
+ '.lm-tabs button{flex:1;padding:11px 8px;border-radius:6px;border:1px solid var(--line);background:none;color:var(--head);font:600 14px/1.2 inherit;cursor:pointer}'+
+ '.lm-tabs button.on{background:var(--link);border-color:var(--link);color:#fff}'+
+ '.lm-p{padding:24px}.lm-p h2{margin:0 0 16px;text-align:center;font-size:20px;color:var(--head)}'+
+ '.lm-oa button{display:flex;align-items:center;justify-content:center;width:100%;margin-bottom:12px;padding:14px;border:0;border-radius:8px;background:var(--card);color:var(--head);font:600 15px/1.2 inherit;cursor:pointer}'+
+ '.lm-oa button:hover,.lm-go:hover{filter:brightness(1.12)}.lm-oa button:disabled,.lm-go:disabled{opacity:.6;cursor:default}'+
+ '.lm-or{display:flex;align-items:center;gap:12px;margin:8px 0 16px;font-size:12px;color:var(--alt)}.lm-or:before,.lm-or:after{content:"";flex:1;height:1px;background:var(--line)}'+
+ '.lm-n{margin:0;text-align:center;font-size:13px;line-height:1.5;color:var(--body)}.lm-n a{color:var(--link);cursor:pointer;text-decoration:none}.lm-n a:hover{text-decoration:underline}'+
+ '.lm-p label{display:block;margin-bottom:12px;font-size:13px;color:var(--alt)}'+
+ '.lm-p input{display:block;width:100%;margin-top:6px;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--head);font:15px/1.2 inherit;box-sizing:border-box}'+
+ '.lm-go{width:100%;margin:4px 0 14px;padding:13px;border:0;border-radius:8px;background:var(--link);color:#fff;font:600 15px/1.2 inherit;cursor:pointer}'+
+ '.lm-m{margin:0;padding:12px 24px;border-top:1px solid var(--line);font-size:13px;text-align:center;color:var(--body)}.lm-m.err{color:#e5484d}';
+ document.head.appendChild(st);
+
+ function client(){return new Promise(function(res,rej){
+  if(sb0)return res(sb0);
+  function mk(){sb0=window.supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);res(sb0)}
+  if(window.supabase)return mk();
+  var sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
+  sc.onload=mk;sc.onerror=function(){rej(new Error('Gagal memuat layanan login. Coba lagi.'))};document.head.appendChild(sc)})}
+
+ function build(){
+  ov=document.createElement('div');ov.className='lm-ov';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Login');
+  ov.innerHTML='<div class="lm-w"><button type="button" class="lm-x" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="lm-box">'+
+  '<div class="lm-tabs"><button type="button" data-t="social">Social</button><button type="button" data-t="pw">Password</button></div>'+
+  '<div class="lm-p" data-p="social"><h2>Sign In</h2><div class="lm-oa"></div><div class="lm-or"><span>OR</span></div><p class="lm-n">Belum punya akun? Buka tab Password lalu pilih Daftar.</p></div>'+
+  '<div class="lm-p" data-p="pw"><h2 class="lm-h">Sign In</h2>'+
+  '<form data-f="in" novalidate><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Kata sandi<input type="password" name="pw" autocomplete="current-password" required></label><button class="lm-go" type="submit">Login</button></form>'+
+  '<form data-f="up" novalidate hidden><label>Nama tampilan<input type="text" name="name" maxlength="40" autocomplete="nickname" required></label><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Kata sandi (min. 8 karakter)<input type="password" name="pw" autocomplete="new-password" required></label><label>Ulangi kata sandi<input type="password" name="pw2" autocomplete="new-password" required></label><button class="lm-go" type="submit">Buat akun</button></form>'+
+  '<p class="lm-n"><a data-sw>Belum punya akun? Daftar</a></p><p class="lm-n" data-fg style="margin-top:8px"><a href="/login.html">Lupa kata sandi?</a></p></div>'+
+  '<p class="lm-m" hidden></p></div></div>';
+  document.body.appendChild(ov);
+  var q=function(s){return ov.querySelector(s)};
+  q('.lm-x').onclick=close;
+  ov.addEventListener('mousedown',function(e){if(e.target===ov)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ov.hidden)close()});
+  [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.onclick=function(){tab(b.getAttribute('data-t'))}});
+  var oa=q('.lm-oa');
+  PV.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=NM0[p]||p;
+   b.onclick=function(){if(busy)return;msg('');
+    client().then(function(sb){return sb.auth.signInWithOAuth({provider:p,options:{redirectTo:location.origin+'/login.html?next='+encodeURIComponent(location.pathname+location.search)}})})
+    .then(function(x){if(x&&x.error)msg(human(x.error),true)}).catch(function(e){msg(human(e),true)})};oa.appendChild(b)});
+  if(!PV.length)q('[data-t="social"]').hidden=true;
+  q('[data-sw]').onclick=function(){setMode(mode==='in'?'up':'in')};
+  [].forEach.call(ov.querySelectorAll('form'),function(f){f.addEventListener('submit',function(e){e.preventDefault();submit(f)})});
+ }
+ function msg(t,err){var m=ov.querySelector('.lm-m');m.hidden=!t;m.textContent=t||'';m.className='lm-m'+(err?' err':'')}
+ function tab(t){ov.querySelector('[data-p="social"]').hidden=(t!=='social');ov.querySelector('[data-p="pw"]').hidden=(t!=='pw');
+  [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.className=b.getAttribute('data-t')===t?'on':''});msg('')}
+ function setMode(m){mode=m;ov.querySelector('[data-f="in"]').hidden=(m!=='in');ov.querySelector('[data-f="up"]').hidden=(m!=='up');
+  ov.querySelector('.lm-h').textContent=m==='in'?'Sign In':'Daftar';
+  ov.querySelector('[data-sw]').textContent=m==='in'?'Belum punya akun? Daftar':'Sudah punya akun? Login';
+  ov.querySelector('[data-fg]').hidden=(m!=='in');msg('')}
+ function submit(f){if(busy)return;var el=f.elements,b=f.querySelector('.lm-go'),mailRe=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  msg('');busy=true;b.disabled=true;
+  Promise.resolve().then(function(){
+   var e=el.email.value.trim();
+   if(!mailRe.test(e))throw new Error('Format email tidak valid.');
+   if(f.getAttribute('data-f')==='in')return client().then(function(sb){return sb.auth.signInWithPassword({email:e,password:el.pw.value})}).then(function(x){if(x.error)throw x.error;location.reload()});
+   var n=el.name.value.trim();
+   if(!n)throw new Error('Nama tampilan wajib diisi.');
+   if(/(admin|moderator|staff|owner|allpirate|fletro)/i.test(n.replace(/[^a-z0-9]/gi,'')))throw new Error('Nama ini tidak diperbolehkan.');
+   if(el.pw.value.length<8)throw new Error('Kata sandi minimal 8 karakter.');
+   if(el.pw.value!==el.pw2.value)throw new Error('Kata sandi tidak sama.');
+   return client().then(function(sb){return sb.auth.signUp({email:e,password:el.pw.value,options:{data:{name:n},emailRedirectTo:location.origin+'/login.html'}})}).then(function(x){
+    if(x.error)throw x.error;
+    if(x.data.session){location.reload();return}
+    if(x.data.user&&x.data.user.identities&&!x.data.user.identities.length)throw new Error('already registered');
+    setMode('in');msg('Akun dibuat. Cek email untuk konfirmasi, lalu login.')})})
+  .catch(function(err){msg(human(err),true)}).then(function(){busy=false;b.disabled=false})}
+ function open(){if(!ov)build();ov.hidden=false;document.body.style.overflow='hidden';setMode('in');tab(PV.length?'social':'pw')}
+ function close(){ov.hidden=true;document.body.style.overflow=''}
+ btn.addEventListener('click',function(e){if(e.ctrlKey||e.metaKey||e.shiftKey||e.button===1)return;e.preventDefault();open()});
+}
+
 if(!isLogin)return;
 
 /* ---------- halaman login ---------- */
@@ -36,8 +123,8 @@ $('theme').onclick=function(){
  var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
  var n=d?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}};
 
-var H={in:['Login','Harus login jika ingin berkomentar'],
- up:['Signup','Buat akun untuk berkomentar'],
+var H={in:['Masuk ke akun','Masuk untuk berkomentar dan menyimpan aktivitasmu.'],
+ up:['Buat akun baru','Gratis. Cukup nama, email, dan kata sandi.'],
  fg:['Atur ulang kata sandi','Kami kirim tautan reset ke email akunmu.'],
  new:['Kata sandi baru','Masukkan kata sandi baru untuk akunmu.'],
  me:['Info akun','']};
