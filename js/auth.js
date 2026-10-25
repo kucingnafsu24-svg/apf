@@ -32,7 +32,7 @@ function initModal(btn){
  var PV=Array.isArray(C.providers)?C.providers:[],sb0=null,ov=null,mode='in',busy=false;
  var st=document.createElement('style');
  st.textContent='.lm-ov{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.45)}'+
- '.lm-ov[hidden]{display:none}.lm-box{position:relative;width:min(380px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:24px;background:var(--bg);color:var(--body);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow,0 12px 40px rgba(0,0,0,.3))}'+
+ '.lm-ov{opacity:0;visibility:hidden}.lm-ov.on{opacity:1;visibility:visible}.lm-box{position:relative;width:min(380px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:24px;background:var(--bg);color:var(--body);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow,0 12px 40px rgba(0,0,0,.3))}'+
  '.lm-x{position:absolute;top:10px;right:10px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:none;color:var(--alt);cursor:pointer}.lm-x:hover{background:var(--card);color:var(--head)}'+
  '.lm-x svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}'+
  '.lm-tabs{display:flex;gap:4px;margin:0 28px 18px 0;padding:4px;border-radius:10px;background:var(--card)}'+
@@ -45,6 +45,7 @@ function initModal(btn){
  '.lm-lnk{display:block;margin:12px 0 0;text-align:center;font-size:13px}.lm-lnk a{color:var(--link);text-decoration:none}.lm-lnk a:hover{text-decoration:underline}'+
  '.lm-or{margin:16px 0 12px;text-align:center;font-size:12px;color:var(--alt)}'+
  '.lm-oa button{display:flex;justify-content:center;width:100%;margin-bottom:8px;padding:11px;border:0;border-radius:8px;background:var(--alt);color:#fff;font:600 14px/1.2 inherit;cursor:pointer}.lm-oa button.p-discord{background:#5865f2}'+
+ '@media(min-width:761px){.lm-ov{transition:opacity .25s ease,visibility .25s}.lm-box{transform:translateY(8px) scale(.98);transition:transform .25s ease}.lm-ov.on .lm-box{transform:none}}'+
  '.lm-m{margin:14px 0 0;font-size:13px;text-align:center;color:var(--body)}.lm-m.err{color:#e5484d}';
  document.head.appendChild(st);
 
@@ -56,7 +57,7 @@ function initModal(btn){
   sc.onload=mk;sc.onerror=function(){rej(new Error('Gagal memuat layanan login. Coba lagi.'))};document.head.appendChild(sc)})}
 
  function build(){
-  ov=document.createElement('div');ov.className='lm-ov';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Login');
+  ov=document.createElement('div');ov.className='lm-ov';ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Login');
   ov.innerHTML='<div class="lm-box"><button type="button" class="lm-x" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'+
   '<div class="lm-tabs"><button type="button" data-t="in">Masuk</button><button type="button" data-t="up">Daftar</button></div>'+
   '<form data-f="in" novalidate><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Kata sandi<input type="password" name="pw" autocomplete="current-password" required></label><button class="lm-go" type="submit">Masuk</button><p class="lm-lnk"><a href="/login.html">Lupa kata sandi?</a></p></form>'+
@@ -66,7 +67,7 @@ function initModal(btn){
   var q=function(s){return ov.querySelector(s)};
   q('.lm-x').onclick=close;
   ov.addEventListener('mousedown',function(e){if(e.target===ov)close()});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ov.hidden)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('on'))close()});
   [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.onclick=function(){setMode(b.getAttribute('data-t'))}});
   var oa=q('.lm-oa');
   PV.forEach(function(p){var b=document.createElement('button');b.type='button';b.className='p-'+p.replace(/[^a-z0-9]/gi,'');b.textContent='Lanjut dengan '+(NM0[p]||p);
@@ -96,8 +97,8 @@ function initModal(btn){
     if(x.data.user&&x.data.user.identities&&!x.data.user.identities.length)throw new Error('already registered');
     setMode('in');msg('Akun dibuat. Cek email untuk konfirmasi, lalu masuk.')})})
   .catch(function(err){msg(human(err),true)}).then(function(){busy=false;b.disabled=false})}
- function open(){if(!ov)build();ov.hidden=false;document.body.style.overflow='hidden';setMode('in')}
- function close(){ov.hidden=true;document.body.style.overflow=''}
+ function open(){if(!ov)build();document.body.style.overflow='hidden';setMode('in');void ov.offsetWidth;ov.classList.add('on')}
+ function close(){ov.classList.remove('on');document.body.style.overflow=''}
  btn.addEventListener('click',function(e){if(e.ctrlKey||e.metaKey||e.shiftKey||e.button===1)return;e.preventDefault();open()});
 }
 
