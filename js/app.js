@@ -92,6 +92,14 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
  [].forEach.call(el.querySelectorAll('.gal-i'),function(a){a.onclick=function(e){e.preventDefault();open(+a.getAttribute('data-i'))}});
  document.addEventListener('keydown',function(e){if(!lb||lb.hidden)return;
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
+function postNav(cur){
+ var i=P.indexOf(cur);if(i<0)return '';
+ var older=P[i+1],newer=P[i-1];
+ if(!older&&!newer)return '';
+ function box(x,cls,lbl){
+  if(!x)return '<span></span>';
+  return '<a class="'+cls+'" href="/post.html?s='+encodeURIComponent(x.slug)+'" rel="'+(cls==='pv'?'prev':'next')+'"><small>'+lbl+'</small><b>'+esc(x.title)+'</b></a>'}
+ return '<div class="pnav" role="navigation" aria-label="Navigasi artikel">'+box(older,'pv','\u2039 Sebelumnya')+box(newer,'nx','Selanjutnya \u203a')+'</div>'}
 function related(cur){
  var CW=(window.APF_CONFIG&&window.APF_CONFIG.relatedWeights)||{};
  var W={artist:5,label:3,category:3,genre:1,other:0.5};Object.keys(CW).forEach(function(k){if(typeof CW[k]==='number')W[k]=CW[k]});
@@ -201,7 +209,7 @@ if(list){
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
   a.innerHTML='<div class="crumb"><a href="/">Home</a> / '+esc(p.labels[0])+'</div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+postNav(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
   bindVideos();bindGallery(p);
  }
 }
