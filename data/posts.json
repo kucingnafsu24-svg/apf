@@ -1,11 +1,54 @@
 [
+  {
+  "slug": "ClipStudioPaint",
+  "title": "Clip Studio Paint EX",
+  "author": "Admin",
+  "date": "2026-10-24",
+  "image": "/images/CSPV3/cover1.webp",
+  "excerpt": "Download Clip Studio Paint EX.zip",
+  "tags": {
+    "Language": ["Japanese", "English"],
+    "Software": ["Drawing", "Editor"],
+    "Category": ["Software"]
+  },
+  "videos": [
+    { "title": "Clip Studio Paint V1", "url": "https://www.youtube.com/watch?v=w_pHmMG8JUM" },
+    { "title": "Clip Studio Paint V2", "url": "https://www.youtube.com/watch?v=KjQw6vGohzw" },
+    { "title": "Clip Studio Paint V3", "url": "https://www.youtube.com/watch?v=KjQw6vGohzw" },
+    { "title": "Clip Studio Paint V4", "url": "https://www.youtube.com/watch?v=A5YCWKdX5dw" },
+    { "title": "Clip Studio Paint V5", "url": "https://www.youtube.com/watch?v=IxmbgMO7xWM" }
+  ],
+  "download": [
+     {
+      "title": "Clip Studio Paint EX v5.1.2.",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/gK0ZSM5F" },
+        { "name": "Pcloud", "url": "https://sfl.gl/xyZVVP" }
+      ]
+    },
+     {
+     "title": "Clip Studio Paint EX v5.1.5",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/oEonBXQy" },
+        { "name": "Pcloud", "url": "https://sfl.gl/k5dHt0h8" }
+      ]
+    },
+     {
+      "title": "Clip Studio Paint EX Material",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/oBVPUK12" }
+        { "name": "Pcloud", "url": "https://sfl.gl/oBVPUK12" }
+      ]
+    }
+  ]
+},
      {
   "slug": "COSPLAYTALES-Barbara",
   "title": "COSPLAYTALES - バーバラ Barbara",
   "author": "Admin",
   "date": "2026-10-24",
   "image": "/images/COSPLAYTALESBarbara/00.webp",
-  "excerpt": "Download COSPLAYTALES - ナンジャモ Iono.zip",
+  "excerpt": "Download COSPLAYTALES - バーバラ Barbara.zip",
   "content": "<img src='/images/COSPLAYTALESBarbara/01.webp' loading='lazy'>\n<img src='/images/COSPLAYTALESBarbara/02.webp' loading='lazy'>\n<img src='/images/COSPLAYTALESBarbara/03.webp' loading='lazy'>\n<img src='/images/COSPLAYTALESBarbara/04.webp' loading='lazy'>\n<img src='/images/COSPLAYTALESBarbara/05.webp' loading='lazy'>\n<img src='/images/COSPLAYTALESBarbara/06.webp' loading='lazy'>\n<img src='/images/COSPLAYTALESBarbara/07.webp' loading='lazy'>\n<img src='/images/COSPLAYTALESBarbara/08.webp' loading='lazy'>",
   "tags": {
     "Cosplayer": ["CosplayTales"],
