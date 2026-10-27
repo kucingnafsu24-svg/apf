@@ -16,6 +16,8 @@
  .dock[hidden]{display:none}
  .dock-x{position:absolute;right:0;top:-34px;width:44px;height:34px;display:grid;place-items:center;background:var(--bg);color:var(--head);border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;font-size:18px;line-height:1;cursor:pointer}
  .dock-box{display:flex;align-items:center;justify-content:center;min-height:50px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--alt);font-size:15px;text-align:center;overflow:hidden}
+ .dock-tk{padding:0;border:0;background:none;min-height:0}
+ .dock-tk .s-tk{padding:13px 16px;font-size:15px}
  .dock-box img{display:block;max-width:100%;height:auto}
  body.has-dock{padding-bottom:84px}
  /* Perbaikan: cegah halaman melebar melebihi layar di HP */
@@ -79,18 +81,13 @@ html,body{overflow-x:hidden}
    <a class="s-wa" href="https://whatsapp.com/channel/0029VbD7kFgK5cDLmIhYHc2C" target="_blank" rel="noopener">WhatsApp</a>
    <a class="s-fb" href="https://www.facebook.com/profile.php?id=61578062415881" target="_blank" rel="noopener">Facebook</a>
   </div></div>
-  <div class="w"><h4>Dukung Kami</h4><div class="donate">
-   <!-- TEMPEL KODE EMBED TRAKTEER DI SINI (salin dari dashboard Trakteer) -->
-   <a class="s-tk" href="https://trakteer.id/Ridhocuking/tip" target="_blank" rel="noopener">Traktir di Trakteer</a>
-  </div></div>
  </aside>
 </main>
 <footer><div class="wrap"><span>© 2021 Fletro Pro. All rights reserved.</span><span>All Pirate File</span></div></footer>
-<!-- DOCK BAWAH (mobile saja): ganti isi "dock-box" dengan gambar/iklan Anda, contoh:
-     <a href="https://ALAMAT-SPONSOR" target="_blank" rel="noopener"><img src="/images/p3.webp" alt="" width="320" height="50"></a> -->
+<!-- DOCK BAWAH (mobile saja): berisi tombol Trakteer, bisa ditutup dengan X -->
 <div class="dock" id="dock" hidden>
  <button class="dock-x" id="dock-x" type="button" aria-label="Tutup">&#10005;</button>
- <div class="dock-box"><a href="https://discord.gg/GkP4rbEksw" target="_blank" rel="noopener" style="color:inherit">Ruang iklan tersedia · hubungi kami</a></div>
+ <div class="dock-box dock-tk"><a class="s-tk" href="https://trakteer.id/Ridhocuking/tip" target="_blank" rel="noopener">Traktir di Trakteer</a></div>
 </div>
 <script>
 (function(){
