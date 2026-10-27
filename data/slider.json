@@ -3,19 +3,19 @@
     "title": "七氏",
     "label": "七氏",
     "image": "/images/cover-slider1.webp",
-    "url": "/?label=七氏"
+    "url": "/?tag=artist%3A七氏"
   },
   {
     "title": "Maplestar",
     "label": "Maplestar",
     "image": "/images/cover-slider2.webp",
-    "url": "/?label=Maplestar"
+    "url": "/?tag=artist%3AMaplestar"
   },
   {
-    "title": "Machi",
-    "label": "Machi",
+    "title": "CosplayTales",
+    "label": "CosplayTales",
     "image": "/images/cover-slider1.webp",
-    "url": "/?label=Machi"
+    "url": "/?tag=cosplayer%3ACosplayTales"
   },
   {
     "title": "Ppolar",
