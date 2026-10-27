@@ -93,8 +93,9 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
  document.addEventListener('keydown',function(e){if(!lb||lb.hidden)return;
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
 function postNav(cur){
- var i=P.indexOf(cur);if(i<0)return '';
- var older=P[i+1],newer=P[i-1];
+ var n=P.length,i=P.indexOf(cur);if(i<0||n<2)return '';
+ function step(d){for(var k=1;k<n;k++){var x=P[(i+d*k%n+n)%n];if(x&&x.slug!==cur.slug)return x}return null}
+ var older=step(1),newer=step(-1);
  if(!older&&!newer)return '';
  function box(x,cls,lbl){
   if(!x)return '<span></span>';
