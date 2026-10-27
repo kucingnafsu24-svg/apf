@@ -93,8 +93,10 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
  document.addEventListener('keydown',function(e){if(!lb||lb.hidden)return;
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
 function postNav(cur){
- var n=P.length,i=P.indexOf(cur);if(i<0||n<2)return '';
- function step(d){for(var k=1;k<n;k++){var x=P[(i+d*k%n+n)%n];if(x&&x.slug!==cur.slug)return x}return null}
+ /* urut dari terbaru ke terlama berdasarkan tanggal; tanggal sama mengikuti urutan di posts.json */
+ var S=P.map(function(x,k){return {x:x,k:k}}).sort(function(a,b){return a.x.date<b.x.date?1:a.x.date>b.x.date?-1:a.k-b.k}).map(function(o){return o.x});
+ var i=S.indexOf(cur);if(i<0)return '';
+ function step(d){for(var j=i+d;j>=0&&j<S.length;j+=d){if(S[j].slug!==cur.slug)return S[j]}return null}
  var older=step(1),newer=step(-1);
  if(!older&&!newer)return '';
  function box(x,cls,lbl){
