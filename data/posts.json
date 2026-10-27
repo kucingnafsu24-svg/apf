@@ -43,11 +43,11 @@
     "Category": ["Software"]
   },
   "videos": [
-    { "title": "Clip Studio Paint V1", "url": "https://www.youtube.com/watch?v=w_pHmMG8JUM" },
-    { "title": "Clip Studio Paint V2", "url": "https://www.youtube.com/watch?v=KjQw6vGohzw" },
-    { "title": "Clip Studio Paint V3", "url": "https://www.youtube.com/watch?v=KjQw6vGohzw" },
-    { "title": "Clip Studio Paint V4", "url": "https://www.youtube.com/watch?v=A5YCWKdX5dw" },
-    { "title": "Clip Studio Paint V5", "url": "https://www.youtube.com/watch?v=IxmbgMO7xWM" }
+    { "title": "Clip Studio Paint V1", "url": "https://www.youtube.com/embed/v=w_pHmMG8JUM" },
+    { "title": "Clip Studio Paint V2", "url": "https://www.youtube.com/embed/v=KjQw6vGohzw" },
+    { "title": "Clip Studio Paint V3", "url": "https://www.youtube.com/embed/v=KjQw6vGohzw" },
+    { "title": "Clip Studio Paint V4", "url": "https://www.youtube.com/embed/v=A5YCWKdX5dw" },
+    { "title": "Clip Studio Paint V5", "url": "https://www.youtube.com/embed/v=IxmbgMO7xWM" }
   ],
   "download": [
      {
