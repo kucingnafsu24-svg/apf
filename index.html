@@ -12,13 +12,17 @@
 /* Dock bawah: hanya tampil di mobile (<=760px) */
 .dock{display:none}
 @media(max-width:760px){
- .dock{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.18)}
+ .dock{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:8px 16px calc(8px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.18)}
  .dock[hidden]{display:none}
  .dock-x{position:absolute;right:0;top:-34px;width:44px;height:34px;display:grid;place-items:center;background:var(--bg);color:var(--head);border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;font-size:18px;line-height:1;cursor:pointer}
- .dock-box{display:flex;align-items:center;justify-content:center;min-height:60px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--alt);font-size:15px;text-align:center;overflow:hidden}
+ .dock-box{display:flex;align-items:center;justify-content:center;min-height:50px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--alt);font-size:15px;text-align:center;overflow:hidden}
  .dock-box img{display:block;max-width:100%;height:auto}
- body.has-dock{padding-bottom:96px}
+ body.has-dock{padding-bottom:84px}
+ /* Perbaikan: cegah halaman melebar melebihi layar di HP */
+ .layout{grid-template-columns:minmax(0,1fr)}
+ .layout>*{min-width:0}
 }
+html,body{overflow-x:hidden}
 </style>
 </head>
 <body>
