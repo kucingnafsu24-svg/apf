@@ -20,6 +20,9 @@
  .dock-tk .s-tk{padding:13px 16px;font-size:15px}
  .dock-box img{display:block;max-width:100%;height:auto}
  .w-tk{display:none}
+ .dock.min{padding:0;border:0;background:transparent;box-shadow:none;pointer-events:none}
+ .dock.min .dock-box{display:none}
+ .dock.min .dock-x{top:auto;bottom:env(safe-area-inset-bottom,0px);pointer-events:auto;box-shadow:0 -2px 8px rgba(0,0,0,.15)}
  body.has-dock{padding-bottom:84px}
  /* Perbaikan: cegah halaman melebar melebihi layar di HP */
  .layout{grid-template-columns:minmax(0,1fr)}
@@ -67,13 +70,16 @@ html,body{overflow-x:hidden}
 (function(){
  var d=document.getElementById('dock'),x=document.getElementById('dock-x');
  if(!d||!x)return;
- var K='dockX:'+location.pathname,closed=false;
- try{closed=sessionStorage.getItem(K)==='1'}catch(e){}
- if(!closed){d.hidden=false;document.body.classList.add('has-dock')}
- x.addEventListener('click',function(){
-  d.hidden=true;document.body.classList.remove('has-dock');
-  try{sessionStorage.setItem(K,'1')}catch(e){}
- });
+ var K='dockX:'+location.pathname,min=false;
+ try{min=sessionStorage.getItem(K)==='1'}catch(e){}
+ var UP='<svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg>',XX='&#10005;';
+ function set(m){
+  min=m;d.classList.toggle('min',m);document.body.classList.toggle('has-dock',!m);
+  x.innerHTML=m?UP:XX;x.setAttribute('aria-label',m?'Buka':'Tutup');
+  try{sessionStorage.setItem(K,m?'1':'0')}catch(e){}
+ }
+ d.hidden=false;set(min);
+ x.addEventListener('click',function(){set(!min)});
 })();
 </script>
 <script src="/js/app.js"></script>
