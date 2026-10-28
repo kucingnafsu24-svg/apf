@@ -397,10 +397,7 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
   nav a:hover,nav a.on{border-color:transparent}
 }
 
-/* ===== Halaman artikel (post.html): sembunyikan bar topik di mobile ===== */
-@media(max-width:760px){
-  body:has(#article) .topics{display:none}
-}
+/* (bar topik lama dipindah ke menu samping, lihat bagian "Menu topik" di bawah) */
 
 /* ===== Tag: tata letak rapi di mobile ===== */
 @media(max-width:760px){
@@ -431,3 +428,21 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 .pnav b{font-size:14px;line-height:1.4;font-weight:600;color:var(--head);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 .pnav .nx{text-align:right}
 @media(max-width:760px){.pnav{margin-top:28px;gap:8px}.pnav a{padding:12px}.pnav b{font-size:13px}}
+
+/* ===== Menu topik (HANYA MOBILE, <=760px): tombol di kiri logo, daftar muncul sebagai panel samping ===== */
+#menu{display:none}
+@media(max-width:760px){
+ #menu{order:0;flex:none;display:grid;place-items:center;width:40px;height:40px;margin:0 -12px 0 -8px;border-radius:50%;color:var(--head)}
+ #menu:hover{background:var(--card)}
+ body:has(#topics:empty) #menu{display:none}
+ #topics{position:fixed;top:0;left:0;bottom:0;z-index:60;width:min(320px,86vw);box-sizing:border-box;
+  display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;gap:2px;
+  padding:14px 12px calc(16px + env(safe-area-inset-bottom,0px));overflow-x:hidden;overflow-y:auto;
+  background:var(--bg);border:0;border-right:1px solid var(--line);box-shadow:8px 0 32px rgba(0,0,0,.25);
+  transform:translateX(-105%);visibility:hidden;transition:transform .22s ease,visibility 0s linear .22s}
+ #topics::before{content:"Topik";display:block;padding:6px 14px 12px;font-size:16px;font-weight:600;color:var(--head)}
+ #topics a{flex:none;margin:0;padding:11px 14px;border-radius:10px;font-size:15px;white-space:normal;overflow-wrap:anywhere}
+ #topics a:first-child,#topics a:last-child{margin:0}
+ body.topics-open #topics{transform:none;visibility:visible;transition:transform .22s ease,visibility 0s}
+ body.topics-open::after{content:"";position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.45)}
+}
