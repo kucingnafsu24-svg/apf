@@ -276,7 +276,15 @@ if(inp&&res){
   refresh();if(keep&&inp.focus)inp.focus();
  });
 }
-document.addEventListener('click',function(e){if(res&&!e.target.closest('.sbox')&&!e.target.closest('#sbtn')){setOpen(false);var bx=document.querySelector('.sbox');if(bx)bx.classList.remove('mob-open')}});
+document.addEventListener('click',function(e){
+ if(!res)return;
+ /* Saat tag/kategori/filter diklik, daftar saran dirender ulang sehingga elemen yang diklik terlepas dari halaman.
+    Dulu itu dianggap "klik di luar" dan kotak cari ikut tertutup. Sekarang diperiksa lewat jalur klik aslinya. */
+ var path=e.composedPath?e.composedPath():[],
+  inside=path.some(function(n){return n&&n.classList&&(n.classList.contains('sbox')||n.id==='sbtn')})||
+   !!(e.target.closest&&(e.target.closest('.sbox')||e.target.closest('#sbtn')));
+ if(inside||e.target.isConnected===false)return;
+ setOpen(false);var bx=document.querySelector('.sbox');if(bx)bx.classList.remove('mob-open')});
 document.addEventListener('keydown',function(e){
  if(e.key==='/'&&inp&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||'')){e.preventDefault();inp.focus()}});
 var sb=$('sbtn');
