@@ -237,3 +237,12 @@ function slider(f){
  sl.onmouseenter=function(){clearInterval(timer)};sl.onmouseleave=play;play();
 }
 })();
+
+/* Menu topik: buka/tutup panel samping */
+(function(){
+ var b=document.getElementById('menu'),B=document.body;if(!b)return;
+ function set(o){B.classList.toggle('topics-open',o);b.setAttribute('aria-expanded',o?'true':'false')}
+ b.addEventListener('click',function(e){e.stopPropagation();set(!B.classList.contains('topics-open'))});
+ document.addEventListener('click',function(e){if(B.classList.contains('topics-open')&&!(e.target.closest&&e.target.closest('#topics')))set(false)});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
