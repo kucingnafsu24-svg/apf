@@ -446,3 +446,10 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
  body.topics-open #topics{transform:none;visibility:visible;transition:transform .22s ease,visibility 0s}
  body.topics-open::after{content:"";position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.45)}
 }
+
+/* ===== Thumbnail sesuai rasio gambar asli (tidak dipotong) =====
+   Bila thumbnail berisi gambar, tinggi kotak mengikuti bentuk gambarnya. Gambar yang sangat tinggi dibatasi lewat max-height. */
+.thumb:has(img){aspect-ratio:auto!important;background:var(--card)}
+.thumb:has(img) img{position:static;inset:auto;display:block;width:100%;height:auto;aspect-ratio:auto 4/3;max-height:520px;object-fit:contain}
+.article .thumb:has(img) img{max-height:min(640px,80vh)}
+@media(max-width:760px){.post .thumb:has(img) img{max-height:220px}.grid .thumb:has(img) img{max-height:300px}}
