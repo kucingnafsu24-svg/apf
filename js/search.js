@@ -29,7 +29,9 @@ function near(tk,w){
   if(!max||(n===3&&t.length<4))return false;
   if(Math.abs(t.length-n)<=max&&ed(t,w,max)<=max)return true;
   return t.length>n&&ed(t.slice(0,n),w,max)<=max})}
-function addVal(k,v){vals[k]=vals[k]||{};vals[k][v]=(vals[k][v]||0)+1}
+var vcase={};
+/* nilai yang sama tapi beda huruf besar/kecil dihitung satu (tampilan memakai penulisan pertama) */
+function addVal(k,v){vals[k]=vals[k]||{};vcase[k]=vcase[k]||{};var l=lower(v),c=vcase[k][l];if(c==null){c=v;vcase[k][l]=v}vals[k][c]=(vals[k][c]||0)+1}
 
 function load(){
  if(posts)return Promise.resolve(posts);
@@ -45,7 +47,7 @@ function load(){
     if(v.length)tgo[kk]=(tgo[kk]||[]).concat(v)});
    Object.keys(tgo).forEach(function(k){tgo[k]=uniq(tgo[k]);tgl[k]=tgo[k].map(lower);known[k]=1;
     tgo[k].forEach(function(x){tall.push(lower(x));
-     if(k!=='artist'){addVal('tag',x);if(k!=='tag')addVal(k,x);tagGroup[x]=tagGroup[x]||k}})});
+     if(k!=='artist'){addVal('tag',x);if(k!=='tag')addVal(k,x);tagGroup[lower(x)]=tagGroup[lower(x)]||k}})});
    var lab=uniq(labs);tgl.label=lab.map(lower);lab.forEach(function(x){addVal('label',x)});
    (tgo.artist||[]).forEach(function(x){addVal('artist',x)});tgl.artist=(tgo.artist||[]).map(lower);
    tmp.innerHTML=String(p.content||'').replace(/<[^>]*>/g,' ');
@@ -172,7 +174,7 @@ function hIsStar(q){return hLoad().some(function(x){return x.q===q&&x.s})}
 var inp=$('q'),res=$('sres'),hi=-1;
 var cnt=function(n){return n>=1000?(n/1000).toFixed(1).replace(/\.0$/,'')+'k':String(n)};
 var badge=function(g){return '<i class="bd bd-'+esc(String(g).replace(/[^a-z0-9]/gi,'').toLowerCase())+'">'+esc(g)+'</i>'};
-var valRow=function(k,v,n,ctx){var g=k==='tag'?(tagGroup[v]||'tag'):k,d=' data-ctx="'+ctx+'" data-k="'+esc(k)+'" data-v="'+esc(v)+'"';
+var valRow=function(k,v,n,ctx){var g=k==='tag'?(tagGroup[lower(v)]||'tag'):k,d=' data-ctx="'+ctx+'" data-k="'+esc(k)+'" data-v="'+esc(v)+'"';
  var pm=ctx==='c'?'':'<span class="sg-pm inc" role="button" title="Sertakan" data-act="vinc"'+d+'>+</span><span class="sg-pm exc" role="button" title="Kecualikan" data-act="vexc"'+d+'>−</span>';
  return '<div class="sg-val" data-nav="1" data-act="val"'+d+'>'+badge(g)+'<span class="sg-n">'+esc(v)+'</span><em>'+cnt(n)+'</em>'+pm+'<b class="sg-go">→</b></div>'};
 function actRows(lt){

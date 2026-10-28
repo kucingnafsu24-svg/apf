@@ -24,13 +24,14 @@ fetch('/data/posts.json').then(function(x){return x.json()}).then(withCounts).th
 
 function init(P){
 if(!Array.isArray(P))P=[];
+var ciu=function(a){var z={};return a.filter(function(x){var k=String(x).trim().toLowerCase();if(z[k])return false;z[k]=1;return true})};
 P=P.filter(Boolean).map(function(p){
  p.title=p.title||'Tanpa judul';
  p.slug=p.slug||p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
  p.slug=String(p.slug).toLowerCase();
  p.author=p.author||'Admin';
  p.hasLabels=!!(p.labels&&p.labels.length);
- p.labels=p.hasLabels?p.labels:['Umum'];
+ p.labels=p.hasLabels?ciu(p.labels):['Umum'];
  p.date=p.date||new Date().toISOString().slice(0,10);
  p.comments=+p.comments||0;
  p.excerpt=p.excerpt||'';
@@ -39,9 +40,9 @@ P=P.filter(Boolean).map(function(p){
  p.thumb.cls=p.thumb.cls||'t1';p.thumb.title=p.thumb.title||'';p.thumb.sub=p.thumb.sub||'';
  var tg={};
  if(p.tags&&typeof p.tags==='object'&&!Array.isArray(p.tags)){Object.keys(p.tags).forEach(function(k){
-  var a=[].concat(p.tags[k]).map(function(x){return String(x).trim()}).filter(Boolean);
-  if(a.length)tg[k.toLowerCase()]=a})}
- if(tg.file){tg.category=(tg.category||[]).concat(tg.file);delete tg.file}
+  var a=ciu([].concat(p.tags[k]).map(function(x){return String(x).trim()}).filter(Boolean)),kk=k.toLowerCase();
+  if(a.length)tg[kk]=ciu((tg[kk]||[]).concat(a))})}
+ if(tg.file){tg.category=ciu((tg.category||[]).concat(tg.file));delete tg.file}
  p.tags=tg;
  return p});
 var GN={artist:'Artist',genre:'Genre',category:'Category'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
@@ -133,7 +134,7 @@ function card(p){
  '<h3><a href="/post.html?s='+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a></h3>'+(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+
  (p.sponsored?'<a class="more" href="/post.html?s='+encodeURIComponent(p.slug)+'">Read more</a>':'<span class="date">'+fmt(p.date)+'</span>')+'</div>'+thumb(p)+'</article>'}
 
-var L={};P.forEach(function(p){p.labels.forEach(function(l){L[l]=1})});
+var L={},Lk={};P.forEach(function(p){p.labels.forEach(function(l){var k=String(l).toLowerCase();if(!Lk[k]){Lk[k]=1;L[l]=1}})});
 if($('pop')){
  var pop=P.slice().sort(function(a,b){return b.comments-a.comments}).slice(0,3);
  $('pop').innerHTML=pop.map(function(p){return '<a href="/post.html?s='+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a>'}).join('');
@@ -144,7 +145,7 @@ if($('labels')){
 
 var qs0=new URLSearchParams(location.search),cur=qs0.get('label'),curTag=String(qs0.get('tag')||'').toLowerCase(),curPost=null;
 var lc2=function(x){return String(x).toLowerCase()};
-var AR={};P.forEach(function(p){(p.tags.artist||[]).forEach(function(a){AR[a]=(AR[a]||0)+1})});
+var AR={},ARk={};P.forEach(function(p){(p.tags.artist||[]).forEach(function(a){var k=lc2(a),c=ARk[k]||(ARk[k]=a);AR[c]=(AR[c]||0)+1})});
 var auto=Object.keys(AR).length?Object.keys(AR).sort(function(a,b){return AR[b]-AR[a]||a.localeCompare(b)}).map(function(a){return {name:a,artist:a}}):Object.keys(L).map(function(l){return {name:l}});
 /* satu topik: {"name":"Maplestar","artist":"Maplestar"} -> /?tag=artist:Maplestar
    juga boleh genre/category/language/...; {"name":"x","label":"x"} -> /?label=x; {"name":"x","url":"..."} -> url bebas */
@@ -159,7 +160,7 @@ function topicOf(t){
 var drawTopics=function(a){$('topics').innerHTML=a.map(function(t){
   var o=topicOf(t),on=false;
   if(o.g)on=curTag===lc2(o.g+':'+o.v)||!!(curPost&&(curPost.tags[o.g]||[]).some(function(x){return lc2(x)===lc2(o.v)}));
-  else if(o.l)on=o.l===cur;
+  else if(o.l)on=cur!=null&&lc2(o.l)===lc2(cur);
   return '<a'+(on?' class="on"':'')+' href="'+esc(o.u)+'">'+esc(t.name)+'</a>'}).join('');
  var tp=$('topics'),on=tp.querySelector&&tp.querySelector('a.on');if(on)tp.scrollLeft=Math.max(0,on.offsetLeft-(tp.clientWidth-on.offsetWidth)/2)};
 fetch('/data/topics.json').then(function(x){return x.json()}).then(function(a){drawTopics(Array.isArray(a)&&a.length?a:auto)}).catch(function(){drawTopics(auto)});
@@ -167,7 +168,7 @@ var list=$('posts'),qs=new URLSearchParams(location.search);
 if(list){
  var label=qs.get('label'),tag=qs.get('tag')||'',tk='',tv='';
  if(tag.indexOf(':')>0){tk=tag.slice(0,tag.indexOf(':')).toLowerCase();tv=tag.slice(tag.indexOf(':')+1);if(tk==='file')tk='category'}
- var data=label?P.filter(function(p){return p.labels.indexOf(label)>-1}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P;
+ var data=label?P.filter(function(p){return p.labels.some(function(l){return lc2(l)===lc2(label)})}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P;
  if(!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
  if(label)$('ttl').textContent='Label: '+label;
  if(tv)$('ttl').textContent=gname(tk)+': '+tv;
