@@ -92,17 +92,6 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
  [].forEach.call(el.querySelectorAll('.gal-i'),function(a){a.onclick=function(e){e.preventDefault();open(+a.getAttribute('data-i'))}});
  document.addEventListener('keydown',function(e){if(!lb||lb.hidden)return;
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
-function postNav(cur){
- /* urut dari terbaru ke terlama berdasarkan tanggal; tanggal sama mengikuti urutan di posts.json */
- var S=P.map(function(x,k){return {x:x,k:k}}).sort(function(a,b){return a.x.date<b.x.date?1:a.x.date>b.x.date?-1:a.k-b.k}).map(function(o){return o.x});
- var i=S.indexOf(cur);if(i<0)return '';
- function step(d){for(var j=i+d;j>=0&&j<S.length;j+=d){if(S[j].slug!==cur.slug)return S[j]}return null}
- var older=step(1),newer=step(-1);
- if(!older&&!newer)return '';
- function box(x,cls,lbl){
-  if(!x)return '<span></span>';
-  return '<a class="'+cls+'" href="/post.html?s='+encodeURIComponent(x.slug)+'" rel="'+(cls==='pv'?'prev':'next')+'"><small>'+lbl+'</small><b>'+esc(x.title)+'</b></a>'}
- return '<div class="pnav" role="navigation" aria-label="Navigasi artikel">'+box(older,'pv','\u2039 Sebelumnya')+box(newer,'nx','Selanjutnya \u203a')+'</div>'}
 function related(cur){
  var CW=(window.APF_CONFIG&&window.APF_CONFIG.relatedWeights)||{};
  var W={artist:5,label:3,category:3,genre:1,other:0.5};Object.keys(CW).forEach(function(k){if(typeof CW[k]==='number')W[k]=CW[k]});
@@ -212,7 +201,7 @@ if(list){
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
   a.innerHTML='<div class="crumb"><a href="/">Home</a> / '+esc(p.labels[0])+'</div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+postNav(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
   bindVideos();bindGallery(p);
  }
 }
@@ -236,13 +225,4 @@ function slider(f){
  var play=function(){clearInterval(timer);if(f.length>1)timer=setInterval(function(){go(i+1)},5000)};
  sl.onmouseenter=function(){clearInterval(timer)};sl.onmouseleave=play;play();
 }
-})();
-
-/* Menu topik: buka/tutup panel samping */
-(function(){
- var b=document.getElementById('menu'),B=document.body;if(!b)return;
- function set(o){B.classList.toggle('topics-open',o);b.setAttribute('aria-expanded',o?'true':'false')}
- b.addEventListener('click',function(e){e.stopPropagation();set(!B.classList.contains('topics-open'))});
- document.addEventListener('click',function(e){if(B.classList.contains('topics-open')&&!(e.target.closest&&e.target.closest('#topics')))set(false)});
- document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
 })();
