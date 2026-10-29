@@ -28,8 +28,10 @@ function start(anchor){
  root.innerHTML='<div class="empty">Memuat komentar…</div>';
  console.log('[comments] slug:',slug);
  var rt;sb.channel('comments-'+slug).on('postgres_changes',{event:'*',schema:'public',table:'comments'},function(){clearTimeout(rt);rt=setTimeout(load,400)}).subscribe(function(st){console.log('[comments] realtime:',st)});
- sb.auth.getSession().then(function(r){user=r.data.session&&r.data.session.user;draw()}).catch(function(){draw()});
- sb.auth.onAuthStateChange(function(_e,s){var n=s&&s.user;if((n&&n.id)!==(user&&user.id)){user=n;draw()}});
+ sb.auth.getSession().then(function(r){user=r.data.session&&r.data.session.user;draw();syncUser()}).catch(function(){draw()});
+ document.addEventListener('visibilitychange',function(){if(!document.hidden)syncUser()});
+ window.addEventListener('focus',syncUser);
+ sb.auth.onAuthStateChange(function(_e,s){var n=s&&s.user;if((n&&n.id)!==(user&&user.id)){user=n;draw()}else if(n){user=n;refreshMe()}});
 }
 
 function toast(m){
@@ -46,13 +48,29 @@ function ico(n){
  return '<svg viewBox="0 0 24 24">'+p[n]+'</svg>';
 }
 
+function meHtml(){
+ if(!user)return '';
+ var m=user.user_metadata||{},nm=m.display_name||m.full_name||m.name||m.user_name||'Anda',av=safeImg(m.avatar_custom||m.avatar_url||m.picture);
+ return '<span class="cx-me">'+(av?'<img src="'+esc(av)+'" alt="">':'<span class="av">'+esc(Array.from(nm)[0]||'?')+'</span>')+'<b>'+esc(nm)+'</b></span>';
+}
+function refreshMe(){var el=root&&root.querySelector('.cx-me');if(el)el.outerHTML=meHtml()}
+
+/* Sinkronkan data akun dari server (nama/foto bisa berubah dari perangkat lain) */
+var lastSync=0;
+function syncUser(){
+ if(!user||Date.now()-lastSync<30000)return;lastSync=Date.now();
+ sb.auth.getUser().then(function(r){
+  var n=r.data&&r.data.user;
+  if(r.error||!n||!user||n.id!==user.id)return;
+  var changed=JSON.stringify(n.user_metadata)!==JSON.stringify(user.user_metadata)||n.email!==user.email;
+  user=n;refreshMe();
+  if(changed)sb.auth.refreshSession().catch(function(){}); /* simpan data terbaru ke sesi perangkat ini */
+ }).catch(function(){});
+}
+
 function draw(){
  var h='<div class="cx-react" id="cx-react"></div>';
- var me='';
- if(user){
-  var m=user.user_metadata||{},nm=m.display_name||m.full_name||m.name||m.user_name||'Anda',av=safeImg(m.avatar_custom||m.avatar_url||m.picture);
-  me='<span class="cx-me">'+(av?'<img src="'+esc(av)+'" alt="">':'<span class="av">'+esc(Array.from(nm)[0]||'?')+'</span>')+'<b>'+esc(nm)+'</b></span>';
- }
+ var me=meHtml();
  h+='<div class="cx-box"><textarea id="c-body" maxlength="1000" placeholder="Komen di mari…"></textarea>'+
   '<div class="cx-prev" id="cx-prev" hidden></div>'+
   '<div class="cx-bar"><div class="cx-tools">'+
