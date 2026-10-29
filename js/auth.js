@@ -53,7 +53,7 @@ function initModal(btn){
   if(sb0)return res(sb0);
   function mk(){sb0=window.supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);res(sb0)}
   if(window.supabase)return mk();
-  var sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
+  var sc=document.createElement('script');sc.src='/js/lib.js';
   sc.onload=mk;sc.onerror=function(){rej(new Error('Gagal memuat layanan login. Coba lagi.'))};document.head.appendChild(sc)})}
 
  function build(){
