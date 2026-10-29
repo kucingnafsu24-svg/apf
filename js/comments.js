@@ -154,7 +154,7 @@ function react(k){
 var seq=0;
 function load(){
  var my=++seq;
- var q1=sb.from('comments').select('id,user_id,author_name,avatar_url,body,image_url,spoiler,created_at').eq('post_slug',slug).order('created_at',{ascending:false}).limit(300);
+ var q1=sb.from('comments_live').select('id,user_id,author_name,avatar_url,body,image_url,spoiler,created_at').eq('post_slug',slug).order('created_at',{ascending:false}).limit(300);
  var q2=sb.from('comment_like_counts').select('comment_id,total').eq('post_slug',slug);
  var q3=user?sb.from('comment_likes').select('comment_id').eq('user_id',user.id):Promise.resolve({data:[]});
  Promise.all([q1,q2,q3]).then(function(a){
