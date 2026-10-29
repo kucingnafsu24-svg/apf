@@ -20,11 +20,35 @@ if(ok&&tl&&!isLogin){
  a.href='/login.html'+(s?'':'?next='+encodeURIComponent(location.pathname+location.search));
  a.setAttribute('aria-label',s?'Akun saya':'Login');
  a.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="acct-a"></span><span class="acct-t"></span>';
- a.querySelector('.acct-t').textContent=nm;
- var av=s?avatarOf(s.user):'',ae=a.querySelector('.acct-a');
- if(av){ae.style.backgroundImage='url('+JSON.stringify(av)+')';ae.style.backgroundSize='cover';ae.style.backgroundPosition='center'}else ae.textContent=(Array.from(nm)[0]||'?').toUpperCase();
+ var paint=function(u){
+  var n=u?who(u):'Login',v=u?avatarOf(u):'',e=a.querySelector('.acct-a');
+  a.querySelector('.acct-t').textContent=n;
+  e.style.backgroundImage=v?'url('+JSON.stringify(v)+')':'';
+  if(v){e.style.backgroundSize='cover';e.style.backgroundPosition='center';e.textContent=''}else e.textContent=(Array.from(n)[0]||'?').toUpperCase();
+ };
+ paint(s&&s.user);
  tl.appendChild(a);
  if(!s)initModal(a);
+ else{
+  /* Sinkronkan nama/foto dari server: data di localStorage tiap perangkat bisa usang */
+  var base=C.supabaseUrl.replace(/\/+$/,''),last=0,retried=false;
+  var sync=function(){
+   if(Date.now()-last<30000)return;last=Date.now();
+   var cur=session();if(!cur||!cur.access_token)return;
+   fetch(base+'/auth/v1/user',{headers:{apikey:C.supabaseAnonKey,Authorization:'Bearer '+cur.access_token}}).then(function(r){
+    if(r.status===401&&!retried){retried=true;last=0;setTimeout(sync,2500)} /* token kedaluwarsa: beri waktu supabase-js memperbaruinya */
+    return r.ok?r.json():null}).then(function(u){
+    if(!u||!u.id||u.id!==cur.user.id)return;
+    paint(u);
+    try{var k='sb-'+ref+'-auth-token',n=JSON.parse(localStorage.getItem(k));
+     if(n&&n.user&&n.user.id===u.id&&JSON.stringify(n.user.user_metadata)!==JSON.stringify(u.user_metadata)){n.user=u;localStorage.setItem(k,JSON.stringify(n))}}catch(e){}
+   }).catch(function(){});
+  };
+  sync();
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)sync()});
+  window.addEventListener('focus',sync);
+  window.addEventListener('apf-user',function(e){if(e.detail)paint(e.detail)});
+ }
 }
 /* ---------- popup Login (tombol di header, semua halaman) ---------- */
 function initModal(btn){
@@ -158,7 +182,7 @@ if(P.length){var o=$('oauth');o.innerHTML='<p class="or">atau</p>';
  P.forEach(function(p){var b=document.createElement('button');b.type='button';b.className='oa p-'+p.replace(/[^a-z0-9]/gi,'');b.textContent='Lanjut dengan '+(NM[p]||p);
   b.onclick=function(){sb.auth.signInWithOAuth({provider:p,options:{redirectTo:location.origin+'/login.html?next='+encodeURIComponent(nextUrl())}}).then(function(x){if(x.error)say(human(x.error),true)})};o.appendChild(b)})}
 sb.auth.getSession().then(function(x){var u=x.data&&x.data.session&&x.data.session.user;
- if(recovery)view('new');else if(u){if(new URLSearchParams(location.search).has('next'))location.replace(nextUrl());else showMe(u)}else view('in')});
+ if(recovery)view('new');else if(u){if(new URLSearchParams(location.search).has('next'))location.replace(nextUrl());else{showMe(u);sb.auth.getUser().then(function(x){var n=x.data&&x.data.user;if(n&&n.id===u.id&&$('f-prof').hidden&&$('f-pw').hidden&&(JSON.stringify(n.user_metadata)!==JSON.stringify(u.user_metadata)||n.email!==u.email))showMe(n)}).catch(function(){})}}else view('in')});
 
 function run(form,fn){
  form.addEventListener('submit',function(e){e.preventDefault();

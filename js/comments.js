@@ -31,7 +31,7 @@ function start(anchor){
  sb.auth.getSession().then(function(r){user=r.data.session&&r.data.session.user;draw();syncUser()}).catch(function(){draw()});
  document.addEventListener('visibilitychange',function(){if(!document.hidden)syncUser()});
  window.addEventListener('focus',syncUser);
- sb.auth.onAuthStateChange(function(_e,s){var n=s&&s.user;if((n&&n.id)!==(user&&user.id)){user=n;draw()}else if(n){user=n;refreshMe()}});
+ sb.auth.onAuthStateChange(function(_e,s){var n=s&&s.user;if((n&&n.id)!==(user&&user.id)){user=n;draw()}else if(n){user=n;refreshMe();window.dispatchEvent(new CustomEvent('apf-user',{detail:n}))}});
 }
 
 function toast(m){
@@ -63,7 +63,7 @@ function syncUser(){
   var n=r.data&&r.data.user;
   if(r.error||!n||!user||n.id!==user.id)return;
   var changed=JSON.stringify(n.user_metadata)!==JSON.stringify(user.user_metadata)||n.email!==user.email;
-  user=n;refreshMe();
+  user=n;refreshMe();window.dispatchEvent(new CustomEvent('apf-user',{detail:n}));
   if(changed)sb.auth.refreshSession().catch(function(){}); /* simpan data terbaru ke sesi perangkat ini */
  }).catch(function(){});
 }
