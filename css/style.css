@@ -11,8 +11,9 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 .bar{display:flex;align-items:center;height:72px;gap:28px;color:var(--head)}
 .logo{font-weight:600;font-size:16px;display:flex;align-items:baseline;gap:6px}.logo small{font-size:11px;color:var(--alt);font-weight:400}
-nav{display:flex;gap:6px;flex:1}
-nav a{padding:6px 14px;border-radius:20px;font-size:14px;color:var(--body)}nav a:hover,nav a.on{background:var(--card);color:var(--head)}
+nav{display:flex;align-items:center;gap:4px;flex:1;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;white-space:nowrap;padding:6px 14px;border-radius:20px;font-size:14px;color:var(--body)}nav a:hover,nav a.on{background:var(--card);color:var(--head)}
 .tools{display:flex;gap:6px}.tools button{padding:8px;border-radius:50%}.tools button:hover{background:var(--card)}
 .search{display:none;border-bottom:1px solid var(--line)}.search.open{display:block}
 .search input{width:100%;border:0;outline:0;background:none;color:var(--head);font:inherit;font-size:17px;padding:18px 0}
