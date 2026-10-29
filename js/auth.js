@@ -226,11 +226,7 @@ $('pic-file').onchange=function(){var inp=$('pic-file'),f=inp.files[0];inp.value
  Promise.resolve().then(function(){
   need(/^image\/(png|jpeg|webp)$/.test(f.type),'Gunakan gambar PNG, JPG, atau WebP.');
   need(f.size<=8*1048576,'Ukuran file maksimal 8 MB.');return square(f)}).then(function(b){
-  var path=cu.id+'/avatar';
-  return sb.storage.from('avatars').upload(path,b,{upsert:true,contentType:b.type,cacheControl:'3600'}).then(function(x){
-   if(x.error)throw x.error;
-   var url=sb.storage.from('avatars').getPublicUrl(path).data.publicUrl+'?v='+Date.now();
-   return sb.auth.updateUser({data:{avatar_custom:url}})})}).then(picDone('Foto diperbarui.'))
+  return put(b)}).then(picDone('Foto diperbarui.'))
  .catch(function(e){say(human(e),true)}).then(function(){pbusy(false)})};
 $('pic-rm').onclick=function(){say('');pbusy(true);
  sb.storage.from('avatars').remove([cu.id+'/avatar']).then(function(){return sb.auth.updateUser({data:{avatar_custom:null}})})
@@ -238,11 +234,16 @@ $('pic-rm').onclick=function(){say('');pbusy(true);
 
 function encode(c){return new Promise(function(res,rej){c.toBlob(function(b){if(b&&b.type==='image/webp')return res(b);
  c.toBlob(function(j){j?res(j):rej(new Error('Gagal memproses gambar.'))},'image/jpeg',.88)},'image/webp',.85)})}
+/* error diberi label langkah supaya kelihatan bagian mana yang gagal */
+function stepErr(st,e){console.error('[avatar] '+st,e);var m=(e&&(e.message||e.error))||String(e);
+ var c=e&&(e.status||e.statusCode);return new Error('['+st+'] '+m+(c?' (kode '+c+')':''))}
 function put(b){var path=cu.id+'/avatar';
  return sb.storage.from('avatars').upload(path,b,{upsert:true,contentType:b.type,cacheControl:'3600'}).then(function(x){
-  if(x.error)throw x.error;
+  if(x.error)throw stepErr('1: upload ke storage',x.error);
   var url=sb.storage.from('avatars').getPublicUrl(path).data.publicUrl+'?v='+Date.now();
-  return sb.auth.updateUser({data:{avatar_custom:url}})})}
+  return sb.auth.updateUser({data:{avatar_custom:url}}).then(function(r){
+   if(r.error)throw stepErr('2: simpan ke profil',r.error);return r},function(e){throw stepErr('2: simpan ke profil',e)})},
+  function(e){throw stepErr('1: upload ke storage',e)})}
 /* avatar bawaan: digambar di browser lalu diunggah lewat jalur yang sama dengan foto sendiri */
 var PRESETS=['/images/avatars/1.webp','/images/avatars/2.webp','/images/avatars/3.webp','/images/avatars/4.webp','/images/avatars/5.webp','/images/avatars/6.webp','/images/avatars/7.webp','/images/avatars/8.webp'];
 function fromSrc(src){return new Promise(function(res,rej){var im=new Image();
