@@ -1,6 +1,7 @@
 (function(){
 var C=window.APF_CONFIG||{};
-if(!window.supabase||!C.supabaseUrl||/GANTI/.test(C.supabaseUrl)||/GANTI/.test(C.supabaseAnonKey||''))return;
+if(!window.supabase){console.warn('[comments] library supabase-js belum termuat sebelum comments.js');return}
+if(!C.supabaseUrl||!C.supabaseAnonKey||/GANTI/.test(C.supabaseUrl)||/GANTI/.test(C.supabaseAnonKey)){console.warn('[comments] APF_CONFIG.supabaseUrl / supabaseAnonKey belum diisi');return}
 var sb=window.supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);
 var qs=new URLSearchParams(location.search);
 var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
@@ -17,7 +18,7 @@ var user=null,root,list=[],likes={},mine={},sort='top',rc={},myReact=null,pendin
 
 var tries=0,t=setInterval(function(){
  var found=document.querySelector('.crumb'),missing=!found&&document.querySelector('.article .empty')&&document.querySelector('.back');
- if(found||missing||++tries>150){clearInterval(t);if(found&&slug)start(document.querySelector('.entry')||document.querySelector('.back'))}
+ if(found||missing||++tries>150){clearInterval(t);if(!found)console.warn('[comments] elemen .crumb tidak ditemukan, komentar tidak ditampilkan');if(!slug)console.warn('[comments] slug kosong');if(found&&slug)start(document.querySelector('.entry')||document.querySelector('.back'))}
 },100);
 
 function start(anchor){
@@ -25,6 +26,8 @@ function start(anchor){
  var ref=document.querySelector('.rec')||document.querySelector('.back');
  anchor.parentNode.insertBefore(root,ref||anchor.nextSibling);
  root.innerHTML='<div class="empty">Memuat komentar…</div>';
+ console.log('[comments] slug:',slug);
+ var rt;sb.channel('comments-'+slug).on('postgres_changes',{event:'*',schema:'public',table:'comments'},function(){clearTimeout(rt);rt=setTimeout(load,400)}).subscribe(function(st){console.log('[comments] realtime:',st)});
  sb.auth.getSession().then(function(r){user=r.data.session&&r.data.session.user;draw()}).catch(function(){draw()});
  sb.auth.onAuthStateChange(function(_e,s){var n=s&&s.user;if((n&&n.id)!==(user&&user.id)){user=n;draw()}});
 }
@@ -161,6 +164,8 @@ function load(){
   var el=document.getElementById('c-list');if(!el||my!==seq)return;
   if(a[0].error){console.error('Muat komentar gagal:',a[0].error);el.innerHTML='<div class="empty">Komentar tidak dapat dimuat: '+esc(a[0].error.message||'')+'</div>';return}
   list=a[0].data||[];likes={};mine={};
+  console.log('[comments] slug=',slug,'jumlah=',list.length);
+  if(a[1].error)console.error('Like count gagal:',a[1].error);
   (a[1].data||[]).forEach(function(x){likes[x.comment_id]=x.total});
   (a[2].data||[]).forEach(function(x){mine[x.comment_id]=1});
   var cn=document.getElementById('c-count');if(cn)cn.textContent=list.length;
@@ -184,7 +189,7 @@ function render(){
   if(!confirm('Hapus komentar ini?'))return;
   sb.from('comments').delete().eq('id',b.dataset.id).then(load)}});
  [].forEach.call(el.querySelectorAll('.cx-spo'),function(b){b.onclick=function(){b.classList.add('open')}});
- [].forEach.call(el.querySelectorAll('.cx-lk'),function(b){b.onclick=function(){like(+b.dataset.id)}});
+ [].forEach.call(el.querySelectorAll('.cx-lk'),function(b){b.onclick=function(){like(b.dataset.id)}});
  var so=document.getElementById('cx-sort');
  if(so)[].forEach.call(so.querySelectorAll('button'),function(b){b.onclick=function(){sort=b.dataset.s;[].forEach.call(so.querySelectorAll('button'),function(x){x.classList.toggle('on',x===b)});render()}});
 }
