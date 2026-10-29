@@ -237,8 +237,8 @@ function encode(c){return new Promise(function(res,rej){c.toBlob(function(b){if(
 /* error diberi label langkah supaya kelihatan bagian mana yang gagal */
 function stepErr(st,e){console.error('[avatar] '+st,e);var m=(e&&(e.message||e.error))||String(e);
  var c=e&&(e.status||e.statusCode);return new Error('['+st+'] '+m+(c?' (kode '+c+')':''))}
-/* Upload/hapus foto profil langsung ke storage (tidak lewat proxy /sb, karena proxy bermasalah untuk upload file) */
-var DIRECT=(C.directUrl||C.supabaseUrl).replace(/\/+$/,'');
+/* Upload/hapus foto profil lewat proxy /sb (supabase.co diblokir sebagian ISP), memakai fetch langsung agar error server terlihat jelas */
+var DIRECT=C.supabaseUrl.replace(/\/+$/,'');
 function direct(method,path,body,extra){
  return sb.auth.getSession().then(function(x){
   var tok=x.data&&x.data.session&&x.data.session.access_token;
@@ -250,9 +250,8 @@ function direct(method,path,body,extra){
   if(!r.ok)throw new Error((j&&(j.message||j.error))||('Server membalas '+r.status+': '+t.slice(0,120)));
   return j})});
 }
-function put(b){var path=cu.id+'/avatar',fd=new FormData();
- fd.append('cacheControl','3600');fd.append('',b);
- return direct('POST','avatars/'+path,fd,{'x-upsert':'true'}).then(function(){
+function put(b){var path=cu.id+'/avatar';
+ return direct('POST','avatars/'+path,b,{'Content-Type':b.type,'x-upsert':'true','cache-control':'max-age=3600'}).then(function(){
   var url=DIRECT+'/storage/v1/object/public/avatars/'+path+'?v='+Date.now();
   return sb.auth.updateUser({data:{avatar_custom:url}}).then(function(r){
    if(r.error)throw stepErr('2: simpan ke profil',r.error);return r},function(e){throw stepErr('2: simpan ke profil',e)})},
