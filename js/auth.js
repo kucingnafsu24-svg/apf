@@ -229,7 +229,7 @@ $('pic-file').onchange=function(){var inp=$('pic-file'),f=inp.files[0];inp.value
   return put(b)}).then(picDone('Foto diperbarui.'))
  .catch(function(e){say(human(e),true)}).then(function(){pbusy(false)})};
 $('pic-rm').onclick=function(){say('');pbusy(true);
- sb.storage.from('avatars').remove([cu.id+'/avatar']).then(function(){return sb.auth.updateUser({data:{avatar_custom:null}})})
+ direct('DELETE','avatars',JSON.stringify({prefixes:[cu.id+'/avatar']}),{'Content-Type':'application/json'}).then(function(){return sb.auth.updateUser({data:{avatar_custom:null}})})
  .then(picDone('Foto dihapus.')).catch(function(e){say(human(e),true)}).then(function(){pbusy(false)})};
 
 function encode(c){return new Promise(function(res,rej){c.toBlob(function(b){if(b&&b.type==='image/webp')return res(b);
@@ -237,10 +237,23 @@ function encode(c){return new Promise(function(res,rej){c.toBlob(function(b){if(
 /* error diberi label langkah supaya kelihatan bagian mana yang gagal */
 function stepErr(st,e){console.error('[avatar] '+st,e);var m=(e&&(e.message||e.error))||String(e);
  var c=e&&(e.status||e.statusCode);return new Error('['+st+'] '+m+(c?' (kode '+c+')':''))}
-function put(b){var path=cu.id+'/avatar';
- return sb.storage.from('avatars').upload(path,b,{upsert:true,contentType:b.type,cacheControl:'3600'}).then(function(x){
-  if(x.error)throw stepErr('1: upload ke storage',x.error);
-  var url=sb.storage.from('avatars').getPublicUrl(path).data.publicUrl+'?v='+Date.now();
+/* Upload/hapus foto profil langsung ke storage (tidak lewat proxy /sb, karena proxy bermasalah untuk upload file) */
+var DIRECT=(C.directUrl||C.supabaseUrl).replace(/\/+$/,'');
+function direct(method,path,body,extra){
+ return sb.auth.getSession().then(function(x){
+  var tok=x.data&&x.data.session&&x.data.session.access_token;
+  if(!tok)throw new Error('Sesi login habis. Silakan masuk lagi.');
+  var h=Object.assign({apikey:C.supabaseAnonKey,Authorization:'Bearer '+tok},extra||{});
+  return fetch(DIRECT+'/storage/v1/object/'+path,{method:method,headers:h,body:body});
+ }).then(function(r){return r.text().then(function(t){
+  var j=null;try{j=JSON.parse(t)}catch(e){}
+  if(!r.ok)throw new Error((j&&(j.message||j.error))||('Server membalas '+r.status+': '+t.slice(0,120)));
+  return j})});
+}
+function put(b){var path=cu.id+'/avatar',fd=new FormData();
+ fd.append('cacheControl','3600');fd.append('',b);
+ return direct('POST','avatars/'+path,fd,{'x-upsert':'true'}).then(function(){
+  var url=DIRECT+'/storage/v1/object/public/avatars/'+path+'?v='+Date.now();
   return sb.auth.updateUser({data:{avatar_custom:url}}).then(function(r){
    if(r.error)throw stepErr('2: simpan ke profil',r.error);return r},function(e){throw stepErr('2: simpan ke profil',e)})},
   function(e){throw stepErr('1: upload ke storage',e)})}
