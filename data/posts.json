@@ -15,15 +15,16 @@
     "Language": ["Textless"],
     "Category": ["Art"]
  },
-    "download": 
-       {
-      "title": "Download  Chiori.zip",
-      "links": [
-         { "name": "Pixeldrain", "url": "https://sfl.gl/i7BLvgx" },
-        { "name": "Dropbox", "url": "https://sfl.gl/uYsF" },
-        { "name": "Pcloud", "url": "https://sfl.gl/NFuWmQzo" }
-      ]
-    }
+    "download": [
+      {
+        "title": "Download Chiori.zip",
+        "links": [
+          { "name": "Pixeldrain", "url": "https://sfl.gl/i7BLvgx" },
+          { "name": "Dropbox", "url": "https://sfl.gl/uYsF" },
+          { "name": "Pcloud", "url": "https://sfl.gl/NFuWmQzo" }
+        ]
+      }
+    ]
   },
      {
   "slug": "DearonnusTyphoeus",
@@ -41,23 +42,24 @@
     "Language": ["Textless"],
     "Category": ["Art"]
  },
-    "download": 
-       {
-      "title": "Download Typhoeus.zip",
-      "links": [
-        { "name": "Pixeldrain", "url": "https://sfl.gl/mDvlE" },
-        { "name": "Dropbox", "url": "https://sfl.gl/mEvTnP" },
-        { "name": "Pcloud", "url": "https://sfl.gl/MFOjL3" }
-      ]
-    },
-       {
-      "title": "Download  Typhoeus - Dark Nipple.zip",
-      "links": [
-         { "name": "Pixeldrain", "url": "https://sfl.gl/OK2D19IS" },
-        { "name": "Dropbox", "url": "https://sfl.gl/1fSQs" },
-        { "name": "Pcloud", "url": "https://sfl.gl/AieikC" }
-      ]
-    }
+  "download": [
+      {
+        "title": "Download Typhoeus.zip",
+        "links": [
+          { "name": "Pixeldrain", "url": "https://sfl.gl/mDvlE" },
+          { "name": "Dropbox", "url": "https://sfl.gl/mEvTnP" },
+          { "name": "Pcloud", "url": "https://sfl.gl/MFOjL3" }
+        ]
+      },
+      {
+        "title": "Download Typhoeus - Dark Nipple.zip",
+        "links": [
+          { "name": "Pixeldrain", "url": "https://sfl.gl/OK2D19IS" },
+          { "name": "Dropbox", "url": "https://sfl.gl/1fSQs" },
+          { "name": "Pcloud", "url": "https://sfl.gl/AieikC" }
+        ]
+      }
+    ]
   },
   {
   "slug": "FULLNIERANIMATION",
