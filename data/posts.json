@@ -42,25 +42,25 @@
     "Language": ["Textless", "English"],
     "Category": ["Art", "clipfile"]
  },
-    "download": [
-      {
-        "title": "Download Kotone CSP files.zip",
-        "links": [
-          { "name": "Pixeldrain", "url": "https://sfl.gl/G4SyC" },
-          { "name": "Dropbox", "url": "https://sfl.gl/utjPlO" },
-          { "name": "Pcloud", "url": "https://sfl.gl/X8PVI" }
-        ]
-      },
-      {
-        "title": "Download Kotone.zip",
-        "links": [
-          { "name": "Pixeldrain", "url": "https://sfl.gl/cb4M" },
-          { "name": "Dropbox", "url": "https://sfl.gl/1MKtL77" },
-          { "name": "Pcloud", "url": "https://sfl.gl/nyUa" }
-        ]
-      }
-    ]
-  },
+   "download": [
+    {
+      "title": "Download Kotone CSP files.zip",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/G4SyC" },
+        { "name": "Dropbox", "url": "https://sfl.gl/utjPlO" },
+        { "name": "Pcloud", "url": "https://sfl.gl/X8PVI" }
+      ]
+    },
+    {
+      "title": "Download Kotone.zip",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/cb4M" },
+        { "name": "Dropbox", "url": "https://sfl.gl/1MKtL77" },
+        { "name": "Pcloud", "url": "https://sfl.gl/nyUa" }
+      ]
+    }
+  ]
+},
   {
   "slug": "DearonnusChioriCOM",
   "title": "Chiori - COM",
