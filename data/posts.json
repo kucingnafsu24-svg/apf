@@ -1,5 +1,40 @@
 [
   {
+  "slug": "106",
+  "title": "AN-94 PSD",
+  "author": "Admin",
+  "date": "2026-11-06",
+  "image": "/images/coverruzhia1.webp",
+  "excerpt": "PSD (normal&差分)",
+  "content": "PSD (normal&差分)",
+  "tags": {
+    "Artist": ["ruzhai"],
+    "Parody": ["Girls' Frontline"],
+    "Character": ["AN-94"],
+    "tag": ["Swimsuit", "Bikini", "armpits"],
+    "Language": ["Textless", "English"],
+    "Category": ["PSD"]
+ },
+    "download": [
+      {
+        "title": "Download AN-94水着 差分.psd",
+        "links": [
+          { "name": "Pixeldrain", "url": "https://sfl.gl/YhgSTlx" },
+          { "name": "Dropbox", "url": "https://sfl.gl/1Q0vdd2" },
+          { "name": "Pcloud", "url": "https://sfl.gl/hm2Qc" }
+        ]
+      },
+     {
+        "title": "Download AN-94水着.psd",
+        "links": [
+          { "name": "Pixeldrain", "url": "https://sfl.gl/fZQ1" },
+          { "name": "Dropbox", "url": "https://sfl.gl/Dxaw" },
+          { "name": "Pcloud", "url": "https://sfl.gl/ouDdH" }
+        ]
+      }
+    ]
+  },
+  {
   "slug": "105",
   "title": "「 ASMR 」- Untuk kamu yang sudah lelah dan harus tidur【 Vtuber ID   Cecillia Hanarisu 】",
   "author": "Admin",
