@@ -3,30 +3,30 @@
     "title": "七氏",
     "label": "七氏",
     "image": "/images/cover-slider1.webp",
-    "url": "/?tag=artist%3A七氏"
+    "url": "/artist/%E4%B8%83%E6%B0%8F"
   },
   {
     "title": "Maplestar",
     "label": "Maplestar",
     "image": "/images/cover-slider2.webp",
-    "url": "/?tag=artist%3AMaplestar"
+    "url": "/artist/Maplestar"
   },
   {
     "title": "CosplayTales",
     "label": "CosplayTales",
     "image": "/images/cover-slider1.webp",
-    "url": "/?tag=cosplayer%3ACosplayTales"
+    "url": "/cosplayer/CosplayTales"
   },
   {
     "title": "Ppolar",
     "label": "Ppolar",
     "image": "/images/cover-slider4.webp",
-    "url": "/?label=Ppolar"
+    "url": "/label/Ppolar"
   },
-    {
+  {
     "title": "Dearonnus",
     "label": "Dearonnus",
     "image": "/images/slider5.webp",
-    "url": "/?tag=artist%3ADearonnus"
+    "url": "/artist/Dearonnus"
   }
 ]
