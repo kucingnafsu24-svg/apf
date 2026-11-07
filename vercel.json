@@ -9,7 +9,7 @@
       "destination": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"
     },
     {
-      "source": "/post/:s",
+      "source": "/g/:s",
       "destination": "/post.html"
     }
   ]
