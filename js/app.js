@@ -48,10 +48,10 @@ P=P.filter(Boolean).map(function(p){
 var GN={artist:'Artist',genre:'Genre',category:'Category'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
 Object.keys(TG).forEach(function(k){GN[k.toLowerCase()]=TG[k]});
 function gname(k){return GN[k]||(k.charAt(0).toUpperCase()+k.slice(1))}
-var PRETTY={artist:1,genre:1,category:1};
+var PRETTY={artist:1,genre:1,category:1,parody:1};
 function tlink(k,v){k=String(k).toLowerCase();return PRETTY[k]?'/'+k+'/'+encodeURIComponent(v):'/?tag='+encodeURIComponent(k+':'+v)}
 function tagFromUrl(){var q=new URLSearchParams(location.search).get('tag');if(q)return q;
- var m=location.pathname.match(/^\/(artist|genre|category)\/([^\/]+)\/?$/i);
+ var m=location.pathname.match(/^\/(artist|genre|category|parody)\/([^\/]+)\/?$/i);
  if(!m)return '';try{return m[1].toLowerCase()+':'+decodeURIComponent(m[2])}catch(e){return m[1].toLowerCase()+':'+m[2]}}
 function chips(p){var ks=Object.keys(p.tags);if(!ks.length)return '';
  return '<div class="tagrows">'+ks.map(function(k){return '<div class="tagrow"><span>'+esc(gname(k))+'</span>'+
