@@ -142,7 +142,7 @@ function snippet(p,t){
  else s=p.excerpt||p.text.slice(0,160);
  return hl(s,t);
 }
-var href=function(p){return '/post.html?s='+encodeURIComponent(p.slug)};
+var href=function(p){return '/post/'+encodeURIComponent(p.slug)};
 var qurl=function(t){var s=build(t);return s?'/?q='+encodeURIComponent(s):'/'};
 
 /* ---- riwayat pencarian (disimpan di browser ini): bintang = disematkan, ✕ = hapus ---- */

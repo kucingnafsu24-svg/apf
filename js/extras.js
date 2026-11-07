@@ -53,7 +53,7 @@
   nav.className='pnav';nav.setAttribute('role','navigation');nav.setAttribute('aria-label','Navigasi artikel');
   function box(x,cls,label){
    if(!x){nav.appendChild(document.createElement('span'));return}
-   var a=document.createElement('a');a.className=cls;a.href='/post.html?s='+encodeURIComponent(x.slug);
+   var a=document.createElement('a');a.className=cls;a.href='/post/'+encodeURIComponent(x.slug);
    a.rel=cls==='pv'?'prev':'next';
    var s=document.createElement('small');s.textContent=label;
    var t=document.createElement('b');t.textContent=x.title;

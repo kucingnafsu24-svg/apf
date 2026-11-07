@@ -53,9 +53,9 @@ function chips(p){var ks=Object.keys(p.tags);if(!ks.length)return '';
  return '<div class="tagrows">'+ks.map(function(k){return '<div class="tagrow"><span>'+esc(gname(k))+'</span>'+
   p.tags[k].map(function(v){return '<a class="tg tg-'+esc(k.replace(/[^a-z0-9]/g,''))+'" href="'+tlink(k,v)+'">'+esc(v)+'</a>'}).join('')+'</div>'}).join('')+'</div>'}
 function thumb(p,big){var b=p.comments?'<span class="badge"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 20l1-4.6A8 8 0 1 1 21 12z"/></svg>'+p.comments+'</span>':'';
- if(p.image)return '<'+(big?'div':'a href="/post.html?s='+encodeURIComponent(p.slug)+'"')+' class="thumb">'+b+'<img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy"></'+(big?'div':'a')+'>';
+ if(p.image)return '<'+(big?'div':'a href="/post/'+encodeURIComponent(p.slug)+'"')+' class="thumb">'+b+'<img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy"></'+(big?'div':'a')+'>';
  var st=p.thumb.title.length>6?' style="font-size:'+(big?36:18)+'px"':'';
- return '<'+(big?'div':'a href="/post.html?s='+encodeURIComponent(p.slug)+'"')+' class="thumb '+p.thumb.cls+'">'+b+'<span><strong'+st+'>'+esc(p.thumb.title)+'</strong><small>'+esc(p.thumb.sub)+'</small></span></'+(big?'div':'a')+'>'}
+ return '<'+(big?'div':'a href="/post/'+encodeURIComponent(p.slug)+'"')+' class="thumb '+p.thumb.cls+'">'+b+'<span><strong'+st+'>'+esc(p.thumb.title)+'</strong><small>'+esc(p.thumb.sub)+'</small></span></'+(big?'div':'a')+'>'}
 function avatar(p){var C=window.APF_CONFIG||{},u=p.authorImage||(C.authors&&C.authors[p.author]);
  return u?'<img class="av" src="'+esc(u)+'" alt="" loading="lazy">':'<span class="av">'+esc(p.author[0])+'</span>'}
 function vlist(p){return (Array.isArray(p.videos)?p.videos:[]).map(function(v,i){
@@ -112,7 +112,7 @@ function related(cur){
  if(pick.length<4)all.filter(function(x){return x.s<=0}).slice(0,6-pick.length).forEach(function(x){x.why='Terbaru';pick.push(x)});
  if(!pick.length)return '';
  return '<section class="rec"><div class="title"><h2>Rekomendasi untuk Anda</h2><i></i></div><div class="rec-grid">'+pick.map(function(x){
-  return '<div class="rec-i">'+thumb(x.p)+'<h3><a href="/post.html?s='+encodeURIComponent(x.p.slug)+'">'+esc(x.p.title)+'</a></h3><div class="rec-m">'+(x.why?'<span>'+esc(x.why)+'</span>':'')+'<span>'+fmt(x.p.date)+'</span></div></div>'}).join('')+'</div></section>'}
+  return '<div class="rec-i">'+thumb(x.p)+'<h3><a href="/post/'+encodeURIComponent(x.p.slug)+'">'+esc(x.p.title)+'</a></h3><div class="rec-m">'+(x.why?'<span>'+esc(x.why)+'</span>':'')+'<span>'+fmt(x.p.date)+'</span></div></div>'}).join('')+'</div></section>'}
 function authorLine(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b></div>'}
 function chipRow(k,vals){return '<div class="tagrow"><span>'+esc(gname(k))+'</span>'+vals.map(function(v){
  return '<a class="tg tg-'+esc(k.replace(/[^a-z0-9]/g,''))+'" href="'+tlink(k,v)+'">'+esc(v)+'</a>'}).join('')+'</div>'}
@@ -131,13 +131,13 @@ function bottomRows(p){var ks=[];
 function meta(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b> in '+p.labels.map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join(' / ')+'</div>'}
 function card(p){
  return '<article class="post"><div>'+(p.sponsored?'<div class="tag">Sponsored</div>':meta(p))+
- '<h3><a href="/post.html?s='+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a></h3>'+(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+
- (p.sponsored?'<a class="more" href="/post.html?s='+encodeURIComponent(p.slug)+'">Read more</a>':'<span class="date">'+fmt(p.date)+'</span>')+'</div>'+thumb(p)+'</article>'}
+ '<h3><a href="/post/'+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a></h3>'+(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+
+ (p.sponsored?'<a class="more" href="/post/'+encodeURIComponent(p.slug)+'">Read more</a>':'<span class="date">'+fmt(p.date)+'</span>')+'</div>'+thumb(p)+'</article>'}
 
 var L={},Lk={};P.forEach(function(p){p.labels.forEach(function(l){var k=String(l).toLowerCase();if(!Lk[k]){Lk[k]=1;L[l]=1}})});
 if($('pop')){
  var pop=P.slice().sort(function(a,b){return b.comments-a.comments}).slice(0,3);
- $('pop').innerHTML=pop.map(function(p){return '<a href="/post.html?s='+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a>'}).join('');
+ $('pop').innerHTML=pop.map(function(p){return '<a href="/post/'+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a>'}).join('');
 }
 if($('labels')){
  $('labels').innerHTML=Object.keys(L).map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join('');
