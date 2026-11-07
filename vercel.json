@@ -11,6 +11,10 @@
     {
       "source": "/g/:s",
       "destination": "/post.html"
+    },
+    {
+      "source": "/:group(artist|genre|category)/:v",
+      "destination": "/index.html"
     }
   ]
 }
