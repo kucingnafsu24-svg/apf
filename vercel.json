@@ -7,6 +7,10 @@
     {
       "source": "/js/lib.js",
       "destination": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"
+    },
+    {
+      "source": "/post/:s",
+      "destination": "/post.html"
     }
   ]
 }
