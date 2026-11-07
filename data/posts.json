@@ -41,22 +41,21 @@
     "tag": ["cute", "dark fantasy", "2d", "metroidvania", "female protagonist"],
     "Language": ["English"],
     "Category": ["Game PC"]
-      },
-    "videos": [
-    { "title": "Announcement Trailer", "url": "https://www.youtube.com/embed/FePjstNDJuA"},
-    { "title": " Full Release Announcement Trailer", "url": "https://www.youtube.com/embed/cvSf1pOO084"},
-    { "title": "Final Trailer", "url": "https://www.youtube.com/embed/Q9wD4brP7nA"}
-  ],
- },
-    "download": [
-     {
-        "title": "Download Ender Magnolia.zip",
-        "links": [
-          { "name": "Pixeldrain", "url": "https://sfl.gl/b9mWm" }
-        ]
-      }
-    ]
   },
+  "videos": [
+    { "title": "Announcement Trailer", "url": "https://www.youtube.com/embed/FePjstNDJuA" },
+    { "title": "Full Release Announcement Trailer", "url": "https://www.youtube.com/embed/cvSf1pOO084" },
+    { "title": "Final Trailer", "url": "https://www.youtube.com/embed/Q9wD4brP7nA" }
+  ],
+  "download": [
+    {
+      "title": "Download Ender Magnolia.zip",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/b9mWm" }
+      ]
+    }
+  ]
+},
    {
   "slug": "116",
   "title": "Marie's birth scene preview",
