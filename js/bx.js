@@ -12,7 +12,7 @@
   var a=document.createElement('a');
   if(ok(ad.url)){a.href=ad.url;a.target='_blank';a.rel='noopener sponsored'}
   if(ok(ad.image)){
-   var im=document.createElement('img');im.src=ad.image;im.alt=String(ad.alt||'Sponsor');
+   var im=document.createElement('img');im.src=ad.image;im.alt=String(ad.alt||'');
    if(+ad.width)im.width=+ad.width;if(+ad.height)im.height=+ad.height;a.appendChild(im)}
   else{a.className='bx-ph';a.textContent=String(ad.text)}
   return a}
