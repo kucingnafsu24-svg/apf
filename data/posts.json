@@ -41,6 +41,12 @@
     "tag": ["cute", "dark fantasy", "2d", "metroidvania", "female protagonist"],
     "Language": ["English"],
     "Category": ["Game PC"]
+      },
+    "videos": [
+    { "title": "Announcement Trailer", "url": "https://www.youtube.com/embed/FePjstNDJuA"},
+    { "title": " Full Release Announcement Trailer", "url": "https://www.youtube.com/embed/cvSf1pOO084"},
+    { "title": "Final Trailer", "url": "https://www.youtube.com/embed/Q9wD4brP7nA"}
+  ],
  },
     "download": [
      {
