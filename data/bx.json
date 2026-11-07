@@ -11,5 +11,11 @@
       "text": "Ruang iklan tersedia · hubungi kami",
       "url": "https://discord.gg/GkP4rbEksw"
     }
-  ]
+  ],
+  "tab": {
+    "side": {
+      "label": "Partner",
+      "open": false
+    }
+  }
 }
