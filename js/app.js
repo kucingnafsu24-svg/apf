@@ -48,8 +48,11 @@ P=P.filter(Boolean).map(function(p){
 var GN={artist:'Artist',genre:'Genre',category:'Category'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
 Object.keys(TG).forEach(function(k){GN[k.toLowerCase()]=TG[k]});
 function gname(k){return GN[k]||(k.charAt(0).toUpperCase()+k.slice(1))}
-var PRETTY={};['artist','genre','category','parody','tag','game pc','language','publisher','developer'].forEach(function(g){PRETTY[g]=1});
+var PRETTY={};['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer'].forEach(function(g){PRETTY[g]=1});
 function tlink(k,v){k=String(k).toLowerCase();return PRETTY[k]?'/'+encodeURIComponent(k.replace(/\s+/g,'-'))+'/'+encodeURIComponent(v):'/?tag='+encodeURIComponent(k+':'+v)}
+function llink(l){return '/label/'+encodeURIComponent(l)}
+function labelFromUrl(){var q=new URLSearchParams(location.search).get('label');if(q)return q;
+ var m=location.pathname.match(/^\/label\/([^\/]+)\/?$/i);if(!m)return '';try{return decodeURIComponent(m[1])}catch(e){return m[1]}}
 function tagFromUrl(){var q=new URLSearchParams(location.search).get('tag');if(q)return q;
  var m=location.pathname.match(/^\/([^\/]+)\/([^\/]+)\/?$/);if(!m)return '';
  try{var g=decodeURIComponent(m[1]).toLowerCase().replace(/-/g,' '),v=decodeURIComponent(m[2])}catch(e){return ''}
@@ -124,7 +127,7 @@ function chipRow(k,vals){return '<div class="tagrow"><span>'+esc(gname(k))+'</sp
 function labelRow(p){
  if(!p.hasLabels)return '';
  return '<div class="tagrow"><span>Label</span>'+p.labels.map(function(l){
-  return '<a class="tg tg-label" href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join('')+'</div>'}
+  return '<a class="tg tg-label" href="'+llink(l)+'">'+esc(l)+'</a>'}).join('')+'</div>'}
 function artistRow(p){return p.tags.artist?chipRow('artist',p.tags.artist):''}
 function bottomRows(p){var ks=[];
  if(p.tags.genre)ks.push('genre');
@@ -145,10 +148,10 @@ if($('pop')){
  $('pop').innerHTML=pop.map(function(p){return '<a href="/g/'+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a>'}).join('');
 }
 if($('labels')){
- $('labels').innerHTML=Object.keys(L).map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join('');
+ $('labels').innerHTML=Object.keys(L).map(function(l){return '<a href="'+llink(l)+'">'+esc(l)+'</a>'}).join('');
 }
 
-var qs0=new URLSearchParams(location.search),cur=qs0.get('label'),curTag=String(tagFromUrl()).toLowerCase(),curPost=null;
+var qs0=new URLSearchParams(location.search),cur=labelFromUrl(),curTag=String(tagFromUrl()).toLowerCase(),curPost=null;
 var lc2=function(x){return String(x).toLowerCase()};
 var AR={},ARk={};P.forEach(function(p){(p.tags.artist||[]).forEach(function(a){var k=lc2(a),c=ARk[k]||(ARk[k]=a);AR[c]=(AR[c]||0)+1})});
 var auto=Object.keys(AR).length?Object.keys(AR).sort(function(a,b){return AR[b]-AR[a]||a.localeCompare(b)}).map(function(a){return {name:a,artist:a}}):Object.keys(L).map(function(l){return {name:l}});
@@ -161,7 +164,7 @@ function topicOf(t){
   if(g==='tag'&&v.indexOf(':')>0){g=lc2(v.slice(0,v.indexOf(':')));v=v.slice(v.indexOf(':')+1)}
   if(g==='file')g='category';
   return {u:tlink(g,v),g:g,v:v}}
- var l=t.label||t.name;return {u:'/?label='+encodeURIComponent(l),l:l}}
+ var l=t.label||t.name;return {u:llink(l),l:l}}
 var drawTopics=function(a){$('topics').innerHTML=a.map(function(t){
   var o=topicOf(t),on=false;
   if(o.g)on=curTag===lc2(o.g+':'+o.v)||!!(curPost&&(curPost.tags[o.g]||[]).some(function(x){return lc2(x)===lc2(o.v)}));
@@ -171,7 +174,7 @@ var drawTopics=function(a){$('topics').innerHTML=a.map(function(t){
 fetch('/data/topics.json').then(function(x){return x.json()}).then(function(a){drawTopics(Array.isArray(a)&&a.length?a:auto)}).catch(function(){drawTopics(auto)});
 var list=$('posts'),qs=new URLSearchParams(location.search);
 if(list){
- var label=qs.get('label'),tag=tagFromUrl(),tk='',tv='';
+ var label=labelFromUrl(),tag=tagFromUrl(),tk='',tv='';
  if(tag.indexOf(':')>0){tk=tag.slice(0,tag.indexOf(':')).toLowerCase();tv=tag.slice(tag.indexOf(':')+1);if(tk==='file')tk='category'}
  var data=label?P.filter(function(p){return p.labels.some(function(l){return lc2(l)===lc2(label)})}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P;
  if(!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
