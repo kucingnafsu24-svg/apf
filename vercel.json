@@ -13,7 +13,7 @@
       "destination": "/post.html"
     },
     {
-      "source": "/:group(artist|genre|category|parody|Artist|Genre|Category|Parody)/:v",
+      "source": "/:group(Artist|artist|Category|category|Developer|developer|Game-PC|Game-Pc|game-pc|Genre|genre|Language|language|Parody|parody|Publisher|publisher|Tag|tag)/:v",
       "destination": "/index.html"
     }
   ]
