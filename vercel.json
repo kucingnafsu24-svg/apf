@@ -13,7 +13,7 @@
       "destination": "/post.html"
     },
     {
-      "source": "/:group(artist|genre|category)/:v",
+      "source": "/:group(artist|genre|category|parody|Artist|Genre|Category|Parody)/:v",
       "destination": "/index.html"
     }
   ]
