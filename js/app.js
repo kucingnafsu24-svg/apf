@@ -133,11 +133,11 @@ function bottomRows(p){var ks=[];
  var h=labelRow(p)+artistRow(p)+ks.map(function(k){return chipRow(k,p.tags[k])}).join('');
  if(!h)return '';
  return '<div class="tagrows tagbottom">'+h+'</div>'}
-function meta(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b> in '+p.labels.map(function(l){return '<a href="/?label='+encodeURIComponent(l)+'">'+esc(l)+'</a>'}).join(' / ')+'</div>'}
+function meta(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b><span>post '+fmt(p.date)+'</span></div>'}
 function card(p){
  return '<article class="post"><div>'+(p.sponsored?'<div class="tag">Sponsored</div>':meta(p))+
  '<h3><a href="/g/'+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a></h3>'+(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+
- (p.sponsored?'<a class="more" href="/g/'+encodeURIComponent(p.slug)+'">Read more</a>':'<span class="date">'+fmt(p.date)+'</span>')+'</div>'+thumb(p)+'</article>'}
+ '<a class="more" href="/g/'+encodeURIComponent(p.slug)+'">Read more</a>'+'</div>'+thumb(p)+'</article>'}
 
 var L={},Lk={};P.forEach(function(p){p.labels.forEach(function(l){var k=String(l).toLowerCase();if(!Lk[k]){Lk[k]=1;L[l]=1}})});
 if($('pop')){
@@ -206,7 +206,7 @@ if(list){
   document.title=p.title+' — Fletro Pro';
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
-  a.innerHTML='<div class="crumb"><a href="/">Home</a> / '+esc(p.labels[0])+'</div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
+  a.innerHTML='<div class="crumb" hidden></div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
    '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
   bindVideos();bindGallery(p);
  }
