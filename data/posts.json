@@ -16,7 +16,7 @@
     "Category": ["Animation", "2d animation"]
  },
     "videos": [
-    { "title": "server 1", "url": "https://player.vimeo.com/video/1149227303" },
+    { "title": "server 1", "url": "https://player.vimeo.com/video/1149227303" }
   ],
     "download": [
         {
@@ -45,7 +45,7 @@
     "Category": ["Game PC"]
   },
   "videos": [
-    { "title": "Trailer", "url": "https://player.vimeo.com/video/1149227303" },
+    { "title": "Trailer", "url": "https://player.vimeo.com/video/1149227303" }
   ],
   "download": [
     {
