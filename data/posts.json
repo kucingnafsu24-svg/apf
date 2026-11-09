@@ -49,7 +49,7 @@
   "date": "2026-11-10",
   "image": "/images/Micaela/Micaela1.webp",
   "excerpt": "The chara is Micaela from a game called Monster Girl Quest The rest is on the attachments",
-  "content": "The chara is Micaela from a game called Monster Girl Quest\n\nThe rest is on the attachments\n\n<img src='images/Micaela/Micaela2.webp' loading='lazy'><br>\n<img src='images/Micaela/Micaela3.webp' loading='lazy'>",
+  "content": "The chara is Micaela from a game called Monster Girl Quest\n\nThe rest is on the attachments\n\n\n<img src='/images/Micaela/Micaela2.webp' loading='lazy'>\n<img src='/images/Micaela/Micaela3.webp' loading='lazy'>",
   "tags": {
     "Artist": ["Dearonnus"],
     "Parody": ["Monster Girl Quest"],
