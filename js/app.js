@@ -89,27 +89,37 @@ function alist(p){var a=p.audio;a=Array.isArray(a)?a:(a?[a]:[]);
 function audioCss(){if(document.getElementById('aud-css'))return;var st=document.createElement('style');st.id='aud-css';
  st.textContent='.aud audio{display:block;width:100%;margin:0 0 10px}'+
   '.aud-one{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--head);overflow-wrap:anywhere}'+
-  '.aud-list{display:flex;flex-direction:column;gap:6px}'+
-  '.aud-list button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--head);font-size:14px;line-height:1.4;text-align:left;cursor:pointer}'+
+  /* daftar track: satu baris, digeser ke samping (tidak memanjang ke bawah) */
+  '.aud-list{position:relative;display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overflow-y:hidden;padding:0 0 6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}'+
+  '.aud-list button{flex:none;display:flex;align-items:center;gap:8px;max-width:210px;padding:8px 14px;border:1px solid var(--line);border-radius:20px;background:var(--card);color:var(--head);font-size:13.5px;line-height:1.3;white-space:nowrap;cursor:pointer}'+
   '.aud-list button:hover{border-color:var(--link)}'+
   '.aud-list button.on{border-color:var(--link);color:var(--link);font-weight:600}'+
-  '.aud-n{flex:none;min-width:20px;text-align:center;font-size:12px;color:var(--alt)}'+
+  '.aud-n{flex:none;font-size:12px;color:var(--alt)}'+
   '.aud-list button.on .aud-n{color:var(--link)}'+
-  '.aud-t{min-width:0;overflow-wrap:anywhere}';
+  '.aud-t{min-width:0;overflow:hidden;text-overflow:ellipsis}';
  document.head.appendChild(st)}
 function audios(p){var a=alist(p);if(!a.length)return '';audioCss();
  var C=window.APF_CONFIG||{},t=String(p.audioTitle||C.audioTitle||'Audio');
  return '<div class="sec"><div class="sec-h">'+esc(t)+'</div><div class="sec-b"><div class="aud" id="aplayer">'+
-  (a.length<2?'<div class="aud-one">'+esc(a[0].title)+'</div>':'')+
+  '<div class="aud-one" id="aud-now">'+esc(a[0].title)+'</div>'+
   '<audio controls preload="none" src="'+esc(a[0].url)+'"></audio>'+
-  (a.length>1?'<div class="aud-list">'+a.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'"><span class="aud-n">'+(i+1)+'</span><span class="aud-t">'+esc(x.title)+'</span></button>'}).join('')+'</div>':'')+
+  (a.length>1?'<div class="aud-list" id="aud-list">'+a.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'" data-t="'+esc(x.title)+'" title="'+esc(x.title)+'"><span class="aud-n">'+(i+1)+'</span><span class="aud-t">'+esc(x.title)+'</span></button>'}).join('')+'</div>':'')+
   '</div></div></div>'}
 function bindAudio(){var w=document.getElementById('aplayer');if(!w)return;
- var au=w.querySelector('audio'),bs=w.querySelectorAll('.aud-list button'),cur=0;if(!bs.length)return;
+ var au=w.querySelector('audio'),ls=document.getElementById('aud-list'),now=document.getElementById('aud-now'),bs=ls?ls.querySelectorAll('button'):[],cur=0;if(!bs.length)return;
  function play(i){cur=i;au.src=bs[i].getAttribute('data-u');var pr=au.play();if(pr&&pr.catch)pr.catch(function(){});
-  [].forEach.call(bs,function(b,k){b.className=k===i?'on':''})}
+  [].forEach.call(bs,function(b,k){b.className=k===i?'on':''});
+  if(now)now.textContent=bs[i].getAttribute('data-t');
+  /* geser daftar agar track aktif ada di tengah (hanya menggeser daftar, bukan halaman) */
+  ls.scrollTo({left:Math.max(0,bs[i].offsetLeft-(ls.clientWidth-bs[i].offsetWidth)/2),behavior:'smooth'})}
  [].forEach.call(bs,function(b,k){b.onclick=function(){play(k)}});
- au.addEventListener('ended',function(){if(cur+1<bs.length)play(cur+1)})}
+ au.addEventListener('ended',function(){if(cur+1<bs.length)play(cur+1)});
+ /* mouse: roda scroll menggeser daftar ke samping (halaman tetap bisa discroll di ujung daftar) */
+ ls.addEventListener('wheel',function(e){
+  if(ls.scrollWidth<=ls.clientWidth||Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
+  var atL=ls.scrollLeft<=0&&e.deltaY<0,atR=ls.scrollLeft+ls.clientWidth>=ls.scrollWidth-1&&e.deltaY>0;
+  if(atL||atR)return;
+  ls.scrollLeft+=e.deltaY;e.preventDefault()},{passive:false})}
 function glist(p){return (Array.isArray(p.gallery)?p.gallery:[]).map(function(g){
  var o=typeof g==='string'?{url:g}:(g||{});return {url:String(o.url||''),cap:o.caption?String(o.caption):''}}).filter(function(g){return /^(https?:\/\/|\/(?!\/))/.test(g.url)})}
 function gallery(p){var g=glist(p);if(!g.length)return '';
