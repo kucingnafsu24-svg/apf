@@ -27,7 +27,7 @@
     }
   ]
 },
-    {
+   {
   "slug": "143", 
   "title": "Ender Magnolia Bloom in the Mist OST",
   "author": "Admin",
@@ -40,6 +40,12 @@
     "Year": ["2025"],
     "Category": ["Ost", "soundtrack", "Ost Game","Original Soundtrack", "Game"]
  },
+"audioTitle": "Ender Magnolia OST",
+"audio": [
+  { "title": "01. L", "url": "https://cdn.jsdelivr.net/gh/kucingnafsu24-svg/apf@main/audio/Ender Magnolia/01. L.mp3" },
+  { "title": "02. Memories", "url": "https://cdn.jsdelivr.net/gh/kucingnafsu24-svg/apf@main/audio/Ender Magnolia/02. Memories.mp3" }
+]
+],
     "download": [
         {
         "title": "Download Ender Magnolia Bloom in the Mist OST mp3",
@@ -396,6 +402,7 @@
     "Language": ["English"],
     "Category": ["Game PC", "Full realese"]
   },
+  "videoTitle": "Trailer",
   "videos": [
     { "title": "Trailer", "url": "https://player.vimeo.com/video/1149227303" }
   ],
@@ -923,6 +930,7 @@
     "Language": ["English"],
     "Category": ["Game PC"]
   },
+  "videoTitle": "Trailer",
   "videos": [
     { "title": "Announcement Trailer", "url": "https://www.youtube.com/embed/FePjstNDJuA" },
     { "title": "Full Release Announcement Trailer", "url": "https://www.youtube.com/embed/cvSf1pOO084" },
