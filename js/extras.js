@@ -1,7 +1,26 @@
 /* Fitur tambahan, berdiri sendiri (tidak mengubah app.js):
+   0) Dock bawah mobile (tombol Trakteer, bisa ditutup)
    1) Menu topik (mobile): tombol buka/tutup panel samping
    2) Navigasi artikel Sebelumnya / Selanjutnya di post.html */
 (function(){
+ /* ---------- 0) Dock bawah ---------- */
+ try{
+ (function(){
+  var d=document.getElementById('dock'),x=document.getElementById('dock-x');
+  if(!d||!x)return;
+  var K='dockX:'+location.pathname,min=false;
+  try{min=sessionStorage.getItem(K)==='1'}catch(e){}
+  var UP='<svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg>',XX='&#10005;';
+  function set(m){
+   min=m;d.classList.toggle('min',m);document.body.classList.toggle('has-dock',!m);
+   x.innerHTML=m?UP:XX;x.setAttribute('aria-label',m?'Buka':'Tutup');
+   try{sessionStorage.setItem(K,m?'1':'0')}catch(e){}
+  }
+  d.hidden=false;set(min);
+  x.addEventListener('click',function(){set(!min)});
+ })();
+ }catch(e){}
+
  /* ---------- 1) Menu topik mobile ---------- */
  try{
   var b=document.getElementById('menu'),B=document.body;
@@ -68,8 +87,9 @@
   if(done||!navEl)return;
   if(!art.querySelector('h1'))return;            /* tunggu artikel selesai dirender app.js */
   if(art.querySelector('.pnav')){done=true;return}
-  var rec=art.querySelector('.rec'),back=art.querySelector('a.back');
-  if(rec)art.insertBefore(navEl,rec);
+  var rec=art.querySelector('.rec'),back=art.querySelector('a.back'),cm=art.querySelector('#comments');
+  if(cm)cm.parentNode.insertBefore(navEl,cm.nextSibling);   /* komentar sudah ada: taruh tepat setelahnya */
+  else if(rec)art.insertBefore(navEl,rec);
   else if(back)art.insertBefore(navEl,back);
   else art.appendChild(navEl);
   done=true;

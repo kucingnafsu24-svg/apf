@@ -1,6 +1,6 @@
 (function(){
 var C=window.APF_CONFIG||{},ok=!!(C.supabaseUrl&&C.supabaseAnonKey&&!/GANTI/.test(C.supabaseUrl));
-var ref=ok?((C.supabaseUrl.match(/\/\/([^.]+)\./)||[])[1]||''):'';
+var ref='';if(ok){try{ref=new URL(C.supabaseUrl,location.href).hostname.split('.')[0]}catch(e){}} /* sama seperti cara supabase-js menamai kunci sesi (juga di localhost) */
 var isLogin=!!document.getElementById('login-page');
 function who(u){var m=u.user_metadata||{};return m.display_name||m.full_name||m.name||m.user_name||String(u.email||'Akun').split('@')[0]}
 function avatarOf(u){var m=u.user_metadata||{},a=m.avatar_custom||m.avatar_url||m.picture||'';return /^https:\/\//.test(a)?a:''}

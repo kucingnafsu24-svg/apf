@@ -23,11 +23,12 @@ var tries=0,t=setInterval(function(){
 
 function start(anchor){
  root=document.createElement('section');root.className='comments';root.id='comments';
- var ref=document.querySelector('.rec')||document.querySelector('.back');
+ var ref=document.querySelector('.pnav')||document.querySelector('.rec')||document.querySelector('.back'); /* urutan tetap: komentar -> prev/next -> rekomendasi */
  anchor.parentNode.insertBefore(root,ref||anchor.nextSibling);
  root.innerHTML='<div class="empty">Memuat komentar…</div>';
- console.log('[comments] slug:',slug);
- var rt;sb.channel('comments-'+slug).on('postgres_changes',{event:'*',schema:'public',table:'comments'},function(){clearTimeout(rt);rt=setTimeout(load,400)}).subscribe(function(st){console.log('[comments] realtime:',st)});
+ /* Realtime dimatikan: WebSocket tidak bisa lewat rewrite /sb di Vercel. Gantinya: muat ulang saat tab dibuka lagi. */
+ var lastLoad=Date.now();
+ document.addEventListener('visibilitychange',function(){if(!document.hidden&&Date.now()-lastLoad>30000){lastLoad=Date.now();load()}});
  sb.auth.getSession().then(function(r){user=r.data.session&&r.data.session.user;draw();syncUser()}).catch(function(){draw()});
  document.addEventListener('visibilitychange',function(){if(!document.hidden)syncUser()});
  window.addEventListener('focus',syncUser);
@@ -182,7 +183,6 @@ function load(){
   var el=document.getElementById('c-list');if(!el||my!==seq)return;
   if(a[0].error){console.error('Muat komentar gagal:',a[0].error);el.innerHTML='<div class="empty">Komentar tidak dapat dimuat: '+esc(a[0].error.message||'')+'</div>';return}
   list=a[0].data||[];likes={};mine={};
-  console.log('[comments] slug=',slug,'jumlah=',list.length);
   if(a[1].error)console.error('Like count gagal:',a[1].error);
   (a[1].data||[]).forEach(function(x){likes[x.comment_id]=x.total});
   (a[2].data||[]).forEach(function(x){mine[x.comment_id]=1});
