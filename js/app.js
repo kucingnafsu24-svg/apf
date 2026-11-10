@@ -45,6 +45,10 @@ P=P.filter(Boolean).map(function(p){
  if(tg.file){tg.category=ciu((tg.category||[]).concat(tg.file));delete tg.file}
  p.tags=tg;
  return p});
+/* hidden:true -> tidak tampil di daftar/pencarian/rekomendasi/label, tapi tetap bisa dibuka lewat /g/slug */
+var isHid=function(p){return p.hidden===true||p.hidden==='true'};
+var HID=P.filter(isHid);
+P=P.filter(function(p){return !isHid(p)});
 var GN={artist:'Artist',genre:'Genre',category:'Category'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
 Object.keys(TG).forEach(function(k){GN[k.toLowerCase()]=TG[k]});
 function gname(k){return GN[k]||(k.charAt(0).toUpperCase()+k.slice(1))}
@@ -69,8 +73,7 @@ function avatar(p){var C=window.APF_CONFIG||{},u=p.authorImage||(C.authors&&C.au
 function vlist(p){return (Array.isArray(p.videos)?p.videos:[]).map(function(v,i){
  var o=typeof v==='string'?{url:v}:(v||{});return {title:o.title||('Server '+(i+1)),url:o.url||''}}).filter(function(v){return /^https:\/\//.test(v.url)})}
 function videos(p){var v=vlist(p);if(!v.length)return '';
- var C=window.APF_CONFIG||{},vt=String(p.videoTitle||C.videoTitle||'Streaming');
- return '<div class="sec"><div class="sec-h">'+esc(vt)+'</div><div class="sec-b"><div class="vplayer" id="vplayer">'+
+ return '<div class="sec"><div class="sec-h">Streaming</div><div class="sec-b"><div class="vplayer" id="vplayer">'+
   (v.length>1?'<div class="vtabs">'+v.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'">'+esc(x.title)+'</button>'}).join('')+'</div>':'')+
   '<div class="video"><iframe src="'+esc(v[0].url)+'" allowfullscreen scrolling="no" frameborder="0" loading="lazy"></iframe></div></div></div></div>'}
 function dlist(p){var d=Array.isArray(p.download)?p.download:(p.download?[p.download]:[]);
@@ -84,42 +87,6 @@ function downloads(p){var g=dlist(p);if(!g.length)return '';
 function bindVideos(){var vp=document.getElementById('vplayer');if(!vp)return;
  var fr=vp.querySelector('iframe'),bs=vp.querySelectorAll('.vtabs button');
  [].forEach.call(bs,function(b){b.onclick=function(){fr.src=b.getAttribute('data-u');[].forEach.call(bs,function(x){x.className=''});b.className='on'}})}
-function alist(p){var a=p.audio;a=Array.isArray(a)?a:(a?[a]:[]);
- return a.map(function(g,i){var o=typeof g==='string'?{url:g}:(g||{});return {title:o.title?String(o.title):('Track '+(i+1)),url:String(o.url||'')}}).filter(function(x){return /^(https:\/\/|\/(?!\/))/.test(x.url)})}
-function audioCss(){if(document.getElementById('aud-css'))return;var st=document.createElement('style');st.id='aud-css';
- st.textContent='.aud audio{display:block;width:100%;margin:0 0 10px}'+
-  '.aud-one{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--head);overflow-wrap:anywhere}'+
-  /* daftar track: satu baris, digeser ke samping (tidak memanjang ke bawah) */
-  '.aud-list{position:relative;display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overflow-y:hidden;padding:0 0 6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}'+
-  '.aud-list button{flex:none;display:flex;align-items:center;gap:8px;max-width:210px;padding:8px 14px;border:1px solid var(--line);border-radius:20px;background:var(--card);color:var(--head);font-size:13.5px;line-height:1.3;white-space:nowrap;cursor:pointer}'+
-  '.aud-list button:hover{border-color:var(--link)}'+
-  '.aud-list button.on{border-color:var(--link);color:var(--link);font-weight:600}'+
-  '.aud-n{flex:none;font-size:12px;color:var(--alt)}'+
-  '.aud-list button.on .aud-n{color:var(--link)}'+
-  '.aud-t{min-width:0;overflow:hidden;text-overflow:ellipsis}';
- document.head.appendChild(st)}
-function audios(p){var a=alist(p);if(!a.length)return '';audioCss();
- var C=window.APF_CONFIG||{},t=String(p.audioTitle||C.audioTitle||'Audio');
- return '<div class="sec"><div class="sec-h">'+esc(t)+'</div><div class="sec-b"><div class="aud" id="aplayer">'+
-  '<div class="aud-one" id="aud-now">'+esc(a[0].title)+'</div>'+
-  '<audio controls preload="none" src="'+esc(a[0].url)+'"></audio>'+
-  (a.length>1?'<div class="aud-list" id="aud-list">'+a.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'" data-t="'+esc(x.title)+'" title="'+esc(x.title)+'"><span class="aud-n">'+(i+1)+'</span><span class="aud-t">'+esc(x.title)+'</span></button>'}).join('')+'</div>':'')+
-  '</div></div></div>'}
-function bindAudio(){var w=document.getElementById('aplayer');if(!w)return;
- var au=w.querySelector('audio'),ls=document.getElementById('aud-list'),now=document.getElementById('aud-now'),bs=ls?ls.querySelectorAll('button'):[],cur=0;if(!bs.length)return;
- function play(i){cur=i;au.src=bs[i].getAttribute('data-u');var pr=au.play();if(pr&&pr.catch)pr.catch(function(){});
-  [].forEach.call(bs,function(b,k){b.className=k===i?'on':''});
-  if(now)now.textContent=bs[i].getAttribute('data-t');
-  /* geser daftar agar track aktif ada di tengah (hanya menggeser daftar, bukan halaman) */
-  ls.scrollTo({left:Math.max(0,bs[i].offsetLeft-(ls.clientWidth-bs[i].offsetWidth)/2),behavior:'smooth'})}
- [].forEach.call(bs,function(b,k){b.onclick=function(){play(k)}});
- au.addEventListener('ended',function(){if(cur+1<bs.length)play(cur+1)});
- /* mouse: roda scroll menggeser daftar ke samping (halaman tetap bisa discroll di ujung daftar) */
- ls.addEventListener('wheel',function(e){
-  if(ls.scrollWidth<=ls.clientWidth||Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
-  var atL=ls.scrollLeft<=0&&e.deltaY<0,atR=ls.scrollLeft+ls.clientWidth>=ls.scrollWidth-1&&e.deltaY>0;
-  if(atL||atR)return;
-  ls.scrollLeft+=e.deltaY;e.preventDefault()},{passive:false})}
 function glist(p){return (Array.isArray(p.gallery)?p.gallery:[]).map(function(g){
  var o=typeof g==='string'?{url:g}:(g||{});return {url:String(o.url||''),cap:o.caption?String(o.caption):''}}).filter(function(g){return /^(https?:\/\/|\/(?!\/))/.test(g.url)})}
 function gallery(p){var g=glist(p);if(!g.length)return '';
@@ -239,16 +206,16 @@ if(list){
  $('view').onclick=function(){var g=list.classList.toggle('grid');$('vl').textContent=g?'Grid':'List'};
 }else{
  var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
- var p=P.filter(function(x){return x.slug===slug})[0],a=$('article');
- if(!p){document.title='Tidak ditemukan — All Pirate File';a.innerHTML='<div class="empty">Artikel tidak ditemukan.</div><a class="back" href="/">← Kembali</a>'}
+ var p=P.concat(HID).filter(function(x){return x.slug===slug})[0],a=$('article');
+ if(!p){document.title='Tidak ditemukan — Fletro Pro';a.innerHTML='<div class="empty">Artikel tidak ditemukan.</div><a class="back" href="/">← Kembali</a>'}
  else{
   cur=p.labels[0];curPost=p;
-  document.title=p.title+' — All Pirate File';
+  document.title=p.title+' — Fletro Pro';
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
   a.innerHTML='<div class="crumb" hidden></div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
-  bindVideos();bindAudio();bindGallery(p);
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
+  bindVideos();bindGallery(p);
  }
 }
 }
