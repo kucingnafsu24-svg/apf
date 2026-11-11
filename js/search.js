@@ -37,7 +37,7 @@ function load(){
  if(posts)return Promise.resolve(posts);
  if(!loading)loading=fetch('/data/posts.json').then(function(r){return r.json()}).then(function(a){
   var tmp=document.createElement('textarea');
-  posts=(Array.isArray(a)?a:[]).filter(function(p){return p&&p.hidden!==true&&p.hidden!=='true'}).map(function(p){
+  posts=(Array.isArray(a)?a:[]).filter(Boolean).map(function(p){
    var title=String(p.title||'Tanpa judul'),author=String(p.author||'Admin');
    var labs=(p.labels&&p.labels.length)?p.labels.map(String):[];
    var tgo={},tgl={},tall=[];

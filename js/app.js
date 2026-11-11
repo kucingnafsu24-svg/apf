@@ -45,10 +45,9 @@ P=P.filter(Boolean).map(function(p){
  if(tg.file){tg.category=ciu((tg.category||[]).concat(tg.file));delete tg.file}
  p.tags=tg;
  return p});
-/* hidden:true -> tidak tampil di daftar/pencarian/rekomendasi/label, tapi tetap bisa dibuka lewat /g/slug */
+/* hidden:true -> hanya disembunyikan dari daftar beranda (index). Tetap muncul di pencarian, kategori, label, dan bisa dibuka lewat /g/slug */
 var isHid=function(p){return p.hidden===true||p.hidden==='true'};
-var HID=P.filter(isHid);
-P=P.filter(function(p){return !isHid(p)});
+var HID=[];
 var GN={artist:'Artist',genre:'Genre',category:'Category'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
 Object.keys(TG).forEach(function(k){GN[k.toLowerCase()]=TG[k]});
 function gname(k){return GN[k]||(k.charAt(0).toUpperCase()+k.slice(1))}
@@ -210,7 +209,7 @@ var list=$('posts'),qs=new URLSearchParams(location.search);
 if(list){
  var label=labelFromUrl(),tag=tagFromUrl(),tk='',tv='';
  if(tag.indexOf(':')>0){tk=tag.slice(0,tag.indexOf(':')).toLowerCase();tv=tag.slice(tag.indexOf(':')+1);if(tk==='file')tk='category'}
- var data=label?P.filter(function(p){return p.labels.some(function(l){return lc2(l)===lc2(label)})}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P;
+ var data=label?P.filter(function(p){return p.labels.some(function(l){return lc2(l)===lc2(label)})}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P.filter(function(p){return !isHid(p)});
  if(!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
  if(label)$('ttl').textContent='Label: '+label;
  if(tv)$('ttl').textContent=gname(tk)+': '+tv;

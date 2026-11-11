@@ -40,7 +40,7 @@
   /* satu entri per slug (yang pertama), urut terbaru -> terlama; tanggal sama mengikuti urutan file */
   var seen={},items=[];
   list.forEach(function(p,k){
-   if(!p||typeof p!=='object'||p.hidden===true||p.hidden==='true')return;
+   if(!p||typeof p!=='object')return;
    var s=slugOf(p);if(!s||seen[s])return;seen[s]=1;
    items.push({slug:s,title:String(p.title||'Tanpa judul'),date:String(p.date||''),k:k});
   });
