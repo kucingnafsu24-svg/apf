@@ -1,4 +1,33 @@
 [
+  {
+  "slug": "166",
+  "title": "[inst] String Theocracy",
+  "author": "Admin",
+  "date": "2026-11-11",
+  "excerpt": "You may download, sing covers to this song, and release them in non-commercial ways.",
+  "content": "You may download, sing covers to this song, and release them in non-commercial ways.\n\nEnjoy!",
+  "tags": {
+    "Artist": ["mili", "project_mili"],
+    "Year": ["2023"],
+    "tag":["game", "music", "musik", "soundtrack"],
+    "Category": ["Ost", "soundtrack", "Ost Game", "Original Soundtrack", "music", "musik", "instrumental"]
+ },
+"audioTitle": "[inst] String Theocracy mp3",
+"audio": [
+  { "title": "[inst] String Theocracy", "url": "https://cdn.jsdelivr.net/gh/kucingnafsu24-svg/apf@main/audio/mili/[inst] String Theocracy.mp3" }
+   ],
+    "download": [
+        {
+        "title": "Download [inst] In Hell We Live, Lament wav",
+        "links": [
+          { "name": "Pixeldrain", "url": "https://sfl.gl/ksNUaV" },
+          { "name": "Gdrive", "url": "https://sfl.gl/AJukJ" },
+          { "name": "Dropbox", "url": "https://sfl.gl/tG41nOV" },
+          { "name": "Pcloud", "url": "https://sfl.gl/abcq" }
+        ]
+    }
+  ]
+},
     {
   "slug": "165",
   "title": "[inst] In Hell We Live, Lament",
