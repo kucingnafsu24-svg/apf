@@ -1,4 +1,33 @@
 [
+    {
+  "slug": "165",
+  "title": "[inst] In Hell We Live, Lament",
+  "author": "Admin",
+  "date": "2026-11-11",
+  "excerpt": "You may download, sing covers to this song, and release them in non-commercial ways.",
+  "content": "You may download, sing covers to this song, and release them in non-commercial ways.\n\nEnjoy!",
+  "tags": {
+    "Artist": ["mili", "project_mili"],
+    "Year": ["2023"],
+    "tag":["game", "music", "musik", "soundtrack"],
+    "Category": ["Ost", "soundtrack", "Ost Game", "Original Soundtrack", "music", "musik", "instrumental"]
+ },
+"audioTitle": "[inst] In Hell We Live, Lament mp3",
+"audio": [
+  { "title": "[inst] In Hell We Live, Lament", "url": "https://cdn.jsdelivr.net/gh/kucingnafsu24-svg/apf@main/audio/mili/[inst] In Hell We Live, Lament.mp3" }
+   ],
+    "download": [
+        {
+        "title": "Download [inst] In Hell We Live, Lament wav",
+        "links": [
+          { "name": "Pixeldrain", "url": "https://sfl.gl/IOVHxNEu" },
+          { "name": "Gdrive", "url": "https://sfl.gl/gCn1qqO" },
+          { "name": "Dropbox", "url": "https://sfl.gl/yBFr5Qh" },
+          { "name": "Pcloud", "url": "https://sfl.gl/aSY55HA" }
+        ]
+    }
+  ]
+},
   {
   "slug": "tutorial",
   "title": "cara melewati shortlink untuk download file di website ini",
