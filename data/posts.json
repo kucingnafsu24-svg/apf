@@ -1,5 +1,23 @@
 [
   {
+  "slug": "tutorial",
+  "title": "cara melewati shortlink untuk download file di website ini",
+  "author": "Admin",
+  "date": "2026-11-11",
+  "hidden": true,
+  "excerpt": "Tutorial singkat cara melewati shortlink untuk mendownload file di website ini.",
+  "content": "Ikuti video di bawah ini untuk melihat cara melewati shortlink dan mendownload file.\n\nSelamat mencoba!",
+  "tags": {
+    "Category": ["Tutorial"],
+    "Tag": ["tutorial", "shortlink", "download"]
+  },
+  "videoTitle": "Live Streaming 【Membership】Tunjangan Membership #vtuberid",
+  "videos": [
+    { "title": "server 1", "url": "https://playmogo.com/e/byynhyia937a" },
+    { "title": "server 2", "url": "https://rumble.com/embed/v7hwci6/" }
+  ]
+  },
+  {
   "slug": "164",
   "title": "[inst] Gunners in the Rain",
   "author": "Admin",
@@ -74,8 +92,8 @@
   },
   "videoTitle": "Live Streaming 【Membership】Tunjangan Membership #vtuberid ",
   "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/byynhyia937a" },
-    { "title": "server 2", "url": "https://rumble.com/embed/v7hwci6/" }
+    { "title": "server 1", "url": "https://playmogo.com/e/etd00o5r9g8g" },
+    { "title": "server 2", "url": "https://streamtape.com/e/3pgB9X0bzbUdeRo/" }
   ],
   "download": [
     {
@@ -106,8 +124,7 @@
   "videoTitle": "Live Streaming【Membership】39 Stream and QnA Time!! #vtuberid",
   "videos": [
     { "title": "server 1", "url": "https://playmogo.com/e/yyyttd14wygk" },
-    { "title": "server 2", "url": "https://streamtape.com/e/Xoqrd6O3D7SW9J/" },
-    { "title": "server 3", "url": "https://rumble.com/embed/v7hwci6/" }
+    { "title": "server 2", "url": "https://streamtape.com/e/Xoqrd6O3D7SW9J/" }
   ],
   "download": [
     {
