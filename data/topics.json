@@ -2,8 +2,8 @@
   { "name": "Game Pc", "Category": "Game PC" },
   { "name": "Game Android", "Category": "Game Android" },
   { "name": "2d animation", "Category": "2d animation" },
-  { "name": "Machi", "Category": "3d animation" },
-  { "name": "Liquid Neko", "Artist": "Liquid Neko" },
-  { "name": "七氏", "Artist": "七氏" },
-  { "name": "Ppolar", "Artist": "Ppolar" }
+  { "name": "3d animation", "Category": "3d animation" },
+  { "name": "youtube membership", "Category": "youtube membership" },
+  { "name": "Original Soundtrack", "Category": "Original Soundtrack" },
+  { "name": "Ppolar", "Category": "Ppolar" }
 ]
