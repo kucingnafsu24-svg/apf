@@ -1,5 +1,78 @@
 [
- `` {
+    {
+  "slug": "160",
+  "title": "Pengen Mabar ?",
+  "author": "Admin",
+  "date": "2026-11-11",
+  "excerpt": "Pengen Mabar apa lagi Aduhai~?",
+  "content": "Pengen Mabar apa lagi Aduhai~?",
+  "tags": {
+    "Vtubers": ["Arvaduh"],
+    "Youtubers": ["Arvaduh"],
+    "Language": ["Indonesian"],
+    "Category": ["post", "membership", "youtube membership", "vtuber", "vtubers", "youtubers"]
+    }
+},
+  {
+  "slug": "159",
+  "title": "grass",
+  "author": "Admin",
+  "date": "2026-11-11",
+  "image": "/images/Arvaduh/3.webp",
+  "excerpt": "Touch grass dulu.",
+  "content": "Touch grass dulu.",
+  "tags": {
+    "Vtubers": ["Arvaduh"],
+    "Youtubers": ["Arvaduh"],
+    "Language": ["Indonesian"],
+    "Category": ["post", "membership", "youtube membership", "vtuber", "vtubers", "youtubers"]
+    }
+},
+      {
+  "slug": "158",
+  "title": "membership maen dota bareng?",
+  "author": "Admin",
+  "date": "2026-11-11",
+  "excerpt": "membership maen dota bareng? Aww hell naw. 53% · Tunjukan the real Aduh, gas 47%",
+  "content": "<div style='margin:16px 0;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--card)'><div style='font-size:18px;font-weight:600;color:var(--head);margin-bottom:4px'>membership maen dota bareng?</div><div style='font-size:13px;color:var(--alt);margin-bottom:12px'>17 suara</div><div style='position:relative;margin:8px 0;border:1px solid var(--link);border-radius:8px;overflow:hidden'><div style='position:absolute;left:0;top:0;bottom:0;width:53%;background:var(--link);opacity:.3'></div><div style='position:relative;display:flex;justify-content:space-between;gap:12px;padding:12px 14px;color:var(--head)'><span>✔ Aww hell naw.</span><b>53%</b></div></div><div style='position:relative;margin:8px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden'><div style='position:absolute;left:0;top:0;bottom:0;width:47%;background:var(--link);opacity:.15'></div><div style='position:relative;display:flex;justify-content:space-between;gap:12px;padding:12px 14px;color:var(--head)'><span>Tunjukan the real Aduh, gas</span><b>47%</b></div></div></div>",
+  "tags": {
+    "Vtubers": ["Arvaduh"],
+    "Youtubers": ["Arvaduh"],
+    "Language": ["Indonesian"],
+    "Category": ["post", "membership", "youtube membership", "vtuber", "vtubers", "youtubers"]
+    }
+},
+    {
+  "slug": "157",
+  "title": "Yakali",
+  "author": "Admin",
+  "date": "2026-11-11",
+  "image": "/images/Arvaduh/2.webp",
+  "excerpt": "Yakali lucu2 gini mau di tabokk di cf 👀👀",
+  "content": "Yakali lucu2 gini mau di tabokk di cf 👀👀",
+  "tags": {
+    "Vtubers": ["Arvaduh"],
+    "Youtubers": ["Arvaduh"],
+    "Language": ["Indonesian"],
+    "Category": ["post", "membership", "youtube membership", "vtuber", "vtubers", "youtubers"]
+    }
+},
+  {
+  "slug": "156",
+  "title": "Touch grass",
+  "author": "Admin",
+  "date": "2026-11-11",
+  "image": "/images/Arvaduh/1.webp",
+  "excerpt": "Touch grass, tapi ke isekai",
+  "content": "Touch grass, tapi ke isekai",
+  "tags": {
+    "Vtubers": ["Arvaduh"],
+    "Youtubers": ["Arvaduh"],
+    "Language": ["Indonesian"],
+    "Category": ["post", "membership", "youtube membership", "vtuber", "vtubers", "youtubers"]
+    }
+},
+  {
   "slug": "155",
   "title": "🌳Welcome to the Tavern Guild: Billowing Tree🌳",
   "author": "Admin",
