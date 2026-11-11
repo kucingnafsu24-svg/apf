@@ -77,6 +77,35 @@ function videos(p){var v=vlist(p);if(!v.length)return '';
  return '<div class="sec"><div class="sec-h">'+esc(vt)+'</div><div class="sec-b"><div class="vplayer" id="vplayer">'+
   (v.length>1?'<div class="vtabs">'+v.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'">'+esc(x.title)+'</button>'}).join('')+'</div>':'')+
   '<div class="video"><iframe src="'+esc(v[0].url)+'" allowfullscreen scrolling="no" frameborder="0" loading="lazy"></iframe></div></div></div></div>'}
+/* Pemutar audio: post.audio=[{title,url}], post.audioTitle = judul bagian (bawaan "Musik") */
+function alist(p){return (Array.isArray(p.audio)?p.audio:[]).map(function(a){
+ if(!a||typeof a!=='object')return null;
+ var u=String(a.url||'');if(!/^(https?:\/\/|\/(?!\/))/.test(u))return null;
+ try{u=encodeURI(decodeURI(u))}catch(e){}
+ return {title:String(a.title||'Track'),url:u}}).filter(Boolean)}
+function audios(p){var a=alist(p);if(!a.length)return '';
+ var t=String(p.audioTitle||'').trim()||'Musik';
+ return '<div class="sec"><div class="sec-h">'+esc(t)+'</div><div class="sec-b"><div class="aud" id="aud">'+
+  '<div class="aud-now" id="aud-now"></div><audio id="aud-el" controls preload="none"></audio>'+
+  '<ol class="aud-list">'+a.map(function(x,i){return '<li><button type="button" data-i="'+i+'" data-u="'+esc(x.url)+'">'+esc(x.title)+'</button></li>'}).join('')+'</ol></div></div></div>'}
+function bindAudios(){var w=document.getElementById('aud');if(!w)return;
+ if(!document.getElementById('aud-css')){var st=document.createElement('style');st.id='aud-css';
+  st.textContent='.aud-now{margin-bottom:8px;font-weight:600;color:var(--head);overflow-wrap:anywhere}'+
+   '.aud audio{display:block;width:100%;margin-bottom:10px}'+
+   '.aud-list{list-style:none;margin:0;padding:0;max-height:360px;overflow-y:auto;border:1px solid var(--line);border-radius:10px}'+
+   '.aud-list li+li{border-top:1px solid var(--line)}'+
+   '.aud-list button{display:block;width:100%;padding:10px 12px;border:0;background:none;color:var(--head);font:inherit;font-size:14px;text-align:left;cursor:pointer;overflow-wrap:anywhere}'+
+   '.aud-list button:hover{background:var(--card)}'+
+   '.aud-list button.on{background:var(--card);color:var(--link);font-weight:600}';
+  document.head.appendChild(st)}
+ var el=document.getElementById('aud-el'),now=document.getElementById('aud-now'),bs=w.querySelectorAll('.aud-list button'),cur=0;
+ if(!el||!bs.length)return;
+ function mark(i){cur=i;[].forEach.call(bs,function(b,k){b.classList.toggle('on',k===i)});now.textContent=bs[i].textContent}
+ function play(i){if(i<0||i>=bs.length)return;mark(i);el.src=bs[i].getAttribute('data-u');var r=el.play();if(r&&r.catch)r.catch(function(){})}
+ w.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.aud-list button');if(b)play(+b.getAttribute('data-i'))});
+ el.addEventListener('ended',function(){play(cur+1)});
+ el.addEventListener('error',function(){if(el.getAttribute('src'))now.textContent=bs[cur].textContent+' (gagal dimuat)'});
+ el.src=bs[0].getAttribute('data-u');mark(0)}
 function dlist(p){var d=Array.isArray(p.download)?p.download:(p.download?[p.download]:[]);
  return d.filter(Boolean).map(function(g){
   var links=(Array.isArray(g.links)?g.links:[]).map(function(l){l=l||{};return {name:String(l.name||l.title||'Download'),url:String(l.url||'')}}).filter(function(l){return /^https?:\/\//.test(l.url)});
@@ -215,8 +244,8 @@ if(list){
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
   a.innerHTML='<div class="crumb" hidden></div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
-  bindVideos();bindGallery(p);
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
+  bindVideos();bindAudios();bindGallery(p);
  }
 }
 }
