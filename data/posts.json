@@ -14,17 +14,18 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["post", "membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
+  "videoTitle": "Live Streaming 【Membership】Tunjangan Membership #vtuberid ",
   "videos": [
     { "title": "server 1", "url": "https://playmogo.com/e/byynhyia937a" },
     { "title": "server 2", "url": "https://rumble.com/embed/v7hwci6/" }
   ],
   "download": [
     {
-      "title": "【Membership】39 Stream and QnA Time!!",
+      "title": "【Membership】【Membership】Tunjangan Membership",
       "links": [
-        { "name": "Pixeldrain", "url": "https://sfl.gl/ASWaXjTc" },
+        { "name": "Pixeldrain", "url": "https://sfl.gl/SE8g" },
         { "name": "Dropbox", "url": "https://sfl.gl/mqAVXk0" },
-        { "name": "Pcloud", "url": "https://sfl.gl/binl61s" }
+        { "name": "Pcloud", "url": "https://sfl.gl/1UNtg" }
       ]
     }
   ]
@@ -44,16 +45,18 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["post", "membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
+  "videoTitle": "Live Streaming【Membership】39 Stream and QnA Time!! #vtuberid",
   "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/byynhyia937a" },
-    { "title": "server 2", "url": "https://rumble.com/embed/v7hwci6/" }
+    { "title": "server 1", "url": "https://playmogo.com/e/yyyttd14wygk" },
+    { "title": "server 2", "url": "https://streamtape.com/e/Xoqrd6O3D7SW9J/" },
+    { "title": "server 3", "url": "https://rumble.com/embed/v7hwci6/" }
   ],
   "download": [
     {
       "title": "【Membership】39 Stream and QnA Time!!",
       "links": [
         { "name": "Pixeldrain", "url": "https://sfl.gl/ASWaXjTc" },
-        { "name": "Dropbox", "url": "https://sfl.gl/mqAVXk0" },
+        { "name": "Dropbox", "url": "https://sfl.gl/EkpUr1" },
         { "name": "Pcloud", "url": "https://sfl.gl/binl61s" }
       ]
     }

@@ -73,7 +73,8 @@ function avatar(p){var C=window.APF_CONFIG||{},u=p.authorImage||(C.authors&&C.au
 function vlist(p){return (Array.isArray(p.videos)?p.videos:[]).map(function(v,i){
  var o=typeof v==='string'?{url:v}:(v||{});return {title:o.title||('Server '+(i+1)),url:o.url||''}}).filter(function(v){return /^https:\/\//.test(v.url)})}
 function videos(p){var v=vlist(p);if(!v.length)return '';
- return '<div class="sec"><div class="sec-h">Streaming</div><div class="sec-b"><div class="vplayer" id="vplayer">'+
+ var vt=String([p.videoTitle,p.videostitle,p.videosTitle].filter(function(x){return x!=null&&String(x).trim()})[0]||'').trim()||'Streaming';
+ return '<div class="sec"><div class="sec-h">'+esc(vt)+'</div><div class="sec-b"><div class="vplayer" id="vplayer">'+
   (v.length>1?'<div class="vtabs">'+v.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'">'+esc(x.title)+'</button>'}).join('')+'</div>':'')+
   '<div class="video"><iframe src="'+esc(v[0].url)+'" allowfullscreen scrolling="no" frameborder="0" loading="lazy"></iframe></div></div></div></div>'}
 function dlist(p){var d=Array.isArray(p.download)?p.download:(p.download?[p.download]:[]);
