@@ -532,3 +532,17 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 .n-an{display:none}
 @media(max-width:760px){.n-pc{display:none}.n-an{display:block}}
 html,body{overflow-x:hidden}
+
+/* ===== Gambar & video di isi artikel: menyesuaikan layar PC dan HP ===== */
+.entry img,.entry video{display:block;width:auto;max-width:100%;height:auto;max-height:min(80vh,820px);margin:16px auto;border-radius:6px}
+.entry video{background:#000}
+.entry iframe{display:block;width:100%;max-width:100%;aspect-ratio:16/9;height:auto;margin:16px 0;border:0;border-radius:6px}
+.entry table{display:block;max-width:100%;overflow-x:auto}
+.entry pre{max-width:100%;overflow-x:auto}
+@media(max-width:760px){
+ .entry img,.entry video{max-height:70vh;margin:12px auto}
+ .entry iframe{margin:12px 0}
+}
+.entry figure{margin:16px auto;text-align:center}
+.entry figure img,.entry figure video{margin:0 auto}
+.entry figcaption{margin-top:8px;font-size:13px;line-height:1.5;color:var(--alt);text-align:center}
