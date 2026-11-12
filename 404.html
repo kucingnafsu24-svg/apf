@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>404 - Halaman tidak ditemukan — All Pirate File</title>
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.nf{max-width:520px;margin:96px auto;padding:0 24px;text-align:center}
+.nf .code{margin:0;font-size:96px;line-height:1;font-weight:700;color:var(--link)}
+.nf h1{margin:12px 0 8px;font-size:22px;font-weight:600;color:var(--head)}
+.nf p{margin:0 0 26px;color:var(--alt);font-size:14px;line-height:1.6}
+.nf .acts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.nf .go,.nf .ghost{display:inline-flex;justify-content:center;padding:11px 20px;border-radius:8px;font-size:14px;font-weight:600}
+.nf .go{background:var(--link);color:#fff}
+.nf .go:hover{filter:brightness(1.1);background:var(--link)}
+.nf .ghost{border:1px solid var(--line);color:var(--head)}
+.nf .ghost:hover{background:var(--card)}
+@media(max-width:480px){.nf{margin:64px auto}.nf .code{font-size:72px}}
+</style>
+<script src="/js/fade.js"></script>
+</head>
+<body>
+<header><div class="wrap bar">
+ <a class="logo" href="/">All Pirate File</a>
+ <div class="tools">
+  <button id="theme" aria-label="Mode gelap"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+ </div>
+</div></header>
+
+<main class="nf">
+ <p class="code">404</p>
+ <h1>Halaman tidak ditemukan</h1>
+ <p>Alamat yang kamu buka tidak ada, sudah dihapus, atau salah ketik. Coba kembali ke beranda atau cari artikel lain.</p>
+ <div class="acts">
+  <a class="go" href="/">Kembali ke beranda</a>
+  <a class="ghost" href="javascript:history.back()">Halaman sebelumnya</a>
+ </div>
+</main>
+
+<footer><div class="wrap"><span>© 2021 Fletro Pro. All rights reserved.</span><span>All Pirate File</span></div></footer>
+<script>
+(function(){
+ var r=document.documentElement;
+ try{var t=localStorage.getItem('theme');if(t)r.setAttribute('data-theme',t)}catch(e){}
+ var b=document.getElementById('theme');
+ if(b)b.onclick=function(){
+  var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
+  var n=d?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}
+ };
+})();
+</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
