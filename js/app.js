@@ -64,7 +64,7 @@ function chips(p){var ks=Object.keys(p.tags);if(!ks.length)return '';
  return '<div class="tagrows">'+ks.map(function(k){return '<div class="tagrow"><span>'+esc(gname(k))+'</span>'+
   p.tags[k].map(function(v){return '<a class="tg tg-'+esc(k.replace(/[^a-z0-9]/g,''))+'" href="'+tlink(k,v)+'">'+esc(v)+'</a>'}).join('')+'</div>'}).join('')+'</div>'}
 function thumb(p,big){var b=p.comments?'<span class="badge"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 20l1-4.6A8 8 0 1 1 21 12z"/></svg>'+p.comments+'</span>':'';
- if(p.image)return '<'+(big?'div':'a href="/g/'+encodeURIComponent(p.slug)+'"')+' class="thumb">'+b+'<img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy"></'+(big?'div':'a')+'>';
+ if(p.image)return '<'+(big?'div':'a href="/g/'+encodeURIComponent(p.slug)+'"')+' class="thumb">'+b+'<img src="'+esc(p.image)+'"'+(p.imageFull?' data-full="'+esc(p.imageFull)+'"':'')+' alt="'+esc(p.title)+'" loading="lazy"></'+(big?'div':'a')+'>';
  var st=p.thumb.title.length>6?' style="font-size:'+(big?36:18)+'px"':'';
  return '<'+(big?'div':'a href="/g/'+encodeURIComponent(p.slug)+'"')+' class="thumb '+p.thumb.cls+'">'+b+'<span><strong'+st+'>'+esc(p.thumb.title)+'</strong><small>'+esc(p.thumb.sub)+'</small></span></'+(big?'div':'a')+'>'}
 function avatar(p){var C=window.APF_CONFIG||{},u=p.authorImage||(C.authors&&C.authors[p.author]);
@@ -236,7 +236,7 @@ if(list){
 }else{
  var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
  var p=P.concat(HID).filter(function(x){return x.slug===slug})[0],a=$('article');
- if(!p){document.title='Tidak ditemukan — Fletro Pro';a.innerHTML='<div class="empty">Artikel tidak ditemukan.</div><a class="back" href="/">← Kembali</a>'}
+ if(!p){document.title='404 - Artikel tidak ditemukan — All Pirate File';a.innerHTML='<div style="text-align:center;padding:56px 0"><p style="margin:0;font-size:80px;line-height:1;font-weight:700;color:var(--link)">404</p><h1 style="margin:12px 0 8px;font-size:22px;font-weight:600;color:var(--head)">Artikel tidak ditemukan</h1><p style="margin:0 0 24px;color:var(--alt);font-size:14px;line-height:1.6">Alamat yang kamu buka tidak ada, sudah dihapus, atau salah ketik.</p><a href="/" style="display:inline-flex;padding:11px 20px;border-radius:8px;background:var(--link);color:#fff;font-size:14px;font-weight:600">Kembali ke beranda</a></div>'}
  else{
   cur=p.labels[0];curPost=p;
   document.title=p.title+' — Fletro Pro';
