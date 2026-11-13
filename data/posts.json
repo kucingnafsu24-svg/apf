@@ -5,6 +5,7 @@
   "author": "Admin",
   "date": "2026-11-13",
   "image": "/images/Pina! - ZIP files/1.webp",
+  "imageFull": "/images/Pina! - ZIP files/1.jpg",
   "excerpt": "Just a bit of quick one, no variations, because if not that mean I just made 1 draw this month :'> ",
   "content": "Just a bit of quick one, no variations, because if not that mean I just made 1 draw this month :'> ",
   "tags": {
@@ -33,6 +34,7 @@
   "author": "Admin",
   "date": "2026-11-13",
   "image": "/images/Saki - zip files/1.webp",
+  "imageFull": "/images/Saki - zip files/1.jpg",
   "excerpt": "They are doing it exactly like a rabbit during mating season",
   "content": "They are doing it exactly like a rabbit during mating season",
   "tags": {
@@ -61,8 +63,9 @@
   "author": "Admin",
   "date": "2026-11-13",
   "image": "/images/Working on it bit by bit/1.webp",
+  "imageFull": "/images/Working on it bit by bit/1.jpg",
   "excerpt": "This is the CGs preview for ranYes, i still working on MA whenever i can, but can't keep working on it all the time Reminder : Marie's Adventure is a side project i work on when i can Now back to fanart",
-  "content": "<img src='/images/Working on it bit by bit/2.webp' loading='lazy'>\n<img src='/images/Working on it bit by bit/3.webp' loading='lazy'>\n<img src='/images/Working on it bit by bit/4.webp' loading='lazy'>\n<img src='/images/Working on it bit by bit/5.webp' loading='lazy'>\nThis is the CGs preview for ranYes, i still working on MA whenever i can, but can't keep working on it all the time\nReminder : Marie's Adventure is a side project i work on when i can\n\nNow back to fanart",
+  "content": "<img src='/images/Working on it bit by bit/2.webp' data-full='/images/Working on it bit by bit/2.jpg' loading='lazy'>\n<img src='/images/Working on it bit by bit/3.webp' data-full='/images/Working on it bit by bit/3.jpg' loading='lazy'>\n<img src='/images/Working on it bit by bit/4.webp' data-full='/images/Working on it bit by bit/4.jpg' loading='lazy'>\n<img src='/images/Working on it bit by bit/5.webp' data-full='/images/Working on it bit by bit/5.jpg' loading='lazy'>\nThis is the CGs preview for ranYes, i still working on MA whenever i can, but can't keep working on it all the time\nReminder : Marie's Adventure is a side project i work on when i can\n\nNow back to fanart",
   "tags": {
     "Artist": ["Dearonnus"],
     "Parody": ["original"],
@@ -88,8 +91,9 @@
   "author": "Admin",
   "date": "2026-11-13",
   "image": "/images/Yuuka/1.webp",
+  "imageFull": "/images/Yuuka/1.png",
   "excerpt": "X-ray version in attachment",
-  "content": "<img src='/images/Yuuka/2.webp'ng='lazy'>\nX-ray version in attachment",
+  "content": "<img src='/images/Yuuka/2.webp' data-full='/images/Yuuka/2.jpg' loading='lazy'>\nX-ray version in attachment",
   "tags": {
     "Artist": ["Dearonnus"],
     "Parody": ["BA", "Blue Archive"],
