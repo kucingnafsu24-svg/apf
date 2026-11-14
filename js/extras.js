@@ -26,6 +26,7 @@
     dx.setAttribute('aria-label',min?'Buka':'Tutup');
     document.body.classList.toggle('has-dock',!min&&mq.matches);
    };
+   var tk=dk.querySelector('.s-tk');if(tk)tk.textContent='Donate kami disini';
    dk.hidden=false;
    paint(saved);
    dx.addEventListener('click',function(){
