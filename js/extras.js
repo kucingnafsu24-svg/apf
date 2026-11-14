@@ -13,6 +13,30 @@
   }
  }catch(e){}
 
+ /* ---------- 1b) Dock Trakteer bawah (mobile) ---------- */
+ try{
+  var dk=document.getElementById('dock'),dx=document.getElementById('dock-x');
+  if(dk&&dx){
+   var mq=window.matchMedia('(max-width:760px)');
+   var key='dock-min',saved=false;
+   try{saved=sessionStorage.getItem(key)==='1'}catch(e){}
+   var paint=function(min){
+    dk.classList.toggle('min',min);
+    dx.innerHTML=min?'&#9650;':'&#10005;';
+    dx.setAttribute('aria-label',min?'Buka':'Tutup');
+    document.body.classList.toggle('has-dock',!min&&mq.matches);
+   };
+   dk.hidden=false;
+   paint(saved);
+   dx.addEventListener('click',function(){
+    var m=!dk.classList.contains('min');
+    paint(m);try{sessionStorage.setItem(key,m?'1':'0')}catch(e){}
+   });
+   var onmq=function(){paint(dk.classList.contains('min'))};
+   if(mq.addEventListener)mq.addEventListener('change',onmq);
+  }
+ }catch(e){}
+
  /* ---------- 2) Sebelumnya / Selanjutnya ---------- */
  var art=document.getElementById('article');
  if(!art)return;
