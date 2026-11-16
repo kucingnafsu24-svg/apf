@@ -1,4 +1,41 @@
 [
+      {
+  "slug": "221",
+  "title": "A21 Dragonball | Animation",
+  "author": "Admin",
+  "date": "2026-11-16",
+  "image": "/images/A21 Dragonball/1.webp",
+  "imageFull": "/images/A21 Dragonball/1.png",
+  "excerpt": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
+  "content": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
+  "tags": {
+    "Artist": ["AidenHet"],
+    "Parody": ["Dragonball"],
+    "character":["A21"],
+    "tag": ["handsock", "bracelet", "swimsuit", "white hair", "white eyes", "long hair", "very long hair"],
+    "Language": ["Textless"],
+    "Category": ["3d animation", "animation"]
+ },
+  "videoTitle": "A21 Dragonball | Animation",
+  "videos": [
+    { "title": "server 1", "url": "https://playmogo.com/e/g6gkowkttn1n" },
+    { "title": "server 2", "url": "https://streamtape.com/e/06qXjpMWPOIb9V1/" }
+  ],
+  "download": [
+    {
+      "title": "A21 Dragonball | Animation",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/FkDBN" },
+        { "name": "gdrive", "url": "https://sfl.gl/gIrEZ8" },
+        { "name": "vexfile", "url": "https://sfl.gl/RGJAHv" },
+        { "name": "modsfire", "url": "https://sfl.gl/kWvp7od" },
+        { "name": "mega", "url": "https://sfl.gl/DDgJOQ" },
+        { "name": "Dropbox", "url": "https://sfl.gl/gzYeJjte" },
+        { "name": "Pcloud", "url": "https://sfl.gl/w0DWa5G" }
+      ]
+    }
+  ]
+},
      {
   "slug": "220",
   "title": "Darkness Konosuba | Animation",
@@ -14,7 +51,7 @@
     "character":["Darkness", "Lalatina Ford Dustiness", "Kazuma Sato"],
     "tag": ["ahegao", "armor", "jacket", "yellow eyes", "blue eyes", "stockings", "Stocking", "nude", "ponytail", "doggystyle"],
     "Language": ["Textless"],
-    "Category": ["Art"]
+    "Category": ["3d animation", "animation"]
  },
   "videoTitle": "Darkness Konosuba | Animation",
   "videos": [
@@ -50,7 +87,7 @@
     "character":["Fluorite", "Endmin", "Male Endmin"],
     "tag": ["kemonomimi", "green hair", "jacket", "green eyes", "hood", "nude", "ahegao"],
     "Language": ["Textless"],
-    "Category": ["Art"]
+    "Category": ["Animation", "3d animation"]
  },
   "videoTitle": "Fluorite - Caught You Staring Part 2 | Animation",
   "videos": [
@@ -80,14 +117,14 @@
   "image": "/images/Fluorite  Yvonne - Caught You Staring/1.webp",
   "imageFull": "/images/Fluorite  Yvonne - Caught You Staring/1.jpg",
   "excerpt": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
-  "content": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage.",
+  "content": "<img src='/images/Fluorite  Yvonne - Caught You Staring/2.webp' data-full='/images/Fluorite  Yvonne - Caught You Staring/2.jpg' loading='lazy'>\nDownload link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage.",
   "tags": {
     "Artist": ["AidenHet"],
     "Parody": ["Arknights Endfield", "Endfield"],
     "character":["Fluorite", "Yvonne", "Endmin", "Male Endmin"],
     "tag": ["kemonomimi", "green hair", "jacket", "green eyes", "pink hair", "blue eyes", "hood", "nude", "ahegao", "twintail", "twintails"],
     "Language": ["Textless"],
-    "Category": ["Art"]
+    "Category": ["Animation", "3d animation"]
  },
   "videoTitle": "Fluorite | Yvonne - Caught You Staring | Animation",
   "videos": [
