@@ -1,0 +1,36 @@
+{
+  "vtubers:cecillia hanarisu ch": {
+    "name": "Cecillia Hanarisu Ch",
+    "image": "/images/vtuber/cecillia-hanarisu.webp",
+    "desc": "𝐚 𝐰𝐡𝐢𝐭𝐞 𝐰𝐢𝐭𝐜𝐡 𝐡𝐚𝐬 𝐜𝐨𝐦𝐞 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐰𝐨𝐫𝐥𝐝! ❤︎",
+    "info": { "Negara": "Indonesia", "Bergabung pada": "14 Nov 2023" },
+    "links": [
+      { "name": "YouTube", "url": "https://www.youtube.com/@CecilliaHanarisu" },
+      { "name": "Tako", "url": "https://tako.id/cecilliahanarisu" },
+      { "name": "X", "url": "https://x.com/xcecillia_55" },
+      { "name": "Discord", "url": "https://discord.com/Ga4hUUsc3Y" },
+      { "name": "Tiktok", "url": "https://www.tiktok.com/@cecillia.hanarisu" }
+    ],
+    "more post": "/g/cecillia-hanarisu"
+  },
+  "vtubers:vtuber kedua": {
+    "name": "Vtuber Kedua",
+    "desc": "Deskripsi singkat."
+  },
+  "artist:maplestar": {
+    "name": "Maplestar",
+    "image": "/images/artist/maplestar.webp",
+    "desc": "Artist yang membuat ...",
+    "links": [
+      { "name": "Pixiv", "url": "https://www.pixiv.net/users/..." }
+    ]
+  },
+  "cosplayer:nama cosplayer": {
+    "name": "Nama Cosplayer",
+    "desc": "Deskripsi singkat."
+  },
+  "genre:action": {
+    "name": "Action",
+    "desc": "Kumpulan file bertema action."
+  }
+}
