@@ -2,6 +2,39 @@
 var C=window.APF_CONFIG||{},ok=!!(C.supabaseUrl&&C.supabaseAnonKey&&!/GANTI/.test(C.supabaseUrl));
 var ref='';if(ok){try{ref=new URL(C.supabaseUrl,location.href).hostname.split('.')[0]}catch(e){}} /* sama seperti cara supabase-js menamai kunci sesi (juga di localhost) */
 var isLogin=!!document.getElementById('login-page');
+
+/* ---------- Turnstile (anti-bot). Aktif bila config.js punya turnstileSiteKey ---------- */
+var TSK=C.turnstileSiteKey||'',tsP=null;
+function tsLoad(){
+ if(!TSK)return Promise.resolve(null);
+ if(tsP)return tsP;
+ tsP=new Promise(function(res){
+  if(window.turnstile)return res(window.turnstile);
+  var sc=document.createElement('script');
+  sc.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+  sc.async=true;sc.onload=function(){res(window.turnstile)};sc.onerror=function(){res(null)};
+  document.head.appendChild(sc)});
+ return tsP}
+function tsMount(f){
+ if(!TSK||!f||f._ts)return;
+ f._ts={id:null,tok:''};
+ var box=document.createElement('div');box.className='ts-box';box.style.cssText='margin:0 0 12px;min-height:65px';
+ f.insertBefore(box,f.querySelector('.go,.lm-go'));
+ tsLoad().then(function(t){
+  if(!t)return;
+  f._ts.id=t.render(box,{sitekey:TSK,theme:'auto',
+   callback:function(k){f._ts.tok=k},
+   'expired-callback':function(){f._ts.tok=''},
+   'error-callback':function(){f._ts.tok=''}})})}
+function tsTok(f){
+ if(!TSK)return undefined;
+ var k=f&&f._ts&&f._ts.tok;
+ if(!k)throw new Error('Selesaikan verifikasi keamanan dulu, lalu coba lagi.');
+ return k}
+function tsReset(f){
+ if(!TSK||!f||!f._ts)return;
+ f._ts.tok='';
+ try{if(window.turnstile&&f._ts.id!=null)window.turnstile.reset(f._ts.id)}catch(e){}}
 function who(u){var m=u.user_metadata||{};return m.display_name||m.full_name||m.name||m.user_name||String(u.email||'Akun').split('@')[0]}
 function avatarOf(u){var m=u.user_metadata||{},a=m.avatar_custom||m.avatar_url||m.picture||'';return /^https:\/\//.test(a)?a:''}
 
@@ -103,25 +136,25 @@ function initModal(btn){
  }
  function msg(t,err){var m=ov.querySelector('.lm-m');m.hidden=!t;m.textContent=t||'';m.className='lm-m'+(err?' err':'')}
  function setMode(m){mode=m;ov.querySelector('[data-f="in"]').hidden=(m!=='in');ov.querySelector('[data-f="up"]').hidden=(m!=='up');
-  [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.className=b.getAttribute('data-t')===m?'on':''});msg('')}
+  [].forEach.call(ov.querySelectorAll('.lm-tabs button'),function(b){b.className=b.getAttribute('data-t')===m?'on':''});msg('');if(ov.classList.contains('on'))tsMount(ov.querySelector('[data-f="'+m+'"]'))}
  function submit(f){if(busy)return;var el=f.elements,b=f.querySelector('.lm-go'),mailRe=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   msg('');busy=true;b.disabled=true;
   Promise.resolve().then(function(){
    var e=el.email.value.trim();
    if(!mailRe.test(e))throw new Error('Format email tidak valid.');
-   if(f.getAttribute('data-f')==='in')return client().then(function(sb){return sb.auth.signInWithPassword({email:e,password:el.pw.value})}).then(function(x){if(x.error)throw x.error;location.reload()});
+   if(f.getAttribute('data-f')==='in')return client().then(function(sb){return sb.auth.signInWithPassword({email:e,password:el.pw.value,options:{captchaToken:tsTok(f)}})}).then(function(x){if(x.error)throw x.error;location.reload()});
    var n=el.name.value.trim();
    if(!n)throw new Error('Nama tampilan wajib diisi.');
    if(/(admin|moderator|staff|owner|allpirate|fletro)/i.test(n.replace(/[^a-z0-9]/gi,'')))throw new Error('Nama ini tidak diperbolehkan.');
    if(el.pw.value.length<8)throw new Error('Kata sandi minimal 8 karakter.');
    if(el.pw.value!==el.pw2.value)throw new Error('Kata sandi tidak sama.');
-   return client().then(function(sb){return sb.auth.signUp({email:e,password:el.pw.value,options:{data:{name:n},emailRedirectTo:location.origin+'/login.html'}})}).then(function(x){
+   return client().then(function(sb){return sb.auth.signUp({email:e,password:el.pw.value,options:{captchaToken:tsTok(f),data:{name:n},emailRedirectTo:location.origin+'/login.html'}})}).then(function(x){
     if(x.error)throw x.error;
     if(x.data.session){location.reload();return}
     if(x.data.user&&x.data.user.identities&&!x.data.user.identities.length)throw new Error('already registered');
     setMode('in');msg('Akun dibuat. Cek email untuk konfirmasi, lalu masuk.')})})
-  .catch(function(err){msg(human(err),true)}).then(function(){busy=false;b.disabled=false})}
- function open(){if(!ov)build();document.body.style.overflow='hidden';setMode('in');void ov.offsetWidth;ov.classList.add('on')}
+  .catch(function(err){msg(human(err),true)}).then(function(){busy=false;b.disabled=false;tsReset(f)})}
+ function open(){if(!ov)build();document.body.style.overflow='hidden';setMode('in');void ov.offsetWidth;ov.classList.add('on');tsMount(ov.querySelector('[data-f="'+mode+'"]'))}
  function close(){ov.classList.remove('on');document.body.style.overflow=''}
  btn.addEventListener('click',function(e){if(e.ctrlKey||e.metaKey||e.shiftKey||e.button===1)return;e.preventDefault();open()});
 }
@@ -150,7 +183,8 @@ function view(v){
  $('oauth').hidden=!(v==='in'||v==='up')||!P.length;
  $('tabs').hidden=!(v==='in'||v==='up');
  [].forEach.call($('tabs').children,function(b){b.className=b.getAttribute('data-v')===v?'on':''});
- $('h').textContent=H[v][0];$('sub').textContent=H[v][1];$('sub').hidden=!H[v][1]}
+ $('h').textContent=H[v][0];$('sub').textContent=H[v][1];$('sub').hidden=!H[v][1];
+ if(v==='in'||v==='up'||v==='fg')tsMount($('f-'+v))}
 [].forEach.call($('tabs').children,function(b){b.onclick=function(){view(b.getAttribute('data-v'))}});
 [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){view(b.getAttribute('data-go'))}});
 
@@ -161,6 +195,7 @@ function human(e){var m=String(e&&e.message||e||'');
  if(/invalid login/i.test(m))return 'Email atau kata sandi salah.';
  if(/not confirmed/i.test(m))return 'Email belum dikonfirmasi. Cek kotak masuk (dan folder spam).';
  if(/already registered|already been registered/i.test(m))return 'Email ini sudah terdaftar. Coba masuk.';
+ if(/captcha/i.test(m))return 'Verifikasi keamanan gagal. Muat ulang halaman lalu coba lagi.';
  if(/rate limit|too many/i.test(m))return 'Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi.';
  if(/password/i.test(m)&&/(least|short|weak)/i.test(m))return 'Kata sandi terlalu lemah. Gunakan minimal 8 karakter.';
  if(/row-level security|policy/i.test(m))return 'Izin upload belum diatur. Jalankan supabase_avatar.sql di Supabase.';
@@ -187,20 +222,20 @@ sb.auth.getSession().then(function(x){var u=x.data&&x.data.session&&x.data.sessi
 function run(form,fn){
  form.addEventListener('submit',function(e){e.preventDefault();
   var b=form.querySelector('.go'),f=form.elements;say('');b.disabled=true;
-  Promise.resolve().then(function(){return fn(f)}).catch(function(err){say(human(err),true)}).then(function(){b.disabled=false})})}
+  Promise.resolve().then(function(){return fn(f)}).catch(function(err){say(human(err),true)}).then(function(){b.disabled=false;tsReset(form)})})}
 function need(c,m){if(!c)throw new Error(m)}
 var mail=function(v){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)};
 
 run($('f-in'),function(f){
  need(mail(f.email.value.trim()),'Format email tidak valid.');
- return sb.auth.signInWithPassword({email:f.email.value.trim(),password:f.pw.value}).then(function(x){
+ return sb.auth.signInWithPassword({email:f.email.value.trim(),password:f.pw.value,options:{captchaToken:tsTok($('f-in'))}}).then(function(x){
   if(x.error)throw x.error;location.href=nextUrl()})});
 
 run($('f-up'),function(f){
  var n=f.name.value.trim(),e=f.email.value.trim();
  need(n,'Nama tampilan wajib diisi.');need(!reserved(n),'Nama ini tidak diperbolehkan.');need(mail(e),'Format email tidak valid.');
  need(f.pw.value.length>=8,'Kata sandi minimal 8 karakter.');need(f.pw.value===f.pw2.value,'Kata sandi tidak sama.');
- return sb.auth.signUp({email:e,password:f.pw.value,options:{data:{name:n},emailRedirectTo:location.origin+'/login.html'}}).then(function(x){
+ return sb.auth.signUp({email:e,password:f.pw.value,options:{captchaToken:tsTok($('f-up')),data:{name:n},emailRedirectTo:location.origin+'/login.html'}}).then(function(x){
   if(x.error)throw x.error;
   if(x.data.session){location.href=nextUrl();return}
   if(x.data.user&&x.data.user.identities&&!x.data.user.identities.length)throw new Error('already registered');
@@ -208,7 +243,7 @@ run($('f-up'),function(f){
 
 run($('f-fg'),function(f){
  var e=f.email.value.trim();need(mail(e),'Format email tidak valid.');
- return sb.auth.resetPasswordForEmail(e,{redirectTo:location.origin+'/login.html'}).then(function(x){
+ return sb.auth.resetPasswordForEmail(e,{redirectTo:location.origin+'/login.html',captchaToken:tsTok($('f-fg'))}).then(function(x){
   if(x.error)throw x.error;say('Jika email terdaftar, tautan reset sudah dikirim.')})});
 
 run($('f-new'),function(f){
