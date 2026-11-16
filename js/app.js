@@ -51,7 +51,7 @@ var HID=[];
 var GN={artist:'Artist',genre:'Genre',category:'Category'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
 Object.keys(TG).forEach(function(k){GN[k.toLowerCase()]=TG[k]});
 function gname(k){return GN[k]||(k.charAt(0).toUpperCase()+k.slice(1))}
-var PRETTY={};['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer'].forEach(function(g){PRETTY[g]=1});
+var PRETTY={};['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer','vtubers'].forEach(function(g){PRETTY[g]=1});
 function tlink(k,v){k=String(k).toLowerCase();return PRETTY[k]?'/'+encodeURIComponent(k.replace(/\s+/g,'-'))+'/'+encodeURIComponent(v):'/?tag='+encodeURIComponent(k+':'+v)}
 function llink(l){return '/label/'+encodeURIComponent(l)}
 function labelFromUrl(){var q=new URLSearchParams(location.search).get('label');if(q)return q;

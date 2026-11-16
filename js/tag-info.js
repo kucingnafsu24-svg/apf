@@ -4,7 +4,7 @@
 (function(){
  var list=document.getElementById('posts');
  if(!list)return;                                   /* hanya di index.html */
- var G=['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer'];
+ var G=['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer','vtubers'];
  function key(){
   var q=new URLSearchParams(location.search).get('tag');
   if(q){var i=q.indexOf(':');if(i<1)return '';var g=q.slice(0,i).toLowerCase();if(g==='file')g='category';return g+':'+q.slice(i+1).toLowerCase()}
