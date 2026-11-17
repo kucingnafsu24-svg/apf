@@ -1,6 +1,6 @@
 /* Kartu info di halaman tag (mis. /tag/Mori%20Calliope, /cosplayer/Nama, /?tag=tag:Nama).
    Data dari /data/tag-info.json, kuncinya "grup:nama" huruf kecil semua, contoh "tag:mori calliope".
-   Isi: name?, banner? (gambar lebar di atas kartu), image?, desc? (\n = paragraf baru), info? {Label:Isi}, links? [{url, name?, type?, icon?}] (logo otomatis dari alamat: youtube, x/twitter, pixiv, fanbox, patreon, discord, tiktok, instagram, facebook, threads), more? (alamat /g/slug untuk halaman detail lengkap) */
+   Isi: name?, banner? (gambar lebar di atas kartu), image?, desc? (\n = paragraf baru), info? {Label:Isi}, tabs? (false = sembunyikan; atau daftar mis. ["post","video"]; bawaan: post, livestream, video), links? [{url, name?, type?, icon?}] (logo otomatis dari alamat: youtube, x/twitter, pixiv, fanbox, patreon, discord, tiktok, instagram, facebook, threads), more? (alamat /g/slug untuk halaman detail lengkap) */
 (function(){
  var list=document.getElementById('posts');
  if(!list)return;                                   /* hanya di index.html */
@@ -67,6 +67,36 @@
   var re=/<a\s[^>]*?href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,last=0,m;
   while((m=re.exec(txt))){plain(p,txt.slice(last,m.index));alink(p,m[1],m[2].replace(/<[^>]*>/g,''));last=re.lastIndex}
   plain(p,txt.slice(last))}
+
+ /* tab penyaring Post / Livestream / Video. Jenis artikel: field "type" di posts.json,
+    atau label (Livestream/Live/Stream/Streaming, Video); selain itu dianggap Post. */
+ var TT={post:'Post',livestream:'Livestream',video:'Video'};
+ function typeOf(p){
+  var ty=String(p.type||'').toLowerCase().trim();
+  if(/^(live|stream|streaming|livestream|live stream)$/.test(ty))return 'livestream';
+  if(ty==='video'||ty==='post')return ty;
+  var ls=(p.labels||[]).map(function(x){return String(x).toLowerCase().trim()});
+  if(ls.some(function(x){return /^(live|stream|streaming|livestream|live stream)$/.test(x)}))return 'livestream';
+  if(ls.indexOf('video')>-1)return 'video';
+  return 'post'}
+ function tabs(box,cfg){
+  if(cfg===false||!window.apfFilter||!window.apfAll)return;
+  var keys=Array.isArray(cfg)?cfg.filter(function(k){return TT[k]}):['post','livestream','video'];
+  if(!keys.length)return;
+  var all=window.apfAll(),cnt={};all.forEach(function(p){var k=typeOf(p);cnt[k]=(cnt[k]||0)+1});
+  var bar=el('div','ti-tabs'),btns={};bar.setAttribute('role','tablist');
+  [''].concat(keys).forEach(function(k){
+   var b=el('button','',k?TT[k]:'Semua');b.type='button';b.setAttribute('role','tab');
+   b.appendChild(el('span','ti-n',String(k?(cnt[k]||0):all.length)));
+   b.onclick=function(){set(k)};bar.appendChild(b);btns[k]=b});
+  function set(k){
+   Object.keys(btns).forEach(function(x){var on=x===k;btns[x].className=on?'on':'';btns[x].setAttribute('aria-selected',on?'true':'false')});
+   var u=new URLSearchParams(location.search);u.delete('page');if(k)u.set('type',k);else u.delete('type');
+   var q=u.toString();try{history.replaceState(null,'',location.pathname+(q?'?'+q:''))}catch(e){}
+   window.apfFilter(k?function(p){return typeOf(p)===k}:null)}
+  box.appendChild(bar);
+  var c=new URLSearchParams(location.search).get('type');
+  set(keys.indexOf(c)>-1?c:'')}
  var s=document.createElement('style');
  s.textContent='.ti{margin:0 0 20px;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}'+
   '.ti-bn{display:block;width:100%;aspect-ratio:16/5;max-height:240px;object-fit:cover;background:var(--line)}'+
@@ -84,7 +114,12 @@
   '.ti-ic{display:inline-flex;flex:none;line-height:0}.ti-ic img{display:block;width:18px;height:18px;object-fit:contain}'+
   '.ic-youtube{color:#f00}.ic-x,.ic-threads,.ic-tiktok{color:var(--head)}.ic-instagram{color:#e4405f}.ic-facebook{color:#1877f2}.ic-discord{color:#5865f2}.ic-patreon{color:#ff424d}.ic-pixiv,.ic-fanbox{color:#0096fa}.ic-link{color:var(--alt)}'+
   '.ti-l a:hover{border-color:var(--link)}'+
-  '@media(max-width:560px){.ti-bn{aspect-ratio:16/7}.ti-in{flex-direction:column;align-items:center;text-align:center}.ti dl{text-align:left}.ti-l{width:100%;max-width:320px}}';
+  '.ti-tabs{display:flex;gap:4px;padding:0 12px;border-top:1px solid var(--line);overflow-x:auto}'+
+  '.ti-tabs button{flex:none;display:flex;align-items:center;gap:6px;padding:12px 14px;border:0;border-bottom:2px solid transparent;border-radius:0;background:none;color:var(--alt);font:inherit;font-size:14px;font-weight:600;cursor:pointer}'+
+  '.ti-tabs button:hover{background:none;color:var(--head)}'+
+  '.ti-tabs button.on{color:var(--head);border-bottom-color:var(--link)}'+
+  '.ti-n{padding:1px 7px;border-radius:999px;background:var(--line);color:var(--alt);font-size:11px;font-weight:600}'+
+  '@media(max-width:560px){.ti-tabs{justify-content:flex-start}.ti-bn{aspect-ratio:16/7}.ti-in{flex-direction:column;align-items:center;text-align:center}.ti dl{text-align:left}.ti-l{width:100%;max-width:320px}}';
  document.head.appendChild(s);
 
  fetch('/data/tag-info.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
@@ -109,7 +144,7 @@
     else a.appendChild(icon(k))}
    a.appendChild(document.createTextNode(String(l.name||(k&&NM[k])||l.url)));
    if(!l.self){a.target='_blank';a.rel='noopener'}w.appendChild(a)});W=w}
-  inn.appendChild(b);if(W)inn.appendChild(W);box.appendChild(inn);
+  inn.appendChild(b);if(W)inn.appendChild(W);box.appendChild(inn);tabs(box,o.tabs);
   var t=document.querySelector('.title');
   if(t&&t.parentNode)t.parentNode.insertBefore(box,t);else list.parentNode.insertBefore(box,list);
  }).catch(function(){});

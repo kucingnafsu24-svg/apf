@@ -232,6 +232,9 @@ if(list){
   var t=document.querySelector('.title');if(t)t.scrollIntoView({block:'start'})};
  window.addEventListener('popstate',function(){if(qs.get('q'))return;page=Math.max(1,parseInt(new URLSearchParams(location.search).get('page'),10)||1);render(data)});
  if(!qs.get('q'))render(data);
+ /* kait untuk tag-info.js: tab Post/Livestream/Video menyaring daftar tag (pagination ikut) */
+ var all=data;window.apfAll=function(){return all};
+ window.apfFilter=function(fn){data=fn?all.filter(fn):all;page=1;history.replaceState(null,'',pageUrl(1));render(data)};
  $('view').onclick=function(){var g=list.classList.toggle('grid');$('vl').textContent=g?'Grid':'List'};
 }else{
  var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
