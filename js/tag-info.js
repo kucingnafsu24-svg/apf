@@ -79,6 +79,13 @@
   if(ls.some(function(x){return /^(live|stream|streaming|livestream|live stream)$/.test(x)}))return 'livestream';
   if(ls.indexOf('video')>-1)return 'video';
   return 'post'}
+ /* app.js memuat artikel secara asinkron, jadi kait filternya baru ada setelah itu: tunggu sampai siap */
+ function whenHook(cb){
+  if(window.apfFilter&&window.apfAll)return cb();
+  var n=0,iv=setInterval(function(){
+   if(window.apfFilter&&window.apfAll){clearInterval(iv);cb()}
+   else if(++n>150){clearInterval(iv);try{console.info('[tag-info] app.js belum menyediakan apfFilter: tab tidak ditampilkan. Pastikan js/app.js versi terbaru terpasang.')}catch(e){}}
+  },100)}
  function tabs(box,cfg){
   if(cfg===false||!window.apfFilter||!window.apfAll)return;
   var keys=Array.isArray(cfg)?cfg.filter(function(k){return TT[k]}):['post','livestream','video'];
@@ -144,7 +151,7 @@
     else a.appendChild(icon(k))}
    a.appendChild(document.createTextNode(String(l.name||(k&&NM[k])||l.url)));
    if(!l.self){a.target='_blank';a.rel='noopener'}w.appendChild(a)});W=w}
-  inn.appendChild(b);if(W)inn.appendChild(W);box.appendChild(inn);tabs(box,o.tabs);
+  inn.appendChild(b);if(W)inn.appendChild(W);box.appendChild(inn);whenHook(function(){tabs(box,o.tabs)});
   var t=document.querySelector('.title');
   if(t&&t.parentNode)t.parentNode.insertBefore(box,t);else list.parentNode.insertBefore(box,list);
  }).catch(function(){});
