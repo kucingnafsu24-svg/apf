@@ -68,17 +68,17 @@
   while((m=re.exec(txt))){plain(p,txt.slice(last,m.index));alink(p,m[1],m[2].replace(/<[^>]*>/g,''));last=re.lastIndex}
   plain(p,txt.slice(last))}
 
- /* tab penyaring Post / Livestream / Video. Jenis artikel: field "type" di posts.json,
-    atau label (Livestream/Live/Stream/Streaming, Video); selain itu dianggap Post. */
+ /* tab penyaring Post / Livestream / Video: dibaca dari grup tag "Category" (bisa diganti lewat
+    typeGroup di config.js) di posts.json. Nilai "post", "video", "livestream" (juga live/stream/streaming);
+    nilai lain di grup itu (membership, vtuber, dst.) diabaikan. Satu artikel boleh punya lebih dari satu. */
  var TT={post:'Post',livestream:'Livestream',video:'Video'};
- function typeOf(p){
-  var ty=String(p.type||'').toLowerCase().trim();
-  if(/^(live|stream|streaming|livestream|live stream)$/.test(ty))return 'livestream';
-  if(ty==='video'||ty==='post')return ty;
-  var ls=(p.labels||[]).map(function(x){return String(x).toLowerCase().trim()});
-  if(ls.some(function(x){return /^(live|stream|streaming|livestream|live stream)$/.test(x)}))return 'livestream';
-  if(ls.indexOf('video')>-1)return 'video';
-  return 'post'}
+ var TGRP=String((window.APF_CONFIG&&window.APF_CONFIG.typeGroup)||'category').toLowerCase();
+ function typesOf(p){
+  var out=[],tg=(p&&p.tags&&typeof p.tags==='object')?p.tags:{};
+  [].concat(tg[TGRP]||[]).forEach(function(v){
+   var x=String(v).toLowerCase().trim(),k=/^(live|stream|streaming|livestream|live stream)$/.test(x)?'livestream':(x==='video'||x==='post')?x:'';
+   if(k&&out.indexOf(k)<0)out.push(k)});
+  return out}
  /* app.js memuat artikel secara asinkron, jadi kait filternya baru ada setelah itu: tunggu sampai siap */
  function whenHook(cb){
   if(window.apfFilter&&window.apfAll)return cb();
@@ -90,7 +90,7 @@
   if(cfg===false||!window.apfFilter||!window.apfAll)return;
   var keys=Array.isArray(cfg)?cfg.filter(function(k){return TT[k]}):['post','livestream','video'];
   if(!keys.length)return;
-  var all=window.apfAll(),cnt={};all.forEach(function(p){var k=typeOf(p);cnt[k]=(cnt[k]||0)+1});
+  var all=window.apfAll(),cnt={};all.forEach(function(p){typesOf(p).forEach(function(k){cnt[k]=(cnt[k]||0)+1})});
   var bar=el('div','ti-tabs'),btns={};bar.setAttribute('role','tablist');
   [''].concat(keys).forEach(function(k){
    var b=el('button','',k?TT[k]:'Semua');b.type='button';b.setAttribute('role','tab');
@@ -100,7 +100,7 @@
    Object.keys(btns).forEach(function(x){var on=x===k;btns[x].className=on?'on':'';btns[x].setAttribute('aria-selected',on?'true':'false')});
    var u=new URLSearchParams(location.search);u.delete('page');if(k)u.set('type',k);else u.delete('type');
    var q=u.toString();try{history.replaceState(null,'',location.pathname+(q?'?'+q:''))}catch(e){}
-   window.apfFilter(k?function(p){return typeOf(p)===k}:null)}
+   window.apfFilter(k?function(p){return typesOf(p).indexOf(k)>-1}:null)}
   box.appendChild(bar);
   var c=new URLSearchParams(location.search).get('type');
   set(keys.indexOf(c)>-1?c:'')}
