@@ -64,7 +64,7 @@ function chips(p){var ks=Object.keys(p.tags);if(!ks.length)return '';
  return '<div class="tagrows">'+ks.map(function(k){return '<div class="tagrow"><span>'+esc(gname(k))+'</span>'+
   p.tags[k].map(function(v){return '<a class="tg tg-'+esc(k.replace(/[^a-z0-9]/g,''))+'" href="'+tlink(k,v)+'">'+esc(v)+'</a>'}).join('')+'</div>'}).join('')+'</div>'}
 function thumb(p,big){var b=p.comments?'<span class="badge"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 20l1-4.6A8 8 0 1 1 21 12z"/></svg>'+p.comments+'</span>':'';
- if(p.image)return '<'+(big?'div':'a href="/g/'+encodeURIComponent(p.slug)+'"')+' class="thumb">'+b+'<img src="'+esc(p.image)+'"'+(p.imageFull?' data-full="'+esc(p.imageFull)+'"':'')+' alt="'+esc(p.title)+'" loading="lazy"></'+(big?'div':'a')+'>';
+ if(p.image)return '<'+(big?'div':'a href="/g/'+encodeURIComponent(p.slug)+'"')+' class="thumb">'+b+'<img src="'+esc(p.image)+'"'+(p.imageFull?' data-full="'+esc(p.imageFull)+'"':'')+' alt="" loading="lazy"></'+(big?'div':'a')+'>';
  var st=p.thumb.title.length>6?' style="font-size:'+(big?36:18)+'px"':'';
  return '<'+(big?'div':'a href="/g/'+encodeURIComponent(p.slug)+'"')+' class="thumb '+p.thumb.cls+'">'+b+'<span><strong'+st+'>'+esc(p.thumb.title)+'</strong><small>'+esc(p.thumb.sub)+'</small></span></'+(big?'div':'a')+'>'}
 function avatar(p){var C=window.APF_CONFIG||{},u=p.authorImage||(C.authors&&C.authors[p.author]);
