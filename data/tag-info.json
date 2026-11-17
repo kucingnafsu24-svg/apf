@@ -18,14 +18,26 @@
     "banner": "/images/Arvaduh/banner.webp",
     "image": "/images/Arvaduh/14.webp",
     "desc": "Halo halo! Arvaduh disini,\nGa sakit, cuma aduh. Temenin guys biar ga sakit bareng sambil maen 🥲\n\ni love Mostima BTW, and truck-kun isekai-ed me to be her male version.",
-    "info": { "Negara": "Indonesia", "Bergabung pada": "31 Jul 2016", "tag membership": "Hana Famili"},
+    "info": { "Negara": "Indonesia", "Bergabung pada": "31 Jul 2016", "tag membership": "Aduhai"},
     "links": [
-      { "name": "YouTube", "url": "https://www.youtube.com/@CecilliaHanarisu" },
+      { "name": "YouTube", "url": "https://www.youtube.com/@arvaduh" },
       { "name": "Trakteer", "url": "https://trakteer.id/Kyouma/tip" },
       { "name": "Instagram", "url": "https://www.instagram.com/arvaduh/" },
       { "name": "X", "url": "https://x.com/ArvAduh" },
       { "name": "Discord", "url": "https://discord.com/9qxFe7rWMY" },
       { "name": "Tiktok", "url": "https://www.tiktok.com/@arvaduh" }
+    ]
+  },
+    "vtubers:Mori Calliope Ch. hololive": {
+    "name": "Mori Calliope Ch. hololive",
+    "banner": "/images/Mori Calliope Ch. hololive/banner.webp",
+    "image": "/images/Mori Calliope Ch. hololive/3.webp",
+    "desc": "singer/songwriter. Death Herself. 作曲作詞. \nFor Inquiries\nCover Corp: <a href=\"http://cover-corp.com/\" target=\"_blank\" rel=\"noopener\">http://cover-corp.com/</a>\nOfficial Twitter: <a href=\"https://twitter.com/hololive_En\" target=\"_blank\" rel=\"noopener\">https://twitter.com/hololive_En</a>",
+    "info": { "Negara": "Jepang", "Bergabung pada": "16 Jul 2020", "tag membership": "Dead Beat +"},
+    "links": [
+      { "name": "YouTube", "url": "https://www.youtube.com/@MoriCalliope" },
+      { "name": "X", "url": "https://x.com/moricalliope" },
+      { "name": "TikTok", "url": "https://www.tiktok.com/@moricalliope_hololiveen?_r=1" }
     ]
   },
   "artist:maplestar": {
