@@ -4,7 +4,7 @@
 (function(){
  var list=document.getElementById('posts');
  if(!list)return;                                   /* hanya di index.html */
- var G=['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer','vtubers'];
+ var G=['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer','vtubers','youtubers'];
  /* samakan bentuk kunci: huruf kecil, spasi rapi, "file" = "category" */
  function norm(s){
   s=String(s||'');var i=s.indexOf(':');if(i<1)return '';
@@ -86,24 +86,40 @@
    if(window.apfFilter&&window.apfAll){clearInterval(iv);cb()}
    else if(++n>150){clearInterval(iv);try{console.info('[tag-info] app.js belum menyediakan apfFilter: tab tidak ditampilkan. Pastikan js/app.js versi terbaru terpasang.')}catch(e){}}
   },100)}
- function tabs(box,cfg){
+ function cats(p){return [].concat((p&&p.tags&&p.tags[TGRP])||[]).map(function(v){return String(v).trim()}).filter(Boolean)}
+ /* vtubers/youtubers: tab tetap Post/Livestream/Video. artist: tab dibuat dari nilai Category milik artikel artist itu.
+    Bisa diatur per entri: "tabs": false | ["post","video"] | "category" (paksa tab dinamis) | "type" (paksa tab tetap) */
+ function tabs(box,cfg,grp){
   if(cfg===false||!window.apfFilter||!window.apfAll)return;
-  var keys=Array.isArray(cfg)?cfg.filter(function(k){return TT[k]}):['post','livestream','video'];
-  if(!keys.length)return;
-  var all=window.apfAll(),cnt={};all.forEach(function(p){typesOf(p).forEach(function(k){cnt[k]=(cnt[k]||0)+1})});
+  var all=window.apfAll(),defs=[];
+  var mode=Array.isArray(cfg)?'fixed':cfg==='category'?'dynamic':cfg==='type'?'fixed':
+   grp==='artist'?'dynamic':(/^(vtubers?|youtubers?)$/.test(grp)?'fixed':'');
+  if(mode==='fixed'){
+   var keys=Array.isArray(cfg)?cfg.filter(function(k){return TT[k]}):['post','livestream','video'];
+   keys.forEach(function(k){
+    var test=function(p){return typesOf(p).indexOf(k)>-1},n=0;all.forEach(function(p){if(test(p))n++});
+    defs.push({k:k,label:TT[k],n:n,test:test})})}
+  else if(mode==='dynamic'){
+   var seen={},order=[];
+   all.forEach(function(p){cats(p).forEach(function(v){var l=v.toLowerCase();if(!seen[l]){seen[l]={label:v,n:0};order.push(l)}seen[l].n++})});
+   order.sort(function(a,b){return seen[b].n-seen[a].n||seen[a].label.localeCompare(seen[b].label)});
+   order.forEach(function(l){defs.push({k:l,label:seen[l].label,n:seen[l].n,test:function(p){return cats(p).some(function(v){return v.toLowerCase()===l})}})})}
+  if(!defs.length)return;
+  defs.unshift({k:'',label:'Semua',n:all.length,test:null});
   var bar=el('div','ti-tabs'),btns={};bar.setAttribute('role','tablist');
-  [''].concat(keys).forEach(function(k){
-   var b=el('button','',k?TT[k]:'Semua');b.type='button';b.setAttribute('role','tab');
-   b.appendChild(el('span','ti-n',String(k?(cnt[k]||0):all.length)));
-   b.onclick=function(){set(k)};bar.appendChild(b);btns[k]=b});
-  function set(k){
-   Object.keys(btns).forEach(function(x){var on=x===k;btns[x].className=on?'on':'';btns[x].setAttribute('aria-selected',on?'true':'false')});
-   var u=new URLSearchParams(location.search);u.delete('page');if(k)u.set('type',k);else u.delete('type');
+  defs.forEach(function(d){
+   var b=el('button','',d.label);b.type='button';b.setAttribute('role','tab');
+   b.appendChild(el('span','ti-n',String(d.n)));
+   b.onclick=function(){set(d)};bar.appendChild(b);btns[d.k]=b});
+  function set(d){
+   Object.keys(btns).forEach(function(x){var on=x===d.k;btns[x].className=on?'on':'';btns[x].setAttribute('aria-selected',on?'true':'false')});
+   var u=new URLSearchParams(location.search);u.delete('page');if(d.k)u.set('type',d.k);else u.delete('type');
    var q=u.toString();try{history.replaceState(null,'',location.pathname+(q?'?'+q:''))}catch(e){}
-   window.apfFilter(k?function(p){return typesOf(p).indexOf(k)>-1}:null)}
+   window.apfFilter(d.test)}
   box.appendChild(bar);
-  var c=new URLSearchParams(location.search).get('type');
-  set(keys.indexOf(c)>-1?c:'')}
+  var c=String(new URLSearchParams(location.search).get('type')||'').toLowerCase(),start=defs[0];
+  defs.forEach(function(d){if(d.k&&d.k===c)start=d});
+  set(start)}
  var s=document.createElement('style');
  s.textContent='.ti{margin:0 0 20px;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}'+
   '.ti-bn{display:block;width:100%;aspect-ratio:16/5;max-height:240px;object-fit:cover;background:var(--line)}'+
@@ -151,7 +167,7 @@
     else a.appendChild(icon(k))}
    a.appendChild(document.createTextNode(String(l.name||(k&&NM[k])||l.url)));
    if(!l.self){a.target='_blank';a.rel='noopener'}w.appendChild(a)});W=w}
-  inn.appendChild(b);if(W)inn.appendChild(W);box.appendChild(inn);whenHook(function(){tabs(box,o.tabs)});
+  inn.appendChild(b);if(W)inn.appendChild(W);box.appendChild(inn);whenHook(function(){tabs(box,o.tabs,k.slice(0,k.indexOf(':')))});
   var t=document.querySelector('.title');
   if(t&&t.parentNode)t.parentNode.insertBefore(box,t);else list.parentNode.insertBefore(box,list);
  }).catch(function(){});
