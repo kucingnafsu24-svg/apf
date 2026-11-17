@@ -1,21 +1,32 @@
 {
   "vtubers:cecillia hanarisu ch": {
     "name": "Cecillia Hanarisu Ch",
-    "image": "/images/vtuber/cecillia-hanarisu.webp",
+    "banner": "/images/Cecillia Hanarisu Ch/banner.webp",
+    "image": "/images/Cecillia Hanarisu Ch/2.webp",
     "desc": "𝐚 𝐰𝐡𝐢𝐭𝐞 𝐰𝐢𝐭𝐜𝐡 𝐡𝐚𝐬 𝐜𝐨𝐦𝐞 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐰𝐨𝐫𝐥𝐝! ❤︎",
-    "info": { "Negara": "Indonesia", "Bergabung pada": "14 Nov 2023" },
+    "info": { "Negara": "Indonesia", "Bergabung pada": "14 Nov 2023", "tag membership": "Hana Famili"},
     "links": [
       { "name": "YouTube", "url": "https://www.youtube.com/@CecilliaHanarisu" },
       { "name": "Tako", "url": "https://tako.id/cecilliahanarisu" },
       { "name": "X", "url": "https://x.com/xcecillia_55" },
       { "name": "Discord", "url": "https://discord.com/Ga4hUUsc3Y" },
       { "name": "Tiktok", "url": "https://www.tiktok.com/@cecillia.hanarisu" }
-    ],
-    "more post": "/g/cecillia-hanarisu"
+    ]
   },
-  "vtubers:vtuber kedua": {
-    "name": "Vtuber Kedua",
-    "desc": "Deskripsi singkat."
+  "vtubers:Arvaduh": {
+    "name": "Arvaduh",
+    "banner": "/images/Arvaduh/banner.webp",
+    "image": "/images/Arvaduh/14.webp",
+    "desc": "Halo halo! Arvaduh disini,\nGa sakit, cuma aduh. Temenin guys biar ga sakit bareng sambil maen 🥲\n\ni love Mostima BTW, and truck-kun isekai-ed me to be her male version.",
+    "info": { "Negara": "Indonesia", "Bergabung pada": "31 Jul 2016", "tag membership": "Hana Famili"},
+    "links": [
+      { "name": "YouTube", "url": "https://www.youtube.com/@CecilliaHanarisu" },
+      { "name": "Trakteer", "url": "https://trakteer.id/Kyouma/tip" },
+      { "name": "Instagram", "url": "https://www.instagram.com/arvaduh/" },
+      { "name": "X", "url": "https://x.com/ArvAduh" },
+      { "name": "Discord", "url": "https://discord.com/9qxFe7rWMY" },
+      { "name": "Tiktok", "url": "https://www.tiktok.com/@arvaduh" }
+    ]
   },
   "artist:maplestar": {
     "name": "Maplestar",
