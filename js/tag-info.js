@@ -34,7 +34,7 @@
   fanbox:'<rect width="24" height="24" rx="6" fill="#0096fa"/><path fill="#fff" d="M8 6.400h8.600v2.500h-6v2.300h5v2.500h-5V18H8z"/>',
   link:'<rect width="24" height="24" rx="6" fill="#6b7280"/><circle cx="12" cy="12" r="6.200" fill="none" stroke="#fff" stroke-width="1.600"/><path d="M5.800 12h12.400M12 5.800c2 2 2 10.400 0 12.400M12 5.800c-2 2-2 10.400 0 12.400" fill="none" stroke="#fff" stroke-width="1.300"/>'
  };
- var NM={youtube:'YouTube',x:'X',instagram:'Instagram',facebook:'Facebook',discord:'Discord',tiktok:'TikTok',threads:'Threads',patreon:'Patreon',pixiv:'Pixiv',fanbox:'Pixiv Fanbox',link:'Link'};
+ var NM={youtube:'YouTube',x:'X',instagram:'Instagram',facebook:'Facebook',discord:'Discord',tiktok:'TikTok',threads:'Threads',patreon:'Patreon',pixiv:'Pixiv',fanbox:'Pixiv Fanbox',tako:'Tako',trakteer:'Trakteer',saweria:'Saweria',linktree:'Linktree',iwara:'Iwara',subscribestar:'SubscribeStar',bluesky:'Bluesky',spotify:'Spotify',applemusic:'Apple Music',bandcamp:'Bandcamp',link:'Link'};
  function kind(u){
   var h='',p='';try{var x=new URL(u,location.href);h=x.hostname.replace(/^www\./,'').toLowerCase();p=x.pathname.toLowerCase()}catch(e){}
   if(/(^|\.)(youtube\.com|youtu\.be)$/.test(h))return 'youtube';
@@ -47,10 +47,35 @@
   if(/(^|\.)instagram\.com$/.test(h))return 'instagram';
   if(/(^|\.)(facebook\.com|fb\.com|fb\.me)$/.test(h))return 'facebook';
   if(/(^|\.)(threads\.net|threads\.com)$/.test(h))return 'threads';
+  if(/(^|\.)tako\.id$/.test(h))return 'tako';
+  if(/(^|\.)trakteer\.id$/.test(h))return 'trakteer';
+  if(/(^|\.)saweria\.co$/.test(h))return 'saweria';
+  if(/(^|\.)linktr\.ee$/.test(h))return 'linktree';
+  if(/(^|\.)iwara\.tv$/.test(h))return 'iwara';
+  if(/(^|\.)subscribestar\.(adult|com)$/.test(h))return 'subscribestar';
+  if(/(^|\.)(bsky\.app|bsky\.social)$/.test(h))return 'bluesky';
+  if(/(^|\.)spotify\.com$/.test(h))return 'spotify';
+  if(/(^|\.)music\.apple\.com$/.test(h))return 'applemusic';
+  if(/(^|\.)bandcamp\.com$/.test(h))return 'bandcamp';
   return 'link'}
+ /* Logo resmi: taruh filenya di /images/icons/<nama>.svg (atau .png / .webp), mis. facebook.svg, tiktok.svg.
+    Folder bisa diganti lewat iconDir di config.js. Bila file tidak ada, dipakai ikon bawaan (kotak berwarna). */
+ var ICD=String((window.APF_CONFIG&&window.APF_CONFIG.iconDir)||'/images/icons/').replace(/\/?$/,'/');
+ var ICF={},ICW={};
+ function logoUrl(k,cb){
+  if(k in ICF)return cb(ICF[k]);
+  if(ICW[k])return ICW[k].push(cb);
+  ICW[k]=[cb];
+  var ex=['svg','png','webp'],i=0;
+  function fin(){var w=ICW[k];delete ICW[k];w.forEach(function(f){f(ICF[k])})}
+  (function next(){
+   if(i>=ex.length){ICF[k]='';fin();return}
+   var im=new Image(),u=ICD+k+'.'+ex[i++];
+   im.onload=function(){ICF[k]=u;fin()};im.onerror=next;im.src=u})()}
  function icon(k){
   var s=el('span','ti-ic ic-'+k);
   s.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">'+(IC[k]||IC.link)+'</svg>';
+  logoUrl(k,function(u){if(!u)return;var im=new Image();im.alt='';im.width=20;im.height=20;im.src=u;s.innerHTML='';s.appendChild(im)});
   return s}
 
 
@@ -178,7 +203,7 @@
   var W=null;
   if(L.length){var w=el('div','ti-l');L.forEach(function(l){
    if(!l||!safe(l.url))return;
-   var k=l.self?'':(IC[l.type]?l.type:kind(l.url)),a=el('a');a.href=l.url;
+   var k=l.self?'':(NM[l.type]?l.type:kind(l.url)),a=el('a');a.href=l.url;
    if(k||l.icon){
     if(safe(l.icon)){var ic=el('span','ti-ic'),ii=el('img');ii.alt='';ii.onerror=function(){ic.remove()};ii.src=l.icon;ic.appendChild(ii);a.appendChild(ic)}
     else a.appendChild(icon(k))}
