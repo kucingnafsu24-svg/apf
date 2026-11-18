@@ -561,41 +561,47 @@ html,body{overflow-x:hidden}
 .post>*{min-width:0}
 .post h3,.post p{overflow-wrap:anywhere}
 
-/* ===== Ikon medsos & donasi (dari /images/icons/) ===== */
+/* ===== Ikon medsos & donasi (dari /images/icons/) =====
+   Ikon .svg berwarna hitam dipakai sebagai "mask", warnanya diatur CSS:
+   - merek berwarna  -> warna merek (var(--c))
+   - merek hitam (X, TikTok, Threads) -> var(--head): hitam di mode terang, putih di mode gelap
+   Jadi TIDAK perlu file ikon putih. */
 .social a::before,.donate a::before{content:"";flex:none;width:22px;height:22px;background:center/contain no-repeat}
 .donate a{gap:8px}
-.s-dc::before{background-image:url(/images/icons/discord.svg)}
-.s-wa::before{background-image:url(/images/icons/whatsapp.svg)}
-.s-fb::before{background-image:url(/images/icons/facebook.svg)}
-.s-ig::before{background-image:url(/images/icons/instagram.svg)}
-.s-yt::before{background-image:url(/images/icons/youtube.svg)}
-.s-tt::before{background-image:url(/images/icons/tiktok.svg)}
-.s-x::before{background-image:url(/images/icons/x.svg)}
-.s-th::before{background-image:url(/images/icons/threads.svg)}
-.s-bs::before{background-image:url(/images/icons/bluesky.svg)}
-.s-px::before{background-image:url(/images/icons/pixiv.svg)}
+
+/* ikon SVG (mask) */
+.s-dc::before,.s-fb::before,.s-ig::before,.s-yt::before,.s-tt::before,.s-x::before,.s-th::before,.s-bs::before,.s-px::before,.s-pt::before,.s-wa::before{
+ background:var(--c);
+ -webkit-mask:center/contain no-repeat;mask:center/contain no-repeat}
+.s-dc::before{-webkit-mask-image:url(/images/icons/discord.svg);mask-image:url(/images/icons/discord.svg)}
+.s-wa::before{-webkit-mask-image:url(/images/icons/whatsapp.svg);mask-image:url(/images/icons/whatsapp.svg)}
+.s-fb::before{-webkit-mask-image:url(/images/icons/facebook.svg);mask-image:url(/images/icons/facebook.svg)}
+.s-ig::before{-webkit-mask-image:url(/images/icons/instagram.svg);mask-image:url(/images/icons/instagram.svg)}
+.s-yt::before{-webkit-mask-image:url(/images/icons/youtube.svg);mask-image:url(/images/icons/youtube.svg)}
+.s-tt::before{-webkit-mask-image:url(/images/icons/tiktok.svg);mask-image:url(/images/icons/tiktok.svg)}
+.s-x::before{-webkit-mask-image:url(/images/icons/x.svg);mask-image:url(/images/icons/x.svg)}
+.s-th::before{-webkit-mask-image:url(/images/icons/threads.svg);mask-image:url(/images/icons/threads.svg)}
+.s-bs::before{-webkit-mask-image:url(/images/icons/bluesky.svg);mask-image:url(/images/icons/bluesky.svg)}
+.s-px::before{-webkit-mask-image:url(/images/icons/pixiv.svg);mask-image:url(/images/icons/pixiv.svg)}
+.s-pt::before{-webkit-mask-image:url(/images/icons/patreon.svg);mask-image:url(/images/icons/patreon.svg)}
+
+/* Patreon di tombol donasi (latar berwarna): ikon putih */
+.s-tk.s-pt::before{background:#fff}
+
+/* ikon PNG (sudah berwarna) */
 .s-tk::before{background-image:url(/images/icons/trakteer.png)}
 .s-sw::before{background-image:url(/images/icons/Saweria.png)}
 .s-tako::before{background-image:url(/images/icons/tako.png)}
-.s-pt::before{background-image:url(/images/icons/patreon.svg)}
 .s-ss::before{background-image:url(/images/icons/subscribestar.png)}
-.s-tt{--c:#111}.s-x{--c:#111}.s-th{--c:#111}.s-bs{--c:#0085ff}.s-px{--c:#0096fa}
+
+/* warna merek */
+.s-tt,.s-x,.s-th{--c:var(--head)}
+.s-bs{--c:#0085ff}.s-px{--c:#0096fa}
 .s-sw{--c:#e08a00}.s-tako{--c:#00967f}.s-pt{--c:#f96854}.s-ss{--c:#20b2aa}
-/* tombol Trakteer di dock mobile */
 .dock-tk .s-tk{gap:8px}
+
 /* mobile: ikon di atas teks supaya tombol 3 kolom tidak sesak */
 @media(max-width:760px){
  .social a{flex-direction:column;gap:6px;text-align:center}
  .social a::before{width:24px;height:24px}
 }
-
-/* Mode gelap: pakai ikon putih untuk X, TikTok, Threads
-   (simpan di /images/icons/ dengan nama x-white.svg, tiktok-white.svg, threads-white.svg) */
-@media (prefers-color-scheme:dark){
- :root:not([data-theme="light"]) .s-x::before{background-image:url(/images/icons/x-white.svg)}
- :root:not([data-theme="light"]) .s-tt::before{background-image:url(/images/icons/tiktok-white.svg)}
- :root:not([data-theme="light"]) .s-th::before{background-image:url(/images/icons/threads-white.svg)}
-}
-:root[data-theme="dark"] .s-x::before{background-image:url(/images/icons/x-white.svg)}
-:root[data-theme="dark"] .s-tt::before{background-image:url(/images/icons/tiktok-white.svg)}
-:root[data-theme="dark"] .s-th::before{background-image:url(/images/icons/threads-white.svg)}
