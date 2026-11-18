@@ -556,3 +556,7 @@ html,body{overflow-x:hidden}
 
 /* Thumbnail tanpa gambar: kotak polos, tanpa tulisan judul/sub */
 .thumb:not(.slide):not(:has(img))>span:not(.badge){display:none}
+
+/* Kartu post: teks panjang tanpa spasi (mis. alamat URL di excerpt) tidak boleh melebarkan kolom keluar layar */
+.post>*{min-width:0}
+.post h3,.post p{overflow-wrap:anywhere}
