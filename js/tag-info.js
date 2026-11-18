@@ -20,19 +20,19 @@
  var safe=function(u){return typeof u==='string'&&/^(https?:\/\/|\/(?!\/))/.test(u)};
  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 
- /* logo sosial media (SVG sederhana, warna mengikuti class .ic-<nama>) */
+ /* logo sosial media: kotak berwarna seragam + simbol putih (SVG inline) */
  var IC={
-  youtube:'<path fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.300.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.700 19 12 19 12 19s6.300 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800c.4-1.500.4-4.800.4-4.800s0-3.300-.4-4.800zM10 15V9l5.200 3z"/>',
-  x:'<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>',
-  instagram:'<rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.500" cy="6.500" r="1.200"/>',
-  facebook:'<path d="M13.500 21v-7.500h2.600l.4-3h-3V8.600c0-.9.3-1.500 1.500-1.500h1.600V4.400c-.3 0-1.200-.1-2.300-.1-2.300 0-3.800 1.400-3.800 3.900v2.300H7.900v3h2.600V21z"/>',
-  discord:'<path d="M19.300 5.300A16 16 0 0 0 15.400 4l-.5 1a15 15 0 0 0-4.800 0L9.600 4a16 16 0 0 0-3.900 1.300C3.200 9 2.500 12.600 2.900 16.100a16 16 0 0 0 4.800 2.400l1-1.600c-.6-.2-1.100-.5-1.600-.8l.4-.3a11.500 11.500 0 0 0 9.800 0l.4.3c-.5.3-1 .6-1.600.8l1 1.600a16 16 0 0 0 4.800-2.400c.5-4.100-.8-7.600-2.700-10.800zM9.300 14c-.9 0-1.600-.8-1.600-1.800s.7-1.800 1.600-1.800 1.600.8 1.600 1.800-.7 1.800-1.600 1.800zm5.400 0c-.9 0-1.600-.8-1.600-1.800s.7-1.800 1.600-1.800 1.600.8 1.600 1.800-.7 1.800-1.600 1.800z"/>',
-  tiktok:'<path d="M14 4v10.500a3.500 3.500 0 1 1-3.500-3.500M14 4c.3 2.400 2 4 4.500 4.200" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"/>',
-  threads:'<text x="12" y="17.500" text-anchor="middle" font-size="17" font-weight="700" font-family="Arial,sans-serif">@</text>',
-  patreon:'<circle cx="15" cy="9.500" r="5.500"/><rect x="3" y="3" width="3.500" height="18" rx=".6"/>',
-  pixiv:'<rect x="2" y="2" width="20" height="20" rx="5"/><text x="12" y="17" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Arial,sans-serif">p</text>',
-  fanbox:'<rect x="2" y="2" width="20" height="20" rx="5"/><text x="12" y="17" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Arial,sans-serif">F</text>',
-  link:'<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" fill="none" stroke="currentColor" stroke-width="1.600"/>'
+  youtube:'<rect width="24" height="24" rx="6" fill="#f00"/><path fill="#fff" d="M9.6 7.2v9.6l7.8-4.8z"/>',
+  x:'<rect width="24" height="24" rx="6" fill="#000"/><rect x=".5" y=".5" width="23" height="23" rx="5.5" fill="none" stroke="#fff" stroke-opacity=".3"/><path fill="#fff" transform="translate(4.8 4.8) scale(.6)" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>',
+  instagram:'<defs><linearGradient id="tiIg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#fdc468"/><stop offset=".35" stop-color="#f77737"/><stop offset=".65" stop-color="#d62976"/><stop offset="1" stop-color="#5851db"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#tiIg)"/><rect x="5.6" y="5.6" width="12.8" height="12.8" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1.05" fill="#fff"/>',
+  facebook:'<rect width="24" height="24" rx="6" fill="#1877f2"/><path fill="#fff" d="M13.2 20.5v-7.3h2.4l.4-2.8h-2.8V8.7c0-.8.3-1.4 1.4-1.4h1.5V4.8c-.3 0-1.1-.1-2.1-.1-2.2 0-3.7 1.300-3.700 3.800v1.900H7.900v2.800h2.400v7.300z"/>',
+  discord:'<rect width="24" height="24" rx="6" fill="#5865f2"/><path fill="#fff" transform="translate(3.6 3.8) scale(.7)" d="M19.3 5.3A16 16 0 0 0 15.4 4l-.5 1a15 15 0 0 0-4.8 0L9.6 4a16 16 0 0 0-3.9 1.3C3.2 9 2.5 12.6 2.9 16.1a16 16 0 0 0 4.8 2.4l1-1.6c-.6-.2-1.1-.5-1.6-.8l.4-.3a11.5 11.5 0 0 0 9.8 0l.4.3c-.5.3-1 .6-1.6.8l1 1.6a16 16 0 0 0 4.8-2.4c.5-4.1-.8-7.6-2.7-10.8zM9.3 14c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8zm5.4 0c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8z"/>',
+  tiktok:'<rect width="24" height="24" rx="6" fill="#000"/><rect x=".5" y=".5" width="23" height="23" rx="5.5" fill="none" stroke="#fff" stroke-opacity=".3"/><path transform="translate(3.9 4.4) scale(.74)" d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5M14 4c.3 2.4 2 4 4.5 4.2" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>',
+  threads:'<rect width="24" height="24" rx="6" fill="#000"/><rect x=".5" y=".5" width="23" height="23" rx="5.5" fill="none" stroke="#fff" stroke-opacity=".3"/><path d="M16.4 10.6c-.3-2.300-1.800-3.600-4.300-3.600-2.800 0-4.400 1.900-4.400 5s1.600 5 4.400 5c2.400 0 3.800-1.200 3.800-2.900 0-1.700-1.400-2.600-3.200-2.600-1.400 0-2.300.7-2.300 1.600 0 .9.700 1.400 1.600 1.400 1.600 0 2.400-1.100 2.400-3.200" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
+  patreon:'<rect width="24" height="24" rx="6" fill="#ff424d"/><circle cx="14.2" cy="10.2" r="4.6" fill="#fff"/><rect x="5.5" y="5.6" width="3.3" height="12.8" rx=".6" fill="#fff"/>',
+  pixiv:'<rect width="24" height="24" rx="6" fill="#0096fa"/><rect x="8" y="7" width="2.5" height="11" fill="#fff"/><circle cx="13.4" cy="10.9" r="3.1" fill="none" stroke="#fff" stroke-width="2.4"/>',
+  fanbox:'<rect width="24" height="24" rx="6" fill="#0096fa"/><path fill="#fff" d="M8 6.400h8.600v2.500h-6v2.300h5v2.500h-5V18H8z"/>',
+  link:'<rect width="24" height="24" rx="6" fill="#6b7280"/><circle cx="12" cy="12" r="6.200" fill="none" stroke="#fff" stroke-width="1.600"/><path d="M5.800 12h12.400M12 5.800c2 2 2 10.400 0 12.400M12 5.800c-2 2-2 10.400 0 12.400" fill="none" stroke="#fff" stroke-width="1.300"/>'
  };
  var NM={youtube:'YouTube',x:'X',instagram:'Instagram',facebook:'Facebook',discord:'Discord',tiktok:'TikTok',threads:'Threads',patreon:'Patreon',pixiv:'Pixiv',fanbox:'Pixiv Fanbox',link:'Link'};
  function kind(u){
@@ -50,7 +50,7 @@
   return 'link'}
  function icon(k){
   var s=el('span','ti-ic ic-'+k);
-  s.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">'+(IC[k]||IC.link)+'</svg>';
+  s.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">'+(IC[k]||IC.link)+'</svg>';
   return s}
 
 
@@ -142,7 +142,7 @@
   '.ti-v.ti-pat{color:#ff424d;font-weight:600}.ti-v.ti-fan{color:#0096fa;font-weight:600}'+
   '.ti-l{display:flex;flex-direction:column;align-items:stretch;gap:8px;flex:none;width:176px}'+
   '.ti-l a{display:flex;align-items:center;gap:7px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;color:var(--head)}'+
-  '.ti-ic{display:inline-flex;flex:none;line-height:0}.ti-ic img{display:block;width:18px;height:18px;object-fit:contain}'+
+  '.ti-ic{display:inline-flex;flex:none;line-height:0}.ti-ic svg{display:block}.ti-ic img{display:block;width:20px;height:20px;object-fit:contain}'+
   '.ic-youtube{color:#f00}.ic-x,.ic-threads,.ic-tiktok{color:var(--head)}.ic-instagram{color:#e4405f}.ic-facebook{color:#1877f2}.ic-discord{color:#5865f2}.ic-patreon{color:#ff424d}.ic-pixiv,.ic-fanbox{color:#0096fa}.ic-link{color:var(--alt)}'+
   '.ti-l a:hover{border-color:var(--link)}'+
   '.ti-tabs{display:flex;gap:4px;padding:0 12px;border-top:1px solid var(--line);overflow-x:auto}'+
