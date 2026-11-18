@@ -46,6 +46,7 @@
     "banner": "/images/Maplestar/banner.webp",
     "image": "/images/Maplestar/maplestar.webp",
     "desc": "- I make lewd and cute anime animation! Sketches will also be posted from time to time.\n\n- Helping me hit goals helps me create higher quality, and longer/more frequent animations.\n\n- Check through the tiers to see what you can get for your donation!\n\n- Also, here's a guide for discord access:\n<a href=\"https://youtu.be/JgR-OsHsojs\" target=\"_blank\" rel=\"noopener\">https://youtu.be/JgR-OsHsojs</a>\n\n- If you do this, it will auto join you and give you your role. If it doesn't update your role, try removing, and re-adding your payment method, it usually means your payment didn't go through properly.\n\n- Once you do that, remove your discord integration, and re add it. The Patreon Discord bot will update you then. However, you do not need to join the Discord since I post everything important on here, as well, so please don't worry.",
+     "info": { "Membership Patreon": ["Supporter!", "SPICE!", "SUPER SPICE!"] },
     "links": [
       { "name": "Patreon", "url": "https://www.patreon.com/cw/Maplestar" },
       { "name": "X", "url": "https://x.com/Maplestar_Art" }
@@ -57,6 +58,7 @@
     "banner": "/images/AidenHet/banner.webp",
     "image": "/images/AidenHet/1.webp",
     "desc": "I make NSFW in Blender. If you enjoy my content, I would appreciate it if you support me, as it allows me to keep creating it. 😘",
+    "info": { "Membership Patreon": ["Tip Jar", "Tier 1", "Tier 2", "Tier 3"] },
     "links": [
       { "name": "Patreon", "url": "https://www.patreon.com/cw/AidenHet" },
       { "name": "linktree", "url": "https://linktr.ee/aidenhet" },
@@ -72,6 +74,7 @@
     "banner": "/images/thirty8ght/banner.webp",
     "image": "/images/thirty8ght/1.webp",
     "desc": "現在お仕事は受け付けておりません。\nI don't accept commissions.\n\nX 凍結されました\nold X Account Suspended\nI made a new one⬇️\nhttps://x.com/thirty8ghtt\n\nhttps://thirty8ght.fanbox.cc\nhttps://subscribestar.adult/thirty8ght\nhttps://bsky.app/profile/thirty8ght.bsky.social",
+    
     "links": [
       { "name": "PixivFanbox", "url": "https://thirty8ght.fanbox.cc/" },
       { "name": "Pixiv", "url": "https://www.pixiv.net/users/30570055" },
@@ -86,6 +89,7 @@
     "banner": "/images/Mili/banner.webp",
     "image": "/images/Mili/1.webp",
     "desc": "Your support allows us to stay independent. Thank you!",
+    "info": { "Membership Patreon": ["5$", "10$"] },
     "links": [
       { "name": "Patreon", "url": "https://www.patreon.com/cw/project_mili" },
       { "name": "youtube", "url": "https://www.youtube.com/channel/UCVh47EKH9VLresRqiYi9txw" },
@@ -104,6 +108,7 @@
     "banner": "/images/Mili/banner.webp",
     "image": "/images/Mili/1.webp",
     "desc": "Your support allows us to stay independent. Thank you!",
+    "info": { "Membership Patreon": ["5$", "10$"] },
     "links": [
       { "name": "Patreon", "url": "https://www.patreon.com/cw/project_mili" },
       { "name": "youtube", "url": "https://www.youtube.com/channel/UCVh47EKH9VLresRqiYi9txw" },
@@ -127,6 +132,22 @@
       { "name": "Pixiv", "url": "https://www.pixiv.net/users/4610406" },
       { "name": "X", "url": "https://x.com/ykun6974" },
       { "name": "subscribestar", "url": "https://subscribestar.adult/ykun6974" }
+    ]
+  },
+    "artist:Dearonnus": {
+    "name": "Dearonnus",
+    "hideTabs": ["animation"],
+    "banner": "/images/Dearonnus/banner.webp",
+    "image": "/images/Dearonnus/1.webp",
+    "desc": "i there! i'm Dearonnus, a full-time freelance Illustrator\nI love drawing pregnant anime character.\n\nI'm also currently developing a Pregnancy based game called Marie's Adventure as a side-project.\nMarie's Adventure is a H-RPG made with RPG Maker MV about a girl with her party in a mission saving the world and repopulate it by getting pregnant. In this game you will play as Marie that responsible for the lost of more than 50% world populations and leaving only 15% of them are females. During her adventure, she will meet a party member that willing to help her in her adventure defeating the Demolesta and restoring human populations by getting pregnant. The blessing given by Lavia not only make her stronger but also made her easier to get pregnant and give birth faster than normal human.\n========================================================\nIf you support me, you will get :\n> High Resolution Images\n> Alternative Variations\n\nI'll be very grateful if you support me because it's a prove that you support me and love pregnant anime character too! Once again i really appreciate your support here. Every support you give encourage me to draw more for you.\n\nDisclaimer : All characters I draw are above 18+\n\n----------------------------\n\nはじめまして、Dearonnusです。イラストレーターとして活動しております。\n全ての内容は商用利用又は無断転載を固く禁じいたします。\nどうぞよろしくお願いします!\n\n-----\n\nHello, i'm Dearonnus\nif you like my works, you can consider to support me here.\nPlease do not distribute or sell my pictures outside of fanbox.\nThank you!",
+    "info": { "Support Fanboxpixiv": "High-Supporter 「上サポーター」", "Membership Patreon": ["High-Supporter", "Higher-Supporter"] },
+    "links": [
+      { "name": "patreon", "url": "https://www.patreon.com/cw/dearonnus" },
+      { "name": "PixivFanbox", "url": "https://dearonnus.fanbox.cc/" },
+      { "name": "Pixiv", "url": "https://www.pixiv.net/users/27393744" },
+      { "name": "X", "url": "https://x.com/dearonnus" },
+      { "name": "X", "url": "https://x.com/dearonnus2nd" },
+      { "name": "Facebook", "url": "https://www.facebook.com/dearonnus/" }
     ]
   },
   "cosplayer:nama cosplayer": {
