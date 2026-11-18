@@ -82,7 +82,25 @@
   },
   "artist:Mili": {
     "name": "Mili",
-    "hideTabs": ["animation"],
+    "hideTabs": ["animation", "musik", "music", "ost game", "game", "soundtrack"],
+    "banner": "/images/Mili/banner.webp",
+    "image": "/images/Mili/1.webp",
+    "desc": "Your support allows us to stay independent. Thank you!",
+    "links": [
+      { "name": "Patreon", "url": "https://www.patreon.com/cw/project_mili" },
+      { "name": "youtube", "url": "https://www.youtube.com/channel/UCVh47EKH9VLresRqiYi9txw" },
+      { "name": "X", "url": "https://x.com/ProjectMili" },
+      { "name": "Instagram", "url": "https://www.instagram.com/projectmili" },
+      { "name": "Mili Online Store", "url": "https://projectmili.store/" },
+      { "name": "Spotify", "url": "https://open.spotify.com/intl-id/artist/0K05TDnN7xPwIHDOwD2YYs" },
+      { "name": "Apple Music", "url": "https://music.apple.com/jp/artist/mili/906934266" },
+      { "name": "Bandcamp", "url": "https://project-mili.bandcamp.com/" },
+      { "name": "Mili Official Website", "url": "https://projectmili.com/" }
+    ]
+  },
+    "artist:project_mili": {
+    "name": "project_mili",
+    "hideTabs": ["animation", "musik", "music", "ost game", "game", "soundtrack"],
     "banner": "/images/Mili/banner.webp",
     "image": "/images/Mili/1.webp",
     "desc": "Your support allows us to stay independent. Thank you!",
