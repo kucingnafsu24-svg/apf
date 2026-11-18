@@ -52,6 +52,7 @@
   },
     "artist:AidenHet": {
     "name": "AidenHet",
+    "hideTabs": ["animation"]
     "banner": "/images/AidenHet/banner.webp",
     "image": "/images/AidenHet/1.webp",
     "desc": "I make NSFW in Blender. If you enjoy my content, I would appreciate it if you support me, as it allows me to keep creating it. 😘",
