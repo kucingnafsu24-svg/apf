@@ -588,3 +588,14 @@ html,body{overflow-x:hidden}
  .social a{flex-direction:column;gap:6px;text-align:center}
  .social a::before{width:24px;height:24px}
 }
+
+/* Mode gelap: pakai ikon putih untuk X, TikTok, Threads
+   (simpan di /images/icons/ dengan nama x-white.svg, tiktok-white.svg, threads-white.svg) */
+@media (prefers-color-scheme:dark){
+ :root:not([data-theme="light"]) .s-x::before{background-image:url(/images/icons/x-white.svg)}
+ :root:not([data-theme="light"]) .s-tt::before{background-image:url(/images/icons/tiktok-white.svg)}
+ :root:not([data-theme="light"]) .s-th::before{background-image:url(/images/icons/threads-white.svg)}
+}
+:root[data-theme="dark"] .s-x::before{background-image:url(/images/icons/x-white.svg)}
+:root[data-theme="dark"] .s-tt::before{background-image:url(/images/icons/tiktok-white.svg)}
+:root[data-theme="dark"] .s-th::before{background-image:url(/images/icons/threads-white.svg)}
