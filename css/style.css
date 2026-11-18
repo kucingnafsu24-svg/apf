@@ -560,3 +560,31 @@ html,body{overflow-x:hidden}
 /* Kartu post: teks panjang tanpa spasi (mis. alamat URL di excerpt) tidak boleh melebarkan kolom keluar layar */
 .post>*{min-width:0}
 .post h3,.post p{overflow-wrap:anywhere}
+
+/* ===== Ikon medsos & donasi (dari /images/icons/) ===== */
+.social a::before,.donate a::before{content:"";flex:none;width:22px;height:22px;background:center/contain no-repeat}
+.donate a{gap:8px}
+.s-dc::before{background-image:url(/images/icons/discord.svg)}
+.s-wa::before{background-image:url(/images/icons/whatsapp.svg)}
+.s-fb::before{background-image:url(/images/icons/facebook.svg)}
+.s-ig::before{background-image:url(/images/icons/instagram.svg)}
+.s-yt::before{background-image:url(/images/icons/youtube.svg)}
+.s-tt::before{background-image:url(/images/icons/tiktok.svg)}
+.s-x::before{background-image:url(/images/icons/x.svg)}
+.s-th::before{background-image:url(/images/icons/threads.svg)}
+.s-bs::before{background-image:url(/images/icons/bluesky.svg)}
+.s-px::before{background-image:url(/images/icons/pixiv.svg)}
+.s-tk::before{background-image:url(/images/icons/trakteer.png)}
+.s-sw::before{background-image:url(/images/icons/Saweria.png)}
+.s-tako::before{background-image:url(/images/icons/tako.png)}
+.s-pt::before{background-image:url(/images/icons/patreon.svg)}
+.s-ss::before{background-image:url(/images/icons/subscribestar.png)}
+.s-tt{--c:#111}.s-x{--c:#111}.s-th{--c:#111}.s-bs{--c:#0085ff}.s-px{--c:#0096fa}
+.s-sw{--c:#e08a00}.s-tako{--c:#00967f}.s-pt{--c:#f96854}.s-ss{--c:#20b2aa}
+/* tombol Trakteer di dock mobile */
+.dock-tk .s-tk{gap:8px}
+/* mobile: ikon di atas teks supaya tombol 3 kolom tidak sesak */
+@media(max-width:760px){
+ .social a{flex-direction:column;gap:6px;text-align:center}
+ .social a::before{width:24px;height:24px}
+}
