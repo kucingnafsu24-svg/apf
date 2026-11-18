@@ -4,12 +4,12 @@
     "banner": "/images/Cecillia Hanarisu Ch/banner.webp",
     "image": "/images/Cecillia Hanarisu Ch/2.webp",
     "desc": "𝐚 𝐰𝐡𝐢𝐭𝐞 𝐰𝐢𝐭𝐜𝐡 𝐡𝐚𝐬 𝐜𝐨𝐦𝐞 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐰𝐨𝐫𝐥𝐝! ❤︎",
-    "info": { "Negara": "Indonesia", "Bergabung pada": "14 Nov 2023", "tag membership": "Hana Famili"},
+    "info": { "Negara": "Indonesia", "Bergabung pada": "14 Nov 2023", "tag membership": "Hana Famili" },
     "links": [
       { "name": "YouTube", "url": "https://www.youtube.com/@CecilliaHanarisu" },
       { "name": "Tako", "url": "https://tako.id/cecilliahanarisu" },
       { "name": "X", "url": "https://x.com/xcecillia_55" },
-      { "name": "Discord", "url": "https://discord.com/Ga4hUUsc3Y" },
+      { "name": "Discord", "url": "https://discord.gg/Ga4hUUsc3Y" },
       { "name": "Tiktok", "url": "https://www.tiktok.com/@cecillia.hanarisu" }
     ]
   },
@@ -18,39 +18,40 @@
     "banner": "/images/Arvaduh/banner.webp",
     "image": "/images/Arvaduh/15.webp",
     "desc": "Halo halo! Arvaduh disini,\nGa sakit, cuma aduh. Temenin guys biar ga sakit bareng sambil maen 🥲\n\ni love Mostima BTW, and truck-kun isekai-ed me to be her male version.",
-    "info": { "Negara": "Indonesia", "Bergabung pada": "31 Jul 2016", "tag membership": "Aduhai"},
+    "info": { "Negara": "Indonesia", "Bergabung pada": "31 Jul 2016", "tag membership": "Aduhai" },
     "links": [
       { "name": "YouTube", "url": "https://www.youtube.com/@arvaduh" },
       { "name": "Trakteer", "url": "https://trakteer.id/Kyouma/tip" },
       { "name": "Instagram", "url": "https://www.instagram.com/arvaduh/" },
       { "name": "X", "url": "https://x.com/ArvAduh" },
-      { "name": "Discord", "url": "https://discord.com/9qxFe7rWMY" },
+      { "name": "Discord", "url": "https://discord.gg/9qxFe7rWMY" },
       { "name": "Tiktok", "url": "https://www.tiktok.com/@arvaduh" }
     ]
   },
-    "vtubers:Mori Calliope Ch. hololive": {
+  "vtubers:Mori Calliope Ch. hololive": {
     "name": "Mori Calliope Ch. hololive",
     "banner": "/images/Mori Calliope Ch. hololive/banner.webp",
     "image": "/images/Mori Calliope Ch. hololive/3.webp",
     "desc": "singer/songwriter. Death Herself. 作曲作詞. \nFor Inquiries\nCover Corp: <a href=\"http://cover-corp.com/\" target=\"_blank\" rel=\"noopener\">http://cover-corp.com/</a>\nOfficial Twitter: <a href=\"https://twitter.com/hololive_En\" target=\"_blank\" rel=\"noopener\">https://twitter.com/hololive_En</a>",
-    "info": { "Negara": "Jepang", "Bergabung pada": "16 Jul 2020", "tag membership": "Dead Beat +"},
+    "info": { "Negara": "Jepang", "Bergabung pada": "16 Jul 2020", "tag membership": "Dead Beat +" },
     "links": [
       { "name": "YouTube", "url": "https://www.youtube.com/@MoriCalliope" },
       { "name": "X", "url": "https://x.com/moricalliope" },
-      { "name": "TikTok", "url": "https://www.tiktok.com/@moricalliope_hololiveen?_r=1" }
+      { "name": "TikTok", "url": "https://www.tiktok.com/@moricalliope_hololiveen" }
     ]
   },
   "artist:maplestar": {
     "name": "Maplestar",
+    "hideTabs": ["animation"],
     "banner": "/images/Maplestar/banner.webp",
     "image": "/images/Maplestar/maplestar.webp",
-    "desc": "- I make lewd and cute anime animation! Sketches will also be posted from time to time.\n\n- Helping me hit goals helps me create higher quality, and longer/more frequent animations.\n\n- Check through the tiers to see what you can get for your donation!\n\n- Also, here's a guide for discord access:\n<a href=\"https://youtu.be/JgR-OsHsojs?si=5u2gbJthc3RP-3Qp\" target=\"_blank\" rel=\"noopener\">https://youtu.be/JgR-OsHsojs?si=5u2gbJthc3RP-3Qp</a>\n\n- If you do this, it will auto join you and give you your role. If it doesn't update your role, try removing, and re-adding your payment method, it usually means your payment didn't go through properly.\n\n- Once you do that, remove your discord integration, and re add it. The Patreon Discord bot will update you then. However, you do not need to join the Discord since I post everything important on here, as well, so please don't worry.",
+    "desc": "- I make lewd and cute anime animation! Sketches will also be posted from time to time.\n\n- Helping me hit goals helps me create higher quality, and longer/more frequent animations.\n\n- Check through the tiers to see what you can get for your donation!\n\n- Also, here's a guide for discord access:\n<a href=\"https://youtu.be/JgR-OsHsojs\" target=\"_blank\" rel=\"noopener\">https://youtu.be/JgR-OsHsojs</a>\n\n- If you do this, it will auto join you and give you your role. If it doesn't update your role, try removing, and re-adding your payment method, it usually means your payment didn't go through properly.\n\n- Once you do that, remove your discord integration, and re add it. The Patreon Discord bot will update you then. However, you do not need to join the Discord since I post everything important on here, as well, so please don't worry.",
     "links": [
-     { "name": "Patreon", "url": "https://www.patreon.com/cw/Maplestar" },
-     { "name": "X", "url": "https://x.com/Maplestar_Art" }
+      { "name": "Patreon", "url": "https://www.patreon.com/cw/Maplestar" },
+      { "name": "X", "url": "https://x.com/Maplestar_Art" }
     ]
   },
-    "artist:AidenHet": {
+  "artist:AidenHet": {
     "name": "AidenHet",
     "hideTabs": ["animation"],
     "banner": "/images/AidenHet/banner.webp",
@@ -62,7 +63,52 @@
       { "name": "X", "url": "https://x.com/AidenHet" },
       { "name": "Instagram", "url": "https://www.instagram.com/aidenhet3d" },
       { "name": "Iwara", "url": "https://www.iwara.tv/profile/aidenhet" },
-      { "name": "Discord", "url": "https://discord.com/CDyTPYYD5B" }
+      { "name": "Discord", "url": "https://discord.gg/CDyTPYYD5B" }
+    ]
+  },
+  "artist:thirty8ght": {
+    "name": "thirty8ght",
+    "hideTabs": ["animation"],
+    "banner": "/images/thirty8ght/banner.webp",
+    "image": "/images/thirty8ght/1.webp",
+    "desc": "現在お仕事は受け付けておりません。\nI don't accept commissions.\n\nX 凍結されました\nold X Account Suspended\nI made a new one⬇️\nhttps://x.com/thirty8ghtt\n\nhttps://thirty8ght.fanbox.cc\nhttps://subscribestar.adult/thirty8ght\nhttps://bsky.app/profile/thirty8ght.bsky.social",
+    "links": [
+      { "name": "PixivFanbox", "url": "https://thirty8ght.fanbox.cc/" },
+      { "name": "Pixiv", "url": "https://www.pixiv.net/users/30570055" },
+      { "name": "X", "url": "https://x.com/thirty8ghtt" },
+      { "name": "subscribestar", "url": "https://subscribestar.adult/thirty8ght" },
+      { "name": "BlueSky", "url": "https://bsky.app/profile/thirty8ght.bsky.social" }
+    ]
+  },
+  "artist:Mili": {
+    "name": "Mili",
+    "hideTabs": ["animation"],
+    "banner": "/images/Mili/banner.webp",
+    "image": "/images/Mili/1.webp",
+    "desc": "Your support allows us to stay independent. Thank you!",
+    "links": [
+      { "name": "Patreon", "url": "https://www.patreon.com/cw/project_mili" },
+      { "name": "youtube", "url": "https://www.youtube.com/channel/UCVh47EKH9VLresRqiYi9txw" },
+      { "name": "X", "url": "https://x.com/ProjectMili" },
+      { "name": "Instagram", "url": "https://www.instagram.com/projectmili" },
+      { "name": "Mili Online Store", "url": "https://projectmili.store/" },
+      { "name": "Spotify", "url": "https://open.spotify.com/intl-id/artist/0K05TDnN7xPwIHDOwD2YYs" },
+      { "name": "Apple Music", "url": "https://music.apple.com/jp/artist/mili/906934266" },
+      { "name": "Bandcamp", "url": "https://project-mili.bandcamp.com/" },
+      { "name": "Mili Official Website", "url": "https://projectmili.com/" }
+    ]
+  },
+  "artist:GeulimYKUN": {
+    "name": "GeulimYKUN",
+    "hideTabs": ["animation"],
+    "banner": "/images/GeulimYKUN/banner.webp",
+    "image": "/images/GeulimYKUN/1.webp",
+    "desc": "No commissions ※ impregnation, huge breast lover",
+    "links": [
+      { "name": "PixivFanbox", "url": "https://geulimykun.fanbox.cc/" },
+      { "name": "Pixiv", "url": "https://www.pixiv.net/users/4610406" },
+      { "name": "X", "url": "https://x.com/ykun6974" },
+      { "name": "subscribestar", "url": "https://subscribestar.adult/ykun6974" }
     ]
   },
   "cosplayer:nama cosplayer": {
