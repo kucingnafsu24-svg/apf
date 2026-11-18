@@ -104,8 +104,11 @@
    all.forEach(function(p){cats(p).forEach(function(v){var l=v.toLowerCase();if(!seen[l]){seen[l]={label:v,n:0};order.push(l)}seen[l].n++})});
    order.sort(function(a,b){return seen[b].n-seen[a].n||seen[a].label.localeCompare(seen[b].label)});
    order.forEach(function(l){defs.push({k:l,label:seen[l].label,n:seen[l].n,test:function(p){return cats(p).some(function(v){return v.toLowerCase()===l})}})})}
-  var hd=[].concat(hide||[]).map(function(x){return String(x).toLowerCase().trim()});
-  if(hd.length)defs=defs.filter(function(d){return hd.indexOf(d.k)<0&&hd.indexOf(String(d.label).toLowerCase())<0});
+  /* hideTabs: cocok bila sama persis dengan nama tab, atau muncul sebagai kata utuh di dalamnya
+     ("animation" menyembunyikan "animation", "2d animation", dan "3d animation") */
+  var hd=[].concat(hide||[]).map(function(x){return String(x).toLowerCase().trim()}).filter(Boolean);
+  var flat=function(s){return ' '+String(s).toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()+' '};
+  if(hd.length)defs=defs.filter(function(d){return !hd.some(function(x){return x===d.k||x===String(d.label).toLowerCase()||flat(d.label).indexOf(flat(x))>-1})});
   if(!defs.length)return;
   defs.unshift({k:'',label:'Semua',n:all.length,test:null});
   var bar=el('div','ti-tabs'),btns={};bar.setAttribute('role','tablist');
@@ -134,6 +137,7 @@
   '.ti p a{color:var(--link);text-decoration:underline}'+
   '.ti dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:10px 0;font-size:13px}'+
   '.ti dt{color:var(--alt);font-weight:600}.ti dd{margin:0;color:var(--head);overflow-wrap:anywhere}'+
+  '.ti dd.ti-mem{color:#2ba640;font-weight:600}.ti dd.ti-mem::before{content:"\\2605";display:inline-block;width:15px;height:15px;margin-right:6px;border-radius:50%;background:#2ba640;color:#fff;font-size:10px;line-height:15px;text-align:center;vertical-align:1px}'+
   '.ti-l{display:flex;flex-direction:column;align-items:stretch;gap:8px;flex:none;width:176px}'+
   '.ti-l a{display:flex;align-items:center;gap:7px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;color:var(--head)}'+
   '.ti-ic{display:inline-flex;flex:none;line-height:0}.ti-ic img{display:block;width:18px;height:18px;object-fit:contain}'+
@@ -158,7 +162,7 @@
   b.appendChild(el('h3','',String(o.name||k.slice(k.indexOf(':')+1))));
   if(o.desc)String(o.desc).split('\n').forEach(function(t){if(t.trim()){var p=el('p');rich(p,t);b.appendChild(p)}});
   if(o.info&&typeof o.info==='object'){
-   var dl=el('dl');Object.keys(o.info).forEach(function(n){dl.appendChild(el('dt','',n));dl.appendChild(el('dd','',String(o.info[n])))});b.appendChild(dl)}
+   var dl=el('dl');Object.keys(o.info).forEach(function(n){dl.appendChild(el('dt','',n));var dd=el('dd','',String(o.info[n]));if(/membership/i.test(n))dd.className='ti-mem';dl.appendChild(dd)});b.appendChild(dl)}
   var L=[].concat(o.links||[]);if(safe(o.more))L.push({name:'Info lengkap',url:o.more,self:1});
   var W=null;
   if(L.length){var w=el('div','ti-l');L.forEach(function(l){
