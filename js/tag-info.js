@@ -88,8 +88,8 @@
   },100)}
  function cats(p){return [].concat((p&&p.tags&&p.tags[TGRP])||[]).map(function(v){return String(v).trim()}).filter(Boolean)}
  /* vtubers/youtubers: tab tetap Post/Livestream/Video. artist: tab dibuat dari nilai Category milik artikel artist itu.
-    Bisa diatur per entri: "tabs": false | ["post","video"] | "category" (paksa tab dinamis) | "type" (paksa tab tetap) */
- function tabs(box,cfg,grp){
+    Bisa diatur per entri: "hideTabs": ["animation"] (sembunyikan tab tertentu), "tabs": false | ["post","video"] | "category" (paksa tab dinamis) | "type" (paksa tab tetap) */
+ function tabs(box,cfg,grp,hide){
   if(cfg===false||!window.apfFilter||!window.apfAll)return;
   var all=window.apfAll(),defs=[];
   var mode=Array.isArray(cfg)?'fixed':cfg==='category'?'dynamic':cfg==='type'?'fixed':
@@ -104,6 +104,8 @@
    all.forEach(function(p){cats(p).forEach(function(v){var l=v.toLowerCase();if(!seen[l]){seen[l]={label:v,n:0};order.push(l)}seen[l].n++})});
    order.sort(function(a,b){return seen[b].n-seen[a].n||seen[a].label.localeCompare(seen[b].label)});
    order.forEach(function(l){defs.push({k:l,label:seen[l].label,n:seen[l].n,test:function(p){return cats(p).some(function(v){return v.toLowerCase()===l})}})})}
+  var hd=[].concat(hide||[]).map(function(x){return String(x).toLowerCase().trim()});
+  if(hd.length)defs=defs.filter(function(d){return hd.indexOf(d.k)<0&&hd.indexOf(String(d.label).toLowerCase())<0});
   if(!defs.length)return;
   defs.unshift({k:'',label:'Semua',n:all.length,test:null});
   var bar=el('div','ti-tabs'),btns={};bar.setAttribute('role','tablist');
@@ -167,7 +169,7 @@
     else a.appendChild(icon(k))}
    a.appendChild(document.createTextNode(String(l.name||(k&&NM[k])||l.url)));
    if(!l.self){a.target='_blank';a.rel='noopener'}w.appendChild(a)});W=w}
-  inn.appendChild(b);if(W)inn.appendChild(W);box.appendChild(inn);whenHook(function(){tabs(box,o.tabs,k.slice(0,k.indexOf(':')))});
+  inn.appendChild(b);if(W)inn.appendChild(W);box.appendChild(inn);whenHook(function(){tabs(box,o.tabs,k.slice(0,k.indexOf(':')),o.hideTabs)});
   var t=document.querySelector('.title');
   if(t&&t.parentNode)t.parentNode.insertBefore(box,t);else list.parentNode.insertBefore(box,list);
  }).catch(function(){});
