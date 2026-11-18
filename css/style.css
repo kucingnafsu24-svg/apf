@@ -566,13 +566,13 @@ html,body{overflow-x:hidden}
    - merek berwarna  -> warna merek (var(--c))
    - merek hitam (X, TikTok, Threads) -> var(--head): hitam di mode terang, putih di mode gelap
    Jadi TIDAK perlu file ikon putih. */
-.social a::before,.donate a::before{content:"";flex:none;width:22px;height:22px;background:center/contain no-repeat}
+.social a::before,.donate a::before{content:"";flex:none;width:22px;height:22px;background-position:center;background-size:contain;background-repeat:no-repeat}
 .donate a{gap:8px}
 
 /* ikon SVG (mask) */
 .s-dc::before,.s-fb::before,.s-ig::before,.s-yt::before,.s-tt::before,.s-x::before,.s-th::before,.s-bs::before,.s-px::before,.s-pt::before,.s-wa::before{
- background:var(--c);
- -webkit-mask:center/contain no-repeat;mask:center/contain no-repeat}
+ background-color:var(--c);
+ -webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .s-dc::before{-webkit-mask-image:url(/images/icons/discord.svg);mask-image:url(/images/icons/discord.svg)}
 .s-wa::before{-webkit-mask-image:url(/images/icons/whatsapp.svg);mask-image:url(/images/icons/whatsapp.svg)}
 .s-fb::before{-webkit-mask-image:url(/images/icons/facebook.svg);mask-image:url(/images/icons/facebook.svg)}
@@ -586,7 +586,7 @@ html,body{overflow-x:hidden}
 .s-pt::before{-webkit-mask-image:url(/images/icons/patreon.svg);mask-image:url(/images/icons/patreon.svg)}
 
 /* Patreon di tombol donasi (latar berwarna): ikon putih */
-.s-tk.s-pt::before{background:#fff}
+.s-tk.s-pt::before{background-color:#fff}
 
 /* ikon PNG (sudah berwarna) */
 .s-tk::before{background-image:url(/images/icons/trakteer.png)}
