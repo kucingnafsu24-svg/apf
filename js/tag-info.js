@@ -73,11 +73,15 @@
    var im=new Image(),u=ICD+k+'.'+ex[i++];
    im.onload=function(){ICF[k]=u;fin()};im.onerror=next;im.src=u})()}
  var MONO={youtube:1,x:1,tiktok:1,threads:1}; /* ikut warna tema (currentColor) */
+ /* logo SVG satu warna (tanpa fill): diberi warna merek lewat mask agar terlihat di mode gelap maupun terang.
+    Tanpa ini, <img> SVG tanpa fill tampil hitam dan hilang di mode gelap. */
+ var BRAND={patreon:'#ff424d',discord:'#5865f2',facebook:'#1877f2',instagram:'#e4405f',bluesky:'#0085ff',spotify:'#1db954',applemusic:'#fa243c',bandcamp:'#1da0c3',pixiv:'#0096fa',fanbox:'#0096fa'};
  function icon(k){
   var s=el('span','ti-ic ic-'+k);
   s.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">'+(IC[k]||IC.link)+'</svg>';
   logoUrl(k,function(u){if(!u)return;
-   if(MONO[k]){s.classList.add('ti-m');s.style.setProperty('--m','url("'+u+'")');s.innerHTML='';return}
+   var bc=BRAND[k]&&/\.svg$/i.test(u);
+   if(MONO[k]||bc){s.classList.add('ti-m');s.style.setProperty('--m','url("'+u+'")');if(bc)s.style.background=BRAND[k];s.innerHTML='';return}
    var im=new Image();im.alt='';im.width=20;im.height=20;im.src=u;s.innerHTML='';s.appendChild(im)});
   return s}
 
