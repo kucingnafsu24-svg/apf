@@ -137,7 +137,9 @@
   '.ti p a{color:var(--link);text-decoration:underline}'+
   '.ti dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:10px 0;font-size:13px}'+
   '.ti dt{color:var(--alt);font-weight:600}.ti dd{margin:0;color:var(--head);overflow-wrap:anywhere}'+
-  '.ti dd.ti-mem{color:#2ba640;font-weight:600}.ti dd.ti-mem::before{content:"\\2605";display:inline-block;width:15px;height:15px;margin-right:6px;border-radius:50%;background:#2ba640;color:#fff;font-size:10px;line-height:15px;text-align:center;vertical-align:1px}'+
+  '.ti dd{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px}.ti-v{display:flex;align-items:center;gap:6px}'+
+  '.ti-v.ti-mem{color:#2ba640;font-weight:600}.ti-v.ti-mem::before{content:"\\2605";flex:none;width:15px;height:15px;border-radius:50%;background:#2ba640;color:#fff;font-size:10px;line-height:15px;text-align:center}'+
+  '.ti-v.ti-pat{color:#ff424d;font-weight:600}.ti-v.ti-fan{color:#0096fa;font-weight:600}'+
   '.ti-l{display:flex;flex-direction:column;align-items:stretch;gap:8px;flex:none;width:176px}'+
   '.ti-l a{display:flex;align-items:center;gap:7px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;color:var(--head)}'+
   '.ti-ic{display:inline-flex;flex:none;line-height:0}.ti-ic img{display:block;width:18px;height:18px;object-fit:contain}'+
@@ -162,7 +164,16 @@
   b.appendChild(el('h3','',String(o.name||k.slice(k.indexOf(':')+1))));
   if(o.desc)String(o.desc).split('\n').forEach(function(t){if(t.trim()){var p=el('p');rich(p,t);b.appendChild(p)}});
   if(o.info&&typeof o.info==='object'){
-   var dl=el('dl');Object.keys(o.info).forEach(function(n){dl.appendChild(el('dt','',n));var dd=el('dd','',String(o.info[n]));if(/membership/i.test(n))dd.className='ti-mem';dl.appendChild(dd)});b.appendChild(dl)}
+   var dl=el('dl');Object.keys(o.info).forEach(function(n){
+    dl.appendChild(el('dt','',n));
+    /* gaya per label: Patreon = merah + logo Patreon, Fanbox/Pixiv = biru + logo Fanbox, Membership lain = hijau + bintang */
+    var kd=/patreon/i.test(n)?'pat':/fanbox|pixiv/i.test(n)?'fan':/membership/i.test(n)?'mem':'';
+    var dd=el('dd');
+    [].concat(o.info[n]).forEach(function(v){
+     var ln=el('div','ti-v'+(kd?' ti-'+kd:''));
+     if(kd==='pat')ln.appendChild(icon('patreon'));else if(kd==='fan')ln.appendChild(icon('fanbox'));
+     ln.appendChild(document.createTextNode(String(v)));dd.appendChild(ln)});
+    dl.appendChild(dd)});b.appendChild(dl)}
   var L=[].concat(o.links||[]);if(safe(o.more))L.push({name:'Info lengkap',url:o.more,self:1});
   var W=null;
   if(L.length){var w=el('div','ti-l');L.forEach(function(l){
