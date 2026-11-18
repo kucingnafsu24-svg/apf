@@ -126,7 +126,7 @@
   defs.forEach(function(d){if(d.k&&d.k===c)start=d});
   set(start)}
  var s=document.createElement('style');
- s.textContent='.ti{margin:0 0 20px;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}'+
+ s.textContent='.ti{margin:0 0 20px;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;container-type:inline-size}'+
   '.ti-bn{display:block;width:100%;aspect-ratio:16/5;max-height:240px;object-fit:cover;background:var(--line)}'+
   '.ti-in{display:flex;gap:16px;padding:16px}'+
   '.ti.has-bn .ti-img{margin-top:-48px;border:3px solid var(--card)}'+
@@ -148,7 +148,10 @@
   '.ti-tabs button:hover{background:none;color:var(--head)}'+
   '.ti-tabs button.on{color:var(--head);border-bottom-color:var(--link)}'+
   '.ti-n{padding:1px 7px;border-radius:999px;background:var(--line);color:var(--alt);font-size:11px;font-weight:600}'+
-  '@media(max-width:560px){.ti-tabs{justify-content:flex-start}.ti-bn{aspect-ratio:16/7}.ti-in{flex-direction:column;align-items:center;text-align:center}.ti dl{text-align:left}.ti-l{width:100%;max-width:320px}}';
+  /* tata letak menyesuaikan LEBAR KARTU (bukan lebar layar), supaya tidak bertabrakan di HP maupun jendela PC yang sempit */
+  '.ti-b{min-width:0}'+
+  '@container (max-width:640px){.ti-bn{aspect-ratio:16/7}.ti-in{flex-direction:column;align-items:center;text-align:center}.ti dl{text-align:left}.ti-l{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));width:100%}.ti-b{width:100%}}'+
+  '@supports not (container-type:inline-size){@media(max-width:760px){.ti-bn{aspect-ratio:16/7}.ti-in{flex-direction:column;align-items:center;text-align:center}.ti dl{text-align:left}.ti-l{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));width:100%}.ti-b{width:100%}}}';
  document.head.appendChild(s);
 
  fetch('/data/tag-info.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
