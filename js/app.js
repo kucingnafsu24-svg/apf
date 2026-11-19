@@ -245,8 +245,13 @@ if(list){
   document.title=p.title+' — Fletro Pro';
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
+  /* tombol ke artikel lain di dalam "content": tulis [post:slug] atau [post:slug|Teks tombol] */
+  var pb=function(t){return t.replace(/\[post:([a-z0-9_-]+)(?:\|([^\]\n]*))?\]/gi,function(m,s,l){s=s.toLowerCase();
+   var q=P.concat(HID).filter(function(x){return x.slug===s})[0];
+   if(!q){try{console.warn('[post:'+s+'] tidak ditemukan di posts.json')}catch(e){}return ''}
+   return '<a class="postbtn" href="/g/'+encodeURIComponent(q.slug)+'">'+esc((l&&l.trim())||q.title)+'</a>'})};
   a.innerHTML='<div class="crumb" hidden></div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+p.content+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+pb(p.content)+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
   bindVideos();bindAudios();bindGallery(p);
  }
 }
