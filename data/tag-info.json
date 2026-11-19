@@ -150,6 +150,49 @@
       { "name": "Facebook", "url": "https://www.facebook.com/dearonnus/" }
     ]
   },
+    "artist:七氏": {
+    "name": "七氏",
+    "hideTabs": ["animation", "hentai", "short manga", "l2d", "game hentai", "Autonomous Sensory Meridian Response", "alpha test"],
+    "banner": "/images/七氏/banner.webp",
+    "image": "/images/七氏/1.webp",
+    "desc": "Fanbox : <a href=\"https://sevena.fanbox.cc/\" target=\"_blank\" rel=\"noopener\">https://sevena.fanbox.cc/</a>\n頭像 profile picture -&gt;NekoBlow\n╭8(＞口＜)/ ~!commission close!~\n會盡力每個月更新\nI'll try hard on update every month",
+    "info": { "Support Fanboxpixiv": ["サポート金! Support money! 支持金!", "Super Thanks! 超級感謝你!"], "Membership Patreon": ["小費罐-Tips Jar", "超級感謝!!-Super Thanks!!"] },
+    "links": [
+      { "name": "PixivFanbox", "url": "https://sevena.fanbox.cc/" },
+      { "name": "Pixiv", "url": "https://www.pixiv.net/users/27977322" },
+      { "name": "Patreon", "url": "https://www.patreon.com/cw/NanaShiDaYo74" },
+      { "name": "X", "url": "https://x.com/ForfunNanashi" }
+    ]
+  },
+    "artist:musouduki": {
+    "name": "musouduki",
+    "hideTabs": ["animation", "hentai", "short manga", "l2d", "game hentai", "Autonomous Sensory Meridian Response", "alpha test"],
+    "image": "/images/musouduki/1.webp",
+    "desc": "ロリエロだけ描く人。\n\n・マイピク、リクエスト、仕事の依頼は現在受け付けていません。\n・コメは基本反応しませんが全て拝見させて頂いています。\n\n●下記のユーザーはブロックすることがあります。\n・他のページに誘導するような内容をコメントをする人\n・他のページに誘導するようなユーザー名(番号羅列など）の人\n・他のページに誘導するようなアイコン(QRコードなど）の人\n日頃Pixiv等で上げているイラストの精液差分や文字無し差分を置いています。すべてR-18となるのでご注意を。\n※各プラン詳細は【必ず】お読みください。支援してくださってから問題が起きても対応は出来ません。\n\n*I do not make videos. There are some videos made by volunteers, but they are not listed here.\n*The black mosaic will not disappear for any pricing plans.\n*I can only understand Japanese, so if you have any questions, I can't answer them, so please don't help me if you don't understand the explanation of the pricing plan.\n※コメは質問以外などでは基本反応しませんが、拝見させて頂いたものから「いいね」で返させて頂いています。",
+    "info": { "Support Fanboxpixiv": ["投げ銭", "投げ銭＋", "投げ銭＋＋"]},
+    "links": [
+      { "name": "PixivFanbox", "url": "https://musouduki.fanbox.cc/" },
+      { "name": "Pixiv", "url": "https://www.pixiv.net/users/163246" },
+      { "name": "Pawoo", "url": "https://pawoo.net/@musouduki" },
+      { "name": "misskey", "url": "https://misskey.io/@inkyoduki" },
+      { "name": "nijie", "url": "https://nijie.info/members.php?id=44749" }
+    ]
+  },
+    "artist:Б": {
+    "name": "Б",
+    "hideTabs": ["animation", "hentai", "short manga", "l2d", "game hentai", "Autonomous Sensory Meridian Response", "alpha test"],
+    "banner": "/images/Б/banner.webp",
+    "image": "/images/Б/1.webp",
+    "desc": "FANBOX　<a href=\"https://z0mvvfh7.fanbox.cc/\" target=\"_blank\" rel=\"noopener\">https://z0mvvfh7.fanbox.cc/</a>\nCi-en　<a href=\"https://ci-en.dlsite.com/creator/37359\" target=\"_blank\" rel=\"noopener\">https://ci-en.dlsite.com/creator/37359</a>\nFantia　<a href=\"https://fantia.jp/fanclubs/3959\" target=\"_blank\" rel=\"noopener\">https://fantia.jp/fanclubs/3959</a>\n\nお仕事・リクエスト等は現在お受けしておりません。\n\n普段投稿しているものの高解像度+文字無し版を投稿していきます。\n無料のものはPixivの方に投稿しています。",
+    "info": { "Support Fanboxpixiv": ["お布施プラン"] },
+    "links": [
+      { "name": "PixivFanbox", "url": "https://z0mvvfh7.fanbox.cc/" },
+      { "name": "Pixiv", "url": "https://www.pixiv.net/users/182552" },
+      { "name": "Fantia", "url": "https://fantia.jp/fanclubs/3959" },
+      { "name": "ci-en", "url": "https://ci-en.dlsite.com/creator/37359" },
+      { "name": "X", "url": "https://x.com/11saicastle" }
+    ]
+  },
   "cosplayer:nama cosplayer": {
     "name": "Nama Cosplayer",
     "desc": "Deskripsi singkat."
