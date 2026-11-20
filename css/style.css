@@ -623,3 +623,10 @@ html,body{overflow-x:hidden}
 /* ===== Tombol ke artikel lain di dalam content: [post:slug] ===== */
 .entry a.postbtn{display:inline-flex;align-items:center;max-width:100%;margin:6px 0;padding:10px 18px;border-radius:8px;background:var(--link);color:#fff;font-size:14px;font-weight:600;line-height:1.4;text-decoration:none}
 .entry a.postbtn:hover{filter:brightness(1.1);text-decoration:none}
+
+/* ===== Tombol download & server streaming: satu baris, geser kanan-kiri ===== */
+.dl-links,.vtabs{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.dl-links::-webkit-scrollbar,.vtabs::-webkit-scrollbar{display:block;height:6px}
+.dl-links::-webkit-scrollbar-thumb,.vtabs::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.dl-links>*,.vtabs>*{flex:none;white-space:nowrap}
+.vtabs{padding-bottom:6px}
