@@ -1,4 +1,45 @@
 [
+     {
+  "slug": "267",
+  "title": "Firefly - You're my weakness Animation",
+  "author": "Admin",
+  "date": "2026-11-20",
+  "image": "/images/Firefly - You're my weakness/1.webp", "imageFull": "/images/Firefly - You're my weakness/1.png",
+  "excerpt": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
+  "content": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
+  "tags": {
+    "Artist": ["AidenHet"],
+    "Parody": ["Honkai Starrail", "HSR"],
+    "character":["Firefly", "male mc"],
+    "tag": ["purple eyes", "gray hair", "long hair", "white hair", "sexual content", "bed", "headband", "nakadashi", "creampie", "nude"],
+    "Language": ["Textless"],
+    "Category": ["3d animation", "animation"]
+},
+ "videoTitle": "Firefly - You're my weakness Animation",
+ "videos": [
+  {
+    "title": "Firefly",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/8q3v0b0r5a7h" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/wx88pkajmkCJwX0/" }
+    ]
+  }
+],
+  "download": [
+    {
+      "title": "Firefly - You're my weakness Animation",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/L3QaA" },
+        { "name": "gdrive", "url": "https://sfl.gl/GB8VWcyT" },
+        { "name": "vexfile", "url": "https://sfl.gl/fp2ghsC" },
+        { "name": "modsfire", "url": "https://sfl.gl/3J6HCn52" },
+        { "name": "mega", "url": "https://sfl.gl/vkf9nCT5" },
+        { "name": "Dropbox", "url": "https://sfl.gl/GApMxA" },
+        { "name": "Pcloud", "url": "https://sfl.gl/hCmZ" }
+      ]
+    }
+  ]
+},
   {
   "slug": "266",
   "title": "wiyana sakti kursus vol 1",
@@ -11,7 +52,7 @@
     "software": ["Fl Studio"],
     "tag": ["fl studio", "musik", "music", "kursus"],
     "Language": ["Indonesian"],
-    "Category": ["kursus", "musik", "music", "fl studio"]
+    "Category": ["kursus", "musik", "music", "fl studio", "Tutorial"]
 },
   "videoTitle": "wiyana sakti kursus vol 1",
   "videos": [
