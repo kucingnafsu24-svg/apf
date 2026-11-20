@@ -1,4 +1,65 @@
 [
+      {
+  "slug": "266",
+  "title": "wiyana sakti kursus vol 1",
+  "author": "Admin",
+  "date": "2026-11-20",
+  "image": "/images/Pyra/1.webp", "imageFull": "/images/Pyra/1.png",
+  "excerpt": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
+  "content": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
+  "tags": {
+    "Youtubers": ["wiyana sakti"],
+    "software": ["Fl Studio"],
+    "tag": ["fl studio", "musik", "music", "kursus"],
+    "Language": ["Indonesian"],
+    "Category": ["kursus", "musik", "music", "fl studio"]
+},
+  "videoTitle": "wiyana sakti kursus vol 1",
+  "videos": [
+  {
+    "title": "Pyra 1",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/euhut8iuhg81" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/jaZLzK2okQtzPgp/" }
+    ]
+  },
+  {
+    "title": "Pyra 2",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/og7gfcvftak2" },
+      { "name": "Server 2", "url": "https://playmogo.com/e/og7gfcvftak2" }
+    ]
+  },
+    {
+    "title": "Pyra 2",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/og7gfcvftak2" },
+      { "name": "Server 2", "url": "https://playmogo.com/e/og7gfcvftak2" }
+    ]
+  },
+    {
+    "title": "Pyra 2",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/og7gfcvftak2" },
+      { "name": "Server 2", "url": "https://playmogo.com/e/og7gfcvftak2" }
+    ]
+  }
+],
+  "download": [
+    {
+      "title": "wiyana sakti kursus vol 1",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/oqJmQ" },
+        { "name": "gdrive", "url": "https://sfl.gl/mXxiq4P" },
+        { "name": "vexfile", "url": "https://sfl.gl/RqJQQ" },
+        { "name": "modsfire", "url": "https://sfl.gl/FVfRa" },
+        { "name": "mega", "url": "https://sfl.gl/sT2JS" },
+        { "name": "Dropbox", "url": "https://sfl.gl/fEpMQZC" },
+        { "name": "Pcloud", "url": "https://sfl.gl/VDLsdt" }
+      ]
+    }
+  ]
+},
     {
   "slug": "265",
   "title": "Pyra Animation",
@@ -16,18 +77,43 @@
     "Category": ["3d animation", "animation"]
 },
   "videoTitle": "Pyra Animation",
-  "videos": [
-    { "title": "Server 1 Pyra 1", "url": "https://playmogo.com/e/27iewlgrron1" },
-    { "title": "Server 2 Pyra 1", "url": "https://streamtape.com/e/jaZLzK2okQtzPgp/" },
-    { "title": "Server 1 Pyra 2", "url": "https://playmogo.com/e/og7gfcvftak2" },
-    { "title": "Server 2 Pyra 2", "url": "https://streamtape.com/e/0pJB8p30Wocb12z/" },
-    { "title": "Server 1 Pyra 3", "url": "https://playmogo.com/e/a3kjzmvi0ipe" },
-    { "title": "Server 2 Pyra 3", "url": "https://streamtape.com/e/BGmgqJBMjAc6vw/" },
-    { "title": "Server 1 Pyra 4", "url": "https://playmogo.com/e/1attimbcn5dv" },
-    { "title": "Server 2 Pyra 4", "url": "https://streamtape.com/e/ad8mGLmOJYFxq14/" },
-    { "title": "Server 1 Pyra 5", "url": "https://playmogo.com/e/upqkpgijou2o" },
-    { "title": "Server 2 Pyra 5", "url": "https://streamtape.com/e/x1PWJzDa4di08p/" }
-  ],
+"videos": [
+  {
+    "title": "Pyra 1",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/27iewlgrron1" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/jaZLzK2okQtzPgp/" }
+    ]
+  },
+  {
+    "title": "Pyra 2",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/og7gfcvftak2" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/0pJB8p30Wocb12z/" }
+    ]
+  },
+  {
+    "title": "Pyra 3",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/a3kjzmvi0ipe" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/BGmgqJBMjAc6vw/" }
+    ]
+  },
+  {
+    "title": "Pyra 4",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/1attimbcn5dv" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/ad8mGLmOJYFxq14/" }
+    ]
+  },
+  {
+    "title": "Pyra 5",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/upqkpgijou2o" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/x1PWJzDa4di08p/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Pyra Animation",
@@ -59,11 +145,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Pyra & Mythra – Blade Switch Animation",
-  "videos": [
-    { "title": "Server 1", "url": "https://playmogo.com/e/zvjkd9j4ontm" },
-    { "title": "Server 2", "url": "https://streamtape.com/e/KAwkZ680Y0TJpl/" }
-  ],
+"videoTitle": "Pyra & Mythra – Blade Switch Animation",
+"videos": [
+  {
+    "title": "Pyra & Mythra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/zvjkd9j4ontm" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/KAwkZ680Y0TJpl/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Pyra & Mythra – Blade Switch Animation",
@@ -95,11 +186,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Pyra and Mythra - Enhancing blade's affinity Animation",
-  "videos": [
-    { "title": "Server 1", "url": "https://playmogo.com/e/dtxxoejrlx8m" },
-    { "title": "Server 2", "url": "https://streamtape.com/e/pYkKLRQRddtxYm/" }
-  ],
+ "videoTitle": "Pyra and Mythra - Enhancing blade's affinity Animation",
+ "videos": [
+  {
+    "title": "Pyra and Mythra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/dtxxoejrlx8m" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/pYkKLRQRddtxYm/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Pyra and Mythra - Enhancing blade's affinity Animation",
@@ -131,13 +227,23 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Nia 1 Animation",
-  "videos": [
-    { "title": "Server 1 Nia 1", "url": "https://playmogo.com/e/t6u1a1mg4xkv" },
-    { "title": "Server 2 Nia 1", "url": "https://streamtape.com/e/r4W3vpejp9CGJg/" },
-    { "title": "Server 1 Nia 2", "url": "https://playmogo.com/e/k3lwwdxoqyh3" },
-    { "title": "Server 2 Nia 2", "url": "https://streamtape.com/e/yd1edJaWZAT1AkM/" }
-  ],
+ "videoTitle": "Nia 1 Animation",
+"videos": [
+  {
+    "title": "Nia 1",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/t6u1a1mg4xkv" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/r4W3vpejp9CGJg/" }
+    ]
+  },
+  {
+    "title": "Nia 2",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/k3lwwdxoqyh3" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/yd1edJaWZAT1AkM/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Nia 1 Animation",
@@ -169,11 +275,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Nia's New Toy (XC3) Animation",
-  "videos": [
-    { "title": "Server 1", "url": "https://playmogo.com/e/a4pny2rnkvu2" },
-    { "title": "Server 2", "url": "https://streamtape.com/e/MXe1wLB2prim4Yz/" }
-  ],
+ "videoTitle": "Nia's New Toy (XC3) Animation",
+ "videos": [
+  {
+    "title": "Nia's New Toy",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/a4pny2rnkvu2" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/MXe1wLB2prim4Yz/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Nia's New Toy (XC3) Animation",
@@ -206,23 +317,58 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Mythra Animation",
-  "videos": [
-    { "title": "Server 1 Mythra 1", "url": "https://playmogo.com/e/wkguypqp8n1u" },
-    { "title": "Server 2 Mythra 1", "url": "https://streamtape.com/e/oMavbBvRMOSJzYm/" },
-    { "title": "Server 1 Mythra 2", "url": "https://playmogo.com/e/3l9w3u354ce7" },
-    { "title": "Server 2 Mythra 2", "url": "https://streamtape.com/e/R6Vo0ZdXXZTd3V1/" },
-    { "title": "Server 1 Mythra 3", "url": "https://playmogo.com/e/dlxl3f5uj3sg" },
-    { "title": "Server 2 Mythra 3", "url": "https://streamtape.com/e/K0YwLdaYrzt0X7G/" },
-    { "title": "Server 1 Mythra 4", "url": "https://playmogo.com/e/rqbca049ksgz" },
-    { "title": "Server 2 Mythra 4", "url": "https://streamtape.com/e/QkzgAOA4YMt0eYq/" },
-    { "title": "Server 1 Mythra 5", "url": "https://playmogo.com/e/tdeykb9boiq5" },
-    { "title": "Server 2 Mythra 5", "url": "streamtape.com/e/k9qqbJLLLYhD1p/" },
-    { "title": "Server 1 Mythra 6", "url": "https://playmogo.com/e/ta08ggjrz6ll" },
-    { "title": "Server 2 Mythra 6", "url": "https://streamtape.com/e/P8QjAxaD3Lh0Z3O/" },
-    { "title": "Server 1 Mythra 7", "url": "https://playmogo.com/e/dm4e8ds8buf3" },
-    { "title": "Server 2 Mythra 7", "url": "https://streamtape.com/e/DXZbv2RoymcB2p/" }
-  ],
+ "videoTitle": "Mythra Animation",
+"videos": [
+  {
+    "title": "Mythra 1",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/wkguypqp8n1u" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/oMavbBvRMOSJzYm/" }
+    ]
+  },
+  {
+    "title": "Mythra 2",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/3l9w3u354ce7" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/R6Vo0ZdXXZTd3V1/" }
+    ]
+  },
+  {
+    "title": "Mythra 3",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/dlxl3f5uj3sg" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/K0YwLdaYrzt0X7G/" }
+    ]
+  },
+  {
+    "title": "Mythra 4",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/rqbca049ksgz" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/QkzgAOA4YMt0eYq/" }
+    ]
+  },
+  {
+    "title": "Mythra 5",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/tdeykb9boiq5" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/k9qqbJLLLYhD1p/" }
+    ]
+  },
+  {
+    "title": "Mythra 6",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ta08ggjrz6ll" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/P8QjAxaD3Lh0Z3O/" }
+    ]
+  },
+  {
+    "title": "Mythra 7",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/dm4e8ds8buf3" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/DXZbv2RoymcB2p/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Mythra Animation",
@@ -255,11 +401,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Nia and the Aegis - is this Elysium Animation",
-  "videos": [
-    { "title": "Server 1", "url": "https://playmogo.com/e/xapd8juuhxev" },
-    { "title": "Server 2", "url": "https://streamtape.com/e/A4PGlyyA0BtXYzo/" }
-  ],
+"videoTitle": "Nia and the Aegis - is this Elysium Animation",
+"videos": [
+  {
+    "title": "Nia and the Aegis",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/xapd8juuhxev" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/A4PGlyyA0BtXYzo/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Nia and the Aegis - is this Elysium Animation",
@@ -292,13 +443,23 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Aegis's New Toy Animation",
-  "videos": [
-    { "title": "Server 1 Mythra", "url": "https://playmogo.com/e/kspuufswt2xn" },
-    { "title": "Server 2 Mythra", "url": "https://streamtape.com/e/BjAjrLkaemFykgd/" },
-    { "title": "Server 1 Pyra", "url": "https://playmogo.com/e/ncgeqhvsh363" },
-    { "title": "Server 2 Pyra", "url": "https://streamtape.com/e/adJ3Y0mPGkuQBP/" }
-  ],
+ "videoTitle": "Aegis's New Toy Animation",
+"videos": [
+  {
+    "title": "Mythra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/kspuufswt2xn" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/BjAjrLkaemFykgd/" }
+    ]
+  },
+  {
+    "title": "Pyra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ncgeqhvsh363" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/adJ3Y0mPGkuQBP/" }
+    ]
+  }
+],
   "download": [
         {
       "title": "Aegis's New Toy Pyra Animation",
@@ -382,11 +543,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】continuing to not look outside in Look Outside #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/2j2acj8675nk"},
-    { "title": "server 2", "url": "hhttps://streamtape.com/e/LO6alYA9oPuROqX/"}
-  ],
+ "videoTitle": "Live Streaming【member's only】continuing to not look outside in Look Outside #calliolive",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/2j2acj8675nk" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/LO6alYA9oPuROqX/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】continuing to not look outside in Look Outside #calliolive",

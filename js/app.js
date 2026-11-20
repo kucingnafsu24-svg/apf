@@ -69,13 +69,25 @@ function thumb(p,big){var b=p.comments?'<span class="badge"><svg viewBox="0 0 24
  return '<'+(big?'div':'a href="/g/'+encodeURIComponent(p.slug)+'"')+' class="thumb '+p.thumb.cls+'">'+b+'<span><strong'+st+'>'+esc(p.thumb.title)+'</strong><small>'+esc(p.thumb.sub)+'</small></span></'+(big?'div':'a')+'>'}
 function avatar(p){var C=window.APF_CONFIG||{},u=p.authorImage||(C.authors&&C.authors[p.author]);
  return u?'<img class="av" src="'+esc(u)+'" alt="" loading="lazy">':'<span class="av">'+esc(p.author[0])+'</span>'}
-function vlist(p){return (Array.isArray(p.videos)?p.videos:[]).map(function(v,i){
- var o=typeof v==='string'?{url:v}:(v||{});return {title:o.title||('Server '+(i+1)),url:o.url||''}}).filter(function(v){return /^https:\/\//.test(v.url)})}
-function videos(p){var v=vlist(p);if(!v.length)return '';
+/* Video: satu tombol per video/episode, pilihan server digabung dalam satu dropdown.
+   Format posts.json:
+   "videos":[ {"title":"Episode 1","servers":[{"name":"Server 1","url":"https://..."},{"name":"Server 2","url":"https://..."}]} ]
+   Bentuk lama {title,url} atau "https://..." tetap bisa; entri dengan title sama otomatis digabung jadi satu video. */
+var VG=[];
+function vlist(p){var g=[],m={};
+ (Array.isArray(p.videos)?p.videos:[]).forEach(function(v,i){
+  var o=typeof v==='string'?{url:v}:(v||{}),raw=Array.isArray(o.servers)?o.servers:(Array.isArray(o.urls)?o.urls:null),title=String(o.title||('Server '+(i+1)));
+  var ss=(raw||[o]).map(function(x){var q=typeof x==='string'?{url:x}:(x||{});return {name:String((raw?(q.name||q.title):'')||q.server||''),url:String(q.url||'')}}).filter(function(x){return /^https:\/\//.test(x.url)});
+  if(!ss.length)return;
+  if(m[title])m[title].s=m[title].s.concat(ss);else{m[title]={title:title,s:ss};g.push(m[title])}});
+ g.forEach(function(x){x.s.forEach(function(s,j){if(!s.name)s.name='Server '+(j+1)})});return g}
+function srvOpts(x){return x.s.map(function(s,j){return '<option value="'+j+'">'+esc(s.name)+'</option>'}).join('')}
+function videos(p){var g=vlist(p);if(!g.length)return '';VG=g;
  var vt=String([p.videoTitle,p.videostitle,p.videosTitle].filter(function(x){return x!=null&&String(x).trim()})[0]||'').trim()||'Streaming';
  return '<div class="sec"><div class="sec-h">'+esc(vt)+'</div><div class="sec-b"><div class="vplayer" id="vplayer">'+
-  (v.length>1?'<div class="vtabs">'+v.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-u="'+esc(x.url)+'">'+esc(x.title)+'</button>'}).join('')+'</div>':'')+
-  '<div class="video"><iframe src="'+esc(v[0].url)+'" allowfullscreen scrolling="no" frameborder="0" loading="lazy"></iframe></div></div></div></div>'}
+  (g.length>1?'<div class="vtabs">'+g.map(function(x,i){return '<button type="button"'+(i?'':' class="on"')+' data-g="'+i+'">'+esc(x.title)+'</button>'}).join('')+'</div>':'')+
+  (g.some(function(x){return x.s.length>1})?'<label class="vsrv"'+(g[0].s.length>1?'':' hidden')+'>Server <select class="vsel" aria-label="Pilih server">'+srvOpts(g[0])+'</select></label>':'')+
+  '<div class="video"><iframe src="'+esc(g[0].s[0].url)+'" allowfullscreen scrolling="no" frameborder="0" loading="lazy"></iframe></div></div></div></div>'}
 /* Pemutar audio: post.audio=[{title,url}], post.audioTitle = judul bagian (bawaan "Musik") */
 function alist(p){return (Array.isArray(p.audio)?p.audio:[]).map(function(a){
  if(!a||typeof a!=='object')return null;
@@ -114,8 +126,10 @@ function downloads(p){var g=dlist(p);if(!g.length)return '';
   return '<div class="dl-card">'+(x.title?'<div class="dl-t">'+esc(x.title)+'</div>':'')+'<div class="dl-links">'+
    x.links.map(function(l){return '<a class="dl-btn" href="'+esc(l.url)+'" target="_blank" rel="noopener nofollow">'+esc(l.name)+'</a>'}).join('')+'</div></div>'}).join('')+'</div></div>'}
 function bindVideos(){var vp=document.getElementById('vplayer');if(!vp)return;
- var fr=vp.querySelector('iframe'),bs=vp.querySelectorAll('.vtabs button');
- [].forEach.call(bs,function(b){b.onclick=function(){fr.src=b.getAttribute('data-u');[].forEach.call(bs,function(x){x.className=''});b.className='on'}})}
+ var fr=vp.querySelector('iframe'),bs=vp.querySelectorAll('.vtabs button'),lab=vp.querySelector('.vsrv'),sel=vp.querySelector('.vsel'),cur=0;
+ function pick(i){cur=i;if(!sel)return;sel.innerHTML=srvOpts(VG[i]);lab.hidden=VG[i].s.length<2}
+ [].forEach.call(bs,function(b){b.onclick=function(){var i=+b.getAttribute('data-g');fr.src=VG[i].s[0].url;[].forEach.call(bs,function(x){x.className=''});b.className='on';pick(i)}});
+ if(sel)sel.onchange=function(){var x=VG[cur].s[+sel.value];if(x)fr.src=x.url}}
 function glist(p){return (Array.isArray(p.gallery)?p.gallery:[]).map(function(g){
  var o=typeof g==='string'?{url:g}:(g||{});return {url:String(o.url||''),cap:o.caption?String(o.caption):''}}).filter(function(g){return /^(https?:\/\/|\/(?!\/))/.test(g.url)})}
 function gallery(p){var g=glist(p);if(!g.length)return '';

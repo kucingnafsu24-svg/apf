@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Postingan Tersimpan — All Pirate File</title>
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.svp{max-width:860px;margin:0 auto;padding-bottom:40px}
+.svp .rm{margin-top:10px;padding:6px 14px;border:1px solid var(--line);border-radius:18px;font-size:13px;color:var(--alt);cursor:pointer;background:none}
+.svp .rm:hover{background:var(--card);color:var(--head)}
+.svp .gone h3{color:var(--alt)}
+</style>
+<script src="/js/fade.js"></script>
+</head>
+<body>
+<header><div class="wrap bar">
+ <a class="logo" href="/">All Pirate File</a>
+ <div class="tools">
+  <button id="theme" aria-label="Mode gelap"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+ </div>
+</div></header>
+
+<main class="wrap svp">
+ <div class="title"><h2>Postingan Tersimpan</h2><i></i></div>
+ <div class="posts" id="saved"><div class="empty">Memuat…</div></div>
+</main>
+
+<footer><div class="wrap"><span>© 2021 Fletro Pro. All rights reserved.</span><span>All Pirate File</span></div></footer>
+<script src="/js/config.js"></script>
+<script src="/js/lib.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/save.js"></script>
+<script>
+(function(){
+var C=window.APF_CONFIG||{},box=document.getElementById('saved');
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var fmt=function(d){var x=new Date(String(d).slice(0,10)+'T00:00:00');return isNaN(x)?'':x.toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'})};
+var say=function(h){box.innerHTML='<div class="empty">'+h+'</div>'};
+if(!window.supabase||!C.supabaseUrl||!C.supabaseAnonKey){say('Gagal memuat layanan login. Muat ulang halaman.');return}
+var sb=window.supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);
+var slugOf=function(p){return String(p.slug||String(p.title||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')).toLowerCase()};
+
+function thumb(p,href){
+ if(p.image)return '<a href="'+href+'" class="thumb"><img src="'+esc(p.image)+'" alt="" loading="lazy"></a>';
+ var t=p.thumb||{};
+ return '<a href="'+href+'" class="thumb '+esc(t.cls||'t1')+'"><span><strong>'+esc(t.title||String(p.title||'').slice(0,14))+'</strong><small>'+esc(t.sub||'')+'</small></span></a>';
+}
+function card(row,p){
+ var s=row.post_slug,href='/g/'+encodeURIComponent(s);
+ if(!p)return '<article class="post gone" data-s="'+esc(s)+'"><div><h3>Postingan tidak tersedia</h3><p style="display:block">'+esc(s)+'</p><button type="button" class="rm">Hapus dari daftar</button></div><span></span></article>';
+ return '<article class="post" data-s="'+esc(s)+'"><div><div class="meta"><span>'+fmt(p.date)+'</span></div>'+
+  '<h3><a href="'+href+'">'+esc(p.title)+'</a></h3>'+(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+
+  '<button type="button" class="rm">Hapus dari simpanan</button></div>'+thumb(p,href)+'</article>';
+}
+function empty(){say('Belum ada postingan yang disimpan. Tekan tombol <b>Simpan</b> di halaman artikel.<br><a class="more" href="/">Ke beranda</a>')}
+
+sb.auth.getSession().then(function(r){
+ var u=r.data.session&&r.data.session.user;
+ if(!u){say('Masuk dulu untuk melihat postingan yang kamu simpan.<br><a class="more" href="/login.html?next='+encodeURIComponent('/saved.html')+'">Masuk</a>');return}
+ return Promise.all([
+  sb.from('saved_posts').select('post_slug,created_at').order('created_at',{ascending:false}),
+  fetch('/data/posts.json').then(function(x){return x.json()})
+ ]).then(function(a){
+  var rs=a[0];if(rs.error)throw rs.error;
+  var list=Array.isArray(a[1])?a[1]:(a[1]&&a[1].posts)||[],map={};
+  list.forEach(function(p){if(p&&typeof p==='object')map[slugOf(p)]=p});
+  if(!rs.data.length){empty();return}
+  box.innerHTML=rs.data.map(function(x){return card(x,map[x.post_slug])}).join('');
+  box.onclick=function(e){
+   var b=e.target.closest&&e.target.closest('.rm');if(!b)return;
+   var art=b.closest('.post'),s=art.getAttribute('data-s');b.disabled=true;
+   Promise.resolve(sb.from('saved_posts').delete().eq('post_slug',s)).then(function(d){
+    if(d.error){b.disabled=false;return}
+    art.remove();if(!box.querySelector('.post'))empty();
+   }).catch(function(){b.disabled=false});
+  };
+ });
+}).catch(function(e){console.error(e);say('Gagal memuat daftar simpanan. Coba lagi nanti.')});
+})();
+</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
