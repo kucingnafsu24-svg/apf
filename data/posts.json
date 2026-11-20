@@ -578,10 +578,15 @@
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
   "videoTitle": "Live Streaming【member's only】the search for mikochi (hololive Dreams) #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/oxpanks2tv10"},
-    { "title": "server 2", "url": "https://streamtape.com/e/aYbxxz61XlSxB6y/"}
-  ],
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/oxpanks2tv10" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/aYbxxz61XlSxB6y/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】the search for mikochi (hololive Dreams) #calliolive",
@@ -606,11 +611,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】we do be hangin' out and likely playing somethin' #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/fp8dlzz69ko6"},
-    { "title": "server 2", "url": "https://streamtape.com/e/9o3rPGVv9RFa2LJ/"}
-  ],
+ "videoTitle": "Live Streaming【member's only】we do be hangin' out and likely playing somethin' #calliolive",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/fp8dlzz69ko6" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/9o3rPGVv9RFa2LJ/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】we do be hangin' out and likely playing somethin' #calliolive",
@@ -636,10 +646,15 @@
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
   "videoTitle": "Live Streaming【member's only】august concert!! #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/cfsmgp8f8qq4"},
-    { "title": "server 2", "url": "https://streamtape.com/e/jaXdlyLmalFzPz2/"}
-  ],
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/cfsmgp8f8qq4" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/jaXdlyLmalFzPz2/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】august concert!! #calliolive",
@@ -665,10 +680,15 @@
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
   "videoTitle": "Live Streaming【member's only】traversing more nightmares in look outside #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/ysqa5jv4fhr1"},
-    { "title": "server 2", "url": "https://streamtape.com/e/ZrbjbMRjqofP8k/"}
-  ],
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ysqa5jv4fhr1" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/ZrbjbMRjqofP8k/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】traversing more nightmares in look outside #calliolive",
@@ -695,9 +715,14 @@
   },
   "videoTitle": "Live Streaming【6th Anniversary Event】members only yap part!!! #calliolive",
   "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/aufup8o1jaa4"},
-    { "title": "server 2", "url": "https://streamtape.com/e/PX4mmVM7oWikLg/"}
-  ],
+  {
+    "title": "Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/aufup8o1jaa4" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/PX4mmVM7oWikLg/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【6th Anniversary Event】members only yap part!!! #calliolive",
@@ -722,11 +747,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】can't get enough of this game (look outside) #calliolive",
+  "videoTitle": "【member's only】can't get enough of this game (look outside) #calliolive",
   "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/10ak8s4aeir7"},
-    { "title": "server 2", "url": "https://streamtape.com/e/xMedMM1l31fk3zp/"}
-  ],
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/10ak8s4aeir7" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/xMedMM1l31fk3zp/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】can't get enough of this game (look outside) #calliolive",
@@ -751,11 +781,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【members only】movie night!! we are watching Naked Gun! #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/3upluqa2g7bt"},
-    { "title": "server 2", "url": "https://streamtape.com/e/yAY33Q72wMF1164/"}
-  ],
+"videoTitle": "【members only】movie night!! we are watching Naked Gun! #calliolive",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/3upluqa2g7bt" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/yAY33Q72wMF1164/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【members only】movie night!! we are watching Naked Gun! #calliolive",
@@ -780,11 +815,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】chat and game as usual!! #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/yw13m22kh5dd"},
-    { "title": "server 2", "url": "https://streamtape.com/e/PX4mmVM7oWikLg/"}
-  ],
+"videoTitle": "【member's only】chat and game as usual!! #calliolive",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/yw13m22kh5dd" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/PX4mmVM7oWikLg/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】chat and game as usual!! #calliolive",
@@ -809,11 +849,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】look outside (don't though) #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/ja6ry310j4h7"},
-    { "title": "server 2", "url": "https://streamtape.com/e/3Oz3VKqDJKSdzwO/"}
-  ],
+"videoTitle": "【member's only】look outside (don't though) #calliolive",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ja6ry310j4h7" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/3Oz3VKqDJKSdzwO/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】look outside (don't though) #calliolive",
@@ -838,11 +883,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】gaming WITH MEMBERS! help!! #calliolive #holodori",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/lxovzdadjwnh"},
-    { "title": "server 2", "url": "https://streamtape.com/e/W9zydllampIAyM/"}
-  ],
+"videoTitle": "【member's only】gaming WITH MEMBERS! help!! #calliolive #holodori",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/lxovzdadjwnh" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/W9zydllampIAyM/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】gaming WITH MEMBERS! help!! #calliolive #holodori",
@@ -867,11 +917,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】chill hang out and chatting your ears off!! #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/2lk9rf8pkpfe"},
-    { "title": "server 2", "url": "https://streamtape.com/e/rdBJqPDkRkf8Vr/"}
-  ],
+"videoTitle": "【member's only】chill hang out and chatting your ears off!! #calliolive",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/2lk9rf8pkpfe" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/rdBJqPDkRkf8Vr/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】chill hang out and chatting your ears off!! #calliolive",
@@ -896,11 +951,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】chill hang out and chatting your ears off!! #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/271ps3xyb9vb" },
-    { "title": "server 2", "url": "https://streamtape.com/e/zKYe3aLWMjtvBD/" }
-  ],
+"videoTitle": "【member's only】chill hang out and chatting your ears off!! #calliolive",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/271ps3xyb9vb" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/zKYe3aLWMjtvBD/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】chill hang out and chatting your ears off!! #calliolive",
@@ -1010,11 +1070,16 @@
     "tag": ["vtuberjp", "vtuberjepang", "vtuberen", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【member's only】look outside (REALLY don't though) #calliolive",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/75tf1iq9awdo" },
-    { "title": "server 2", "url": "https://streamtape.com/e/4vMjoeZeZZUKP6K/" }
-  ],
+"videoTitle": "【member's only】look outside (REALLY don't though) #calliolive",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/75tf1iq9awdo" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/4vMjoeZeZZUKP6K/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【member's only】look outside (REALLY don't though) #calliolive",
@@ -1115,13 +1180,23 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Aegis's new friend part 2 Animation",
-  "videos": [
-    { "title": "Server 1 Mythra", "url": "https://playmogo.com/e/fodhyx8labb5" },
-    { "title": "Server 2 Mythra", "url": "https://streamtape.com/e/BJzY8lLDVXsKoJ/" },
-    { "title": "Server 1 Pyra", "url": "https://playmogo.com/e/tdjox4i89db5" },
-    { "title": "Server 2 Pyra", "url": "https://streamtape.com/e/dPM1ZgWjkehk6a8/" }
-  ],
+"videoTitle": "Aegis's new friend part 2 Animation",
+"videos": [
+  {
+    "title": "Mythra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/fodhyx8labb5" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/BJzY8lLDVXsKoJ/" }
+    ]
+  },
+  {
+    "title": "Pyra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/tdjox4i89db5" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/dPM1ZgWjkehk6a8/" }
+    ]
+  }
+],
   "download": [
         {
       "title": "Aegis's new friend part 2 Pyra Animation",
@@ -1167,12 +1242,22 @@
     "Category": ["3d animation", "animation"]
 },
   "videoTitle": "Aegis's new friend Animation",
-  "videos": [
-    { "title": "Server 1 Mythra", "url": "https://playmogo.com/e/d0gl0wkbdtsl" },
-    { "title": "Server 2 Mythra", "url": "https://streamtape.com/e/DW0adkzZr7Sk1DV/" },
-    { "title": "Server 1 Pyra", "url": "https://playmogo.com/e/5rht1f5ffg5a" },
-    { "title": "Server 2 Pyra", "url": "https://streamtape.com/e/vVk2XMlrvbUB0j/" }
-  ],
+"videos": [
+  {
+    "title": "Mythra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/d0gl0wkbdtsl" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/DW0adkzZr7Sk1DV/" }
+    ]
+  },
+  {
+    "title": "Pyra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/5rht1f5ffg5a" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/vVk2XMlrvbUB0j/" }
+    ]
+  }
+],
   "download": [
         {
       "title": "Aegis's new friend Pyra Animation",
@@ -1218,12 +1303,22 @@
     "Category": ["3d animation", "animation"]
 },
   "videoTitle": "Aegis On Top Animation",
-  "videos": [
-    { "title": "Server 1 Mythra", "url": "https://playmogo.com/e/pwga9bnonk52" },
-    { "title": "Server 2 Mythra", "url": "https://streamtape.com/e/zkJLQ9O18GuYZeA/" },
-    { "title": "Server 1 Pyra", "url": "https://playmogo.com/e/t0pcvhksk2v6" },
-    { "title": "Server 2 Pyra", "url": "https://streamtape.com/e/pDbYVkd23ghrPwA/" }
-  ],
+"videos": [
+  {
+    "title": "Mythra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/pwga9bnonk52" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/zkJLQ9O18GuYZeA/" }
+    ]
+  },
+  {
+    "title": "Pyra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/t0pcvhksk2v6" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/pDbYVkd23ghrPwA/" }
+    ]
+  }
+],
   "download": [
         {
       "title": "Aegis On Top Pyra Animation",
@@ -1269,12 +1364,22 @@
     "Category": ["3d animation", "animation"]
 },
   "videoTitle": "Aegis - Don't be so rough Animation",
-  "videos": [
-    { "title": "Server 1 Mythra", "url": "https://playmogo.com/e/sgmwnmaou6uf" },
-    { "title": "Server 2 Mythra", "url": "https://streamtape.com/e/gRjV8qYOx0hqQZ0/" },
-    { "title": "Server 1 Pyra", "url": "https://playmogo.com/e/ab7r6gexlx5u" },
-    { "title": "Server 2 Pyra", "url": "https://streamtape.com/e/BAVBaJq2BxumW7/" }
-  ],
+"videos": [
+  {
+    "title": "Mythra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/sgmwnmaou6uf" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/gRjV8qYOx0hqQZ0/" }
+    ]
+  },
+  {
+    "title": "Pyra",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ab7r6gexlx5u" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/BAVBaJq2BxumW7/" }
+    ]
+  }
+],
   "download": [
         {
       "title": "Aegis - Don't be so rough Pyra Animation",
@@ -1319,11 +1424,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Makiatto - Girls' Frontline 2 Animation",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/68zn23a4bqfs" },
-    { "title": "server 2", "url": "https://streamtape.com/e/Q1JX40Y2AoI0aMW/" }
-  ],
+"videoTitle": "Makiatto - Girls' Frontline 2 Animation",
+"videos": [
+  {
+    "title": "Makiatto",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/68zn23a4bqfs" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Q1JX40Y2AoI0aMW/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Makiatto - Girls' Frontline 2 Animation",
@@ -1356,11 +1466,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Klukai - Girls' Frontline 2 Animation",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/68zn23a4bqfs" },
-    { "title": "server 2", "url": "https://streamtape.com/e/Q1JX40Y2AoI0aMW/" }
-  ],
+"videoTitle": "Klukai - Girls' Frontline 2 Animation",
+"videos": [
+  {
+    "title": "Klukai",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/68zn23a4bqfs" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Q1JX40Y2AoI0aMW/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Klukai - Girls' Frontline 2 Animation",
@@ -1394,10 +1509,15 @@
     "Category": ["3d animation", "animation"]
 },
   "videoTitle": "Melina - Elden Ring Animation",
-  "videos": [
-    { "title": "server 1", "url": "playmogo.com/e/kkx4ufdrb7a3" },
-    { "title": "server 2", "url": "https://streamtape.com/e/mw8A1jZoMGCbYKm/" }
-  ],
+"videos": [
+  {
+    "title": "Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/kkx4ufdrb7a3" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/mw8A1jZoMGCbYKm/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Melina - Elden Ring Animation",
@@ -1430,11 +1550,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "A Thighjob Xenoblade | Animation",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/y1kcczhd4eje" },
-    { "title": "server 2", "url": "hhttps://streamtape.com/e/0A6vxB246atboep/" }
-  ],
+"videoTitle": "A Thighjob Xenoblade | Animation",
+"videos": [
+  {
+    "title": "A",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/y1kcczhd4eje" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/0A6vxB246atboep/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "A Thighjob Xenoblade | Animation",
@@ -1467,11 +1592,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "A prone Xenoblade | Animation",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/pog7c2d23f0p" },
-    { "title": "server 2", "url": "https://streamtape.com/e/K4gvY0eaxkcJPD/" }
-  ],
+"videoTitle": "A prone Xenoblade | Animation",
+"videos": [
+  {
+    "title": "A",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/pog7c2d23f0p" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/K4gvY0eaxkcJPD/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "A prone Xenoblade | Animation",
@@ -1504,11 +1634,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "A 1 Xenoblade | Animation",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/6q48d89ca21n" },
-    { "title": "server 2", "url": "https://streamtape.com/e/ydPedld8Rqs33B/" }
-  ],
+"videoTitle": "A 1 Xenoblade | Animation",
+"videos": [
+  {
+    "title": "A",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/6q48d89ca21n" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/ydPedld8Rqs33B/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "A 1 Xenoblade | Animation",
@@ -1541,11 +1676,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "A Paizuri Xenoblade | Animation",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/s792u790x76h" },
-    { "title": "server 2", "url": "https://streamtape.com/e/gwXWXRv9PMIqj7L/" }
-  ],
+"videoTitle": "A Paizuri Xenoblade | Animation",
+"videos": [
+  {
+    "title": "A",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/s792u790x76h" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/gwXWXRv9PMIqj7L/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "A Paizuri Xenoblade | Animation",
@@ -1578,11 +1718,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
  },
-  "videoTitle": "A21 Dragonball | Animation",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/g6gkowkttn1n" },
-    { "title": "server 2", "url": "https://streamtape.com/e/06qXjpMWPOIb9V1/" }
-  ],
+"videoTitle": "A21 Dragonball | Animation",
+"videos": [
+  {
+    "title": "A21",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/g6gkowkttn1n" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/06qXjpMWPOIb9V1/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "A21 Dragonball | Animation",
@@ -1615,11 +1760,16 @@
     "Language": ["Textless"],
     "Category": ["3d animation", "animation"]
 },
-  "videoTitle": "Darkness Konosuba | Animation",
-  "videos": [
-    { "title": "server Fluorite 1", "url": "https://playmogo.com/e/6g0wvvsxv1ms" },
-    { "title": "server Fluorite 2", "url": "https://streamtape.com/e/BYw6QpKa2VuyZ6Z/" }
-  ],
+"videoTitle": "Darkness Konosuba | Animation",
+"videos": [
+  {
+    "title": "Darkness",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/6g0wvvsxv1ms" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/BYw6QpKa2VuyZ6Z/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Darkness Konosuba | Animation",
@@ -1651,11 +1801,16 @@
     "Language": ["Textless"],
     "Category": ["Animation", "3d animation"]
 },
-  "videoTitle": "Fluorite - Caught You Staring Part 2 | Animation",
-  "videos": [
-    { "title": "Server 1 Fluorite", "url": "https://playmogo.com/e/61zv3whk11cf" },
-    { "title": "Server 2 Fluorite", "url": "https://streamtape.com/e/BYw6QpKa2VuyZ6Z/" }
-  ],
+"videoTitle": "Fluorite - Caught You Staring Part 2 | Animation",
+"videos": [
+  {
+    "title": "Fluorite",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/61zv3whk11cf" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/BYw6QpKa2VuyZ6Z/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "Fluorite - Caught You Staring Part 2 | Animation",
@@ -1689,12 +1844,22 @@
     "Category": ["Animation", "3d animation"]
 },
   "videoTitle": "Fluorite | Yvonne - Caught You Staring | Animation",
-  "videos": [
-    { "title": "Server 1 Fluorite", "url": "https://playmogo.com/e/mmfo4l4ygcmi" },
-    { "title": "Server 2 Fluorite", "url": "https://streamtape.com/e/xg3qLXeZv6FkPdX/" },
-    { "title": "Server 1 Yvonne", "url": "https://playmogo.com/e/ew5ab81qm1sx" },
-    { "title": "Server 2 Yvonne", "url": "https://streamtape.com/e/Xrzdx6z1mwFDOpR/" }
-  ],
+"videos": [
+  {
+    "title": "Fluorite",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/mmfo4l4ygcmi" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/xg3qLXeZv6FkPdX/" }
+    ]
+  },
+  {
+    "title": "Yvonne",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ew5ab81qm1sx" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Xrzdx6z1mwFDOpR/" }
+    ]
+  }
+],
   "download": [
         {
       "title": "Yvonne - Caught You Staring | Animation",
@@ -1783,11 +1948,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【Membership】Drawing Stream?? #vtuberid",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/2utucu3an95c" },
-    { "title": "server 2", "url": "https://streamtape.com/e/3a9QoD1Do6fdvx1/" }
-  ],
+"videoTitle": "【Membership】Drawing Stream?? #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/2utucu3an95c" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/3a9QoD1Do6fdvx1/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Membership】Drawing Stream?? #vtuberid",
@@ -1816,11 +1986,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "Limbus Company"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【Limbus Company】TIER LIST LAGU MILI CANTO! #vtuberid",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/o3mth78grhgx" },
-    { "title": "server 2", "url": "https://streamtape.com/e/8zDlpD231bt2Kv/" }
-  ],
+"videoTitle": "【Limbus Company】TIER LIST LAGU MILI CANTO! #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/o3mth78grhgx" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/8zDlpD231bt2Kv/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Limbus Company】TIER LIST LAGU MILI CANTO! #vtuberid",
@@ -1849,11 +2024,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【Membership】Goose Goose, ARV!? Mabar-mabar! #vtuberid",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/mgmhabp61i8m" },
-    { "title": "server 2", "url": "https://streamtape.com/e/qxwP96Q3xaHzrle/" }
-  ],
+ "videoTitle": "【Membership】Goose Goose, ARV!? Mabar-mabar! #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/mgmhabp61i8m" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/qxwP96Q3xaHzrle/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Membership】Goose Goose, ARV!? Mabar-mabar! #vtuberid",
@@ -1882,11 +2062,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【Membership】Liat liat Song list! NO REQUEST!! #vtuberid",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/bj2dhv8qpftk" },
-    { "title": "server 2", "url": "https://streamtape.com/e/aGoQg8pGjLtlz1/" }
-  ],
+"videoTitle": "【Membership】Liat liat Song list! NO REQUEST!! #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/bj2dhv8qpftk" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/aGoQg8pGjLtlz1/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Membership】Liat liat Song list! NO REQUEST!! #vtuberid",
@@ -1915,11 +2100,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【Membership】Memperkenalkan Genre MANGA/ANIME Favorite ku. . Spoiler Bukan NTR! #vtuberid",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/94tpl553tmrv" },
-    { "title": "server 2", "url": "https://streamtape.com/e/LX98rGrBpkFbOV/" }
-  ],
+ "videoTitle": "【Membership】Memperkenalkan Genre MANGA/ANIME Favorite ku. . Spoiler Bukan NTR! #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/94tpl553tmrv" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/LX98rGrBpkFbOV/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Membership】Memperkenalkan Genre MANGA/ANIME Favorite ku. . Spoiler Bukan NTR! #vtuberid",
@@ -1948,11 +2138,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【Membership】Membership Midnight! #vtuberid",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/0ivftrg6uj60" },
-    { "title": "server 2", "url": "https://streamtape.com/e/PrAD0Wmz2OHBlL/" }
-  ],
+"videoTitle": "【Membership】Membership Midnight! #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/0ivftrg6uj60" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/PrAD0Wmz2OHBlL/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Membership】Membership Midnight! #vtuberid",
@@ -3137,11 +3332,16 @@
     "Language": ["English"],
     "Category": ["Cosplayer"]
  },
-  "videoTitle": "kittyxkum 2025 02 10",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/bj0m1yscirct" },
-    { "title": "server 2", "url": "https://streamtape.com/e/j2wOK1pddmHzk93/" }
-  ],
+"videoTitle": "kittyxkum 2025 02 10",
+"videos": [
+  {
+    "title": "kittyxkum",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/bj0m1yscirct" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/j2wOK1pddmHzk93/" }
+    ]
+  }
+],
     "download": [
          {
         "title": "Download kittyxkum 2025 02 10 480p",
@@ -3192,11 +3392,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【Membership】I think im fine for now #vtuberid",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/r1qr55jppgqn" },
-    { "title": "server 2", "url": "https://streamtape.com/e/VBmOb7OO9Pi9lv/" }
-  ],
+"videoTitle": "【Membership】I think im fine for now #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/r1qr55jppgqn" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/VBmOb7OO9Pi9lv/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Membership】I think im fine for now",
@@ -3377,12 +3582,22 @@
     "Category": ["Tutorial"],
     "Tag": ["tutorial", "shortlink", "download"]
   },
-  "videoTitle": "cara melewati shortlink",
-  "videos": [
-    { "title": "versi hp", "url": "https://playmogo.com/e/ybhmxf6p4kqj" },
-    { "title": "versi hp", "url": "https://streamtape.com/e/JYmzZ4o9JZtjdXm/" },
-    { "title": "versi pc", "url": "https://playmogo.com/e/dc2g7nt2gp9r" }
-  ]
+"videoTitle": "cara melewati shortlink",
+"videos": [
+  {
+    "title": "Versi HP",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ybhmxf6p4kqj" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/JYmzZ4o9JZtjdXm/" }
+    ]
+  },
+  {
+    "title": "Versi PC",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/dc2g7nt2gp9r" }
+    ]
+  }
+]
   },
   {
   "slug": "164",
@@ -3461,11 +3676,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming 【Membership】Tunjangan Membership #vtuberid ",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/etd00o5r9g8g" },
-    { "title": "server 2", "url": "https://streamtape.com/e/3pgB9X0bzbUdeRo/" }
-  ],
+"videoTitle": "【Membership】Tunjangan Membership #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/etd00o5r9g8g" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/3pgB9X0bzbUdeRo/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Membership】【Membership】Tunjangan Membership",
@@ -3492,11 +3712,16 @@
     "tag": ["vtuberid", "vtuberindonesia", "freetalk"],
     "Category": ["membership", "youtube membership", "vtuber", "vtubers", "youtubers", "livestream"]
   },
-  "videoTitle": "Live Streaming【Membership】39 Stream and QnA Time!! #vtuberid",
-  "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/yyyttd14wygk" },
-    { "title": "server 2", "url": "https://streamtape.com/e/Xoqrd6O3D7SW9J/" }
-  ],
+"videoTitle": "【Membership】39 Stream and QnA Time!! #vtuberid",
+"videos": [
+  {
+    "title": "Live Streaming",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/yyyttd14wygk" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Xoqrd6O3D7SW9J/" }
+    ]
+  }
+],
   "download": [
     {
       "title": "【Membership】39 Stream and QnA Time!!",
@@ -4070,10 +4295,16 @@
     "Language": ["English"],
     "Category": ["Cosplayer"]
  },
-    "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/10egztnamu38" },
-    { "title": "server 2", "url": "https://playmogo.com/e/p1k9yq699w4p" }
-  ],
+"videoTitle": "kittyxkum 20620389 Butt stuff",
+"videos": [
+  {
+    "title": "kittyxkum",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/10egztnamu38" },
+      { "name": "Server 2", "url": "https://playmogo.com/e/p1k9yq699w4p" }
+    ]
+  }
+],
     "download": [
          {
         "title": "Download kittyxkum 20620389 Butt stuff 480p",
@@ -4122,10 +4353,16 @@
     "Language": ["English"],
     "Category": ["Cosplayer"]
  },
-    "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/0ywwj2wiwqsu" },
-    { "title": "server 2", "url": "https://playmogo.com/e/t9sd9lac9cn5" }
-  ],
+ "videoTitle": ["kittyxkum daddy can i be your good girl today part 2"],
+"videos": [
+  {
+    "title": "kittyxkum",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/0ywwj2wiwqsu" },
+      { "name": "Server 2", "url": "https://playmogo.com/e/t9sd9lac9cn5" }
+    ]
+  }
+],
     "download": [
         {
         "title": "Download kittyxkum daddy can i be your good girl today part 2",
@@ -4150,10 +4387,16 @@
     "Language": ["English"],
     "Category": ["Cosplayer"]
  },
-    "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/ud0g52hp0bnn" },
-    { "title": "server 2", "url": "https://playmogo.com/e/jaom3e3vnn0h" }
-  ],
+ "videoTitle": ["kittyxkum 126"],
+"videos": [
+  {
+    "title": "kittyxkum",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ud0g52hp0bnn" },
+      { "name": "Server 2", "url": "https://playmogo.com/e/jaom3e3vnn0h" }
+    ]
+  }
+],
     "download": [
         {
         "title": "Download kittyxkum 126",
@@ -4178,10 +4421,15 @@
     "Language": ["English"],
     "Category": ["Cosplayer"]
  },
-    "videos": [
-    { "title": "server 1", "url": "https://playmogo.com/e/j04hpi3mvrni" },
-    { "title": "server 2", "url": "https://playmogo.com/e/6pa8kd1vpgud" }
-  ],
+"videos": [
+  {
+    "title": "kittyxkum",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/j04hpi3mvrni" },
+      { "name": "Server 2", "url": "https://playmogo.com/e/6pa8kd1vpgud" }
+    ]
+  }
+],
     "download": [
             {
         "title": "Download kittyxkum 480p",
@@ -4290,11 +4538,16 @@
     "Language": ["English"],
     "Category": ["ASMR", "Autonomous Sensory Meridian Response"]
  },
-    "videos": [
-    { "title": "Asuna Eng voice & text", "url": "https://playmogo.com/e/j5tlrwysnrsz" },
-    { "title": "Asuna JP voice & text", "url":  "https://playmogo.com/e/mycgxtid4sb5" },
-    { "title": "Asuna JP voice Eng text", "url":  "https://playmogo.com/e/0hlp9e9ofipl" }
-  ],
+"videos": [
+  {
+    "title": "Asuna",
+    "servers": [
+      { "name": "Eng voice & text", "url": "https://playmogo.com/e/j5tlrwysnrsz" },
+      { "name": "JP voice & text", "url": "https://playmogo.com/e/mycgxtid4sb5" },
+      { "name": "JP voice Eng text", "url": "https://playmogo.com/e/0hlp9e9ofipl" }
+    ]
+  }
+],
     "download": [
         {
         "title": "Download Asuna short - voiced",
