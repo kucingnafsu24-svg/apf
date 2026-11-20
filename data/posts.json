@@ -4,9 +4,8 @@
   "title": "wiyana sakti kursus vol 1",
   "author": "Admin",
   "date": "2026-11-20",
-  "image": "/images/Pyra/1.webp", "imageFull": "/images/Pyra/1.png",
-  "excerpt": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
-  "content": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
+  "image": "/images/wiyana sakti/1.webp", "imageFull": "/images/wiyana sakti/1.jpg",
+  "excerpt": "wiyana sakti kursus vol 1",
   "tags": {
     "Youtubers": ["wiyana sakti"],
     "software": ["Fl Studio"],
@@ -17,31 +16,339 @@
   "videoTitle": "wiyana sakti kursus vol 1",
   "videos": [
   {
-    "title": "Pyra 1",
+    "title": "Lesson 01 - Music Production",
     "servers": [
       { "name": "Server 1", "url": "https://playmogo.com/e/euhut8iuhg81" },
-      { "name": "Server 2", "url": "https://streamtape.com/e/jaZLzK2okQtzPgp/" }
+      { "name": "Server 2", "url": "https://streamtape.com/e/6W9PkdrwQKCLYa/" }
     ]
   },
   {
-    "title": "Pyra 2",
+    "title": "Lesson 02 - Pengenalan Tampilan Dasar FL Studio",
     "servers": [
-      { "name": "Server 1", "url": "https://playmogo.com/e/og7gfcvftak2" },
-      { "name": "Server 2", "url": "https://playmogo.com/e/og7gfcvftak2" }
+      { "name": "Server 1", "url": "https://playmogo.com/e/722si5p5r125" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Y6PvKa8Q4GsvyG8/" }
     ]
   },
     {
-    "title": "Pyra 2",
+    "title": "Lesson 03 - Mempersiapkan Project",
     "servers": [
-      { "name": "Server 1", "url": "https://playmogo.com/e/og7gfcvftak2" },
-      { "name": "Server 2", "url": "https://playmogo.com/e/og7gfcvftak2" }
+      { "name": "Server 1", "url": "https://playmogo.com/e/gpwgh099aep2" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Z3Q9a89DrVhwgm/" }
     ]
   },
     {
-    "title": "Pyra 2",
+    "title": "Lesson 04 - Channel Rack",
     "servers": [
-      { "name": "Server 1", "url": "https://playmogo.com/e/og7gfcvftak2" },
-      { "name": "Server 2", "url": "https://playmogo.com/e/og7gfcvftak2" }
+      { "name": "Server 1", "url": "https://playmogo.com/e/ptd9yeobxxjv" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/BQMg3Ww1GgsyzA2/" }
+    ]
+  },
+    {
+    "title": "Lesson 05 - Piano Roll",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/8ty2f7znrzp0" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/drWez4oz8LTQWv/" }
+    ]
+  },
+    {
+    "title": "Lesson 06 - Piano Roll Tools - Choper",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/5avk0v7fzwxi" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/drWez4oz8LTQWv/4" }
+    ]
+  },
+    {
+    "title": "Lesson 07 - Piano Roll Tools - Arpeggiate",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/w5ujsfnypzsw" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Or6YgBOyWRfZlOK/" }
+    ]
+  },
+    {
+    "title": "Lesson 08 - Piano Roll Tools - Strum",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/xrcba5b9tp63" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/ZJM9za2jlwFBGq/" }
+    ]
+  },
+      {
+    "title": "Lesson 09 - Piano Roll Tools - Flam",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/wb5lk3fldb3b" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/AQG88oKp9DTX0Bb/" }
+    ]
+  },
+      {
+    "title": "Lesson 10 - Piano Roll Tools - Randomizer",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/s576ugiz56ax" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/4vWRbqrxRWTpXg/" }
+    ]
+  },
+        {
+    "title": "Lesson 11 - Piano Roll Tools - Articulate",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/izd0o1atl33h" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/PyjQYlG9pyh0qy4/" }
+    ]
+  },
+        {
+    "title": "Lesson 12 - Portamento & Slide Note",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/d5084rdlg1xx" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/2b1Jdy7QKrfZbBa/" }
+    ]
+  },
+        {
+    "title": "Lesson 13 - Sustain Note",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/r3rlpnrhspkn" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/ap9L14gz8lSMpB/" }
+    ]
+  },
+        {
+    "title": "Lesson 14 - Menulis di Piano Roll Dengan Bantuan Keyboard Controller",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/h3ltujhsh8di" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/a43y1lK6VZF2GV/" }
+    ]
+  },
+          {
+    "title": "Lesson 15 - MIDI Controller",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/3osjo1zcwouk" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/jk49dWL2dDUzrvr/" }
+    ]
+  },
+        {
+    "title": "Lesson 16 - Browser",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/xty90li9w83m" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/3dd0kpRpydSdKqY/" }
+    ]
+  },
+        {
+    "title": "Lesson 17 - Playlist (Part 1)",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/vfmti41xqcwh" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/l4Z2ppOjYbF78Vl/" }
+    ]
+  },
+        {
+    "title": "Lesson 18 - Playlist (Part 2)",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/rkwff99kyt55" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Xd92R9V6RKfDJDg/" }
+    ]
+  },
+          {
+    "title": "Lesson 19 - Playlist (Part 3) - Alternatif Arrangement",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/p7vg1d2ueofn" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/w6vW4010AmSJJlb/" }
+    ]
+  },
+        {
+    "title": "Lesson 20 - Pattern & Workflow",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/80y1vskugq6t" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/0pxq81Vv8Jcg6X/" }
+    ]
+  },
+        {
+    "title": "Lesson 21 - Mixer",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/t6dks3wtq085" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/VWpLMOQL6GIY6R/" }
+    ]
+  },
+        {
+    "title": "Lesson 22 - Penjelasan Fitur Fitur Toolbar",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/3tfpnpqrs70r" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/mPd7Kd1kv8UQAz/" }
+    ]
+  },
+        {
+    "title": "Lesson 23 - Automation Clip",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/90boovjur2jx" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/QwARyRXA01U002V/" }
+    ]
+  },
+        {
+    "title": "Lesson 24 - Automation Events",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/rkhx4x480sg5" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/08Q23YLy6PSblVY//" }
+    ]
+  },
+        {
+    "title": "Lesson 25 - Merekam Automation Menggunakan MIDI Controller",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/3095ouec2u43" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/VW0eXv3mLpcKvMW/" }
+    ]
+  },
+        {
+    "title": "Lesson 26 - Sekilas Mengenai Virtual Instrumen dari FL Studio",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/6cniljrfpk7s" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/kpr7DlGM6AsOx4r/" }
+    ]
+  },
+        {
+    "title": "Lesson 27 - Sekilas Mengenai Plugin Efek dari FL Studio",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/x1jl8bmgscz4" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/eY9p6pPj0OsYbDV/" }
+    ]
+  },
+          {
+    "title": "Lesson 28 - Menginstal VST Tambahan dari Luar FL Studio",
+    "servers": [
+      { "name": "Server 1", "url": "playmogo.com/e/li2x3b3u9ocd" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/QeqVd7XDpPh07db/" }
+    ]
+  },
+        {
+    "title": "Lesson 29 - Rekomendasi VST Gratis",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/h3rn66oeck4p" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/88L2pwl1W0t4YG/" }
+    ]
+  },
+        {
+    "title": "Lesson 30 - Rekomendasi Sample Pack Gratis",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/ierabcyui39o" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/o9XmDzp78LsJXwV/" }
+    ]
+  },
+          {
+    "title": "Lesson 31 - Mengorganisasi Menu VST",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/xmczas4uzeb1" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/8BWQ81Yl0khoaoa/" }
+    ]
+  },
+        {
+    "title": "Lesson 32 - FPC",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/u1rozj1r428w" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/a0L92gmBg3IxXrZ" }
+    ]
+  },
+        {
+    "title": "Lesson 33 - FPC Untuk Drum Trap",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/0fv8tsebkqrs" },
+      { "name": "Server 2", "url": "https://streamtape.com/v/bg8Z7mzrzlsPMAx/" }
+    ]
+  },
+          {
+    "title": "Lesson 34 - Sampler (Part 1)",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/bvvue3wnav5c" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/eKPQoywo0YsYRwk/" }
+    ]
+  },
+          {
+    "title": "Lesson 35 - Sampler (Part 2)",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/fru5s7k4ausk" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Z1b2OGDog6U7gM/" }
+    ]
+  },
+          {
+    "title": "Lesson 36 - Audio Clip",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/t8p3dv9p15wn" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Oq37mpx1xXCZOYA/" }
+    ]
+  },
+          {
+    "title": "Lesson 37 - Recording di FL Studio (Part 1)",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/1z1az30nszol" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/JWbBvwGrgjtjwzD/" }
+    ]
+  },
+          {
+    "title": "Lesson 38 - Recording di FL Studio (Part 2)",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/iawvb5c0hkae" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/RLQZ1v4obAI74m/" }
+    ]
+  },
+          {
+    "title": "Lesson 39 - Edison (Part 1) - Editing Audio Dasar",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/8n739dwilkvn" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/erdZWYYz06sYzVD/" }
+    ]
+  },
+            {
+    "title": "Lesson 40 - Edison (Part 2) - Noise Gating & Noise Removal",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/nw0fj98fcv5k" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Oxbm8XRGrGi7vj/" }
+    ]
+  },
+            {
+    "title": "Lesson 41 - Edison (Part 3) - Effects",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/nld5ganl7xrm" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Xb3xM3ldpBsDVdQ/" }
+    ]
+  },
+            {
+    "title": "Lesson 42 - Edison (Part 4) - Envelope",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/vu2402tseqx7" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/opBYkzKlWxfJ40m/" }
+    ]
+  },
+            {
+    "title": "Lesson 43 - Fruity Slicer",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/p088r5kby13n" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/D2xA27WX2bfkrRp/" }
+    ]
+  },
+              {
+    "title": "Lesson 44 - Fruity SliceX (Part 1)",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/cow4fuccxw4g" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/lP7RBvAKBps71lx/" }
+    ]
+  },
+              {
+    "title": "Lesson 45 - SliceX (Part 2) - Membuat Vocal Chop (1)",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/wryub6brlb9h" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/1248XL96BBceKJV/" }
+    ]
+  },
+              {
+    "title": "Lesson 46 - Sidechain",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/zts34aylpkx9" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/ZzpXVQAypaiqb87/" }
+    ]
+  },
+      {
+    "title": "Lesson 47 - Plugin Picker & Project Picker",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/e6m3yww81zjs" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Y74kK6g4ZYUvvyR/" }
+    ]
+  },
+      {
+    "title": "Lesson 48 - Render Final Project",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/pjqjc7gh9kwc" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/GkpDpXZOOxs1822/" }
     ]
   }
 ],
@@ -49,13 +356,9 @@
     {
       "title": "wiyana sakti kursus vol 1",
       "links": [
-        { "name": "Pixeldrain", "url": "https://sfl.gl/oqJmQ" },
-        { "name": "gdrive", "url": "https://sfl.gl/mXxiq4P" },
-        { "name": "vexfile", "url": "https://sfl.gl/RqJQQ" },
-        { "name": "modsfire", "url": "https://sfl.gl/FVfRa" },
-        { "name": "mega", "url": "https://sfl.gl/sT2JS" },
-        { "name": "Dropbox", "url": "https://sfl.gl/fEpMQZC" },
-        { "name": "Pcloud", "url": "https://sfl.gl/VDLsdt" }
+        { "name": "Pixeldrain", "url": "https://sfl.gl/o83k0" },
+        { "name": "gdrive", "url": "https://sfl.gl/Wig1FD" },
+        { "name": "mega", "url": "https://sfl.gl/MO1S8ik" }
       ]
     }
   ]
