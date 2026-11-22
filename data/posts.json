@@ -1,4 +1,60 @@
 [
+     {
+  "slug": "278",
+  "title": "MOD Characters lily",
+  "author": "Admin",
+  "date": "2026-11-21",
+  "image": "/images/Ender Magnolia mod/1.webp",
+  "excerpt": "A skin expansion mod for ENDER MAGNOLIA. It adds a new costume for Lilac, giving her Lily's appearance.",
+  "content": "<h1>Lilac2LilyMod</h1>A skin expansion mod for ENDER MAGNOLIA. It adds Garment of Bygone Days as a new costume for Lilac, giving her Lily's appearance.\nThis is a visual skin expansion only: the character's gameplay logic and identity remain Lilac. After installation, open the menu at a rest point, select Extra, and scroll to the bottom of the costume list to find the new costume.\n\n<h2>Mod Installation Environment Requirements</h2>- Operating system: Windows 10/11\n- CPU architecture: amd64\n- Game version: 1.1.1\n- UE4SS version: UE4SS v3.0.1-998-g32d8a381\n\n<h2>Preview</h2><img src='/images/Ender%20Magnolia%20mod/3.webp' loading='lazy'>\n<img src='/images/Ender%20Magnolia%20mod/2.webp' loading='lazy'>\n\n<h2>Installation</h2><h3>1. Install UE4SS</h3>Download the UE4SS package used by this Mod:\nUE4SS v3.0.1-998-g32d8a381\n\nExtract it into the game's Binaries/Win64 directory. After extraction, the directory should look similar to:\n<div class=\"code-box\"><button class=\"copy-btn\" type=\"button\">Salin</button><pre><code>.../Steam/steamapps/common/ENDER MAGNOLIA/EnderMagnolia/Binaries/Win64/\n├── ...                  # existing files\n├── ue4ss/\n└── dwmapi.dll</code></pre></div>\n<h3>2. Install Lilac2LilyMod</h3>Download the Lilac2LilyMod archive from this repository's Releases page. Extract it and place the first-level Lilac2LilyMod directory into:\n<div class=\"code-box\"><button class=\"copy-btn\" type=\"button\">Salin</button><pre><code>.../Steam/steamapps/common/ENDER MAGNOLIA/EnderMagnolia/Binaries/Win64/ue4ss/Mods/</code></pre></div>\nThe final layout should look similar to:\n<div class=\"code-box\"><button class=\"copy-btn\" type=\"button\">Salin</button><pre><code>.../Steam/steamapps/common/ENDER MAGNOLIA/EnderMagnolia/Binaries/Win64/\n├── ...                  # existing files\n├── ue4ss/\n│   ├── Mods/\n│   │   ├── ...          # other mods\n│   │   ├── Lilac2LilyMod/\n│   │   │   ├── config/\n│   │   │   ├── assets/\n│   │   │   └── dlls/\n│   │   │       └── main.dll\n│   │   └── mods.txt\n│   └── ...              # other UE4SS files\n└── dwmapi.dll</code></pre></div>\nThen open ue4ss/Mods/mods.txt and add or enable this line:\n<div class=\"code-box\"><button class=\"copy-btn\" type=\"button\">Salin</button><pre><code>Lilac2LilyMod : 1</code></pre></div>Place the line with the other Mod entries, before the built-in Keybinds entry if one is present.\n\n<h3>3. Installed Directory Structure</h3>After installation, the directory structure and configuration should look like this:\n<img src='/images/Ender%20Magnolia%20mod/3.webp' loading='lazy'>\n<img src='/images/Ender%20Magnolia%20mod/2.webp' loading='lazy'>\n\n<h2>Clone and build</h2>This section is only needed if you want to build the Mod from source. Users installing a release archive can skip it.\nClone this repository with its nested UE4SS submodules:\n<div class=\"code-box\"><button class=\"copy-btn\" type=\"button\">Salin</button><pre><code>git clone --recurse-submodules https://github.com/f14XuanLv/Lilac2LilyMod\ncd Lilac2LilyMod</code></pre></div>If the repository was cloned without --recurse-submodules, initialize the submodules from the repository root:\n<div class=\"code-box\"><button class=\"copy-btn\" type=\"button\">Salin</button><pre><code>git submodule update --init --recursive</code></pre></div>Requirements:\n- Windows x64\n- Visual Studio 2022 with MSVC 14.44 or newer\n- Ninja\n- CMake 3.22 or newer\n- Git\n\nBuild with:\n<div class=\"code-box\"><button class=\"copy-btn\" type=\"button\">Salin</button><pre><code>build.bat</code></pre></div>Use build.bat clean for a clean build. The default configuration is Game__Shipping__Win64. The generated Mod package is placed at:\n<div class=\"code-box\"><button class=\"copy-btn\" type=\"button\">Salin</button><pre><code>build/Game__Shipping__Win64/Lilac2LilyMod/\n├── config/\n├── assets/\n└── dlls/\n    └── main.dll</code></pre></div>",
+  "tags": {
+    "Game PC": ["Ender Magnolia"],
+    "Modder":["f14XuanLv"],
+    "Mod":["Ender Magnolia"],
+    "Developer": ["Adglobe", "Live Wire"],
+    "Publisher": ["Binary Haze Interactive"],
+    "tag": ["cute", "dark fantasy", "2d", "metroidvania", "female protagonist", "RPG", "Adventure", "Single Player", "game", "Textures", "Models", "Meshes", "Animation"],
+    "Language": ["English"],
+    "Category": ["Game PC"]
+  },
+  "videoTitle": "MOD Characters lily Ender Magnolia",
+ "videos": [
+  {
+    "title": "preview Mod",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/g3q1gu2lvl3h" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/yGkdDYZWdVSw4v/" }
+    ]
+  },
+    {
+    "title": "tutorial",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/g3q1gu2lvl3h" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/yGkdDYZWdVSw4v/" }
+    ]
+  }
+  ],
+  "download": [
+    {
+      "title": "Download UE4SS v3.0.1-998-g32d8a381.zip",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/l5UULDd" },
+        { "name": "vexfile", "url": "https://sfl.gl/V1Evh" },
+        { "name": "modsfire", "url": "https://sfl.gl/PE9eYEB" },
+        { "name": "Dropbox", "url": "https://sfl.gl/vPTgaRJ" }
+      ]
+    },
+        {
+      "title": "Download Lilac2LilyMod 12 0.3.0 2026-08-29T12-45Z kgmqkNaTj.zip",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/ekmhA" },
+        { "name": "vexfile", "url": "https://sfl.gl/ntbTsf" },
+        { "name": "modsfire", "url": "https://sfl.gl/ata5Xxko" },
+        { "name": "Dropbox", "url": "https://sfl.gl/W5iyZJNW" }
+      ]
+    }
+  ]
+},
     {
   "slug": "277",
   "title": "The Herta & Ruan Mei - Intellectual Sync Animation",
@@ -1188,7 +1244,7 @@
   "image": "/images/Aegis New Toy/1.webp",
   "imageFull": "/images/Aegis New Toy/1.png",
   "excerpt": "Download link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
-  "content": "<img src='/Aegis New Toy/2.webp' data-full='/Aegis New Toy/2.png' loading='lazy'>\nDownload link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
+  "content": "<img src='/Aegis%20New%20Toy/2.webp' data-full='/Aegis%20New%20Toy/2.png' loading='lazy'>\nDownload link is in Tier 1 Animation Archive.\n\nAlt version download link is in Tier 2+ Animation Archive.\n\nYou can find both in the pinned post at the top of the homepage, as well as on the Discord server.",
   "tags": {
     "Artist": ["AidenHet"],
     "Parody": ["Xenoblade"],
