@@ -125,6 +125,24 @@ function downloads(p){var g=dlist(p);if(!g.length)return '';
  return '<div class="sec"><div class="sec-h">Unduh</div><div class="sec-b">'+g.map(function(x){
   return '<div class="dl-card">'+(x.title?'<div class="dl-t">'+esc(x.title)+'</div>':'')+'<div class="dl-links">'+
    x.links.map(function(l){return '<a class="dl-btn" href="'+esc(l.url)+'" target="_blank" rel="noopener nofollow">'+esc(l.name)+'</a>'}).join('')+'</div></div>'}).join('')+'</div></div>'}
+/* Tombol "Salin" di pojok kanan atas tiap kotak kode (seperti GitHub) */
+function bindCode(){
+ var bs=document.querySelectorAll('.entry pre');
+ [].forEach.call(bs,function(pre){
+  if(pre.parentNode.classList.contains('cb'))return;
+  var w=document.createElement('div');w.className='cb';pre.parentNode.insertBefore(w,pre);w.appendChild(pre);
+  var b=document.createElement('button');b.type='button';b.className='cb-btn';b.setAttribute('aria-label','Salin kode');
+  b.innerHTML='<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Salin</span>';
+  w.appendChild(b);
+  var tm;
+  b.onclick=function(){
+   var t=pre.textContent.replace(/\n$/,'');
+   var done=function(ok){var sp=b.querySelector('span');sp.textContent=ok?'Tersalin!':'Gagal';b.classList.toggle('ok',ok);clearTimeout(tm);tm=setTimeout(function(){sp.textContent='Salin';b.classList.remove('ok')},1600)};
+   var fb=function(){try{var x=document.createElement('textarea');x.value=t;x.setAttribute('readonly','');x.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(x);x.select();var r=document.execCommand('copy');document.body.removeChild(x);done(r)}catch(e){done(false)}};
+   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){done(true)},fb);else fb();
+  };
+ });
+}
 function bindVideos(){var vp=document.getElementById('vplayer');if(!vp)return;
  var fr=vp.querySelector('iframe'),bs=vp.querySelectorAll('.vtabs button'),lab=vp.querySelector('.vsrv'),sel=vp.querySelector('.vsel'),cur=0;
  function pick(i){cur=i;if(!sel)return;sel.innerHTML=srvOpts(VG[i]);lab.hidden=VG[i].s.length<2}
@@ -260,13 +278,15 @@ if(list){
   var d=document.querySelector('meta[name=description]');if(d)d.content=p.excerpt;
   if(p.fullpage){$('layout').classList.add('full');document.querySelector('aside').style.display='none'}
   /* tombol ke artikel lain di dalam "content": tulis [post:slug] atau [post:slug|Teks tombol] */
+  /* hapus baris "Copy" sisa tempel dari GitHub yang berdiri tepat sebelum kotak kode */
+  var cc=function(t){return String(t).replace(/(^|\n)[ \t]*Copy[ \t]*(?=\r?\n[ \t]*<pre)/g,'$1')};
   var pb=function(t){return t.replace(/\[post:([a-z0-9_-]+)(?:\|([^\]\n]*))?\]/gi,function(m,s,l){s=s.toLowerCase();
    var q=P.concat(HID).filter(function(x){return x.slug===s})[0];
    if(!q){try{console.warn('[post:'+s+'] tidak ditemukan di posts.json')}catch(e){}return ''}
    return '<a class="postbtn" href="/g/'+encodeURIComponent(q.slug)+'">'+esc((l&&l.trim())||q.title)+'</a>'})};
   a.innerHTML='<div class="crumb" hidden></div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+pb(p.content)+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
-  bindVideos();bindAudios();bindGallery(p);
+   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+pb(cc(p.content))+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
+  bindVideos();bindAudios();bindGallery(p);bindCode();
  }
 }
 }

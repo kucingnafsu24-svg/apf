@@ -635,3 +635,17 @@ html,body{overflow-x:hidden}
 .vsrv{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:13.5px;font-weight:600;color:var(--alt)}
 .vsrv[hidden]{display:none}
 .vsel{padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--head);font:inherit;font-weight:500;max-width:100%}
+
+/* ===== Tombol salin di kotak kode ===== */
+.entry .cb{position:relative;margin:1em 0}
+.entry .cb pre{margin:0;padding-right:84px}
+.cb-btn{position:absolute;top:8px;right:8px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--head);font:inherit;font-size:12.5px;font-weight:600;line-height:1.3;cursor:pointer;opacity:.9}
+.cb-btn:hover{background:var(--card);opacity:1}
+.cb-btn svg{display:block;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cb-btn.ok{color:#fff;background:var(--link);border-color:var(--link)}
+
+/* ===== Gambar di isi artikel dibedakan menurut format file ===== */
+/* .webp (screenshot/gambar utama): selalu selebar kolom, tinggi menyesuaikan */
+.entry img[src$=".webp" i]{width:100%;max-width:100%;height:auto;max-height:none}
+/* .png / .jpg / .jpeg: ukuran asli, hanya dibatasi lebar kolom (cocok untuk ikon/logo kecil) */
+.entry img[src$=".png" i],.entry img[src$=".jpg" i],.entry img[src$=".jpeg" i]{width:auto;max-width:100%;height:auto}
