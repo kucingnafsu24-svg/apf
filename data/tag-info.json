@@ -193,9 +193,43 @@
       { "name": "X", "url": "https://x.com/11saicastle" }
     ]
   },
-  "cosplayer:nama cosplayer": {
-    "name": "Nama Cosplayer",
-    "desc": "Deskripsi singkat."
+  "Parody:Genshin Impact": {
+    "name": "Genshin Impact",
+    "banner": "/images/Genshin Impact/banner.webp",
+    "image": "/images/Genshin Impact/1.webp",
+    "desc": "Genshin Impact is a free-to-play, open-world action RPG developed by miHoYo and published globally by HoYoverse (Cognosphere). Originally released on September 28, 2020, it follows a Traveler searching for their lost sibling across the fantasy world of Teyvat",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+
+    ]
+  },
+    "Parody:GI": {
+    "name": "Genshin Impact",
+    "banner": "/images/Genshin Impact/banner.webp",
+    "image": "/images/Genshin Impact/1.webp",
+    "desc": "Genshin Impact is a free-to-play, open-world action RPG developed by miHoYo and published globally by HoYoverse (Cognosphere). Originally released on September 28, 2020, it follows a Traveler searching for their lost sibling across the fantasy world of Teyvat",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+
+    ]
   },
   "genre:action": {
     "name": "Action",
