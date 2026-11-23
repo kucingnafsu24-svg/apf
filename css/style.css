@@ -665,3 +665,14 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
 .topics a:first-of-type{margin-left:auto}
 .topics a:last-of-type{margin-right:auto}
 @media(max-width:760px){#topics a:first-of-type,#topics a:last-of-type{margin:0}}
+
+/* ===== Tersimpan & Favorit (tanpa login, disimpan di browser) ===== */
+.bm{display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:50%;color:var(--head)}
+.bm:hover{background:var(--card)}
+.bm svg{display:block}
+@media(max-width:760px){.bm{padding:10px}}
+.title .fv-btn{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border:1px solid var(--line);border-radius:20px;background:var(--bg);color:var(--head);font-size:14px;font-weight:600;cursor:pointer}
+.title .fv-btn:hover{background:var(--card)}
+.title .fv-btn.on{background:var(--link);border-color:var(--link);color:#fff}
+.title .fv-btn svg{display:block;width:18px;height:18px}
+.title .fv-btn.on svg{fill:currentColor}

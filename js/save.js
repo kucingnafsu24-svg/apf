@@ -1,7 +1,6 @@
-/* Simpan (khusus akun login) + Bagikan.
+/* Simpan (TANPA login, disimpan di browser lewat favorites.js) + Bagikan.
    - Halaman artikel: tombol Simpan & Bagikan di akhir artikel, tepat di atas komentar.
-   - Daftar simpanan dibuka lewat halaman akun (login.html), bukan dari header.
-   Data simpanan ada di tabel Supabase "saved_posts". Tombol Bagikan tidak butuh login. */
+   Daftar simpanan dibuka lewat ikon penanda di header (saved.html). */
 (function(){
 var C=window.APF_CONFIG||{};
 var ICON='<svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>';
@@ -26,9 +25,8 @@ document.head.appendChild(st);
 if(!document.getElementById('article'))return;
 var qs=new URLSearchParams(location.search);
 var slug=(qs.get('s')||decodeURIComponent(location.pathname.split('/').filter(Boolean).pop()||'')).toLowerCase();
-var sb=(slug&&window.supabase&&C.supabaseUrl&&C.supabaseAnonKey)?window.supabase.createClient(C.supabaseUrl,C.supabaseAnonKey):null;
-if(!sb)console.warn('[save] supabase-js / APF_CONFIG belum siap: tombol Simpan tidak ditampilkan');
-var user=null,saved=false,busy=false,btn,msgEl,shBtn,menu;
+var S=window.APF_SAVED;
+var saved=false,btn,msgEl,shBtn,menu;
 
 var tries=0,t=setInterval(function(){
  if(document.querySelector('.article .back')){clearInterval(t);mount()}else if(++tries>150)clearInterval(t);
@@ -41,12 +39,7 @@ function paint(){
  btn.classList.toggle('on',saved);btn.setAttribute('aria-pressed',saved?'true':'false');
  btn.querySelector('span').textContent=saved?'Tersimpan':'Simpan';
 }
-function refresh(){
- if(!sb||!btn)return;
- if(!user){saved=false;paint();return}
- sb.from('saved_posts').select('post_slug').eq('post_slug',slug).maybeSingle()
-  .then(function(r){saved=!!r.data;paint()},function(){});
-}
+function refresh(){if(!S||!btn)return;saved=S.hasPost(slug);paint()}
 function copyText(txt,done){
  var fb=function(){try{var x=document.createElement('textarea');x.value=txt;x.setAttribute('readonly','');x.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(x);x.select();var r=document.execCommand('copy');document.body.removeChild(x);done(r)}catch(e){done(false)}};
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){done(true)},fb);else fb();
@@ -69,7 +62,7 @@ function mount(){
  var ref=document.getElementById('comments')||document.querySelector('.pnav')||document.querySelector('.rec')||document.querySelector('.back');
  if(!ref)return;
  var row=document.createElement('div');row.className='sv-row';row.id='sv-row';
- row.innerHTML=(sb?'<button type="button" class="sv-btn" id="sv-btn" aria-pressed="false">'+ICON+'<span>Simpan</span></button>':'')+
+ row.innerHTML=(S?'<button type="button" class="sv-btn" id="sv-btn" aria-pressed="false">'+ICON+'<span>Simpan</span></button>':'')+
   '<div class="sv-share"><button type="button" class="sv-btn" id="sv-share" aria-haspopup="true" aria-expanded="false">'+SHARE+'<span>Bagikan</span></button><div class="sv-menu" id="sv-menu" hidden></div></div>'+
   '<span class="sv-msg" id="sv-msg" role="status"></span>';
  ref.parentNode.insertBefore(row,ref);
@@ -89,21 +82,15 @@ function mount(){
  document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('.sv-share'))closeMenu()});
  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()});
 
- /* Simpan */
- if(!sb)return;
+ /* Simpan (tanpa login; disimpan di browser ini) */
+ if(!S||!btn)return;
  btn.onclick=function(){
-  if(!user){location.href='/login.html?next='+encodeURIComponent(location.pathname+location.search);return}
-  if(busy)return;busy=true;btn.disabled=true;
-  var want=!saved;
-  var q=want?sb.from('saved_posts').insert({post_slug:slug}):sb.from('saved_posts').delete().eq('post_slug',slug);
-  Promise.resolve(q).then(function(r){
-   busy=false;btn.disabled=false;
-   if(r.error&&!(want&&r.error.code==='23505')){say('Gagal menyimpan. Coba lagi.');return}
-   saved=want;paint();
-   say(want?'Disimpan. <a href="/saved.html">Lihat daftar</a>':'Dihapus dari simpanan.');
-  }).catch(function(){busy=false;btn.disabled=false;say('Gagal menyimpan. Coba lagi.')});
+  var want=!saved,ok=want?S.addPost(slug):S.delPost(slug);
+  if(!ok){say('Gagal menyimpan: penyimpanan browser tidak tersedia.');return}
+  saved=want;paint();
+  say(want?'Disimpan. <a href="/saved.html">Lihat daftar</a>':'Dihapus dari simpanan.');
  };
- sb.auth.getSession().then(function(r){user=r.data.session&&r.data.session.user;refresh()}).catch(function(){});
- sb.auth.onAuthStateChange(function(_e,s){var n=s&&s.user;if((n&&n.id)!==(user&&user.id)){user=n;refresh()}});
+ refresh();
+ window.addEventListener('storage',refresh);window.addEventListener('pageshow',refresh);
 }
 })();
