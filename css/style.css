@@ -531,7 +531,7 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
 }
 .n-an{display:none}
 @media(max-width:760px){.n-pc{display:none}.n-an{display:block}}
-html,body{overflow-x:hidden}
+html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak header sticky (menu & slider hilang saat pindah halaman) */
 
 /* ===== Gambar & video di isi artikel: menyesuaikan layar PC dan HP ===== */
 .entry img,.entry video{display:block;width:auto;max-width:100%;height:auto;max-height:min(80vh,820px);margin:16px auto;border-radius:6px}

@@ -263,7 +263,7 @@ if(list){
   pg.innerHTML=h};
  pg.onclick=function(e){var b=e.target.closest&&e.target.closest('button[data-p]');if(!b||b.disabled)return;
   page=parseInt(b.getAttribute('data-p'),10);history.pushState(null,'',pageUrl(page));render(data);
-  var t=document.querySelector('.title');if(t)t.scrollIntoView({block:'start'})};
+  window.scrollTo(0,0)};
  window.addEventListener('popstate',function(){if(qs.get('q'))return;page=Math.max(1,parseInt(new URLSearchParams(location.search).get('page'),10)||1);render(data)});
  if(!qs.get('q'))render(data);
  /* kait untuk tag-info.js: tab Post/Livestream/Video menyaring daftar tag (pagination ikut) */
