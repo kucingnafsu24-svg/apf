@@ -660,12 +660,14 @@ html,body{overflow-x:hidden}
  nav a.n-an{order:5}
 }
 
-/* ===== HP: logo lebih kecil + tombol mode gelap/terang di dalam menu garis tiga ===== */
+/* ===== HP: logo lebih kecil + tombol mode gelap/terang di dasar menu garis tiga ===== */
 .tp-theme{display:none}
+@keyframes tpIn{from{transform:translateX(-105%)}to{transform:none}}
 @media(max-width:760px){
  .logo{font-size:14px}
  body.tm-in-menu #theme{display:none}
- #topics .tp-theme{display:flex;align-items:center;gap:10px;flex:none;width:100%;margin-top:auto;padding:12px 14px;border:0;border-top:1px solid var(--line);border-radius:0;background:none;color:var(--head);font:inherit;font-size:15px;text-align:left;cursor:pointer}
- #topics .tp-theme:hover{background:var(--card)}
- #topics .tp-theme svg{display:block;flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ body.tm-in-menu #topics{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+ body.tm-in-menu.topics-open .tp-theme{display:flex;align-items:center;gap:10px;position:fixed;left:0;bottom:0;z-index:61;box-sizing:border-box;width:min(320px,86vw);padding:15px 26px calc(15px + env(safe-area-inset-bottom,0px));border:0;border-top:1px solid var(--line);border-right:1px solid var(--line);background:var(--bg);color:var(--head);font:inherit;font-size:15px;text-align:left;cursor:pointer;animation:tpIn .22s ease}
+ body.tm-in-menu.topics-open .tp-theme:hover{background:var(--card)}
+ .tp-theme svg{display:block;flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 }
