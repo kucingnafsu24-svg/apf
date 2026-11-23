@@ -687,3 +687,4 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
  #topics .tp-i b:empty{display:none}
  #topics .tp-i:hover{background:var(--card)}
 }
+@media(max-width:480px){.pager{gap:4px}.pager button{min-width:31px;height:36px;padding:0 6px}}

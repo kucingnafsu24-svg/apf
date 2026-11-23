@@ -251,10 +251,10 @@ if(list){
   var pages=Math.max(1,Math.ceil(a.length/PER));page=Math.min(Math.max(page,1),pages);
   list.innerHTML=a.length?a.slice((page-1)*PER,page*PER).map(card).join(''):'<div class="empty">Tidak ada artikel.</div>';
   if(pages<2){pg.innerHTML='';return}
-  var h='<button type="button" data-p="'+(page-1)+'"'+(page<2?' disabled':'')+' aria-label="Sebelumnya">\u2039</button>',last=0;
-  for(var n=1;n<=pages;n++){
-   if(n===1||n===pages||Math.abs(n-page)<=1||(page<=2&&n<=3)||(page>=pages-1&&n>=pages-2)){if(last&&n-last>1)h+='<span>\u2026</span>';
-    h+='<button type="button" data-p="'+n+'"'+(n===page?' class="on" aria-current="page"':'')+'>'+n+'</button>';last=n}}
+  /* nomor halaman: jendela 8 angka (1-8). Tetap 1-8 sampai halaman 8, lalu bergeser satu per satu (2-9, 3-10, ...) */
+  var h='<button type="button" data-p="'+(page-1)+'"'+(page<2?' disabled':'')+' aria-label="Sebelumnya">\u2039</button>',W=8,st=Math.max(1,page-W+2),en=Math.min(pages,st+W-1);
+  st=Math.max(1,en-W+1);
+  for(var n=st;n<=en;n++)h+='<button type="button" data-p="'+n+'"'+(n===page?' class="on" aria-current="page"':'')+'>'+n+'</button>';
   h+='<button type="button" data-p="'+(page+1)+'"'+(page>=pages?' disabled':'')+' aria-label="Berikutnya">\u203a</button>';
   pg.innerHTML=h};
  pg.onclick=function(e){var b=e.target.closest&&e.target.closest('button[data-p]');if(!b||b.disabled)return;
