@@ -244,7 +244,7 @@ if(list){
  var data=label?P.filter(function(p){return p.labels.some(function(l){return lc2(l)===lc2(label)})}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P.filter(function(p){return !isHid(p)});
  if(!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
  if(label)$('ttl').textContent='Label: '+label;
- if(tv)$('ttl').textContent=gname(tk)+': '+tv;
+ if(tv)$('ttl').textContent=(tk==='category'?'':gname(tk)+': ')+tv;   /* menu kategori: cukup "Art", tanpa "Category:" */
  /* halaman: 5 artikel per halaman, nomor halaman di ?page=N */
  var PER=5,page=Math.max(1,parseInt(qs.get('page'),10)||1),pg=document.createElement('div');
  pg.className='pager';pg.setAttribute('role','navigation');pg.setAttribute('aria-label','Halaman');list.parentNode.insertBefore(pg,list.nextSibling);

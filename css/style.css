@@ -649,3 +649,23 @@ html,body{overflow-x:hidden}
 .entry img[src$=".webp" i]{width:100%;max-width:100%;height:auto;max-height:none}
 /* .png / .jpg / .jpeg: ukuran asli, hanya dibatasi lebar kolom (cocok untuk ikon/logo kecil) */
 .entry img[src$=".png" i],.entry img[src$=".jpg" i],.entry img[src$=".jpeg" i]{width:auto;max-width:100%;height:auto}
+
+/* ===== Menu kategori khusus HP: Art, Animation, Asmr, Cosplayer, Game Android (komputer tidak berubah) ===== */
+@media(max-width:760px){
+ nav a[href="/category/Psd"],nav a[href="/category/Live2d"]{display:none}
+ nav a[href="/category/Art"]{order:1}
+ nav a[href="/category/animation"]{order:2}
+ nav a[href="/category/Asmr"]{order:3}
+ nav a[href="/category/Cosplayer"]{order:4}
+ nav a.n-an{order:5}
+}
+
+/* ===== HP: logo lebih kecil + tombol mode gelap/terang di dalam menu garis tiga ===== */
+.tp-theme{display:none}
+@media(max-width:760px){
+ .logo{font-size:14px}
+ body.tm-in-menu #theme{display:none}
+ #topics .tp-theme{display:flex;align-items:center;gap:10px;flex:none;width:100%;margin-top:auto;padding:12px 14px;border:0;border-top:1px solid var(--line);border-radius:0;background:none;color:var(--head);font:inherit;font-size:15px;text-align:left;cursor:pointer}
+ #topics .tp-theme:hover{background:var(--card)}
+ #topics .tp-theme svg{display:block;flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+}

@@ -255,8 +255,8 @@
       { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
     ]
   },
-  "genre:action": {
-    "name": "Action",
-    "desc": "Kumpulan file bertema action."
+  "character:female mc": {
+    "name": "female mc",
+    "desc": "female main characters"
   }
 }

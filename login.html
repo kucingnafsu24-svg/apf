@@ -55,6 +55,9 @@
 .edit .acts{display:flex;align-items:center;gap:14px}
 .edit .go{display:inline-flex;width:auto;padding:10px 20px}
 #out{margin-top:6px}
+.rowl{justify-content:flex-start;gap:14px;margin-bottom:20px;border-bottom:1px solid var(--line);color:inherit}
+.acc a.rowl:hover{background:none}
+.rowl svg{flex:none;width:24px;height:24px;fill:none;stroke:var(--head);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 </style>
 <script src="/js/fade.js"></script>
 </head>
@@ -130,8 +133,8 @@
    <div class="acts"><button class="go" type="submit">Simpan</button><button type="button" class="lnk" data-cancel="pw">Batal</button></div>
   </form>
 
+  <a class="row rowl" href="/saved.html"><svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg><div><h3>Postingan tersimpan</h3><p>Artikel yang kamu simpan</p></div></a>
   <button class="go ghost" type="button" id="out">Keluar</button>
-  <a class="alt" href="/saved.html">Postingan tersimpan</a>
   <a class="alt" href="/">← Kembali ke beranda</a>
  </div>
 </main>

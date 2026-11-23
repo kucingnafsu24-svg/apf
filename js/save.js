@@ -1,16 +1,13 @@
 /* Simpan (khusus akun login) + Bagikan.
-   - Semua halaman yang memuat file ini: tambah ikon "Tersimpan" di header.
    - Halaman artikel: tombol Simpan & Bagikan di akhir artikel, tepat di atas komentar.
+   - Daftar simpanan dibuka lewat halaman akun (login.html), bukan dari header.
    Data simpanan ada di tabel Supabase "saved_posts". Tombol Bagikan tidak butuh login. */
 (function(){
 var C=window.APF_CONFIG||{};
 var ICON='<svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>';
 var SHARE='<svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>';
 var st=document.createElement('style');
-st.textContent='.sv-link{display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:50%;color:var(--head)}'+
- '.sv-link:hover{background:var(--card)}'+
- '.sv-link svg,.sv-btn svg{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}'+
- '@media(max-width:760px){.sv-link{padding:10px}}'+
+st.textContent='.sv-btn svg{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}'+
  '.sv-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:28px 0 8px;padding-top:18px;border-top:1px solid var(--line)}'+
  '.sv-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--line);border-radius:20px;background:var(--bg);color:var(--head);font-size:14px;font-weight:600;cursor:pointer}'+
  '.sv-btn:hover{background:var(--card)}'+
@@ -24,14 +21,6 @@ st.textContent='.sv-link{display:inline-flex;align-items:center;justify-content:
  '.sv-menu a:hover,.sv-menu button:hover{background:var(--card)}'+
  '.sv-msg{font-size:13px;color:var(--alt)}.sv-msg a{color:var(--link);text-decoration:underline}';
 document.head.appendChild(st);
-
-/* ikon di header */
-var tl=document.querySelector('.tools');
-if(tl&&!document.getElementById('sv-link')){
- var a=document.createElement('a');a.id='sv-link';a.className='sv-link';a.href='/saved.html';
- a.setAttribute('aria-label','Postingan tersimpan');a.title='Postingan tersimpan';a.innerHTML=ICON;
- tl.insertBefore(a,document.getElementById('theme'));
-}
 
 /* ===== bagian halaman artikel ===== */
 if(!document.getElementById('article'))return;

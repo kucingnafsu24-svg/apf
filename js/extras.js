@@ -110,3 +110,26 @@
   }
  }).catch(function(){});
 })();
+
+
+/* ---------- Mode gelap/terang di dalam menu garis tiga (HANYA mobile, <=760px) ---------- */
+(function(){
+ try{
+  var tp=document.getElementById('topics');if(!tp)return;
+  var r=document.documentElement,B=document.body;
+  var MOON='<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  var SUN='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var isDark=function(){var t=r.getAttribute('data-theme');return t==='dark'||(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)};
+  var paint=function(b){var d=isDark();b.innerHTML=(d?SUN:MOON)+'<span>'+(d?'Mode terang':'Mode gelap')+'</span>';b.setAttribute('aria-label',d?'Ganti ke mode terang':'Ganti ke mode gelap')};
+  var ensure=function(){
+   var b=document.getElementById('tp-theme'),has=!!tp.querySelector('a');
+   if(!has){if(b)b.remove();B.classList.remove('tm-in-menu');return}
+   if(b)return;
+   b=document.createElement('button');b.type='button';b.id='tp-theme';b.className='tp-theme';paint(b);
+   b.onclick=function(e){e.stopPropagation();var n=isDark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(x){}paint(b)};
+   tp.appendChild(b);B.classList.add('tm-in-menu');
+  };
+  new MutationObserver(ensure).observe(tp,{childList:true});
+  ensure();
+ }catch(e){}
+})();
