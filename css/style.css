@@ -671,3 +671,8 @@ html,body{overflow-x:hidden}
  body.tm-in-menu.topics-open .tp-theme:hover{background:var(--card)}
  .tp-theme svg{display:block;flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 }
+
+/* ===== Perbaikan bar topik (komputer): tetap rata tengah walau ada elemen non-<a> di dalam #topics ===== */
+.topics a:first-of-type{margin-left:auto}
+.topics a:last-of-type{margin-right:auto}
+@media(max-width:760px){#topics a:first-of-type,#topics a:last-of-type{margin:0}}
