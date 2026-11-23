@@ -4,10 +4,6 @@ var dummy={style:{},children:[],classList:{add:function(){},remove:function(){},
 var $=function(i){var e=document.getElementById(i);return e||(i==='posts'||i==='pop'||i==='labels'||i==='article'?null:dummy)};
 var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
 var fmt=function(d){return new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'})};
-try{var t=localStorage.getItem('theme');if(t)r.setAttribute('data-theme',t)}catch(e){}
-$('theme').onclick=function(){
- var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
- var n=d?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}};
 
 function withCounts(P){
  var C=window.APF_CONFIG;

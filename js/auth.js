@@ -22,7 +22,7 @@ function tsMount(f){
  f.insertBefore(box,f.querySelector('.go,.lm-go'));
  tsLoad().then(function(t){
   if(!t)return;
-  f._ts.id=t.render(box,{sitekey:TSK,theme:'auto',
+  f._ts.id=t.render(box,{sitekey:TSK,theme:'dark',
    callback:function(k){f._ts.tok=k;f._ts.err=''},
    'expired-callback':function(){f._ts.tok=''},
    'error-callback':function(c){f._ts.tok='';f._ts.err=String(c||'?');try{console.warn('[turnstile] error',c)}catch(e){}}})})}
@@ -169,10 +169,6 @@ if(!isLogin)return;
 var $=function(i){return document.getElementById(i)};
 var P=Array.isArray(C.providers)?C.providers:[],NM={discord:'Discord',facebook:'Facebook'};
 var r=document.documentElement;
-try{var t=localStorage.getItem('theme');if(t)r.setAttribute('data-theme',t)}catch(e){}
-$('theme').onclick=function(){
- var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
- var n=d?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}};
 
 var H={in:['Masuk ke akun','Masuk untuk berkomentar dan menyimpan aktivitasmu.'],
  up:['Buat akun baru','Gratis. Cukup nama, email, dan kata sandi.'],

@@ -1,7 +1,5 @@
-:root{--head:#08102b;--body:#2b3345;--alt:#767676;--bg:#fffdfc;--link:#204ecf;--line:#e6e6e6;--foot:#f7f7f7;--card:#f1f1f0;--shadow:0 6px 24px rgba(8,16,43,.08);
+:root{color-scheme:dark;--head:#fffdfc;--body:#d4d4d8;--alt:#989b9f;--bg:#1e1e1e;--link:#8775f5;--line:#37373a;--foot:#252526;--card:#2d2d30;--shadow:none;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--head:#fffdfc;--body:#d4d4d8;--alt:#989b9f;--bg:#1e1e1e;--link:#8775f5;--line:#37373a;--foot:#252526;--card:#2d2d30;--shadow:none}}
-:root[data-theme="dark"]{--head:#fffdfc;--body:#d4d4d8;--alt:#989b9f;--bg:#1e1e1e;--link:#8775f5;--line:#37373a;--foot:#252526;--card:#2d2d30;--shadow:none}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--body);font:400 15px/1.6 'Noto Sans',system-ui,sans-serif}
 a{color:inherit;text-decoration:none}
@@ -660,17 +658,8 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
  nav a.n-an{order:5}
 }
 
-/* ===== HP: logo lebih kecil + tombol mode gelap/terang di dasar menu garis tiga ===== */
-.tp-theme{display:none}
-@keyframes tpIn{from{transform:translateX(-105%)}to{transform:none}}
-@media(max-width:760px){
- .logo{font-size:14px}
- body.tm-in-menu #theme{display:none}
- body.tm-in-menu #topics{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
- body.tm-in-menu.topics-open .tp-theme{display:flex;align-items:center;gap:10px;position:fixed;left:0;bottom:0;z-index:61;box-sizing:border-box;width:min(320px,86vw);padding:15px 26px calc(15px + env(safe-area-inset-bottom,0px));border:0;border-top:1px solid var(--line);border-right:1px solid var(--line);background:var(--bg);color:var(--head);font:inherit;font-size:15px;text-align:left;cursor:pointer;animation:tpIn .22s ease}
- body.tm-in-menu.topics-open .tp-theme:hover{background:var(--card)}
- .tp-theme svg{display:block;flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-}
+/* ===== HP: logo lebih kecil =====
+@media(max-width:760px){.logo{font-size:14px}}
 
 /* ===== Perbaikan bar topik (komputer): tetap rata tengah walau ada elemen non-<a> di dalam #topics ===== */
 .topics a:first-of-type{margin-left:auto}
