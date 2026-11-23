@@ -23,13 +23,17 @@ function tsMount(f){
  tsLoad().then(function(t){
   if(!t)return;
   f._ts.id=t.render(box,{sitekey:TSK,theme:'auto',
-   callback:function(k){f._ts.tok=k},
+   callback:function(k){f._ts.tok=k;f._ts.err=''},
    'expired-callback':function(){f._ts.tok=''},
-   'error-callback':function(){f._ts.tok=''}})})}
+   'error-callback':function(c){f._ts.tok='';f._ts.err=String(c||'?');try{console.warn('[turnstile] error',c)}catch(e){}}})})}
 function tsTok(f){
  if(!TSK)return undefined;
  var k=f&&f._ts&&f._ts.tok;
- if(!k)throw new Error('Selesaikan verifikasi keamanan dulu, lalu coba lagi.');
+ if(!k){var c=f&&f._ts&&f._ts.err;
+  if(c&&/^1102/.test(c))throw new Error('Verifikasi gagal: domain ini belum didaftarkan di Cloudflare Turnstile (Hostname Management).');
+  if(c&&/^1101/.test(c))throw new Error('Verifikasi gagal: Site Key Turnstile di config.js tidak valid.');
+  if(c)throw new Error('Verifikasi keamanan gagal (kode '+c+'). Muat ulang halaman lalu coba lagi.');
+  throw new Error('Tunggu kotak verifikasi selesai (centang hijau), lalu coba lagi.')}
  return k}
 function tsReset(f){
  if(!TSK||!f||!f._ts)return;
@@ -195,7 +199,11 @@ function human(e){var m=String(e&&e.message||e||'');
  if(/invalid login/i.test(m))return 'Email atau kata sandi salah.';
  if(/not confirmed/i.test(m))return 'Email belum dikonfirmasi. Cek kotak masuk (dan folder spam).';
  if(/already registered|already been registered/i.test(m))return 'Email ini sudah terdaftar. Coba masuk.';
- if(/captcha/i.test(m))return 'Verifikasi keamanan gagal. Muat ulang halaman lalu coba lagi.';
+ if(/captcha/i.test(m)){try{console.warn('[captcha] '+m)}catch(x){}
+  if(/timeout-or-duplicate/i.test(m))return 'Verifikasi sudah kedaluwarsa atau terpakai. Tunggu kotak verifikasi selesai lagi, lalu kirim ulang.';
+  if(/invalid-input-secret|missing-input-secret/i.test(m))return 'Secret Key Turnstile di Supabase salah atau kosong (admin: periksa Authentication > Attack Protection).';
+  if(/hostname|invalid-input-response|bad-request/i.test(m))return 'Token verifikasi ditolak. Pastikan Site Key dan Secret Key Turnstile satu pasang dan domain sudah terdaftar.';
+  return 'Verifikasi keamanan gagal. Muat ulang halaman lalu coba lagi.'}
  if(/rate limit|too many/i.test(m))return 'Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi.';
  if(/password/i.test(m)&&/(least|short|weak)/i.test(m))return 'Kata sandi terlalu lemah. Gunakan minimal 8 karakter.';
  if(/row-level security|policy/i.test(m))return 'Izin upload belum diatur. Jalankan supabase_avatar.sql di Supabase.';
