@@ -209,7 +209,32 @@
       { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
       { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
       { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
-
+    ]
+  },
+    "Game Pc:Ender Magnolia": {
+    "name": "Ender Magnolia",
+    "banner": "/images/headerEnder Magnolia Bloom in the Mist.webp",
+    "image": "/images/ender magnolia icon.webp",
+    "desc": "Decades after the events of ENDER LILIES, Homunculi — sorrowful, artificial life forms — roam the land. In this dark fantasy Metroidvania, face formidable enemies and explore a bewitching post-apocalyptic world. Humans and Homunculi — what awaits at the end of the quest for their salvation?",
+    "info": { "Developer": ["Adglobe", "Live Wire"], "Publisher": "Binary Haze Interactive" },
+    "links": [
+      { "name": "Official Website", "url": "https://endermagnolia.com/" },
+      { "name": "X", "url": "https://x.com/EnderLiliesGame" },
+      { "name": "X (JP)", "url": "https://x.com/EnderLilies_JP" },
+      { "name": "Youtube", "url": "https://www.youtube.com/channel/UCK8-3pjkvRHK0FTKql620AQ/" }
+    ]
+  },
+    "Mod:Ender Magnolia": {
+    "name": "Ender Magnolia",
+    "banner": "/images/headerEnder Magnolia Bloom in the Mist.webp",
+    "image": "/images/ender magnolia icon.webp",
+    "desc": "Decades after the events of ENDER LILIES, Homunculi — sorrowful, artificial life forms — roam the land. In this dark fantasy Metroidvania, face formidable enemies and explore a bewitching post-apocalyptic world. Humans and Homunculi — what awaits at the end of the quest for their salvation?",
+    "info": { "Developer": ["Adglobe", "Live Wire"], "Publisher": "Binary Haze Interactive" },
+    "links": [
+      { "name": "Official Website", "url": "https://endermagnolia.com/" },
+      { "name": "X", "url": "https://x.com/EnderLiliesGame" },
+      { "name": "X (JP)", "url": "https://x.com/EnderLilies_JP" },
+      { "name": "Youtube", "url": "https://www.youtube.com/channel/UCK8-3pjkvRHK0FTKql620AQ/" }
     ]
   },
     "Parody:GI": {
@@ -228,7 +253,6 @@
       { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
       { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
       { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
-
     ]
   },
   "genre:action": {
