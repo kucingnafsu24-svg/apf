@@ -25,6 +25,32 @@ if(tl&&!tl.querySelector('.bm')){
  tl.appendChild(a);
 }
 
+/* menu garis tiga (HP, <=760px): blok "Tersimpan" dengan ikon + jumlah.
+   app.js menimpa isi #topics, jadi blok dipasang ulang otomatis bila hilang. Di komputer blok tidak dipasang. */
+var tp=document.getElementById('topics'),mq=window.matchMedia?window.matchMedia('(max-width:760px)'):null;
+if(tp&&mq){
+ var BK='<svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>',
+     HT='<svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.3-9A5.4 5.4 0 0 1 12 6.6 5.4 5.4 0 0 1 21.3 12C19 16.5 12 21 12 21z"/></svg>';
+ var mk=function(){
+  var d=document.createElement('div');d.className='tp-saved';
+  d.innerHTML='<div class="tp-h">Tersimpan</div>'+
+   '<a class="tp-i" href="/saved.html">'+BK+'<span>Postingan tersimpan</span><b data-n="p"></b></a>'+
+   '<a class="tp-i" href="/saved.html#artist">'+HT+'<span>Artist favorit</span><b data-n="a"></b></a>';
+  return d};
+ var counts=function(d){
+  var p=S.posts().length,a=S.artists().length,bp=d.querySelector('[data-n="p"]'),ba=d.querySelector('[data-n="a"]');
+  bp.textContent=p||'';ba.textContent=a||''};
+ var sync=function(){
+  var f=tp.firstElementChild,has=!!(f&&f.classList.contains('tp-saved'));
+  if(mq.matches){if(!has){f=mk();tp.insertBefore(f,tp.firstChild)}counts(f)}
+  else if(has)tp.removeChild(f)};
+ new MutationObserver(sync).observe(tp,{childList:true});
+ if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync);
+ var mb=document.getElementById('menu');if(mb)mb.addEventListener('click',sync);
+ window.addEventListener('storage',sync);window.addEventListener('pageshow',sync);
+ sync();
+}
+
 /* tombol Favorit di halaman artist (index.html: /artist/Nama atau /?tag=artist:Nama) */
 function artistName(){
  var q=new URLSearchParams(location.search).get('tag'),g='',v='';

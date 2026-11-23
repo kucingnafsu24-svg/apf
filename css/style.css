@@ -670,9 +670,20 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
 .bm{display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:50%;color:var(--head)}
 .bm:hover{background:var(--card)}
 .bm svg{display:block}
-@media(max-width:760px){.bm{padding:10px}}
+@media(max-width:760px){.bm{display:none}}  /* di HP, akses lewat menu garis tiga */
 .title .fv-btn{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border:1px solid var(--line);border-radius:20px;background:var(--bg);color:var(--head);font-size:14px;font-weight:600;cursor:pointer}
 .title .fv-btn:hover{background:var(--card)}
 .title .fv-btn.on{background:var(--link);border-color:var(--link);color:#fff}
 .title .fv-btn svg{display:block;width:18px;height:18px}
 .title .fv-btn.on svg{fill:currentColor}
+.tp-saved{display:none}
+@media(max-width:760px){
+ .tp-saved{display:block;order:-1;margin:0 0 10px;padding:0 0 10px;border-bottom:1px solid var(--line)}
+ .tp-saved .tp-h{padding:6px 14px 12px;font-size:16px;font-weight:600;color:var(--head)}
+ #topics .tp-i{display:flex;align-items:center;gap:12px}
+ #topics .tp-i svg{flex:none;width:20px;height:20px}
+ #topics .tp-i span{flex:1;min-width:0}
+ #topics .tp-i b{flex:none;min-width:24px;padding:1px 8px;border-radius:10px;background:var(--card);color:var(--alt);font-size:12.5px;font-weight:600;text-align:center}
+ #topics .tp-i b:empty{display:none}
+ #topics .tp-i:hover{background:var(--card)}
+}
