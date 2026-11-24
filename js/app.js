@@ -226,12 +226,19 @@ function topicOf(t){
   if(g==='file')g='category';
   return {u:tlink(g,v),g:g,v:v}}
  var l=t.label||t.name;return {u:llink(l),l:l}}
+/* tombol menu di header (Art, Animation, dst): tandai menu yang sedang dibuka, termasuk kategori dari artikel yang sedang dibaca */
+var markNav=function(){var ct=curTag.replace(/^file:/,'category:');[].forEach.call(document.querySelectorAll('nav a'),function(a){
+ var m=(a.getAttribute('href')||'').match(/^\/([^\/]+)\/(.+)$/),on=false;
+ if(m){var g,v;try{g=lc2(decodeURIComponent(m[1]));v=lc2(decodeURIComponent(m[2]))}catch(e){g=lc2(m[1]);v=lc2(m[2])}
+  on=ct===g+':'+v||!!(curPost&&(curPost.tags[g]||[]).some(function(x){return lc2(x)===v}))}
+ a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})};
 var drawTopics=function(a){$('topics').innerHTML=a.map(function(t){
   var o=topicOf(t),on=false;
   if(o.g)on=curTag===lc2(o.g+':'+o.v)||!!(curPost&&(curPost.tags[o.g]||[]).some(function(x){return lc2(x)===lc2(o.v)}));
   else if(o.l)on=cur!=null&&lc2(o.l)===lc2(cur);
   return '<a'+(on?' class="on"':'')+' href="'+esc(o.u)+'">'+esc(t.name)+'</a>'}).join('');
- var tp=$('topics'),on=tp.querySelector&&tp.querySelector('a.on');if(on)tp.scrollLeft=Math.max(0,on.offsetLeft-(tp.clientWidth-on.offsetWidth)/2)};
+ var tp=$('topics'),on=tp.querySelector&&tp.querySelector('a.on');if(on)tp.scrollLeft=Math.max(0,on.offsetLeft-(tp.clientWidth-on.offsetWidth)/2);markNav()};
+markNav();
 fetch('/data/topics.json').then(function(x){return x.json()}).then(function(a){drawTopics(Array.isArray(a)&&a.length?a:auto)}).catch(function(){drawTopics(auto)});
 var list=$('posts'),qs=new URLSearchParams(location.search);
 if(list){

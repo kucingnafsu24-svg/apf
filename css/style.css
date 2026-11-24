@@ -701,3 +701,7 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
 
 /* ===== HP: slider hanya di halaman 1 ===== */
 @media(max-width:760px){body.pg-more .slider{display:none}}
+
+/* ===== Menu aktif: kotak sedikit bulat, warna abu-abu ===== */
+nav a.on,.topics a.on{border-radius:8px;background:#46464b;color:var(--head)}
+nav a.on:hover,.topics a.on:hover{background:#46464b}
