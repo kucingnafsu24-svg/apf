@@ -258,5 +258,26 @@
   "character:female mc": {
     "name": "female mc",
     "desc": "female main characters"
+  },
+  "character:male mc": {
+  "name": "male mc",
+  "desc": "male main characters"
+  },
+    "character:Navia": {
+    "name": "Navia",
+    "image": "/images/Navia/Navia_Icon.webp",
+    "desc": "Navia Caspar[1] is a playable Ousia-aligned Geo character in Genshin Impact. She is the optimistic president of the Spina di Rosula, a mantle previously held by her late father Callas. Her enthusiastic and tenacious spirit allow her to push on with helping the people of Fontaine in spite of the various losses in her life.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
   }
 }
