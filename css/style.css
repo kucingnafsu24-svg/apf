@@ -218,7 +218,6 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
   .posts.grid{grid-template-columns:1fr 1fr;gap:14px}
   .grid .post{padding:0 0 14px;gap:8px}
   .grid .post h3{font-size:14.5px}
-  .grid .post p{display:none}
   .grid .thumb{aspect-ratio:4/3}
   aside{gap:28px}
   .social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -704,7 +703,7 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
  .posts:not(.grid) .post{grid-template-columns:minmax(0,1fr);gap:10px;padding:14px 0 18px}
  .posts:not(.grid) .post .thumb{order:-1;width:100%;aspect-ratio:16/10!important}
  .posts:not(.grid) .post .thumb:has(img) img{position:absolute;inset:0;width:100%;height:100%;max-height:none;aspect-ratio:auto;object-fit:cover}
- .posts:not(.grid) .post p,.posts:not(.grid) .post .more{display:none}
+ .posts:not(.grid) .post .more{display:none}
  .posts:not(.grid) .post h3{margin:0;font-size:15px;line-height:1.4;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
  .posts:not(.grid) .post .meta{margin-bottom:4px;font-size:12px}
 }
@@ -723,3 +722,6 @@ nav a.on:hover,.topics a.on:hover{background:#46464b}
 
 /* ===== PC: deskripsi di daftar artikel dibatasi 3 baris (HP tetap disembunyikan) ===== */
 @media(min-width:761px){.post p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.6}}
+
+/* ===== HP: deskripsi ikut tampil di daftar artikel (2 baris), tampilan lain tidak berubah ===== */
+@media(max-width:760px){.posts .post p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0;font-size:13px;line-height:1.5;color:var(--alt)}}
