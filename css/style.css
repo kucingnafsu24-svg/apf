@@ -698,3 +698,6 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
  .posts:not(.grid) .post h3{margin:0;font-size:15px;line-height:1.4;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
  .posts:not(.grid) .post .meta{margin-bottom:4px;font-size:12px}
 }
+
+/* ===== HP: slider hanya di halaman 1 ===== */
+@media(max-width:760px){body.pg-more .slider{display:none}}

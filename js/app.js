@@ -243,12 +243,13 @@ if(list){
  if(tv)$('ttl').textContent=gname(tk)+': '+tv;
  /* halaman kategori/tag/label: judul disembunyikan dari tampilan (tetap ada untuk pembaca layar & SEO) */
  if(label||tv)$('ttl').style.cssText='position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';
- /* halaman: 6 artikel per halaman, nomor halaman di ?page=N */
- var PER=6,page=Math.max(1,parseInt(qs.get('page'),10)||1),pg=document.createElement('div');
+ /* halaman: 8 artikel per halaman, nomor halaman di ?page=N */
+ var PER=8,page=Math.max(1,parseInt(qs.get('page'),10)||1),pg=document.createElement('div');
  pg.className='pager';pg.setAttribute('role','navigation');pg.setAttribute('aria-label','Halaman');list.parentNode.insertBefore(pg,list.nextSibling);
  var pageUrl=function(n){var u=new URLSearchParams(location.search);if(n>1)u.set('page',n);else u.delete('page');var q=u.toString();return location.pathname+(q?'?'+q:'')};
  var render=function(a){
   var pages=Math.max(1,Math.ceil(a.length/PER));page=Math.min(Math.max(page,1),pages);
+  document.body.classList.toggle('pg-more',page>1); /* HP: slider disembunyikan di halaman 2 dst (lihat style.css) */
   list.innerHTML=a.length?a.slice((page-1)*PER,page*PER).map(card).join(''):'<div class="empty">Tidak ada artikel.</div>';
   if(pages<2){pg.innerHTML='';return}
   /* nomor halaman: jendela 8 angka (1-8). Tetap 1-8 sampai halaman 8, lalu bergeser satu per satu (2-9, 3-10, ...) */
