@@ -30,8 +30,13 @@ P=P.filter(Boolean).map(function(p){
  p.labels=p.hasLabels?ciu(p.labels):['Umum'];
  p.date=p.date||new Date().toISOString().slice(0,10);
  p.comments=+p.comments||0;
- p.excerpt=p.excerpt||'';
  p.content=String(p.content==null?'':p.content).trim();
+ /* deskripsi otomatis bila "excerpt" kosong: ambil dari awal isi artikel (tanpa HTML/kode) */
+ p.excerpt=String(p.excerpt||'').trim();
+ if(!p.excerpt&&p.content){
+  var tx=p.content.replace(/<(script|style|pre|code)[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]*>/g,' ').replace(/\[[^\]]*\]/g,' ').replace(/https?:\/\/\S+/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
+  if(tx.length>150){tx=tx.slice(0,150);var sp=tx.lastIndexOf(' ');if(sp>90)tx=tx.slice(0,sp);tx=tx.replace(/[\s,.;:\-]+$/,'')+'…'}
+  p.excerpt=tx}
  p.thumb=p.thumb||{cls:'t1',title:p.title.slice(0,14),sub:''};
  p.thumb.cls=p.thumb.cls||'t1';p.thumb.title=p.thumb.title||'';p.thumb.sub=p.thumb.sub||'';
  var tg={};
