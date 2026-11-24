@@ -708,5 +708,5 @@ nav a.on:hover,.topics a.on:hover{background:#46464b}
 
 /* ===== Logo gambar (images/logo/apf-logo.svg) menggantikan tulisan di header ===== */
 .logo:has(img){align-items:center}
-.logo img{display:block;height:36px;width:auto;max-width:60vw;object-fit:contain}
-@media(max-width:760px){.logo img{height:30px}}
+.logo img{display:block;height:46px;width:auto;max-width:60vw;object-fit:contain}
+@media(max-width:760px){.logo img{height:40px;max-width:52vw}}
