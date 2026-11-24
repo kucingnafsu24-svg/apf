@@ -263,7 +263,7 @@
   "name": "male mc",
   "desc": "male main characters"
   },
-    "character:Navia": {
+    "character:Navia(GI)": {
     "name": "Navia Caspar",
     "image": "/images/Navia/Navia_Icon.webp",
     "desc": "Navia Caspar is a playable Ousia-aligned Geo character in Genshin Impact. She is the optimistic president of the Spina di Rosula, a mantle previously held by her late father Callas. Her enthusiastic and tenacious spirit allow her to push on with helping the people of Fontaine in spite of the various losses in her life.",
@@ -382,10 +382,10 @@
       { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
     ]
   },
-    "character:Kokomi": {
+    "character:Kokomi(GI)": {
     "name": "Sangonomiya Kokomi",
     "image": "/images/Kokomi/Sangonomiya_Kokomi_Icon.webp",
-    "desc": "Sangonomiya Kokomi[Note 1] (Japanese: 珊瑚宮心海 Sangonomiya Kokomi) is a playable Hydro character in Genshin Impact. The young Divine Priestess of Watatsumi Island and a descendant of the Sangonomiya Clan, Kokomi is in charge of most of Watatsumi's affairs, shouldering heavy responsibilities alone in hopes for giving Watatsumi Island's people the hopes and happiness that they desire.",
+    "desc": "Sangonomiya Kokomi (Japanese: 珊瑚宮心海 Sangonomiya Kokomi) is a playable Hydro character in Genshin Impact. The young Divine Priestess of Watatsumi Island and a descendant of the Sangonomiya Clan, Kokomi is in charge of most of Watatsumi's affairs, shouldering heavy responsibilities alone in hopes for giving Watatsumi Island's people the hopes and happiness that they desire.",
     "info": { "Developer": ["Mihoyo", "hoyoverse"] },
     "links": [
       { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
@@ -399,10 +399,248 @@
       { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
     ]
   },
-      "character:Sangonomiya Kokomi": {
+    "character:Sangonomiya Kokomi": {
     "name": "Sangonomiya Kokomi",
     "image": "/images/Kokomi/Sangonomiya_Kokomi_Icon.webp",
-    "desc": "Sangonomiya Kokomi[Note 1] (Japanese: 珊瑚宮心海 Sangonomiya Kokomi) is a playable Hydro character in Genshin Impact. The young Divine Priestess of Watatsumi Island and a descendant of the Sangonomiya Clan, Kokomi is in charge of most of Watatsumi's affairs, shouldering heavy responsibilities alone in hopes for giving Watatsumi Island's people the hopes and happiness that they desire.",
+    "desc": "Sangonomiya Kokomi (Japanese: 珊瑚宮心海 Sangonomiya Kokomi) is a playable Hydro character in Genshin Impact. The young Divine Priestess of Watatsumi Island and a descendant of the Sangonomiya Clan, Kokomi is in charge of most of Watatsumi's affairs, shouldering heavy responsibilities alone in hopes for giving Watatsumi Island's people the hopes and happiness that they desire.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+     "character:Shenhe": {
+    "name": "Shenhe",
+    "image": "/images/Shenhe/Shenhe_Icon.webp",
+    "desc": "Shenhe (Chinese: 申鹤 Shēnhè) is a playable Cryo character in Genshin Impact. The daughter of an unnamed exorcist couple, Shenhe was taken in and raised by Cloud Retainer as a disciple following a traumatic incident instigated by Shenhe's father during her childhood.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Raiden(GI)": {
+    "name": "Raiden Shogun",
+    "image": "/images/Raiden/Raiden_Shogun_Icon.webp",
+    "desc": "The Raiden Shogun (Japanese: 雷電将軍 Raiden Shougun) is a playable Electro character in Genshin Impact. The Raiden Shogun consists of two distinct beings sharing a single body: Ei, the current Electro Archon of Inazuma, and the Shogun, the puppet created by Ei to govern Inazuma and rule in her stead. While the Shogun can act independently, it remains strictly bound by Ei’s laws and directives, serving as the executor of her vision and upholding her ideal of Eternity.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Raiden Shogun": {
+    "name": "Raiden Shogun",
+    "image": "/images/Raiden/Raiden_Shogun_Icon.webp",
+    "desc": "The Raiden Shogun (Japanese: 雷電将軍 Raiden Shougun) is a playable Electro character in Genshin Impact. The Raiden Shogun consists of two distinct beings sharing a single body: Ei, the current Electro Archon of Inazuma, and the Shogun, the puppet created by Ei to govern Inazuma and rule in her stead. While the Shogun can act independently, it remains strictly bound by Ei’s laws and directives, serving as the executor of her vision and upholding her ideal of Eternity.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Keqing": {
+    "name": "Keqing",
+    "image": "/images/Keqing/Keqing_Icon.webp",
+    "desc": "Keqing (Chinese: 刻晴 Kèqíng) is a playable Electro character in Genshin Impact. As the Yuheng of the Liyue Qixing, she is someone who seeks her own answers instead of idly letting chaos run amok in Liyue. She chooses her own path with her own power and ability, instead of letting the gods determine her fate.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Jean(GI)": {
+    "name": "Jean Gunnhildr",
+    "image": "/images/Jean/Jean_Icon.webp",
+    "desc": "Jean Gunnhildr is a playable Anemo character in Genshin Impact. The older sister of Barbara, and a descendant of the prestigious Gunnhildr Clan, Jean is the Acting Grand Master of the Knights of Favonius. She is always busy handling unrest across Mondstadt and tirelessly working to maintain the City of Freedom.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Jean Gunnhildr": {
+    "name": "Jean Gunnhildr",
+    "image": "/images/Jean/Jean_Icon.webp",
+    "desc": "Jean Gunnhildr is a playable Anemo character in Genshin Impact. The older sister of Barbara, and a descendant of the prestigious Gunnhildr Clan, Jean is the Acting Grand Master of the Knights of Favonius. She is always busy handling unrest across Mondstadt and tirelessly working to maintain the City of Freedom.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Hu Tao": {
+    "name": "Hu Tao",
+    "image": "/images/Hu Tao/Hu_Tao_Icon.webp",
+    "desc": "Hu Tao (Chinese: 胡桃 Hú Táo) is a playable Pyro character in Genshin Impact. Hu Tao's antics and eccentricity belie her role as the 77th Director of the Wangsheng Funeral Parlor and her talent as a poet. Nevertheless, she treats the parlor's operations with utmost importance, and holds funeral ceremonies with the highest dignity and solemnity.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Ganyu": {
+    "name": "Ganyu",
+    "image": "/images/Ganyu/Ganyu_Icon.webp",
+    "desc": "Ganyu (Chinese: 甘雨 Gānyǔ) is a playable Cryo character in Genshin Impact. She is a half-qilin adeptus under contract with the Geo Archon Morax and serves as the general secretary of the Liyue Qixing. Due to her adeptal background, she finds herself feeling separated from the human world.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Xianyun": {
+    "name": "Xianyun",
+    "image": "/images/Xianyun/Xianyun_Icon.webp",
+    "desc": "Xianyun (Chinese: 闲云 Xiányún), also known by her adeptus name Cloud Retainer, is a playable Anemo character in Genshin Impact. Curious about what draws her disciples to Liyue Harbor, she has taken up residence in the city to see for herself.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Xilonen": {
+    "name": "Xilonen",
+    "image": "/images/Xilonen/Xilonen_Icon.webp",
+    "desc": "Xilonen is a playable Geo character in Genshin Impact. A Name Engraver for the Children of Echoes bearing her own Ancient Name of BRK (\"BRK,\" Baraka), Xilonen is often found enjoying her leisure time with naps in the sun but at the forge, her craftsmanship is second to none.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Furina": {
+    "name": "Furina de Fontaine",
+    "image": "/images/Furina/Furina_Icon.webp",
+    "desc": "Furina de Fontaine is a playable Hydro character in Genshin Impact who can alternate between Pneuma and Ousia alignments. Introduced as the flamboyant and overconfident Hydro Archon, Furina's theatrics are eventually revealed to be a carefully maintained public persona, which she later abandons in favor of living a humbler life as an actress and artistic consultant.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Furina de Fontaine": {
+    "name": "Furina de Fontaine",
+    "image": "/images/Furina/Furina_Icon.webp",
+    "desc": "Furina de Fontaine is a playable Hydro character in Genshin Impact who can alternate between Pneuma and Ousia alignments. Introduced as the flamboyant and overconfident Hydro Archon, Furina's theatrics are eventually revealed to be a carefully maintained public persona, which she later abandons in favor of living a humbler life as an actress and artistic consultant.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Yoimiya": {
+    "name": "Naganohara Yoimiya",
+    "image": "/images/Furina/Yoimiya_Icon.webp",
+    "desc": "Naganohara Yoimiya (Japanese: 長野原宵宮 Naganohara Yoimiya) is a playable Pyro character in Genshin Impact. Yoimiya is the current owner of Naganohara Fireworks; with her colorful fireworks and outgoing personality, Yoimiya is loved by everyone on Narukami Island. She was coined as the \"Queen of the Summer Festival,\" as they believe summer is not the same without her.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Naganohara Yoimiya": {
+    "name": "Naganohara Yoimiya",
+    "image": "/images/Furina/Yoimiya_Icon.webp",
+    "desc": "Naganohara Yoimiya (Japanese: 長野原宵宮 Naganohara Yoimiya) is a playable Pyro character in Genshin Impact. Yoimiya is the current owner of Naganohara Fireworks; with her colorful fireworks and outgoing personality, Yoimiya is loved by everyone on Narukami Island. She was coined as the \"Queen of the Summer Festival,\" as they believe summer is not the same without her.",
     "info": { "Developer": ["Mihoyo", "hoyoverse"] },
     "links": [
       { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
