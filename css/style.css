@@ -650,7 +650,7 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
 
 /* ===== Menu kategori khusus HP: Art, Animation, Asmr, Cosplayer, Game Android (komputer tidak berubah) ===== */
 @media(max-width:760px){
- nav a[href="/category/Psd"],nav a[href="/category/Live2d"]{display:none}
+ nav a[href="/category/Psd"],nav a[href="/category/Clipfile"],nav a[href="/category/Live2d"]{display:none}
  nav a[href="/category/Art"]{order:1}
  nav a[href="/category/animation"]{order:2}
  nav a[href="/category/Asmr"]{order:3}
