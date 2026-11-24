@@ -264,9 +264,145 @@
   "desc": "male main characters"
   },
     "character:Navia": {
-    "name": "Navia",
+    "name": "Navia Caspar",
     "image": "/images/Navia/Navia_Icon.webp",
     "desc": "Navia Caspar is a playable Ousia-aligned Geo character in Genshin Impact. She is the optimistic president of the Spina di Rosula, a mantle previously held by her late father Callas. Her enthusiastic and tenacious spirit allow her to push on with helping the people of Fontaine in spite of the various losses in her life.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+      "character:Navia Caspar": {
+    "name": "Navia Caspar",
+    "image": "/images/Navia/Navia_Icon.webp",
+    "desc": "Navia Caspar is a playable Ousia-aligned Geo character in Genshin Impact. She is the optimistic president of the Spina di Rosula, a mantle previously held by her late father Callas. Her enthusiastic and tenacious spirit allow her to push on with helping the people of Fontaine in spite of the various losses in her life.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Mavuika": {
+    "name": "Mavuika",
+    "image": "/images/Mavuika/Mavuika_Icon.webp",
+    "desc": "Mavuika is a playable Pyro character in Genshin Impact. Bearing the Ancient Name Kiongozi and known by her divine name Haborym, she is the current God of War and Pyro Archon of The Seven, presiding over Natlan.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+  "character:Lynette": {
+    "name": "Lynette",
+    "image": "/images/Lynette/Lynette_Icon.webp",
+  "desc": "Lynette is a playable Ousia-aligned Anemo character in Genshin Impact. Quiet and reserved, Lynette functions as a magician's assistant to her brother Lyney. After their parents' death and having been saved from an abusive noble by their \"Father,\" Lynette has also served as \"eyes\" and \"ears\" for the House of the Hearth.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+  "character:Lumine": {
+    "name": "Lumine",
+    "image": "/images/Lumine/Lumine_Icon.webp",
+  "desc": "The Traveler is the playable protagonist of Genshin Impact. In the opening cutscene, twin siblings from another world travel through the universe, until Asmoday blocked their path. The player gets to choose either Aether (male) or Lumine (female) as the Traveler and the Traveler's Sibling becomes captured. Their power to travel is sealed, leaving them stranded on Teyvat. They save Paimon by fishing her out of the water and she accompanies them as their new travel companion. Together they set out on a journey to find The Seven and reunite with the Traveler's lost sibling. Although players can choose the name they want to be referred by, the Traveler's Sibling refers to the Traveler by their real name, regardless of their custom name. In Natlan, the Traveler also gains the Ancient Name TMN (\"TMN,\" Tumaini).",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Aether": {
+    "name": "Aether",
+    "image": "/images/Aether/Aether_Icon.webp",
+  "desc": "The Traveler is the playable protagonist of Genshin Impact. In the opening cutscene, twin siblings from another world travel through the universe, until Asmoday blocked their path. The player gets to choose either Aether (male) or Lumine (female) as the Traveler and the Traveler's Sibling becomes captured. Their power to travel is sealed, leaving them stranded on Teyvat. They save Paimon by fishing her out of the water and she accompanies them as their new travel companion. Together they set out on a journey to find The Seven and reunite with the Traveler's lost sibling. Although players can choose the name they want to be referred by, the Traveler's Sibling refers to the Traveler by their real name, regardless of their custom name. In Natlan, the Traveler also gains the Ancient Name TMN (\"TMN,\" Tumaini).",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Kuki Shinobu": {
+    "name": "Kuki Shinobu",
+    "image": "/images/Kuki Shinobu/Kuki_Shinobu_Icon.webp",
+    "desc": "Kuki Shinobu(Japanese: 久岐忍 Kuki Shinobu) is a playable Electro character in Genshin Impact.A former shrine maiden of the Grand Narukami Shrine, she is the sidekick of Arataki Itto and Deputy Leader of the Arataki Gang. Due to her professionalism and certifications, Kuki Shinobu has helped the Arataki Gang out of many problems, and has even expanded the gang's business scope outside of the regular mischief and delinquency.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Kokomi": {
+    "name": "Sangonomiya Kokomi",
+    "image": "/images/Kokomi/Sangonomiya_Kokomi_Icon.webp",
+    "desc": "Sangonomiya Kokomi[Note 1] (Japanese: 珊瑚宮心海 Sangonomiya Kokomi) is a playable Hydro character in Genshin Impact. The young Divine Priestess of Watatsumi Island and a descendant of the Sangonomiya Clan, Kokomi is in charge of most of Watatsumi's affairs, shouldering heavy responsibilities alone in hopes for giving Watatsumi Island's people the hopes and happiness that they desire.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+      "character:Sangonomiya Kokomi": {
+    "name": "Sangonomiya Kokomi",
+    "image": "/images/Kokomi/Sangonomiya_Kokomi_Icon.webp",
+    "desc": "Sangonomiya Kokomi[Note 1] (Japanese: 珊瑚宮心海 Sangonomiya Kokomi) is a playable Hydro character in Genshin Impact. The young Divine Priestess of Watatsumi Island and a descendant of the Sangonomiya Clan, Kokomi is in charge of most of Watatsumi's affairs, shouldering heavy responsibilities alone in hopes for giving Watatsumi Island's people the hopes and happiness that they desire.",
     "info": { "Developer": ["Mihoyo", "hoyoverse"] },
     "links": [
       { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
