@@ -1,4 +1,35 @@
 [
+   {
+  "slug": "300",
+  "title": "Professor Niyaniya",
+  "author": "Admin",
+  "date": "2026-11-24",
+  "image": "/images/Professor Niyaniya/1.webp", "imageFull": "/images/Professor Niyaniya/1.jpeg",
+  "excerpt": "My art has improved a lot XD",
+  "content": "<img src='/images/Jane Doe - zip files/2.webp' data-full='/Jane Doe - zip files/2.png' loading='lazy'>\n<img src='/images/Jane Doe - zip files/3.webp' data-full='/Jane Doe - zip files/3.png' loading='lazy'>My art has improved a lot XD\n\nPSD Pack",
+  "tags": {
+    "Artist": ["Redcomet"],
+    "Parody": ["Blue Archive", "BA"],
+    "character":["Niyaniya"],
+    "tag": ["yellow hair", "green eyes", "long hair", "hat", "micro bikini", "nude"],
+    "Language": ["Textless"],
+    "Category": ["Art", "PSD"]
+},
+  "download": [
+    {
+      "title": "Professor Niyaniya",
+      "links": [
+        { "name": "Pixeldrain", "url": "https://sfl.gl/HCB67SFL" },
+        { "name": "gdrive", "url": "https://sfl.gl/Vw1dzaNh" },
+        { "name": "vexfile", "url": "https://sfl.gl/zAXQVcKL" },
+        { "name": "modsfire", "url": "https://sfl.gl/2Roz" },
+        { "name": "mega", "url": "https://sfl.gl/41ji852" },
+        { "name": "Dropbox", "url": "https://sfl.gl/bFHdSBzj" },
+        { "name": "Pcloud", "url": "https://sfl.gl/EAcpGu" }
+      ]
+    }
+  ]
+},
   {
   "slug": "299",
   "title": "Mualani",
@@ -18,38 +49,45 @@
  "videoTitle": "Mualani",
  "videos": [
     {
-    "title": "Shenhe - Eternal pleasure",
+    "title": "[Final Release] Mualani - I'll guide you",
     "servers": [
-      { "name": "Server 1", "url": "https://playmogo.com/e/vz9t9sbanh2q" },
-      { "name": "Server 2", "url": "https://streamtape.com/e/OWaLJl7kmPi6xj/" }
+      { "name": "Server 1", "url": "https://playmogo.com/e/32m3p8favbuq" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/YKeMODR9Ratv4r7/" }
     ]
   },
       {
-    "title": "Shenhe 1",
+    "title": "Mualani - I'll guide you",
     "servers": [
-      { "name": "Server 1", "url": "https://playmogo.com/e/ty4eh2joo9b3" },
-      { "name": "Server 2", "url": "https://streamtape.com/e/Zj48VgyKjgtqqRR/" }
+      { "name": "Server 1", "url": "https://playmogo.com/e/7k83ktns9mzr" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/Prx9waLJ4Lhgky/" }
     ]
   },
         {
-    "title": "Shenhe 2",
+    "title": "Mualani - I'll guide you — Part 2",
     "servers": [
-      { "name": "Server 1", "url": "https://playmogo.com/e/28f56zf573tg" },
-      { "name": "Server 2", "url": "https://streamtape.com/e/XwKWPKO1D2iDrM3/" }
+      { "name": "Server 1", "url": "https://playmogo.com/e/2dtelh1sghm0" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/pdKPqQOGvDfrZR2/" }
+    ]
+  },
+          {
+    "title": "Mualani - I'll guide you — Part 3",
+    "servers": [
+      { "name": "Server 1", "url": "https://playmogo.com/e/8j2zj8jrmnjg" },
+      { "name": "Server 2", "url": "https://streamtape.com/e/AkMrk13Ox7FXrP9/" }
     ]
   }
 ],
   "download": [
     {
-      "title": "Shenhe",
+      "title": "Mualani",
       "links": [
-        { "name": "Pixeldrain", "url": "https://sfl.gl/YQqjsZi5" },
-        { "name": "gdrive", "url": "https://sfl.gl/b2pAdqb" },
-        { "name": "vexfile", "url": "https://sfl.gl/89oPKhg" },
-        { "name": "modsfire", "url": "https://sfl.gl/ByA8rpp9" },
-        { "name": "mega", "url": "https://sfl.gl/NCWvG" },
-        { "name": "Dropbox", "url": "https://sfl.gl/z0nAc" },
-        { "name": "Pcloud", "url": "https://sfl.gl/VhV7W" }
+        { "name": "Pixeldrain", "url": "https://sfl.gl/NKKH" },
+        { "name": "gdrive", "url": "https://sfl.gl/GFAOzl" },
+        { "name": "vexfile", "url": "https://sfl.gl/MN7Bx" },
+        { "name": "modsfire", "url": "https://sfl.gl/wlsiKy7f" },
+        { "name": "mega", "url": "https://sfl.gl/XmqRmh" },
+        { "name": "Dropbox", "url": "https://sfl.gl/Hzqa" },
+        { "name": "Pcloud", "url": "https://sfl.gl/xqdCjA5" }
       ]
     }
   ]

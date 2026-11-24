@@ -68,6 +68,24 @@
       { "name": "Discord", "url": "https://discord.gg/CDyTPYYD5B" }
     ]
   },
+    "artist:Redcomet": {
+    "name": "Redcomet",
+    "hideTabs": ["animation"],
+    "banner": "/images/Redcomet/banner.webp",
+    "image": "/images/Redcomet/1.webp",
+    "desc": "Hello I'm Redcomet. I love to do fanart and Live2D.\n\nIf you like my work please support me so I can draw and post more of my work here from now on &gt; &lt;\nThank you for every supported ^ ^\n\nMy twitter : <a href=\"https://twitter.com/Redcomet_D_Zion\" target=\"_blank\" rel=\"noopener\">https://twitter.com/Redcomet_D_Zion</a> R18: <a href=\"https://twitter.com/RedcometR18\" target=\"_blank\" rel=\"noopener\">https://twitter.com/RedcometR18</a>\nMy SubscribeStar : <a href=\"http://subscribestar.adult/redcomet\" target=\"_blank\" rel=\"noopener\">http://subscribestar.adult/redcomet</a>",
+    "info": { "Membership PixivFanbox": ["Buy me some coffee", "Buy Me some Sweets", "Buy me a meal"] },
+    "links": [
+      { "name": "PixivFanbox", "url": "https://redcomet.fanbox.cc/" },
+      { "name": "Pixiv", "url": "https://www.pixiv.net/users/643512" },
+      { "name": "X", "url": "https://x.com/Redcomet_D_Zion" },
+      { "name": "X 18+", "url": "https://x.com/RedcometR18" },
+      { "name": "Gank", "url": " ganknow.com/redcometdzion" },
+      { "name": "subscribestar", "url": "subscribestar.adult/redcomet" },
+      { "name": "Gumroad", "url": " https://gumroad.com/redcomet" },
+      { "name": "DLSite", "url": "https://www.dlsite.com/maniax/circle/profile/=/maker_id/RG01004508.html" }
+    ]
+  },
   "artist:thirty8ght": {
     "name": "thirty8ght",
     "hideTabs": ["animation"],
@@ -622,7 +640,7 @@
   },
     "character:Yoimiya": {
     "name": "Naganohara Yoimiya",
-    "image": "/images/Furina/Yoimiya_Icon.webp",
+    "image": "/images/Yoimiya/Yoimiya_Icon.webp",
     "desc": "Naganohara Yoimiya (Japanese: 長野原宵宮 Naganohara Yoimiya) is a playable Pyro character in Genshin Impact. Yoimiya is the current owner of Naganohara Fireworks; with her colorful fireworks and outgoing personality, Yoimiya is loved by everyone on Narukami Island. She was coined as the \"Queen of the Summer Festival,\" as they believe summer is not the same without her.",
     "info": { "Developer": ["Mihoyo", "hoyoverse"] },
     "links": [
@@ -639,8 +657,25 @@
   },
     "character:Naganohara Yoimiya": {
     "name": "Naganohara Yoimiya",
-    "image": "/images/Furina/Yoimiya_Icon.webp",
+    "image": "/images/Yoimiya/Yoimiya_Icon.webp",
     "desc": "Naganohara Yoimiya (Japanese: 長野原宵宮 Naganohara Yoimiya) is a playable Pyro character in Genshin Impact. Yoimiya is the current owner of Naganohara Fireworks; with her colorful fireworks and outgoing personality, Yoimiya is loved by everyone on Narukami Island. She was coined as the \"Queen of the Summer Festival,\" as they believe summer is not the same without her.",
+    "info": { "Developer": ["Mihoyo", "hoyoverse"] },
+    "links": [
+      { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
+      { "name": "Channel WA", "url": "https://api.whatsapp.com/send?phone=13109207335&text=Hello,%20Paimon" },
+      { "name": "Facebook", "url": "https://www.facebook.com/GenshinImpact.id" },
+      { "name": "Instagram", "url": "https://www.instagram.com/genshinimpact" },
+      { "name": "X", "url": "https://x.com/GenshinImpact" },
+      { "name": "Discord", "url": "https://discord.com/genshinimpact" },
+      { "name": "Reddit", "url": "https://www.reddit.com/r/Genshin_Impact/" },
+      { "name": "twitch", "url": "https://www.twitch.tv/genshinimpactofficial" },
+      { "name": "Youtube", "url": "https://www.youtube.com/@GenshinImpact/" }
+    ]
+  },
+    "character:Mualani": {
+    "name": "Mualani",
+    "image": "/images/Mualani/Mualani_Icon.webp",
+    "desc": "Mualani is a playable Hydro character in Genshin Impact. Being a guide, a surfer, and a watersports shop owner for the People of the Springs who bears the Ancient Name UMJ (\"UMJ,\" Umoja), Mualani is an active and sweet person, and she is always able to satisfy her clients.",
     "info": { "Developer": ["Mihoyo", "hoyoverse"] },
     "links": [
       { "name": "Official Website", "url": "https://genshin.hoyoverse.com" },
