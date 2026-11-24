@@ -243,8 +243,8 @@ if(list){
  if(tv)$('ttl').textContent=gname(tk)+': '+tv;
  /* halaman kategori/tag/label: judul disembunyikan dari tampilan (tetap ada untuk pembaca layar & SEO) */
  if(label||tv)$('ttl').style.cssText='position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';
- /* halaman: 5 artikel per halaman, nomor halaman di ?page=N */
- var PER=5,page=Math.max(1,parseInt(qs.get('page'),10)||1),pg=document.createElement('div');
+ /* halaman: 6 artikel per halaman, nomor halaman di ?page=N */
+ var PER=6,page=Math.max(1,parseInt(qs.get('page'),10)||1),pg=document.createElement('div');
  pg.className='pager';pg.setAttribute('role','navigation');pg.setAttribute('aria-label','Halaman');list.parentNode.insertBefore(pg,list.nextSibling);
  var pageUrl=function(n){var u=new URLSearchParams(location.search);if(n>1)u.set('page',n);else u.delete('page');var q=u.toString();return location.pathname+(q?'?'+q:'')};
  var render=function(a){
