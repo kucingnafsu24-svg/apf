@@ -14,7 +14,12 @@ var ok=(function(){try{var x='__apf';localStorage.setItem(x,'1');localStorage.re
 var S=window.APF_SAVED={ok:ok,
  posts:function(){return read(KP)},artists:function(){return read(KA)},
  hasPost:function(s){return has(KP,s)},addPost:function(s){return add(KP,s,String(s))},delPost:function(s){return del(KP,s)},
- hasArtist:function(n){return has(KA,n)},addArtist:function(n){return add(KA,n,String(n).trim())},delArtist:function(n){return del(KA,n)}};
+ hasArtist:function(n){return has(KA,n)},addArtist:function(n){return add(KA,n,String(n).trim())},delArtist:function(n){return del(KA,n)},
+ /* dipakai favorites-sync.js (akun login): gabung item dari server; kosongkan daftar lokal */
+ merge:function(kind,items){var key=kind==='artist'?KA:KP,a=read(key),seen={},ch=false;a.forEach(function(x){seen[x.k]=1});
+  items.forEach(function(i){var k=lc(i.k);if(k&&!seen[k]){seen[k]=1;a.push({k:k,n:i.n||k,t:i.t||Date.now()});ch=true}});
+  if(ch){a.sort(function(x,y){return y.t-x.t});write(key,a)}return ch},
+ clear:function(){write(KP,[]);write(KA,[])}};
 
 /* ikon penanda di header (semua halaman) -> daftar tersimpan */
 var tl=document.querySelector('.tools');
