@@ -225,9 +225,6 @@ mark{background:rgba(255,200,40,.35);color:inherit;border-radius:3px;padding:0 2
   .social a{justify-content:center;padding:10px 6px;font-size:13px;border-left:1px solid var(--line);border-top:3px solid var(--c)}
   .article h1{font-size:24px}
   .article .thumb{aspect-ratio:16/10;margin:10px 0 20px}
-  .vtabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-  .vtabs::-webkit-scrollbar{display:none}
-  .vtabs button{flex:none;white-space:nowrap}
   .comments{margin-top:40px}
   footer{padding:24px 0}
   footer .wrap{flex-direction:column;align-items:center;text-align:center;gap:6px}
@@ -622,12 +619,22 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
 .entry a.postbtn{display:inline-flex;align-items:center;max-width:100%;margin:6px 0;padding:10px 18px;border-radius:8px;background:var(--link);color:#fff;font-size:14px;font-weight:600;line-height:1.4;text-decoration:none}
 .entry a.postbtn:hover{filter:brightness(1.1);text-decoration:none}
 
-/* ===== Tombol download & server streaming: satu baris, geser kanan-kiri ===== */
-.dl-links,.vtabs{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-.dl-links::-webkit-scrollbar,.vtabs::-webkit-scrollbar{display:block;height:6px}
-.dl-links::-webkit-scrollbar-thumb,.vtabs::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
-.dl-links>*,.vtabs>*{flex:none;white-space:nowrap}
-.vtabs{padding-bottom:6px}
+/* ===== Tombol download: PC tetap satu baris + geser; HP tanpa geser, turun ke bawah bila tidak muat ===== */
+@media(min-width:761px){
+ .dl-links{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+ .dl-links::-webkit-scrollbar{display:block;height:6px}
+ .dl-links::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+ .dl-links>*{flex:none;white-space:nowrap}
+}
+@media(max-width:760px){
+ .dl-links{flex-wrap:wrap;overflow:visible}
+ .dl-links>*{flex:0 1 auto;white-space:normal;max-width:100%;text-align:center}
+}
+
+/* ===== Pilihan versi video (PC & HP): urut ke bawah, tanpa geser ===== */
+.vtabs{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:8px;overflow:visible;padding-bottom:0}
+.vtabs button{flex:none;max-width:100%;white-space:normal;text-align:left}
+@media(max-width:760px){.vtabs{align-items:stretch}}
 
 /* ===== Pilihan server video (dropdown) ===== */
 .vsrv{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:13.5px;font-weight:600;color:var(--alt)}
