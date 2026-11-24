@@ -631,6 +631,9 @@ html{overflow-x:hidden}body{overflow-x:clip}/* jangan hidden di body: merusak he
  .dl-links>*{flex:0 1 auto;white-space:normal;max-width:100%;text-align:center}
 }
 
+.dl-tut{display:inline-flex;align-items:center;margin:0 0 12px;padding:7px 16px;border:1px solid var(--link);border-radius:20px;color:var(--link);font-size:13px;font-weight:600;text-decoration:none}
+.dl-tut:hover{background:var(--link);color:#fff}
+
 /* ===== Pilihan versi video (PC & HP): urut ke bawah, tanpa geser ===== */
 .vtabs{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:8px;overflow:visible;padding-bottom:0}
 .vtabs button{flex:none;max-width:100%;white-space:normal;text-align:left}

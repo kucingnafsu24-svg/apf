@@ -118,7 +118,7 @@ function dlist(p){var d=Array.isArray(p.download)?p.download:(p.download?[p.down
   var links=(Array.isArray(g.links)?g.links:[]).map(function(l){l=l||{};return {name:String(l.name||l.title||'Download'),url:String(l.url||'')}}).filter(function(l){return /^https?:\/\//.test(l.url)});
   return {title:g.title?String(g.title):'',links:links}}).filter(function(g){return g.links.length})}
 function downloads(p){var g=dlist(p);if(!g.length)return '';
- return '<div class="sec"><div class="sec-h">Unduh</div><div class="sec-b">'+g.map(function(x){
+ return '<div class="sec"><div class="sec-h">Unduh</div><div class="sec-b">'+(/\/g\/tutorial\/?$/i.test(location.pathname)?'':'<a class="dl-tut" href="/g/tutorial" target="_blank" rel="noopener">Tutorial download</a>')+g.map(function(x){
   return '<div class="dl-card">'+(x.title?'<div class="dl-t">'+esc(x.title)+'</div>':'')+'<div class="dl-links">'+
    x.links.map(function(l){return '<a class="dl-btn" href="'+esc(l.url)+'" target="_blank" rel="noopener nofollow">'+esc(l.name)+'</a>'}).join('')+'</div></div>'}).join('')+'</div></div>'}
 /* Tombol "Salin" di pojok kanan atas tiap kotak kode (seperti GitHub) */
