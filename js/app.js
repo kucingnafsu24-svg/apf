@@ -206,7 +206,13 @@ function bottomRows(p){var ks=[];
  if(!h)return '';
  return '<div class="tagrows tagbottom">'+h+'</div>'}
 function meta(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b><span>post '+fmt(p.date)+'</span></div>'}
+/* halaman tag VTuber/YouTuber: daftar tampil seperti halaman channel YouTube (kartu video 16:9 dalam grid) */
+var YT=false;
+function ytCard(p){var u='/g/'+encodeURIComponent(p.slug),hv=vlist(p).length;
+ return '<article class="ytc"><a class="ytc-th" href="'+u+'" tabindex="-1" aria-hidden="true">'+thumb(p,true)+(hv?'<span class="ytc-play">\u25B6 Video</span>':'')+'</a>'+
+  '<div class="ytc-tx">'+avatar(p)+'<div><h3><a href="'+u+'">'+esc(p.title)+'</a></h3><div class="ytc-m">'+esc(p.author)+'</div><div class="ytc-m">'+fmt(p.date)+'</div></div></div></article>'}
 function card(p){
+ if(YT)return ytCard(p);
  return '<article class="post"><div>'+(p.sponsored?'<div class="tag">Sponsored</div>':meta(p))+
  '<h3><a href="/g/'+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a></h3>'+(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+
  '<a class="more" href="/g/'+encodeURIComponent(p.slug)+'">Read more</a>'+'</div>'+thumb(p)+'</article>'}
@@ -258,6 +264,7 @@ var list=$('posts'),qs=new URLSearchParams(location.search);
 if(list){
  var label=labelFromUrl(),tag=tagFromUrl(),tk='',tv='';
  if(tag.indexOf(':')>0){tk=tag.slice(0,tag.indexOf(':')).toLowerCase();tv=tag.slice(tag.indexOf(':')+1);if(tk==='file')tk='category'}
+ YT=/^(vtubers?|youtubers?)$/.test(tk);
  var data=label?P.filter(function(p){return p.labels.some(function(l){return lc2(l)===lc2(label)})}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P.filter(function(p){return !isHid(p)});
  if(!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
  if(label)$('ttl').textContent='Label: '+label;
@@ -266,6 +273,7 @@ if(list){
  if(label||tv)$('ttl').style.cssText='position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';
  /* halaman: 8 artikel per halaman, nomor halaman di ?page=N */
  var PER=8,page=Math.max(1,parseInt(qs.get('page'),10)||1),pg=document.createElement('div');
+ if(YT){list.classList.add('yt-grid');var vb=$('view');if(vb)vb.style.display='none'}
  pg.className='pager';pg.setAttribute('role','navigation');pg.setAttribute('aria-label','Halaman');list.parentNode.insertBefore(pg,list.nextSibling);
  var pageUrl=function(n){var u=new URLSearchParams(location.search);if(n>1)u.set('page',n);else u.delete('page');var q=u.toString();return location.pathname+(q?'?'+q:'')};
  var render=function(a){
