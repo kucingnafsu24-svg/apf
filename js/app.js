@@ -167,7 +167,7 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
  [].forEach.call(el.querySelectorAll('.gal-i'),function(a){a.onclick=function(e){e.preventDefault();open(+a.getAttribute('data-i'))}});
  document.addEventListener('keydown',function(e){if(!lb||lb.hidden)return;
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
-function related(cur){
+function related(cur,side){
  var CW=(window.APF_CONFIG&&window.APF_CONFIG.relatedWeights)||{};
  var W={artist:5,label:3,category:3,genre:1,other:0.5};Object.keys(CW).forEach(function(k){if(typeof CW[k]==='number')W[k]=CW[k]});
  var lc=function(x){return String(x).toLowerCase()},has=function(a,v){return (a||[]).some(function(x){return lc(x)===lc(v)})};
@@ -181,10 +181,13 @@ function related(cur){
    cur.tags[k].forEach(function(v){if(has(p.tags[k],v)){s+=W.other;why=why||gname(k)+' yang sama'}})});
   return {p:p,s:s,why:why}}
  var all=P.filter(function(p){return p!==cur&&p.slug!==cur.slug}).map(score);
+ if(side){var vv=all.filter(function(x){return postType(x.p)==='video'&&vlist(x.p).length});if(vv.length)all=vv}
  all.sort(function(a,b){return b.s-a.s||(a.p.date<b.p.date?1:a.p.date>b.p.date?-1:0)});
- var pick=all.filter(function(x){return x.s>0}).slice(0,6);
- if(pick.length<4)all.filter(function(x){return x.s<=0}).slice(0,6-pick.length).forEach(function(x){x.why='Terbaru';pick.push(x)});
+ var N=side?10:6,pick=all.filter(function(x){return x.s>0}).slice(0,N);
+ if(pick.length<(side?N:4))all.filter(function(x){return x.s<=0}).slice(0,N-pick.length).forEach(function(x){x.why='Terbaru';pick.push(x)});
  if(!pick.length)return '';
+ if(side)return '<section class="yt-rec"><h2>Video lainnya</h2>'+pick.map(function(x){
+  return '<a class="yt-i" href="/g/'+encodeURIComponent(x.p.slug)+'">'+thumb(x.p,true)+'<span class="yt-tx"><b>'+esc(x.p.title)+'</b><small>'+esc(x.p.author)+'</small><small>'+fmt(x.p.date)+'</small></span></a>'}).join('')+'</section>';
  return '<section class="rec"><div class="title"><h2>Rekomendasi untuk Anda</h2><i></i></div><div class="rec-grid">'+pick.map(function(x){
   return '<div class="rec-i">'+thumb(x.p)+'<h3><a href="/g/'+encodeURIComponent(x.p.slug)+'">'+esc(x.p.title)+'</a></h3><div class="rec-m">'+(x.why?'<span>'+esc(x.why)+'</span>':'')+'<span>'+fmt(x.p.date)+'</span></div></div>'}).join('')+'</div></section>'}
 function authorLine(p){return '<div class="meta">'+avatar(p)+'<b>'+esc(p.author)+'</b></div>'}
@@ -305,10 +308,20 @@ if(list){
   var ty=postType(p),vd=videos(p),ent=p.content?'<div class="entry">'+pb(cc(p.content))+'</div>':'';
   a.classList.remove('is-video','is-comic');
   var hd='<div class="crumb" hidden></div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+'<div class="meta"><span>'+fmt(p.date)+'</span></div>';
+  var lay=$('layout');lay.classList.remove('yt');
+  var oldRec=document.querySelector('aside .yt-rec');if(oldRec)oldRec.remove();
   if(ty==='video'&&vd){
-   /* VIDEO: pemutar langsung di bawah judul (tanpa thumbnail besar), lalu deskripsi & unduhan */
-   a.classList.add('is-video');
-   a.innerHTML=hd+vd+ent+gallery(p)+bottomRows(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">\u2190 Semua artikel</a>'}
+   /* VIDEO (YouTuber/VTuber): tata letak mirip halaman tonton YouTube */
+   a.classList.add('is-video');lay.classList.add('yt');
+   var hs=[];Object.keys(p.tags).forEach(function(k){p.tags[k].forEach(function(v){hs.push('<a href="'+tlink(k,v)+'">#'+esc(String(v).replace(/\s+/g,''))+'</a>')})});
+   var rs=related(p,true),sd=document.querySelector('aside');if(rs&&sd)sd.insertAdjacentHTML('afterbegin',rs);
+   a.innerHTML='<div class="crumb" hidden></div>'+vd+'<h1>'+esc(p.title)+'</h1>'+
+    '<div class="yt-ch">'+avatar(p)+'<div class="yt-name"><b>'+esc(p.author)+'</b><small>'+fmt(p.date)+'</small></div><div id="yt-actions"></div></div>'+
+    '<div class="yt-desc clamp"><div class="yt-body"><div class="yt-meta"><b>'+fmt(p.date)+'</b>'+(hs.length?' <span class="yt-tags">'+hs.slice(0,6).join(' ')+'</span>':'')+'</div>'+ent+bottomRows(p)+'</div><button type="button" class="yt-more">Selengkapnya</button></div>'+
+    gallery(p)+audios(p)+downloads(p)+'<a class="back" href="/">\u2190 Semua artikel</a>';
+   var dsc=a.querySelector('.yt-desc'),bd=dsc.querySelector('.yt-body'),mb=dsc.querySelector('.yt-more');
+   if(bd.scrollHeight<=bd.clientHeight+2){dsc.classList.remove('clamp');mb.hidden=true}
+   mb.onclick=function(){var c=dsc.classList.toggle('clamp');mb.textContent=c?'Selengkapnya':'Tampilkan lebih sedikit'}}
   else{
    if(ty==='comic')a.classList.add('is-comic');
    a.innerHTML=hd+thumb(p,true)+ent+gallery(p)+bottomRows(p)+vd+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">\u2190 Semua artikel</a>'}

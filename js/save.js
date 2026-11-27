@@ -65,7 +65,7 @@ function mount(){
  row.innerHTML=(S?'<button type="button" class="sv-btn" id="sv-btn" aria-pressed="false">'+ICON+'<span>Simpan</span></button>':'')+
   '<div class="sv-share"><button type="button" class="sv-btn" id="sv-share" aria-haspopup="true" aria-expanded="false">'+SHARE+'<span>Bagikan</span></button><div class="sv-menu" id="sv-menu" hidden></div></div>'+
   '<span class="sv-msg" id="sv-msg" role="status"></span>';
- ref.parentNode.insertBefore(row,ref);
+ var yh=document.getElementById('yt-actions');if(yh)yh.appendChild(row);else ref.parentNode.insertBefore(row,ref);
  btn=row.querySelector('#sv-btn');msgEl=row.querySelector('#sv-msg');shBtn=row.querySelector('#sv-share');menu=row.querySelector('#sv-menu');
 
  /* Bagikan */
