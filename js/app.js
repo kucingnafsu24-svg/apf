@@ -219,9 +219,10 @@ if($('labels')){
 
 var qs0=new URLSearchParams(location.search),cur=labelFromUrl(),curTag=String(tagFromUrl()).toLowerCase(),curPost=null;
 var lc2=function(x){return String(x).toLowerCase()};
-/* jenis post: 'video' / 'comic' bila ada category/tag/label yang cocok dengan config.postTypes, selain itu '' */
+/* jenis post: 'video' (khusus YouTuber/VTuber & hanya bila post punya video) / 'comic' bila ada category/tag/label yang cocok dengan config.postTypes, selain itu '' */
 function postType(p){var T=(window.APF_CONFIG&&window.APF_CONFIG.postTypes)||{},v=[];
- Object.keys(p.tags||{}).forEach(function(k){v=v.concat(p.tags[k])});v=v.concat(p.labels||[]).map(lc2);
+ Object.keys(p.tags||{}).forEach(function(k){v.push(k);v=v.concat(p.tags[k])}); /* nama grup tag (mis. vtubers) juga ikut dicocokkan */
+ v=v.concat(p.labels||[]).map(lc2);
  var hit=function(a){return (a||[]).some(function(x){return v.indexOf(lc2(x))>-1})};
  return hit(T.comic)?'comic':(hit(T.video)?'video':'')}
 var AR={},ARk={};P.forEach(function(p){(p.tags.artist||[]).forEach(function(a){var k=lc2(a),c=ARk[k]||(ARk[k]=a);AR[c]=(AR[c]||0)+1})});
