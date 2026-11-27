@@ -4,13 +4,13 @@
    Thumbnail besar di atas artikel: tulis "imageFull" di posts.json (opsional), atau otomatis seperti di bawah.
    1) Eksplisit : <img src='/images/Folder/2.webp' data-full='/images/asli/2.png'>
    2) Otomatis  : tanpa data-full, dicoba file di folder & nama yang sama dengan ekstensi
-                  png, jpg, jpeg (urutan bisa diubah lewat fullExt di config.js).
+                  png, jpg, jpeg, gif (urutan bisa diubah lewat fullExt di config.js).
    Bila file asli tidak ada, yang tampil tetap versi .webp.
    Tombol Unduh muncul setelah pemuatan selesai (mengunduh file asli, atau .webp bila asli tidak ada). */
 (function(){
  var art=document.getElementById('article');
  if(!art)return;
- var EXT=(window.APF_CONFIG&&window.APF_CONFIG.fullExt)||['png','jpg','jpeg'];
+ var EXT=(window.APF_CONFIG&&window.APF_CONFIG.fullExt)||['png','jpg','jpeg','gif'];
  var ov,im,st,dl,seq=0;
 
  var s=document.createElement('style');
