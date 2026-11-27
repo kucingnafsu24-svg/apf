@@ -52,7 +52,7 @@ var HID=[];
 var GN={artist:'Artist',genre:'Genre',category:'Category'},TG=(window.APF_CONFIG&&window.APF_CONFIG.tagGroups)||{};
 Object.keys(TG).forEach(function(k){GN[k.toLowerCase()]=TG[k]});
 function gname(k){return GN[k]||(k.charAt(0).toUpperCase()+k.slice(1))}
-var PRETTY={};['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer','vtubers'].forEach(function(g){PRETTY[g]=1});
+var PRETTY={};['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer','vtubers','vtuber','youtubers','youtuber'].forEach(function(g){PRETTY[g]=1});
 function tlink(k,v){k=String(k).toLowerCase();return PRETTY[k]?'/'+encodeURIComponent(k.replace(/\s+/g,'-'))+'/'+encodeURIComponent(v):'/?tag='+encodeURIComponent(k+':'+v)}
 function llink(l){return '/label/'+encodeURIComponent(l)}
 function labelFromUrl(){var q=new URLSearchParams(location.search).get('label');if(q)return q;
@@ -211,8 +211,19 @@ var YT=false;
 function ytCard(p){var u='/g/'+encodeURIComponent(p.slug),hv=vlist(p).length;
  return '<article class="ytc"><a class="ytc-th" href="'+u+'" tabindex="-1" aria-hidden="true">'+thumb(p,true)+(hv?'<span class="ytc-play">\u25B6 Video</span>':'')+'</a>'+
   '<div class="ytc-tx">'+avatar(p)+'<div><h3><a href="'+u+'">'+esc(p.title)+'</a></h3><div class="ytc-m">'+esc(p.author)+'</div><div class="ytc-m">'+fmt(p.date)+'</div></div></div></article>'}
+/* jenis isi di halaman channel: 'video' (video/livestream) atau 'post' (tulisan komunitas), dibaca dari grup tag Category */
+function ytKind(p){var g=String((window.APF_CONFIG&&window.APF_CONFIG.typeGroup)||'category').toLowerCase(),
+ c=[].concat((p.tags&&p.tags[g])||[]).map(function(x){return String(x).toLowerCase().trim()}),
+ v=c.some(function(x){return /^(video|live|stream|streaming|livestream|live stream)$/.test(x)});
+ if(v)return 'video';if(c.indexOf('post')>-1)return 'post';return vlist(p).length?'video':'post'}
+/* kartu "Post" ala tab Postingan/Komunitas YouTube: avatar + nama + tanggal, teks, gambar lebar di bawahnya */
+function ytPost(p){var u='/g/'+encodeURIComponent(p.slug),tx=String(p.excerpt||'').trim();
+ return '<article class="ytp"><div class="ytp-h">'+avatar(p)+'<div><b>'+esc(p.author)+'</b><small>'+fmt(p.date)+'</small></div></div>'+
+  '<h3 class="ytp-t"><a href="'+u+'">'+esc(p.title)+'</a></h3>'+(tx&&tx!==String(p.title).trim()?'<p class="ytp-p">'+esc(tx)+'</p>':'')+
+  (p.image?'<a class="ytp-i" href="'+u+'"><img src="'+esc(p.image)+'" alt="" loading="lazy"></a>':'')+
+  '<div class="ytp-f"><a href="'+u+'"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 20l1-4.6A8 8 0 1 1 21 12z"/></svg>'+(p.comments||0)+' Komentar</a></div></article>'}
 function card(p){
- if(YT)return ytCard(p);
+ if(YT)return ytKind(p)==='post'?ytPost(p):ytCard(p);
  return '<article class="post"><div>'+(p.sponsored?'<div class="tag">Sponsored</div>':meta(p))+
  '<h3><a href="/g/'+encodeURIComponent(p.slug)+'">'+esc(p.title)+'</a></h3>'+(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+
  '<a class="more" href="/g/'+encodeURIComponent(p.slug)+'">Read more</a>'+'</div>'+thumb(p)+'</article>'}
