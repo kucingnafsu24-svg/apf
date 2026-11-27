@@ -219,6 +219,11 @@ if($('labels')){
 
 var qs0=new URLSearchParams(location.search),cur=labelFromUrl(),curTag=String(tagFromUrl()).toLowerCase(),curPost=null;
 var lc2=function(x){return String(x).toLowerCase()};
+/* jenis post: 'video' / 'comic' bila ada category/tag/label yang cocok dengan config.postTypes, selain itu '' */
+function postType(p){var T=(window.APF_CONFIG&&window.APF_CONFIG.postTypes)||{},v=[];
+ Object.keys(p.tags||{}).forEach(function(k){v=v.concat(p.tags[k])});v=v.concat(p.labels||[]).map(lc2);
+ var hit=function(a){return (a||[]).some(function(x){return v.indexOf(lc2(x))>-1})};
+ return hit(T.comic)?'comic':(hit(T.video)?'video':'')}
 var AR={},ARk={};P.forEach(function(p){(p.tags.artist||[]).forEach(function(a){var k=lc2(a),c=ARk[k]||(ARk[k]=a);AR[c]=(AR[c]||0)+1})});
 var auto=Object.keys(AR).length?Object.keys(AR).sort(function(a,b){return AR[b]-AR[a]||a.localeCompare(b)}).map(function(a){return {name:a,artist:a}}):Object.keys(L).map(function(l){return {name:l}});
 /* satu topik: {"name":"Maplestar","artist":"Maplestar"} -> /?tag=artist:Maplestar
@@ -295,8 +300,17 @@ if(list){
    var q=P.concat(HID).filter(function(x){return x.slug===s})[0];
    if(!q){try{console.warn('[post:'+s+'] tidak ditemukan di posts.json')}catch(e){}return ''}
    return '<a class="postbtn" href="/g/'+encodeURIComponent(q.slug)+'">'+esc((l&&l.trim())||q.title)+'</a>'})};
-  a.innerHTML='<div class="crumb" hidden></div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+
-   '<div class="meta"><span>'+fmt(p.date)+'</span></div>'+thumb(p,true)+(p.content?'<div class="entry">'+pb(cc(p.content))+'</div>':'')+gallery(p)+bottomRows(p)+videos(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">← Semua artikel</a>';
+  /* jenis post (video / komik) ditentukan dari category/tag/label lewat config.js -> postTypes */
+  var ty=postType(p),vd=videos(p),ent=p.content?'<div class="entry">'+pb(cc(p.content))+'</div>':'';
+  a.classList.remove('is-video','is-comic');
+  var hd='<div class="crumb" hidden></div><h1>'+esc(p.title)+'</h1>'+authorLine(p)+'<div class="meta"><span>'+fmt(p.date)+'</span></div>';
+  if(ty==='video'&&vd){
+   /* VIDEO: pemutar langsung di bawah judul (tanpa thumbnail besar), lalu deskripsi & unduhan */
+   a.classList.add('is-video');
+   a.innerHTML=hd+vd+ent+gallery(p)+bottomRows(p)+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">\u2190 Semua artikel</a>'}
+  else{
+   if(ty==='comic')a.classList.add('is-comic');
+   a.innerHTML=hd+thumb(p,true)+ent+gallery(p)+bottomRows(p)+vd+audios(p)+downloads(p)+related(p)+'<a class="back" href="/">\u2190 Semua artikel</a>'}
   bindVideos();bindAudios();bindGallery(p);bindCode();
  }
 }
