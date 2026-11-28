@@ -1,26 +1,27 @@
 [
   {
-    "title": "Judul Manga Chapter 1",
-    "slug": "judul-manga-chapter-1",
-    "date": "2026-11-28",
-    "gallery": {
-      "Indonesia": [
-        "/images/manga/judul/id-001.webp",
-        "/images/manga/judul/id-002.webp"
-      ],
-      "English": [
-        "/images/manga/judul/en-001.webp",
-        "/images/manga/judul/en-002.webp",
-        "/images/manga/judul/en-003.webp"
-      ],
-      "日本語": [
-        "/images/manga/judul/jp-001.webp"
-      ]
+  "title": "Judul Manga",
+  "slug": "judul-manga",
+  "date": "2026-11-28",
+  "image": "/images/manga/judul/cover.webp",
+  "tags": { "artist": ["Nama Artist"], "genre": ["Action"] },
+  "content": "<p>Sinopsis manga.</p>",
+  "chapters": [
+    {
+      "title": "Chapter 1",
+      "date": "2026-11-28",
+      "gallery": {
+        "Indonesia": ["/images/manga/judul/c1-id-001.webp", "/images/manga/judul/c1-id-002.webp"],
+        "English": ["/images/manga/judul/c1-en-001.webp"]
+      }
     },
-    "download": [
-      { "title": "Download Chapter 1", "links": [{ "name": "Mega", "url": "https://mega.nz/..." }] }
-    ]
-  },
+    {
+      "title": "Chapter 2",
+      "date": "2026-12-05",
+      "gallery": ["/images/manga/judul/c2-001.webp", "/images/manga/judul/c2-002.webp"]
+    }
+  ]
+},
   {
     "title": "Judul Komik Chapter 2",
     "slug": "judul-komik-chapter-2",

@@ -199,7 +199,22 @@ function matchVals(w,limit){
  Object.keys(vals).forEach(function(k){if(k==='tag')return;Object.keys(vals[k]).forEach(function(v){if(lower(v).indexOf(l)>-1)out.push({k:k,v:v,n:vals[k][v]})})});
  return out.sort(function(a,b){return b.n-a.n}).slice(0,limit)}
 function setOpen(b){if(res)res.classList[b?'add':'remove']('open')}
-function go(q){q=String(q||'').trim();if(!q)return;hAdd(q);location.href=MODE.home+'?q='+encodeURIComponent(q)}
+/* Bila kata yang dicari persis satu kategori / tag / label / artist, langsung buka halamannya (bukan hasil pencarian) */
+var PRETTYS={};['artist','genre','category','parody','tag','cosplayer','game pc','language','publisher','developer','vtubers','vtuber','youtubers','youtuber'].forEach(function(g){PRETTYS[g]=1});
+function tagUrl(k,v){
+ if(k==='label')return MODE.comic?MODE.home+'?label='+encodeURIComponent(v):'/label/'+encodeURIComponent(v);
+ if(MODE.comic)return MODE.home+'?tag='+encodeURIComponent(k+':'+v);
+ return PRETTYS[k]?'/'+encodeURIComponent(k.replace(/\s+/g,'-'))+'/'+encodeURIComponent(v):'/?tag='+encodeURIComponent(k+':'+v)}
+function direct(q){
+ q=String(q||'').trim().replace(/^"+|"+$/g,'').trim();var l=lower(q);
+ if(!l||/(^|\s)-?[a-z_][\w-]*:/i.test(q))return '';
+ var hit=[];
+ Object.keys(vals).forEach(function(k){Object.keys(vals[k]).forEach(function(v){if(lower(v)===l)hit.push({k:k,v:v})})});
+ var own=hit.filter(function(h){return h.k!=='tag'});if(own.length)hit=own;
+ return hit.length===1?tagUrl(hit[0].k,hit[0].v):''}
+function go(q){q=String(q||'').trim();if(!q)return;hAdd(q);
+ var plain=function(){location.href=MODE.home+'?q='+encodeURIComponent(q)};
+ load().then(function(){var u=direct(q);if(u)location.href=u;else plain()},plain)}
 
 function refresh(){
  if(!inp||!res)return;
@@ -299,6 +314,7 @@ if(qp&&box){
  if(inp)inp.value=qp;
  hAdd(qp);
  load().then(function(){
+  var du=direct(qp);if(du){location.replace(du);return}
   var P=parse(qp),t=P.hl,r=run({q:qp,sort:'rel'});
   var ttl=$('ttl');if(ttl)ttl.textContent='Hasil pencarian ('+r.length+')';
   var sl=$('slider');if(sl)sl.hidden=true;
@@ -313,5 +329,5 @@ if(qp&&box){
    '<div class="sm-empty">Tidak ada artikel yang cocok. Coba kata lain atau hapus salah satu filter.</div>')+'</div>';
  });
 }
-window.APF_SEARCH={load:load,run:run,hl:hl,parse:parse,build:build,partial:partial,lastTok:lastTok,refresh:refresh,hLoad:hLoad,hAdd:hAdd};
+window.APF_SEARCH={direct:direct,load:load,run:run,hl:hl,parse:parse,build:build,partial:partial,lastTok:lastTok,refresh:refresh,hLoad:hLoad,hAdd:hAdd};
 })();

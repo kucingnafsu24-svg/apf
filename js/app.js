@@ -153,9 +153,28 @@ function bindVideos(){var vp=document.getElementById('vplayer');if(!vp)return;
 /* Galeri / halaman komik. "gallery" boleh berupa daftar biasa  ["/a.webp","/b.webp"]
    atau dibagi per bahasa:  {"Indonesia":["/id-1.webp",...],"English":["/en-1.webp",...]}
    Bila lebih dari satu bahasa, muncul tombol pilihan bahasa di atas gambar (pilihan diingat di browser). */
+/* Satu komik = satu post, chapter ada di dalamnya:
+   "chapters":[{"title":"Chapter 1","date":"2026-11-28","gallery":[...atau {"Indonesia":[...],"English":[...]}]}, ...]
+   Daftar chapter tampil di halaman komik; chapter dibuka lewat  /k/slug?ch=1  */
+function chList(p){return Array.isArray(p.chapters)?p.chapters.filter(function(c){return c&&typeof c==='object'}):[]}
+function chCur(p){var L=chList(p);if(!L.length)return 0;var n=parseInt(new URLSearchParams(location.search).get('ch'),10);return n>=1&&n<=L.length?n:0}
+function pgal(p){var L=chList(p);if(!L.length)return p.gallery;var n=chCur(p);return n?L[n-1].gallery:null}
+var CHCSS='<style>.cht{margin:22px 0 10px;font-size:18px;color:var(--head)}.is-comic .cht,.is-comic .chnav,.is-comic .chl{max-width:820px;margin-left:auto;margin-right:auto}'+
+ '.chl{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}'+
+ '.chl a{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--head);text-decoration:none}.chl a:hover{border-color:var(--link)}.chl small{opacity:.65;font-size:12px}'+
+ '.chnav{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:10px 0}.chnav select{flex:1;min-width:0;max-width:320px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--head);font:inherit;font-size:14px}'+
+ '.chb{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--link);text-decoration:none;font-size:13px;white-space:nowrap}.chb.off{opacity:.4;pointer-events:none}</style>';
+function chName(c,i){return esc(c.title||('Chapter '+(i+1)))}
+function chapList(p){var L=chList(p),b=esc(location.pathname);
+ return CHCSS+'<h2 class="cht">Daftar Chapter ('+L.length+')</h2><div class="chl">'+L.map(function(c,i){
+  return '<a href="'+b+'?ch='+(i+1)+'"><b>'+chName(c,i)+'</b>'+(c.date?'<small>'+esc(c.date)+'</small>':'')+'</a>'}).join('')+'</div>'}
+function chnav(p,n){var L=chList(p),b=esc(location.pathname);
+ return '<div class="chnav">'+(n>1?'<a class="chb" href="'+b+'?ch='+(n-1)+'">\u2039 Sebelumnya</a>':'<span class="chb off">\u2039 Sebelumnya</span>')+
+  '<select class="chs" aria-label="Pilih chapter"><option value="'+b+'">Daftar chapter</option>'+L.map(function(c,i){return '<option value="'+b+'?ch='+(i+1)+'"'+(i+1===n?' selected':'')+'>'+chName(c,i)+'</option>'}).join('')+'</select>'+
+  (n<L.length?'<a class="chb" href="'+b+'?ch='+(n+1)+'">Berikutnya \u203A</a>':'<span class="chb off">Berikutnya \u203A</span>')+'</div>'}
 function gnorm(a){return (Array.isArray(a)?a:[]).map(function(g){
  var o=typeof g==='string'?{url:g}:(g||{});return {url:String(o.url||''),cap:o.caption?String(o.caption):''}}).filter(function(g){return /^(https?:\/\/|\/(?!\/))/.test(g.url)})}
-function gsets(p){var g=p.gallery;
+function gsets(p){var g=pgal(p);
  if(g&&typeof g==='object'&&!Array.isArray(g))return Object.keys(g).map(function(k){return {name:k,list:gnorm(g[k])}}).filter(function(x){return x.list.length});
  var l=gnorm(g);return l.length?[{name:'',list:l}]:[]}
 function glist(p){var s=gsets(p);return s.length?s[0].list:[]}
@@ -163,13 +182,18 @@ var GLK='apf-lang';
 function gpick(sets){var v='';try{v=String(localStorage.getItem(GLK)||'').toLowerCase()}catch(e){}
  for(var i=0;i<sets.length;i++)if(sets[i].name.toLowerCase()===v)return i;return 0}
 function galItems(g){return g.map(function(x,i){return '<a class="gal-i" href="'+esc(x.url)+'" data-i="'+i+'"><img src="'+esc(x.url)+'" alt="'+esc(x.cap)+'" loading="lazy"></a>'}).join('')}
-function gallery(p){var s=gsets(p);if(!s.length)return '';var k=gpick(s);
+function gallery(p){var L=chList(p);if(!L.length)return galHtml(p);
+ var n=chCur(p);if(!n)return chapList(p);
+ var g=galHtml(p),nv=chnav(p,n);
+ return CHCSS+'<h2 class="cht">'+chName(L[n-1],n-1)+'</h2>'+nv+(g||'<div class="empty">Halaman chapter ini belum tersedia.</div>')+nv}
+function galHtml(p){var s=gsets(p);if(!s.length)return '';var k=gpick(s);
  var sw=s.length>1?'<style>.glang{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}.is-comic .glang{max-width:820px;margin:18px auto 4px}'+
   '.glang button{padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:none;color:var(--head);font:inherit;font-size:13px;cursor:pointer}'+
   '.glang button.on{background:var(--card);color:var(--link);border-color:var(--link);font-weight:600}</style>'+
   '<div class="glang" id="glang" role="group" aria-label="Pilih bahasa">'+s.map(function(x,i){return '<button type="button" data-l="'+i+'"'+(i===k?' class="on"':'')+'>'+esc(x.name)+'</button>'}).join('')+'</div>':'';
  return sw+'<div class="gal" id="gal">'+galItems(s[k].list)+'</div>'}
-function bindGallery(p){var sets=gsets(p),el=document.getElementById('gal');if(!el||!sets.length)return;
+function bindGallery(p){[].forEach.call(document.querySelectorAll('.chs'),function(x){x.onchange=function(){location.href=x.value}});
+ var sets=gsets(p),el=document.getElementById('gal');if(!el||!sets.length)return;
  var k=gpick(sets),g=sets[k].list,lb=null,i=0,im,cp;
  function show(n){i=(n+g.length)%g.length;im.src=g[i].url;cp.textContent=(g[i].cap?g[i].cap+'  ':'')+(g.length>1?'('+(i+1)+'/'+g.length+')':'')}
  function close(){if(lb){lb.hidden=true;document.documentElement.style.overflow=''}}
