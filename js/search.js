@@ -206,7 +206,14 @@ function tagUrl(k,v){
  if(MODE.comic)return MODE.home+'?tag='+encodeURIComponent(k+':'+v);
  return PRETTYS[k]?'/'+encodeURIComponent(k.replace(/\s+/g,'-'))+'/'+encodeURIComponent(v):'/?tag='+encodeURIComponent(k+':'+v)}
 function direct(q){
- q=String(q||'').trim().replace(/^"+|"+$/g,'').trim();var l=lower(q);
+ q=String(q||'').trim();
+ /* satu filter saja, mis. category:"vtuber" / artist:maple / tag:comedy */
+ var P=parse(q),o=P.ops[0];
+ if(P.ops.length===1&&!P.words.length&&!o.neg&&!{before:1,after:1,title:1,author:1}[o.key]){
+  var key=o.key==='file'?'category':o.key,src=vals[key]||{},c=Object.keys(src).filter(function(v){return lower(v)===o.val});
+  if(!c.length&&!o.exact)c=Object.keys(src).filter(function(v){return lower(v).indexOf(o.val)>-1});
+  return c.length===1?tagUrl(key==='tag'?(tagGroup[lower(c[0])]||'tag'):key,c[0]):''}
+ q=q.replace(/^"+|"+$/g,'').trim();var l=lower(q);
  if(!l||/(^|\s)-?[a-z_][\w-]*:/i.test(q))return '';
  var hit=[];
  Object.keys(vals).forEach(function(k){Object.keys(vals[k]).forEach(function(v){if(lower(v)===l)hit.push({k:k,v:v})})});
