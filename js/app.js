@@ -150,12 +150,27 @@ function bindVideos(){var vp=document.getElementById('vplayer');if(!vp)return;
  function pick(i){cur=i;if(!sel)return;sel.innerHTML=srvOpts(VG[i]);lab.hidden=VG[i].s.length<2}
  [].forEach.call(bs,function(b){b.onclick=function(){var i=+b.getAttribute('data-g');fr.src=VG[i].s[0].url;[].forEach.call(bs,function(x){x.className=''});b.className='on';pick(i)}});
  if(sel)sel.onchange=function(){var x=VG[cur].s[+sel.value];if(x)fr.src=x.url}}
-function glist(p){return (Array.isArray(p.gallery)?p.gallery:[]).map(function(g){
+/* Galeri / halaman komik. "gallery" boleh berupa daftar biasa  ["/a.webp","/b.webp"]
+   atau dibagi per bahasa:  {"Indonesia":["/id-1.webp",...],"English":["/en-1.webp",...]}
+   Bila lebih dari satu bahasa, muncul tombol pilihan bahasa di atas gambar (pilihan diingat di browser). */
+function gnorm(a){return (Array.isArray(a)?a:[]).map(function(g){
  var o=typeof g==='string'?{url:g}:(g||{});return {url:String(o.url||''),cap:o.caption?String(o.caption):''}}).filter(function(g){return /^(https?:\/\/|\/(?!\/))/.test(g.url)})}
-function gallery(p){var g=glist(p);if(!g.length)return '';
- return '<div class="gal" id="gal">'+g.map(function(x,i){return '<a class="gal-i" href="'+esc(x.url)+'" data-i="'+i+'"><img src="'+esc(x.url)+'" alt="'+esc(x.cap)+'" loading="lazy"></a>'}).join('')+'</div>'}
-function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el||!g.length)return;
- var lb=null,i=0,im,cp;
+function gsets(p){var g=p.gallery;
+ if(g&&typeof g==='object'&&!Array.isArray(g))return Object.keys(g).map(function(k){return {name:k,list:gnorm(g[k])}}).filter(function(x){return x.list.length});
+ var l=gnorm(g);return l.length?[{name:'',list:l}]:[]}
+function glist(p){var s=gsets(p);return s.length?s[0].list:[]}
+var GLK='apf-lang';
+function gpick(sets){var v='';try{v=String(localStorage.getItem(GLK)||'').toLowerCase()}catch(e){}
+ for(var i=0;i<sets.length;i++)if(sets[i].name.toLowerCase()===v)return i;return 0}
+function galItems(g){return g.map(function(x,i){return '<a class="gal-i" href="'+esc(x.url)+'" data-i="'+i+'"><img src="'+esc(x.url)+'" alt="'+esc(x.cap)+'" loading="lazy"></a>'}).join('')}
+function gallery(p){var s=gsets(p);if(!s.length)return '';var k=gpick(s);
+ var sw=s.length>1?'<style>.glang{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}.is-comic .glang{max-width:820px;margin:18px auto 4px}'+
+  '.glang button{padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:none;color:var(--head);font:inherit;font-size:13px;cursor:pointer}'+
+  '.glang button.on{background:var(--card);color:var(--link);border-color:var(--link);font-weight:600}</style>'+
+  '<div class="glang" id="glang" role="group" aria-label="Pilih bahasa">'+s.map(function(x,i){return '<button type="button" data-l="'+i+'"'+(i===k?' class="on"':'')+'>'+esc(x.name)+'</button>'}).join('')+'</div>':'';
+ return sw+'<div class="gal" id="gal">'+galItems(s[k].list)+'</div>'}
+function bindGallery(p){var sets=gsets(p),el=document.getElementById('gal');if(!el||!sets.length)return;
+ var k=gpick(sets),g=sets[k].list,lb=null,i=0,im,cp;
  function show(n){i=(n+g.length)%g.length;im.src=g[i].url;cp.textContent=(g[i].cap?g[i].cap+'  ':'')+(g.length>1?'('+(i+1)+'/'+g.length+')':'')}
  function close(){if(lb){lb.hidden=true;document.documentElement.style.overflow=''}}
  function open(n){
@@ -165,7 +180,16 @@ function bindGallery(p){var g=glist(p),el=document.getElementById('gal');if(!el|
    lb.addEventListener('click',function(e){var c=e.target.className;
     if(c==='lb-x'||e.target===lb)close();else if(c==='lb-p')show(i-1);else if(c==='lb-n')show(i+1)})}
   lb.hidden=false;show(n);document.documentElement.style.overflow='hidden'}
- [].forEach.call(el.querySelectorAll('.gal-i'),function(a){a.onclick=function(e){e.preventDefault();open(+a.getAttribute('data-i'))}});
+ function wire(){[].forEach.call(el.querySelectorAll('.gal-i'),function(a){a.onclick=function(e){e.preventDefault();open(+a.getAttribute('data-i'))}})}
+ wire();
+ var gl=document.getElementById('glang');
+ if(gl)gl.onclick=function(e){var b=e.target.closest&&e.target.closest('button[data-l]');if(!b)return;
+  var n=+b.getAttribute('data-l');if(!sets[n]||n===k)return;
+  k=n;g=sets[n].list;try{localStorage.setItem(GLK,sets[n].name)}catch(x){}
+  [].forEach.call(gl.querySelectorAll('button'),function(x,j){x.className=j===n?'on':''});
+  el.innerHTML=galItems(g);
+  if(lb){if(lb.parentNode)lb.parentNode.removeChild(lb);lb=null;document.documentElement.style.overflow=''}
+  wire()};
  document.addEventListener('keydown',function(e){if(!lb||lb.hidden)return;
   if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})}
 function related(cur,side){
@@ -263,7 +287,7 @@ var markNav=function(){var ct=curTag.replace(/^file:/,'category:');[].forEach.ca
  var m=(a.getAttribute('href')||'').match(/^\/([^\/]+)\/(.+)$/),on=false;
  if(m){var g,v;try{g=lc2(decodeURIComponent(m[1]));v=lc2(decodeURIComponent(m[2]))}catch(e){g=lc2(m[1]);v=lc2(m[2])}
   on=ct===g+':'+v}
- if(a.getAttribute('href')==='/comics')on=!!MODE.comic;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})};
+ if(a.getAttribute('href')==='/manga')on=!!MODE.comic;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})};
 var drawTopics=function(a){$('topics').innerHTML=a.map(function(t){
   var o=topicOf(t),on=false;
   if(o.g)on=curTag===lc2(o.g+':'+o.v)||!!(curPost&&(curPost.tags[o.g]||[]).some(function(x){return lc2(x)===lc2(o.v)}));
@@ -279,7 +303,7 @@ if(list){
  YT=/^(vtubers?|youtubers?)$/.test(tk);
  var data=label?P.filter(function(p){return p.labels.some(function(l){return lc2(l)===lc2(label)})}):tv?P.filter(function(p){return (p.tags[tk]||[]).some(function(x){return lc2(x)===lc2(tv)})}):P.filter(function(p){return !isHid(p)});
  if(!MODE.comic&&!label&&!tv&&!qs.get('q'))fetch('/data/slider.json').then(function(x){return x.json()}).then(slider).catch(function(){});
- if(MODE.comic){document.title='Komik — All Pirate File';if(!label&&!tv)$('ttl').textContent='Komik Terbaru'}
+ if(MODE.comic){document.title='Manga — All Pirate File';if(!label&&!tv)$('ttl').textContent='Manga Terbaru'}
  if(label)$('ttl').textContent='Label: '+label;
  if(tv)$('ttl').textContent=gname(tk)+': '+tv;
  /* halaman kategori/tag/label: judul disembunyikan dari tampilan (tetap ada untuk pembaca layar & SEO) */

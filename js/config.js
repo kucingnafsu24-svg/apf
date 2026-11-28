@@ -1,9 +1,9 @@
-/* Mode situs. Komik dipisah dari post biasa:
+/* Mode situs. Manga dipisah dari post biasa:
    - post biasa : daftar di /            data/posts.json   baca di /g/slug
-   - komik      : daftar di /comics      data/comic.json   baca di /k/slug  */
+   - manga      : daftar di /manga       data/comic.json   baca di /k/slug  */
 window.APF_MODE = (function () {
-  var c = /^\/(comics|k)(\/|$)/i.test(location.pathname);
-  return { comic: c, data: c ? '/data/comic.json' : '/data/posts.json', base: c ? '/k/' : '/g/', home: c ? '/comics' : '/' };
+  var c = /^\/(manga|k)(\/|$)/i.test(location.pathname);
+  return { comic: c, data: c ? '/data/comic.json' : '/data/posts.json', base: c ? '/k/' : '/g/', home: c ? '/manga' : '/' };
 })();
 
 // Isi dari Supabase: Project Settings -> API (Project URL & anon public key)
