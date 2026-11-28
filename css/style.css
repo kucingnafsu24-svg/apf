@@ -805,3 +805,28 @@ nav a.on:hover,.topics a.on:hover{background:#46464b}
 .ytp-f a{display:inline-flex;align-items:center;gap:8px;color:var(--alt);text-decoration:none}.ytp-f a:hover{color:var(--head)}
 .ytp-f svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:560px){.ytp{padding:12px;border-radius:10px}}
+
+/* ===== Komentar langsung di kartu Post (halaman channel) ===== */
+.ytp-f{justify-content:space-between}
+.ytp-cm{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;margin:-6px -12px;border:0;border-radius:18px;background:none;color:var(--alt);font:inherit;font-size:13px;cursor:pointer}
+.ytp-cm:hover,.ytp-cm[aria-expanded="true"]{background:var(--card);color:var(--head)}
+.ytp-cm svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ytp-open{color:var(--alt);font-size:13px}.ytp-open:hover{color:var(--link)}
+.ytp-c{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.ytp-c[hidden]{display:none}
+.ytp-cf{display:flex;gap:8px;align-items:flex-end}
+.ytp-cf textarea{flex:1;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--head);font:inherit;font-size:14px;line-height:1.5;resize:vertical;min-height:44px}
+.ytp-cs{flex:none;padding:10px 18px;border:0;border-radius:18px;background:var(--link);color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.ytp-cs[disabled]{opacity:.6;cursor:wait}
+.ytp-cl{font-size:13.5px;color:var(--alt)}.ytp-cl a{color:var(--link);font-weight:600}
+.ytp-cmsg{min-height:0;margin-top:6px;font-size:12.5px;color:#e5484d}.ytp-cmsg:empty{display:none}
+.ytp-cl2{margin-top:12px}
+.ytp-ci{display:flex;gap:10px;padding:8px 0}
+.ytp-ci>div{min-width:0;flex:1}
+.ytp-ci .av{width:32px;height:32px;border-radius:50%;object-fit:cover;flex:none;font-size:13px}
+.ytp-cn{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--alt)}.ytp-cn b{font-size:13px;color:var(--head)}
+.ytp-cd{padding:0;border:0;background:none;color:var(--alt);font:inherit;font-size:12px;cursor:pointer;text-decoration:underline}
+.ytp-ci p{margin:3px 0 0;font-size:14px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--body)}
+.ytp-cp img{display:block;max-width:240px;max-height:200px;margin-top:6px;border-radius:8px}
+.ytp-ce{padding:6px 0;font-size:13.5px;color:var(--alt)}
+.ytp-call{display:inline-block;margin-top:6px;font-size:13px;color:var(--link)}

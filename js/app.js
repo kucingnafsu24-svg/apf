@@ -218,10 +218,10 @@ function ytKind(p){var g=String((window.APF_CONFIG&&window.APF_CONFIG.typeGroup)
  if(v)return 'video';if(c.indexOf('post')>-1)return 'post';return vlist(p).length?'video':'post'}
 /* kartu "Post" ala tab Postingan/Komunitas YouTube: avatar + nama + tanggal, teks, gambar lebar di bawahnya */
 function ytPost(p){var u='/g/'+encodeURIComponent(p.slug),tx=String(p.excerpt||'').trim();
- return '<article class="ytp"><div class="ytp-h">'+avatar(p)+'<div><b>'+esc(p.author)+'</b><small>'+fmt(p.date)+'</small></div></div>'+
+ return '<article class="ytp" data-slug="'+esc(p.slug)+'"><div class="ytp-h">'+avatar(p)+'<div><b>'+esc(p.author)+'</b><small>'+fmt(p.date)+'</small></div></div>'+
   '<h3 class="ytp-t"><a href="'+u+'">'+esc(p.title)+'</a></h3>'+(tx&&tx!==String(p.title).trim()?'<p class="ytp-p">'+esc(tx)+'</p>':'')+
   (p.image?'<a class="ytp-i" href="'+u+'"><img src="'+esc(p.image)+'" alt="" loading="lazy"></a>':'')+
-  '<div class="ytp-f"><a href="'+u+'"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 20l1-4.6A8 8 0 1 1 21 12z"/></svg>'+(p.comments||0)+' Komentar</a></div></article>'}
+  '<div class="ytp-f"><button type="button" class="ytp-cm" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>'+(p.comments||0)+'</span> Komentar</button><a class="ytp-open" href="'+u+'">Buka postingan</a></div></article>'}
 function card(p){
  if(YT)return ytKind(p)==='post'?ytPost(p):ytCard(p);
  return '<article class="post"><div>'+(p.sponsored?'<div class="tag">Sponsored</div>':meta(p))+
