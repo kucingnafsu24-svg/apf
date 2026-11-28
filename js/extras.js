@@ -2,6 +2,7 @@
    1) Menu topik (mobile): tombol buka/tutup panel samping
    2) Navigasi artikel Sebelumnya / Selanjutnya di post.html */
 (function(){
+ var MODE=window.APF_MODE||{comic:false,data:'/data/posts.json',base:'/g/',home:'/'};
  /* ---------- 1) Menu topik mobile ---------- */
  try{
   var b=document.getElementById('menu'),B=document.body;
@@ -78,7 +79,7 @@
   nav.className='pnav';nav.setAttribute('role','navigation');nav.setAttribute('aria-label','Navigasi artikel');
   function box(x,cls,label){
    if(!x){nav.appendChild(document.createElement('span'));return}
-   var a=document.createElement('a');a.className=cls;a.href='/g/'+encodeURIComponent(x.slug);
+   var a=document.createElement('a');a.className=cls;a.href=MODE.base+encodeURIComponent(x.slug);
    a.rel=cls==='pv'?'prev':'next';
    var s=document.createElement('small');s.textContent=label;
    var t=document.createElement('b');t.textContent=x.title;
@@ -100,7 +101,7 @@
   done=true;
  }
 
- fetch('/data/posts.json').then(function(r){return r.json()}).then(function(list){
+ fetch(MODE.data).then(function(r){return r.json()}).then(function(list){
   if(!Array.isArray(list))return;
   navEl=build(list);if(!navEl)return;
   place();

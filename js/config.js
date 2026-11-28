@@ -1,3 +1,11 @@
+/* Mode situs. Komik dipisah dari post biasa:
+   - post biasa : daftar di /            data/posts.json   baca di /g/slug
+   - komik      : daftar di /comics      data/comic.json   baca di /k/slug  */
+window.APF_MODE = (function () {
+  var c = /^\/(comics|k)(\/|$)/i.test(location.pathname);
+  return { comic: c, data: c ? '/data/comic.json' : '/data/posts.json', base: c ? '/k/' : '/g/', home: c ? '/comics' : '/' };
+})();
+
 // Isi dari Supabase: Project Settings -> API (Project URL & anon public key)
 window.APF_CONFIG = {
   supabaseUrl: window.location.origin + '/sb',

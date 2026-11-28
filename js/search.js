@@ -1,4 +1,5 @@
 (function(){
+var MODE=window.APF_MODE||{comic:false,data:'/data/posts.json',base:'/g/',home:'/'};
 var $=function(i){return document.getElementById(i)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 var escRe=function(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')};
@@ -35,7 +36,7 @@ function addVal(k,v){vals[k]=vals[k]||{};vcase[k]=vcase[k]||{};var l=lower(v),c=
 
 function load(){
  if(posts)return Promise.resolve(posts);
- if(!loading)loading=fetch('/data/posts.json').then(function(r){return r.json()}).then(function(a){
+ if(!loading)loading=fetch(MODE.data).then(function(r){return r.json()}).then(function(a){
   var tmp=document.createElement('textarea');
   posts=(Array.isArray(a)?a:[]).filter(Boolean).map(function(p){
    var title=String(p.title||'Tanpa judul'),author=String(p.author||'Admin');
@@ -142,8 +143,8 @@ function snippet(p,t){
  else s=p.excerpt||p.text.slice(0,160);
  return hl(s,t);
 }
-var href=function(p){return '/g/'+encodeURIComponent(p.slug)};
-var qurl=function(t){var s=build(t);return s?'/?q='+encodeURIComponent(s):'/'};
+var href=function(p){return MODE.base+encodeURIComponent(p.slug)};
+var qurl=function(t){var s=build(t);return s?MODE.home+'?q='+encodeURIComponent(s):MODE.home};
 
 /* ---- riwayat pencarian (disimpan di browser ini): bintang = disematkan, ✕ = hapus ---- */
 var HK='apf_hist_v1';
@@ -198,7 +199,7 @@ function matchVals(w,limit){
  Object.keys(vals).forEach(function(k){if(k==='tag')return;Object.keys(vals[k]).forEach(function(v){if(lower(v).indexOf(l)>-1)out.push({k:k,v:v,n:vals[k][v]})})});
  return out.sort(function(a,b){return b.n-a.n}).slice(0,limit)}
 function setOpen(b){if(res)res.classList[b?'add':'remove']('open')}
-function go(q){q=String(q||'').trim();if(!q)return;hAdd(q);location.href='/?q='+encodeURIComponent(q)}
+function go(q){q=String(q||'').trim();if(!q)return;hAdd(q);location.href=MODE.home+'?q='+encodeURIComponent(q)}
 
 function refresh(){
  if(!inp||!res)return;
@@ -228,7 +229,7 @@ function refresh(){
     if(parse(tq).toks.length){
      var t=parse(tq).hl,all=run({q:tq,sort:'rel'});
      h+=all.length?all.slice(0,5).map(function(p){return '<a data-nav="1" href="'+esc(href(p))+'"><b>'+hl(p.title,t)+'</b><span>'+esc(p.labels.join(' / '))+'</span></a>'}).join('')+
-      '<a class="sg-all" data-nav="1" href="/?q='+encodeURIComponent(tq)+'">Lihat '+(all.length>5?'semua ':'')+all.length+' hasil →</a>':
+      '<a class="sg-all" data-nav="1" href="'+MODE.home+'?q='+encodeURIComponent(tq)+'">Lihat '+(all.length>5?'semua ':'')+all.length+' hasil →</a>':
       (mv.length?'':'<div class="sres-empty">Tidak ada hasil</div>');
     }
    }

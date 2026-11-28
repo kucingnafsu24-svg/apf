@@ -13,6 +13,14 @@
       "destination": "/post.html"
     },
     {
+      "source": "/comics",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/k/:s",
+      "destination": "/post.html"
+    },
+    {
       "source": "/:group(Artist|artist|Category|category|Cosplayer|cosplayer|Developer|developer|Game-PC|Game-Pc|game-pc|Genre|genre|Label|label|Language|language|Parody|parody|Publisher|publisher|Tag|tag|Vtubers|vtubers|Youtubers|youtubers)/:v",
       "destination": "/index.html"
     }

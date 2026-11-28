@@ -70,7 +70,7 @@ function thumb(p,href){
  return '<a href="'+href+'" class="thumb '+esc(t.cls||'t1')+'"><span><strong>'+esc(t.title||String(p.title||'').slice(0,14))+'</strong><small>'+esc(t.sub||'')+'</small></span></a>';
 }
 function card(row,p){
- var s=row.k,href='/g/'+encodeURIComponent(s);
+ var s=row.k,href=(p&&p._comic?'/k/':'/g/')+encodeURIComponent(s);
  if(!p)return '<article class="post gone" data-s="'+esc(s)+'"><div><h3>Postingan tidak tersedia</h3><p style="display:block">'+esc(s)+'</p><button type="button" class="rm">Hapus dari daftar</button></div><span></span></article>';
  return '<article class="post" data-s="'+esc(s)+'"><div><div class="meta"><span>'+fmt(p.date)+'</span></div>'+
   '<h3><a href="'+href+'">'+esc(p.title)+'</a></h3>'+(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+
@@ -100,11 +100,15 @@ window.addEventListener('storage',function(){drawPosts();drawArtists()});
 
 drawArtists();show(location.hash==='#artist'?'artist':'post');
 $('n-post').textContent=S.posts().length;
-fetch('/data/posts.json').then(function(x){return x.json()}).then(function(d){
- var list=Array.isArray(d)?d:(d&&d.posts)||[];
- list.forEach(function(p){if(p&&typeof p==='object')map[slugOf(p)]=p});
+/* post biasa (data/posts.json) dan komik (data/comic.json) dimuat terpisah; komik ditandai _comic supaya linknya ke /k/slug */
+var getJ=function(u){return fetch(u).then(function(x){return x.json()}).then(function(d){return Array.isArray(d)?d:(d&&d.posts)||[]})};
+Promise.all([getJ('/data/posts.json').then(function(a){return {ok:1,a:a}},function(){return {ok:0,a:[]}}),
+ getJ('/data/comic.json').then(function(a){return {ok:1,a:a}},function(){return {ok:0,a:[]}})]).then(function(r){
+ if(!r[0].ok&&!r[1].ok){say('Gagal memuat data postingan. Coba lagi nanti.');return}
+ r[1].a.forEach(function(p){if(p&&typeof p==='object'){p._comic=true;map[slugOf(p)]=p}});
+ r[0].a.forEach(function(p){if(p&&typeof p==='object')map[slugOf(p)]=p});
  loaded=true;drawPosts();
-}).catch(function(){say('Gagal memuat data postingan. Coba lagi nanti.')});
+});
 })();
 </script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
